@@ -1,0 +1,10 @@
+.container {
+  padding: 0;
+  position: relative;
+}
+
+@media only screen and (max-width: 900px) {
+  .container {
+    overflow: hidden;
+  }
+}

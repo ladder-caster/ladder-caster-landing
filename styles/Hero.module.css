@@ -1,0 +1,451 @@
+.hero {
+  min-height: 100vh;
+  position: relative;
+}
+
+.main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding-top: 30vh;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 650px;
+  position: relative;
+}
+
+.chain > svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+}
+
+.info > h1 {
+  font-size: 86px;
+  font-weight: 700;
+  line-height: 72px;
+  color: #fff;
+  letter-spacing: 1px;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  padding: 0 0 16px;
+}
+
+.chain {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 1px rgba(52, 42, 60, 0.5);
+  position: absolute;
+  bottom: 16px;
+  right: 24px;
+}
+
+.brush {
+  position: absolute;
+  top: calc(50% - 215px);
+  z-index: -1;
+  /* display: none; */
+}
+
+.brush > img {
+  height: 35vw;
+  max-height: 390px;
+}
+
+.chain > svg {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+}
+
+.float {
+  min-width: 100%;
+  width: 100%;
+  height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.background {
+  min-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  background-image: url('/background-dark.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+.overlay {
+  min-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  background: linear-gradient(135deg, #aea8ff, #2c00cb 20%, #000000 30%);
+  opacity: 0.25;
+  z-index: -1;
+}
+
+.desc {
+  font-size: 18px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  width: 450px;
+  margin-bottom: 48px;
+  letter-spacing: 1px;
+  line-height: 28px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 48px;
+  left: 0;
+  right: 0;
+  height: 40vh;
+}
+
+.button > a > svg {
+  width: 24px;
+  margin-right: 12px;
+  fill: #fff;
+}
+
+.button > a > div {
+  display: flex;
+  align-items: center;
+}
+
+.button > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0px 8px 24px 0 rgb(0 0 0 / 55%);
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  background: none;
+  background: rgb(212, 185, 89);
+  background: linear-gradient(
+    132deg,
+    rgb(156 138 73) 0%,
+    rgb(78 111 100) 51%,
+    rgb(30 65 84) 100%
+  );
+  color: white;
+  padding: 8px;
+  border: none;
+  font-size: 16px;
+  width: 260px;
+  height: 64px;
+  transition: all 0.15s ease-in;
+  margin-top: 54px;
+}
+
+.button > a:hover {
+  transform: translateY(-4px);
+}
+
+.button > a > span {
+  display: flex;
+  align-items: center;
+}
+
+.button > a > span > h2 {
+  background-color: red;
+  background-image: linear-gradient(45deg, #ffd547, #28c5f9);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 1px;
+  /* color: white; */
+}
+
+.button > a > span > svg {
+  width: 32px;
+  margin-right: 16px;
+}
+
+.discord > a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  box-shadow: 0px 8px 24px 0 rgb(0 0 0 / 55%);
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  background: none;
+  background-color: #5159e9;
+  color: white;
+  padding: 8px;
+  border: none;
+  font-size: 16px;
+  width: 260px;
+  height: 64px;
+  transition: 0.15s ease-in;
+  margin-top: 24px;
+}
+
+.discord > a > span {
+  display: flex;
+  align-items: center;
+}
+
+.discord > a > span > svg {
+  width: 28px;
+  margin-right: 8px;
+  fill: #fff;
+}
+
+.discord > a:hover {
+  background-color: #363b9f;
+}
+
+.countdown > a {
+  margin-bottom: 48px;
+  font-size: 18px;
+  width: 100%;
+  height: 72px;
+  letter-spacing: 2px;
+  cursor: default;
+  filter: grayscale(35%);
+  background-color: transparent;
+  box-shadow: none;
+  flex-direction: column;
+  text-transform: uppercase;
+  padding: 0px;
+}
+
+.countdown > a > span {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  letter-spacing: 6px;
+  width: 100%;
+  text-align: center;
+  margin-left: 6px;
+  margin-bottom: 32px;
+  color: white;
+  font-weight: 600;
+}
+
+.countdown > a > span > svg {
+  width: 14px;
+  height: 14px;
+  margin-left: 8px;
+}
+
+@media only screen and (max-width: 1400px) {
+  .info {
+    margin-left: 48px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .info {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .brush {
+    top: calc(50% - 200px);
+  }
+
+  .brush > img {
+    height: 100%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  @media only screen and (max-height: 450px) {
+    .info {
+      width: 100%;
+      margin-left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .brush {
+      top: -35px;
+      left: 20px;
+    }
+
+    .brush > img {
+      max-height: 200px;
+    }
+
+    .info > h1 {
+      font-size: 36px;
+      padding-bottom: 0;
+      line-height: 48px;
+    }
+
+    .main {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 auto;
+      max-width: 1200px;
+      padding-top: 10vh;
+      padding: 10vh 32px 0;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: initial;
+      bottom: initial;
+      left: 0;
+      right: 32px;
+      height: 35vh;
+    }
+
+    .desc {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      width: 275px;
+      line-height: 21px;
+    }
+
+    .countdown > a > span {
+      margin-bottom: 8px;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .main {
+    width: 100%;
+    max-width: 100%;
+    padding-top: 200px;
+  }
+
+  .wrapper {
+    height: 45vh;
+  }
+
+  .desc {
+    padding-bottom: 32px;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 0;
+  }
+
+  .info > h1 {
+    font-size: 48px;
+    padding-bottom: 0;
+  }
+
+  .info {
+    padding: 16px;
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .button > a {
+    font-size: 16px;
+    width: 260px;
+    height: 58px;
+  }
+
+  .button > a > div > svg {
+    width: 24px;
+  }
+
+  .countdown > a > span {
+    margin-bottom: 16px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .wrapper {
+    height: 45vh;
+  }
+
+  .info > h1 {
+    font-size: 48px;
+  }
+
+  .desc {
+    width: 90%;
+  }
+
+  .chain {
+    right: initial;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .countdown > a {
+    font-size: 16px;
+  }
+
+  .brush {
+    top: 0;
+    left: 0;
+  }
+
+  .brush > img {
+    width: 100%;
+  }
+
+  .main {
+    padding-top: 110px;
+  }
+
+  .discord > a {
+    margin-top: 12px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .main {
+    padding-top: 125px;
+  }
+}

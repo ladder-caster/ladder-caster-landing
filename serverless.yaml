@@ -1,0 +1,8 @@
+component: website
+name: ladder-caster-landing
+stage: prod
+
+inputs:
+  src: ./out
+  domain: https://laddercaster.com
+  region: us-east-1

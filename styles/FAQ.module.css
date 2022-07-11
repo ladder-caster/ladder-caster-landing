@@ -1,0 +1,377 @@
+.faq {
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 0 128px;
+  min-height: 100vh;
+  min-width: 100%;
+  overflow: hidden;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
+  text-transform: uppercase;
+  padding: 32px;
+}
+
+.logo > svg {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 8px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 32px 32px;
+  background-color: #130a1b;
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  margin: 24px 0 0;
+  height: 100%;
+  transition: all 100ms;
+  width: 100%;
+  max-width: 1000px;
+  cursor: pointer;
+}
+
+.float {
+  min-width: 100%;
+  width: 100%;
+  height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.background {
+  min-width: 100%;
+  width: 100%;
+  min-height: 300vh;
+  height: 300vh;
+  background-image: url('/background-2.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+  filter: grayscale(30%);
+  opacity: 0.15;
+  top: -75px;
+  position: relative;
+}
+
+.wrapper {
+  padding-top: 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.desc {
+  position: relative;
+  color: white;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
+  max-height: 0px;
+  overflow: hidden;
+  transition: all 50ms ease;
+}
+
+.desc > div {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 50ms;
+  transition-delay: 0s;
+}
+
+.expanded {
+  max-height: 275px;
+  margin: 32px 0 0;
+}
+
+.expanded > div {
+  opacity: 1;
+  transition-property: opacity;
+  transition-duration: 0.1s;
+  transition-delay: 0.05s;
+}
+
+.title {
+  position: relative;
+  color: white;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.title > svg {
+  width: 18px;
+  height: 18px;
+  transform: rotate(90deg);
+  transition: all 0.3s ease-in;
+}
+
+.active > svg {
+  transform: rotate(270deg);
+}
+
+.button {
+  padding: 12px 24px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+  border: 1px solid white;
+  border-radius: 6px;
+  margin-left: 32px;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 2px;
+}
+
+.button:hover {
+  color: #9a8ea4;
+  background-color: white;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 48px 32px;
+  margin: 24px 0 0;
+  height: 100%;
+  transition: all 200ms;
+  width: 49%;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+}
+
+.card > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  padding: 24px 48px;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0 rgb(0 0 0 / 15%);
+  background-color: #29243c;
+  border: 2px solid #38334b;
+  background-color: #5c56a9;
+  border: 2px solid #808ab6;
+}
+
+.card > div > svg {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+}
+
+.activeCard > div {
+  background-color: #56a968;
+  border: 2px solid #95d8b6;
+}
+
+.lineLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 37%;
+  border-top: 7px dashed #3f3858;
+  border-right: 7px dashed #3f3858;
+  height: 99px;
+  border-top-right-radius: 50px;
+  position: absolute;
+  top: calc(50% + 10px);
+  right: 25%;
+  z-index: -1;
+}
+
+.activeLine {
+  border-top: 7px dashed #5f577e;
+  border-right: 7px dashed #5f577e;
+}
+
+.lineRight {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 37%;
+  border-top: 7px dashed #3f3858;
+  border-left: 7px dashed #3f3858;
+  height: 99px;
+  border-top-left-radius: 50px;
+  position: absolute;
+  top: calc(50% + 10px);
+  left: 25%;
+  z-index: -1;
+}
+
+.date {
+  position: absolute;
+  bottom: -20px;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.mainTitle {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  padding-bottom: 16px;
+  color: #e3ddf0;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+@media only screen and (max-width: 900px) {
+  .faq {
+    padding-top: 0;
+  }
+
+  .wrapper {
+    padding-top: 0;
+    max-width: 90%;
+  }
+
+  .container {
+    padding: 32px 24px;
+  }
+
+  .container:focus {
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .row {
+    width: auto;
+    justify-content: center;
+    flex-direction: column;
+    height: initial;
+    margin-bottom: 150px;
+  }
+
+  .card {
+    width: 100%;
+    margin: 0;
+  }
+
+  .lineRight {
+    border-top: none;
+    border-radius: 0px;
+    width: auto;
+    bottom: -135px;
+    top: initial;
+    left: initial;
+    right: initial;
+  }
+
+  .lineLeft {
+    border-top: none;
+    border-radius: 0px;
+    width: auto;
+    bottom: -135px;
+    top: initial;
+    left: initial;
+    right: initial;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .faq {
+    padding-top: 0;
+    padding-bottom: 32px;
+  }
+
+  .container {
+    padding: 24px 20px;
+  }
+
+  .title {
+    font-size: 11px;
+  }
+
+  .mainTitle {
+    text-align: center;
+  }
+
+  .card {
+    padding: 48px 0;
+    width: 100%;
+  }
+
+  .row {
+    margin-bottom: 80px;
+    width: 85%;
+  }
+
+  .card > div {
+    padding: 24px 32px;
+    width: 100%;
+  }
+
+  .card > div > svg {
+    margin-left: 16px;
+  }
+
+  .lineRight {
+    height: 45px;
+    bottom: -75px;
+  }
+
+  .lineLeft {
+    height: 45px;
+    bottom: -75px;
+  }
+
+  .desc {
+    font-size: 12px;
+  }
+}
