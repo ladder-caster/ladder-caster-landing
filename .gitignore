@@ -42,3 +42,5 @@ build/*
 **/build/*
 
 .parcel-cache/
+
+.next

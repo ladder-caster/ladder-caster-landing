@@ -79,7 +79,7 @@ const useCountdown = ({
     });
   };
 
-  const endDate = new Date("2022-04-08T18:00:00.000Z");
+  const endDate = new Date("2022-10-15T18:00:00.000Z");
 
   const date = new Date(); 
   const now_utc =  Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),

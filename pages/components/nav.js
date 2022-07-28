@@ -7,9 +7,9 @@ const Nav = () => {
   return (
     <div className={styles.nav}>
       <div className={styles.wrapper}>
-        <div className={styles.logo} onClick={() => window.location.reload()}>
+        <a className={styles.logo} href='/' target='_self' rel='noreferrer'>
           {logoHat()} <span>LadderCaster</span>
-        </div>
+        </a>
         <div className={styles.container}>
           <div className={styles.links}>
             <a
@@ -40,6 +40,14 @@ const Nav = () => {
               }}
             >
               FAQ
+            </a>
+            <a
+              className={styles.link}
+              target="_self"
+              rel="noreferrer"
+              href="staking"
+            >
+              Staking
             </a>
           </div>
           <a
