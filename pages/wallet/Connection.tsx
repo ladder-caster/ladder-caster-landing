@@ -43,7 +43,7 @@ export class Client {
 
   static async getBearerToken() {
     // read private key
-    const privateKey = require('../jwt/private_key.json');
+    const privateKey = require('../../jwt/private_key.json');
 
     //Create payload and JWT
     var token = jwt.sign({}, privateKey, {

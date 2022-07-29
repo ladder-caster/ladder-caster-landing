@@ -44,3 +44,4 @@ build/*
 .parcel-cache/
 
 .next
+jwt

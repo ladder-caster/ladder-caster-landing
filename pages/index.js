@@ -5,12 +5,6 @@ import Hero from './components/hero';
 import Footer from './components/footer';
 import FAQ from './components/faq';
 import Featured from './components/featued';
-import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
-import { WalletModal, WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { clusterApiUrl } from '@solana/web3.js';
-import { useMemo } from 'react';
-import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { TorusWalletAdapter,PhantomWalletAdapter,SolletExtensionWalletAdapter,SolflareWalletAdapter,SolletWalletAdapter,SlopeWalletAdapter } from '@solana/wallet-adapter-wallets';
 export default function Home() {
   const myLoader = ({ src, width, quality }) => {
     return `../../../libs/design/assets/Landing1.jpg?w=${1920}&h=${1080}$"&q=${
@@ -28,27 +22,8 @@ export default function Home() {
     }`;
   };
 
-  //WALLET STUFF
-  const network = WalletAdapterNetwork.Mainnet;
-  const endPoint = useMemo(() => clusterApiUrl(network), [network]);
-  
-  const wallets = useMemo(
-    () => [
-      new PhantomWalletAdapter(),
-      new SlopeWalletAdapter(),
-      new SolletWalletAdapter({ network }),
-      new SolletExtensionWalletAdapter({ network }),
-      new TorusWalletAdapter({ network }),
-      new SolflareWalletAdapter({ network }),
-    
-    ],
-    [network],
-  );
-  return (
-    <ConnectionProvider endpoint={endPoint}>
-      <WalletProvider wallets={wallets} autoConnect={true}>
-        <WalletModalProvider >
 
+  return (
         
     <div className={styles.container}>
       <Head>
@@ -83,8 +58,6 @@ export default function Home() {
       <FAQ />
       <Footer />
           </div>
-        </WalletModalProvider>
-      </WalletProvider>
-    </ConnectionProvider>
+  
   );
 }
