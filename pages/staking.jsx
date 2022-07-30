@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useMemo } from 'react'
 import Footer from './components/footer'
 import Nav from './components/nav'
 import { initStakeData, useWalletStore } from '../zustand/'
@@ -16,24 +16,58 @@ function Staking() {
   const ladaBalance = useWalletStore(state => state.ladaBalance);
   const wallet = useWalletStore(state => state.wallet);
   const setWallet = useWalletStore(state => state.setWallet);
-
+  //TODO: fix this
+  const ladaToRedeem = 0;
+  const timeLeft = 0
+  
   const [category, setCategory] = useState(null)
+  const [ladaToStake, setLadaToStake] = useState('');
+
   const anchorWallet = useAnchorWallet();
   const {
     connected,
     disconnect,
   } = useWallet();
-
+  const disabled = useMemo(() => {
+    return timeLeft <= 0 || category == 0x1;
+  },[timeLeft])
   useEffect(() => {
     if (connected) {
       Client.connect(anchorWallet).then(res => initStakeData(res))
     } else {
       setWallet(null)
     }
-  }, [connected, disconnect])
+  }, [connected, disconnect]);
+  useEffect(() => {
+    if (category > 0) {
+      const scrollDiv = document.getElementById('modal').offsetTop
+      window.scrollTo({ top: scrollDiv-70, behavior: 'smooth' });
+    }
+  },[category])
   const cardSelect = (value) => {
     if (category === value) { setCategory(-1); return; }
+    
     setCategory(value)
+  }
+  const handleInputChange = (event) => {
+    const floatValue = parseFloat(event.target.value);
+    if (floatValue > 0 && !isNaN(floatValue) && floatValue <= ladaBalance) {
+      setLadaToStake(floatValue)
+    }
+  }
+  const maxInput = () => {
+    if (ladaToStake < ladaBalance) { 
+      setLadaToStake(ladaBalance)
+    }
+  }
+  const stakeLada = () => {
+    //TODO: do stake
+  }
+  const redeemLada = () => {
+    //TODO: redeem lada
+  }
+  const unstakeLada = () => {
+    //TODO: unstake lada
   }
   return (
     <div className={styles.page}>
@@ -59,7 +93,7 @@ no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 
           <StakingCard title={'Diamond Hands'} apy={'60% APY'} subtitle={`By staking your LADA here you become a total boss and a boss
 no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 0x3 : -1)} active={category == 0x3 ? 'active' : 'default'} area={'f'} />
         </div>
-        {category >= 1 && <div className={styles['staking-modal-container']}>
+        {category >= 1 && <div id='modal' className={styles['staking-modal-container']}>
           <div className={styles['staking-modal']}>
             <div className={styles['staking-title']}>
               Stake
@@ -68,10 +102,10 @@ no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 
             <div className={styles['input-container']}>
               <div className={styles['value-container']}>
                 <img src='LADA.png' className={styles['icon']} />
-                <input className={styles['input']} type="number" placeholder="0" />
-                <div className={styles['max-button']}>MAX</div>
+                <input className={styles['input']} type="number" placeholder="0" value={ladaToStake} onChange={handleInputChange} />
+                <div className={styles['max-button']} onClick={maxInput}>MAX</div>
               </div>
-              <button className={styles['button']}>
+              <button className={styles['button']} disabled={ladaToStake<=0} onClick={stakeLada}>
                 Stake
               </button>
             </div>
@@ -89,7 +123,7 @@ no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 
                   
                 </div>
                 <div className={styles['info']}>
-              <button className={styles['button']}>
+                  <button className={styles['button']} disabled={ladaToRedeem<=0} onClick={redeemLada}>
                 Claim
               </button>
                 </div>
@@ -107,7 +141,7 @@ no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 
                 <div className={styles['text']+' '+styles['duration']}>
                   38 Days Left
                 </div>
-              <button className={styles['button']}>
+                  <button className={styles['button']} disabled={disabled} onClick={unstakeLada}>
                 Unstake
               </button>
                 </div>
