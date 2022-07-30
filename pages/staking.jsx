@@ -1,7 +1,7 @@
-import React, {useState,useEffect} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Footer from './components/footer'
 import Nav from './components/nav'
-import {initStakeData, useWalletStore} from '../zustand/'
+import { initStakeData, useWalletStore } from '../zustand/'
 import ConnectWallet from './components/connectWallet';
 import styles from '../styles/Staking.module.css'
 import { useAnchorWallet, useWallet } from '@solana/wallet-adapter-react';
@@ -10,6 +10,7 @@ import { Client } from './wallet/Connection';
 function Staking() {
 
   const globalStakedLada = useWalletStore(state => state.globalStakedLada);
+  // per tier : {tier1: ladaCount, tier2: ladaCount, tier3: ladaCount}
   const currentlyStakedLada = useWalletStore(state => state.currentlyStakedLada);
   const globalRewardsGiven = useWalletStore(state => state.globalRewardsGiven);
   const ladaBalance = useWalletStore(state => state.ladaBalance);
@@ -22,23 +23,23 @@ function Staking() {
     connected,
     disconnect,
   } = useWallet();
-  console.log('WALLET',wallet)
+
   useEffect(() => {
     if (connected) {
-      Client.connect(anchorWallet).then(res=>initStakeData(res))
+      Client.connect(anchorWallet).then(res => initStakeData(res))
     } else {
       setWallet(null)
     }
   }, [connected, disconnect])
   const cardSelect = (value) => {
-    if (category === value) return;
+    if (category === value) { setCategory(-1); return; }
     setCategory(value)
   }
   return (
     <div className={styles.page}>
       <Nav />
       <div className={styles.content}>
-        <div className={styles.column +  styles.gap3}>
+        <div className={styles.column}>
           <div className={styles.title}>
             Stake your LADA
           </div>
@@ -48,18 +49,71 @@ function Staking() {
           </div>
         </div>
         <div className={styles['staking-grid']}>
-          <StakingInfo title={'Total Value Locked'} subtitle={globalStakedLada} />
-          <StakingInfo title={'LADA in wallet'} subtitle={wallet?ladaBalance:<ConnectWallet/>} />
-          <StakingInfo title={'Rewards Paid'} subtitle={globalRewardsGiven} />
+          <StakingInfo title={'Total Value Locked'} subtitle={globalStakedLada} area={'a'} />
+          <StakingInfo title={'LADA in wallet'} subtitle={wallet ? ladaBalance : <ConnectWallet />} area={'b'} />
+          <StakingInfo title={'Rewards Paid'} subtitle={globalRewardsGiven} area={'c'} />
           <StakingCard title={'Flexible'} apy={'16% APY'} subtitle={`By staking your LADA here you become a total boss and a boss
-no questions asked for one whole year!`} callback={(v)=>cardSelect(v??0x1)} active={category==0x1?'active':'default'} />
+no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 0x1 : -1)} active={category == 0x1 ? 'active' : 'default'} area={'d'} />
           <StakingCard title={"The Hodl'er"} apy={'36% APY'} subtitle={`By staking your LADA here you become a total boss and a boss
-no questions asked for one whole year!`} callback={(v) => cardSelect(v??0x2)} active={category==0x2?'active':'default'} />
+no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 0x2 : -1)} active={category == 0x2 ? 'active' : 'default'} area={'e'} />
           <StakingCard title={'Diamond Hands'} apy={'60% APY'} subtitle={`By staking your LADA here you become a total boss and a boss
-no questions asked for one whole year!`} callback={(v) => cardSelect(v??0x3)} active={category==0x3?'active':'default'} />
+no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 0x3 : -1)} active={category == 0x3 ? 'active' : 'default'} area={'f'} />
         </div>
-       { category&& <div>
+        {category >= 1 && <div className={styles['staking-modal-container']}>
+          <div className={styles['staking-modal']}>
+            <div className={styles['staking-title']}>
+              Stake
+            </div>
+            <div className={styles['staking-title']+' '+styles['duration']}>36 Days Left</div>
+            <div className={styles['input-container']}>
+              <div className={styles['value-container']}>
+                <img src='LADA.png' className={styles['icon']} />
+                <input className={styles['input']} type="number" placeholder="0" />
+                <div className={styles['max-button']}>MAX</div>
+              </div>
+              <button className={styles['button']}>
+                Stake
+              </button>
+            </div>
+            <div className={styles['detail-segment']}>
 
+         
+            <div className={styles['row']}>
+              <div className={styles['info']}>
+                <div className={styles['text']}>
+                  LADA Earned
+                </div>
+                <div className={styles['text']}>
+                  12345
+                  </div>
+                  
+                </div>
+                <div className={styles['info']}>
+              <button className={styles['button']}>
+                Claim
+              </button>
+                </div>
+            </div>
+            <div className={styles['row']}>
+              <div className={styles['info']}>
+                <div className={styles['text']}>
+                  Total Staked
+                </div>
+                <div className={styles['text']}>
+                  12345
+                </div>
+                </div>
+                <div className={styles['info']}>
+                <div className={styles['text']+' '+styles['duration']}>
+                  38 Days Left
+                </div>
+              <button className={styles['button']}>
+                Unstake
+              </button>
+                </div>
+            </div>
+            </div>
+          </div>
         </div>}
       </div>
       <Footer />
@@ -67,8 +121,8 @@ no questions asked for one whole year!`} callback={(v) => cardSelect(v??0x3)} ac
   )
 }
 
-const StakingInfo = ({title,subtitle}) => {
-  return <div className={styles.column}>
+const StakingInfo = ({ title, subtitle, area }) => {
+  return <div className={styles.column} style={{ gridArea: area }}>
     <div className={styles['staking-title']}>
       {title}
     </div>
@@ -78,11 +132,17 @@ const StakingInfo = ({title,subtitle}) => {
   </div>
 }
 
-const StakingCard = ({ title, apy, subtitle, callback, active }) => { 
+const StakingCard = ({ title, apy, subtitle, callback, active, area }) => {
+  const ref = useRef()
+
   const deselect = () => {
-    callback(null)
+    if (active === 'active') {
+      console.log('deselect')
+      callback(-1)
+    }
   }
-  return <div className={styles['staking-item'] + ' ' + active} onFocus={callback} onBlur={deselect}>
+  useOnClickOutside(ref, deselect)
+  return <div ref={ref} className={styles['staking-item'] + ' ' + styles[active]} onClick={callback} onBlur={deselect} style={{ gridArea: area }}>
     <div className={styles['staking-title']}>
       {title}
     </div>
@@ -95,7 +155,27 @@ const StakingCard = ({ title, apy, subtitle, callback, active }) => {
         {subtitle}
       </div>
     </div>
-   
+
   </div>
+}
+function useOnClickOutside(ref, handler) {
+  useEffect(() => {
+    const listener = event => {
+
+      if (!ref.current || ref.current.contains(event.target) || event.path.some(x => x.className && x.className.includes('staking-modal') && !x.className.includes("container"))) {
+        return;
+      }
+
+      handler(event);
+    };
+
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, handler]);
 }
 export default Staking

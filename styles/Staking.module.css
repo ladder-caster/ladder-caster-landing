@@ -1,62 +1,75 @@
-.page{
+.page {
   width: 100%;
   height: 100%;
-background-image: linear-gradient(to bottom, #5f72bd 0%, #9b23ea 100%);
+  background-image: linear-gradient(to bottom, #5f72bd 0%, #9b23ea 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position:relative;
+  position: relative;
 }
-.content{
+
+.content {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position:relative;
-  padding-top:128px;
-  
+  position: relative;
+  padding-top: 128px;
+  padding-bottom: 64px;
 }
+
 .column {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  
+
   align-items: center;
-  gap:16px;
+  gap: 16px;
+  padding: 8px;
 }
-.column.gap1{
+
+.column.gap1 {
   gap: 0.1em;
 }
+
 .column.gap2 {
   gap: 0.25em;
 }
+
 .column.gap3 {
   gap: 0.33em;
 }
+
 .column.gap4 {
   gap: 0.50em;
 }
+
 .column.gap5 {
   gap: 0.75em;
 }
+
 .column.gap6 {
   gap: 0.95em;
 }
+
 .column.gap7 {
   gap: 1em;
 }
-.column.mt-1{
+
+.column.mt-1 {
   margin-top: 16px;
 }
+
 .title {
   font-size: 42px;
   font-weight: bold;
   color: #fff;
   text-align: center;
+
 }
 
 .subtitle {
@@ -65,9 +78,9 @@ background-image: linear-gradient(to bottom, #5f72bd 0%, #9b23ea 100%);
   color: #fff;
   text-align: center;
   font-style: italic;
-  padding:4px;
+  padding: 4px;
   margin-top: 16px;
-  width: 720px;
+  width: 35%;
 }
 
 .staking-title {
@@ -75,102 +88,100 @@ background-image: linear-gradient(to bottom, #5f72bd 0%, #9b23ea 100%);
   font-weight: bold;
   color: #fff;
   text-align: center;
-  text-align:center;
+  text-align: center;
 }
+
 .staking-content {
   font-size: 18px;
   font-weight: bold;
   color: #fff;
   text-align: center;
   font-style: italic;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.staking-grid{
+.staking-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  grid-template-rows: repeat(2,minmax(42px,max-content));
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, minmax(42px, max-content));
   column-gap: 96px;
   row-gap: 32px;
   margin-top: 48px;
+  grid-template-areas:
+  " a b c"
+  " d e f";
+  ;
+  justify-content: center;
+  align-items: center;
 }
-.staking-grid:nth-child(odd){
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(2,1fr);
-  }
-}
+
 .staking-item {
   width: 250px;
   height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
-background-image: radial-gradient(circle 337px at 0% 2.1%, rgba(0, 226, 192, 1) 0.3%, rgba(149, 0, 248, 1) 100%);
-border-radius:12px;
+  background-image: radial-gradient(circle 337px at 0% 2.1%, rgba(0, 226, 192, 1) 0.3%, rgba(149, 0, 248, 1) 100%);
+  border-radius: 12px;
   background-color: #fff;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
   padding: 4px;
   padding-top: 12px;
-  cursor:pointer;
-
-  @media (max-width: 768px) {
-    width: 150px;
-    height: 200px;
-  }
+  cursor: pointer;
+  justify-self:center;
+  align-self:center;
 }
-.staking-item:hover{
-  box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+
+.staking-item:hover {
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
   border: 2px solid white;
   filter: brightness(1.1) saturate(1.05);
 }
-.staking-item:active{
-  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.75);
-  border: 1px solid white;
-  filter: brightness(0.9) saturate(0.95);
+
+.staking-item.active {
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.75);
+  border: 2px solid white;
+  filter: brightness(1.05) saturate(0.95);
 }
+
 .staking-item>.staking-title {
   font-size: 20px;
   font-weight: 600;
   color: #fff;
   text-align: center;
-  margin-top:16px;
+  margin-top: 16px;
 }
-.staking-item>.column{
-  @media (max-width: 768px) {
-    width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-  }
+
+.staking-item>.column {
 }
-.staking-item>.staking-apy{
+
+.staking-item>.staking-apy {
   font-size: 24px;
   font-weight: bold;
   color: #fff;
   text-align: center;
-  margin-top:16px;
+  margin-top: 16px;
 }
+
 .staking-content-container {
-  width: 100%;
+  width: 95%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom:45%;
-  @media (max-width: 768px) {
-    display:none;
-  }
+  padding-bottom: 45%;
+
 }
-.staking-content-container>.staking-content{
-  font-size:18px;
-  margin-top:56px;
-  font-style:normal;
+
+.staking-content-container>.staking-content {
+  font-size: 18px;
+  margin-top: 56px;
+  font-style: normal;
 }
+
 .connect-button {
   width: 210px;
   height: 48px;
@@ -178,18 +189,292 @@ border-radius:12px;
   justify-content: center;
   align-items: center;
   padding: 8px;
-background-image: radial-gradient(circle 337px at 0% 2.1%, rgba(0, 226, 192, 1) 0.3%, rgba(149, 0, 248, 1) 100%);
-border-radius:8px;
-  cursor:pointer;
-  box-shadow:2px 4px 7px black
+  background-image: radial-gradient(circle 337px at 0% 2.1%, rgba(0, 226, 192, 1) 0.3%, rgba(149, 0, 248, 1) 100%);
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 4px 7px black
 }
-.connect-button:hover{
+
+.connect-button:hover {
 
   border: 2px solid white;
 }
-.connect-button > .connect-button-text {
+
+.connect-button>.connect-button-text {
   font-size: 20px;
   font-weight: bold;
   color: #fff;
   text-align: center;
+}
+
+.staking-modal-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 96px;
+  margin-bottom: 32px;
+  gap:16px;
+}
+
+.staking-modal {
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+  width: 900px;
+  min-height: 456px;
+  border-radius: 12px;  
+  background-image: linear-gradient(322.4deg, rgba(139, 98, 208, 1) 5%, rgba(126, 124, 223, 1) 28.2%, rgba(109, 207, 236, 1) 62.5%, rgba(176, 239, 244, 1) 89.1%);
+  border: 4px solid darkslategray;
+  box-shadow: 4px 4px 6px black;
+  padding: 48px 24px 48px 40px;
+}
+.staking-modal>.staking-title {
+  display: flex;
+  width:100%;
+  height:fit-content;
+  align-items:center;
+  margin:0 auto;
+  text-align:center;
+  font-size:32px;
+  font-weight:bold;
+
+  text-shadow:0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black,
+    0 0 4px black;
+}
+.staking-title.duration{
+  display:none;
+}
+.staking-modal>.input-container {
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  gap:16px;
+}
+.input-container>.value-container {
+  width:100%;
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  height: max-content;
+  min-height: 50px;
+  background-color:#fff;
+  border-radius:8px;
+  padding:4px 24px 4px 16px;
+  gap:8px;
+  filter:drop-shadow(3px 3px 5px black);
+}
+.value-container>.icon{
+  width:32px;
+  height:32px;
+  filter:drop-shadow(2px 2px 1px black);
+}
+.value-container>.input{
+  width:100%;
+  height:100%;
+  border:none;
+  outline:none;
+  font-size:24px;
+  font-weight:bold;
+  color:darkslategray;
+  text-align:left;
+}
+.max-button {
+  width: 48px;
+  height:fit-content;
+  align-items:center;
+  margin:0 auto;
+  color:#5f72bd;
+  font-size:20px;
+  font-weight:bold;
+  cursor: pointer;
+}
+.max-button:hover{
+  color: #8099ff;
+}
+.input-container > .button {
+  width:156px;
+  height:50px;
+  border:none;
+  outline:none;
+  font-size:24px;
+  font-weight:bold;
+  color:darkslategray;
+  text-align:center;
+  background-color:#fff;
+  border-radius:8px;
+  padding:4px 16px 4px 16px;
+  filter: drop-shadow(3px 3px 5px black);
+  cursor:pointer;
+}
+.input-container > .button:hover {
+  background-color: #cccccc;
+  color: #6da5a5;
+}
+.staking-modal>.detail-segment{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  margin-top:80px;
+  gap:40px;
+}
+.detail-segment>.row{
+  display:flex;
+  flex-direction:row;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.row>.info{
+  display: flex;
+  flex-direction: row;
+  gap:32px;
+}
+.info>.text{
+  font-size:24px;
+  font-weight:bold;
+  color:darkslategray;
+  text-align:left;
+  margin-left:16px;
+  text-align:center;
+  align-self: center;
+  justify-self: center;
+  min-width:169px;
+}
+.info>.text.duration{
+  display:contents;
+}
+.info>.button{
+  width:128px;
+  height:42px;
+  border:none;
+  outline:none;
+  font-size:24px;
+  font-weight:bold;
+  color:darkslategray;
+  text-align:center;
+  background-color:#fff;
+  border-radius:8px;
+  padding:4px 16px 4px 16px;
+  filter: drop-shadow(3px 3px 5px black);
+  cursor:pointer;
+}
+@media (max-width: 768px) {
+  .content{
+    padding-top:96px;
+    padding-bottom:32px;
+  }
+  .title {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    width:100%;
+    margin-top:0px;
+  }
+
+  .staking-item {
+    width: 150px;
+    height: 150px;
+    padding:0;
+    justify-content: space-evenly;
+    align-self:center;
+  }
+  .staking-item > .staking-title{
+    margin-top:4px;
+  }
+  .staking-item > .staking-apy{
+    margin-top:0;
+  }
+  .staking-item>.column {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .staking-content-container {
+    display: none;
+  }
+
+  .staking-grid {
+    margin-top:8px;
+    row-gap:24px;
+    column-gap:16px;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(4,minmax(42px,max-content));
+    grid-template-areas: 
+    "b b"
+    "a c"
+    "d e" 
+    "f f";
+  }
+  .staking-modal-container {
+    width:100vw;
+  }
+  .staking-modal{
+    width:100%;
+      padding: 48px 16px 48px 16px;
+      gap:32px;
+      height:max-content;
+      min-height:456px;
+  }
+  .staking-modal>.staking-title{
+    justify-content: center;
+  }
+  .staking-modal>.staking-title.duration{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size:16px;
+
+  }
+  .staking-modal>.input-container{
+    flex-direction:column;
+  }
+  .staking-modal>.detail-segment{
+    margin-top:16px;
+  }
+  .row>.info {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:8px;
+  }
+  .info>.text{
+    text-align:start;
+    font-size:20px;
+  }
+  .info>.text.duration{
+    display:none;
+  }
+  .info:nth-child(odd)>.text{
+   text-align:center;
+  }
 }
