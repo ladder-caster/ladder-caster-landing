@@ -16,7 +16,7 @@ function Staking() {
   const ladaBalance = useWalletStore(state => state.ladaBalance);
   const wallet = useWalletStore(state => state.wallet);
   const setWallet = useWalletStore(state => state.setWallet);
-  //TODO: fix this
+  //TODO: fix this ladaToRedeem and time left per category if it exists
   const ladaToRedeem = 0;
   const timeLeft = 0
 
@@ -97,7 +97,7 @@ no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 
           <StakingCard title={'Diamond Hands'} apy={'60% APY'} subtitle={`By staking your LADA here you become a total boss and a boss
 no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 0x3 : -1)} active={category == 0x3 ? 'active' : 'default'} area={'f'} />
         </div>
-        {(category >= 1 && wallet) && <div id='modal' className={styles['staking-modal-container']}>
+        {(category >= 1 ) && <div id='modal' className={styles['staking-modal-container']}>
           <div className={styles['staking-modal']}>
             <div className={styles['staking-title']}>
               Stake
