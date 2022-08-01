@@ -19,7 +19,7 @@ function Staking() {
   //TODO: fix this
   const ladaToRedeem = 0;
   const timeLeft = 0
-  
+
   const [category, setCategory] = useState(null)
   const [ladaToStake, setLadaToStake] = useState('');
 
@@ -61,14 +61,18 @@ function Staking() {
     }
   }
   const stakeLada = () => {
+    if (ladaToStake <= 0) return;
     //TODO: do stake
   }
   const redeemLada = () => {
+    if(ladaToRedeem <= 0) return;
     //TODO: redeem lada
   }
   const unstakeLada = () => {
+    if(ladaToStake <= 0 || timeLeft>0) return;
     //TODO: unstake lada
   }
+  
   return (
     <div className={styles.page}>
       <Nav />
@@ -93,24 +97,23 @@ no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 
           <StakingCard title={'Diamond Hands'} apy={'60% APY'} subtitle={`By staking your LADA here you become a total boss and a boss
 no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 0x3 : -1)} active={category == 0x3 ? 'active' : 'default'} area={'f'} />
         </div>
-        {category >= 1 && <div id='modal' className={styles['staking-modal-container']}>
+        {(category >= 1 && wallet) && <div id='modal' className={styles['staking-modal-container']}>
           <div className={styles['staking-modal']}>
             <div className={styles['staking-title']}>
               Stake
             </div>
-            <div className={styles['staking-title']+' '+styles['duration']}>36 Days Left</div>
+            <div className={styles['staking-title'] + ' ' + styles['duration']}>{timeLeft}</div>
             <div className={styles['input-container']}>
               <div className={styles['value-container']}>
                 <img src='LADA.png' className={styles['icon']} />
                 <input className={styles['input']} type="number" placeholder="0" value={ladaToStake} onChange={handleInputChange} />
                 <div className={styles['max-button']} onClick={maxInput}>MAX</div>
               </div>
-              <button className={styles['button']} disabled={ladaToStake<=0} onClick={stakeLada}>
+              <button className={styles['button']} disabled={ladaToStake<=0||!wallet} onClick={stakeLada}>
                 Stake
               </button>
             </div>
             <div className={styles['detail-segment']}>
-
          
             <div className={styles['row']}>
               <div className={styles['info']}>
@@ -118,7 +121,7 @@ no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 
                   LADA Earned
                 </div>
                 <div className={styles['text']}>
-                  12345
+                  {ladaToRedeem}
                   </div>
                   
                 </div>
@@ -134,12 +137,12 @@ no questions asked for one whole year!`} callback={(v) => cardSelect(v.target ? 
                   Total Staked
                 </div>
                 <div className={styles['text']}>
-                  12345
+                  {currentlyStakedLada}
                 </div>
                 </div>
                 <div className={styles['info']}>
                 <div className={styles['text']+' '+styles['duration']}>
-                  38 Days Left
+                  {timeLeft}
                 </div>
                   <button className={styles['button']} disabled={disabled} onClick={unstakeLada}>
                 Unstake
