@@ -1,7 +1,7 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import useCountdown from '../../shared/countdown/countdown';
-import styles from '../../styles/Countdown.module.css';
-import { useMemo } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import useCountdown from "../../../shared/countdown/countdown";
+import styles from "../../../styles/Countdown.module.css";
+import { useMemo } from "react";
 
 const Countdown = () => {
   const now = new Date();
@@ -29,11 +29,11 @@ const Countdown = () => {
           <AnimatePresence>
             <motion.div
               key={`day${day}`}
-              exit={{ y: 75, opacity: 0, position: 'absolute' }}
+              exit={{ y: 75, opacity: 0, position: "absolute" }}
               initial={{ y: -150, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                ease: 'easeOut',
+                ease: "easeOut",
                 duration: 1,
               }}
             >
@@ -48,11 +48,11 @@ const Countdown = () => {
           <AnimatePresence>
             <motion.div
               key={`hour${hour}`}
-              exit={{ y: 75, opacity: 0, position: 'absolute' }}
+              exit={{ y: 75, opacity: 0, position: "absolute" }}
               initial={{ y: -150, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                ease: 'easeOut',
+                ease: "easeOut",
                 duration: 1,
               }}
             >
@@ -67,11 +67,11 @@ const Countdown = () => {
           <AnimatePresence>
             <motion.div
               key={`minute${minute}`}
-              exit={{ y: 75, opacity: 0, position: 'absolute' }}
+              exit={{ y: 75, opacity: 0, position: "absolute" }}
               initial={{ y: -150, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                ease: 'easeOut',
+                ease: "easeOut",
                 duration: 1,
               }}
             >
@@ -86,11 +86,11 @@ const Countdown = () => {
           <AnimatePresence>
             <motion.div
               key={`second${second}`}
-              exit={{ y: 75, opacity: 0, position: 'absolute' }}
+              exit={{ y: 75, opacity: 0, position: "absolute" }}
               initial={{ y: -150, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
-                ease: 'easeInOut',
+                ease: "easeInOut",
                 duration: 1,
               }}
             >

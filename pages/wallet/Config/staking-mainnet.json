@@ -1,22 +1,12 @@
 {
   "version": "0.1.0",
-  "name": "laddercast",
+  "name": "lcstaking",
   "instructions": [
     {
-      "name": "initGame",
+      "name": "createStakingContract",
       "accounts": [
         {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
           "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
           "isMut": false,
           "isSigner": false
         },
@@ -26,101 +16,83 @@
           "isSigner": false
         },
         {
-          "name": "gameAccount",
+          "name": "authority",
           "isMut": true,
           "isSigner": true
         },
         {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameSigner",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameTurnData",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "resource1Mint",
+          "name": "stakingContract",
           "isMut": true,
           "isSigner": true
-        },
-        {
-          "name": "resource2Mint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "resource3Mint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "ladaMint",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "ladaTokenAccount",
-          "isMut": true,
-          "isSigner": false
         }
       ],
       "args": [
         {
-          "name": "turnInfo",
+          "name": "minAmount",
+          "type": "u64"
+        },
+        {
+          "name": "apy",
+          "type": "u8"
+        },
+        {
+          "name": "lockPeriodInDays",
+          "type": "u16"
+        },
+        {
+          "name": "endInNumberOfDays",
           "type": {
-            "defined": "GameTurnInfo"
+            "option": "u16"
           }
         }
       ]
     },
     {
-      "name": "updateGameStatus",
+      "name": "updateStakingContractEndTime",
       "accounts": [
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
         {
           "name": "systemProgram",
           "isMut": false,
           "isSigner": false
         },
         {
-          "name": "gameAccount",
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingContract",
           "isMut": true,
           "isSigner": false
         }
       ],
       "args": [
         {
-          "name": "isClosed",
-          "type": "bool"
+          "name": "endInNumberOfDays",
+          "type": "u16"
         }
       ]
     },
     {
-      "name": "initSeason",
+      "name": "stakeLada",
       "accounts": [
         {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
         },
         {
           "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
           "isMut": false,
           "isSigner": false
         },
@@ -130,1538 +102,45 @@
           "isSigner": false
         },
         {
-          "name": "gameAccount",
-          "isMut": false,
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingSigner",
+          "isMut": true,
           "isSigner": false
         },
         {
-          "name": "season",
+          "name": "ladaPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userLadaToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakeInfo",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingContract",
           "isMut": true,
           "isSigner": false
         }
       ],
       "args": [
         {
-          "name": "seasonNumber",
-          "type": "u8"
-        },
-        {
-          "name": "isCurrentSeason",
-          "type": "bool"
-        }
-      ]
-    },
-    {
-      "name": "updateSeason",
-      "accounts": [
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "gameAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "seasonNumber",
-          "type": "u8"
-        },
-        {
-          "name": "isCurrentSeason",
-          "type": "bool"
-        }
-      ]
-    },
-    {
-      "name": "initPlayer",
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "playerAccount",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "initCaster",
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "ladaMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "ladaTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "closeGame",
-      "accounts": [
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "gameAccount",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "casterCommitLoot",
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "casterCommitMove",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "resource1MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameTurnData",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "lvl",
-          "type": "u8"
-        },
-        {
-          "name": "clm",
-          "type": "u8"
-        }
-      ]
-    },
-    {
-      "name": "casterCommitCraft",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item1",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item2",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item3",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameTurnData",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "casterCommitSpell",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "resource1MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "spellbook",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameTurnData",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "casterRedeemMove",
-      "accounts": [
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "casterRedeemLoot",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameSigner",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "resource1MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameTurnData",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "staff",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "head",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "robe",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "casterRedeemCraft",
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "item",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "casterRedeemSpell",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameSigner",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "resource1MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "casterRedeemReward",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameSigner",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "ladaMintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameLadaTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "ladaTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameTurnData",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "crank",
-      "accounts": [
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "gameAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "currentGameTurnData",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameTurnData",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "equipItem",
-      "accounts": [
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "unequipItem",
-      "accounts": [
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "openChest",
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "chest",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item1",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "item2",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "item3",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "manualResourceBurn",
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameTurnData",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "resourceType",
-          "type": {
-            "defined": "ItemFeature"
-          }
-        },
-        {
-          "name": "amountToBurn",
+          "name": "stakedAmount",
           "type": "u64"
         }
       ]
     },
     {
-      "name": "mintItem",
-      "accounts": [
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "gameSigner",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "merkleRootNft",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "metaplexMetadataAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "metaplexTokenMetadataProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nftMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nftToken",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nftMetadata",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "itemTypeStr",
-          "type": "string"
-        },
-        {
-          "name": "itemLevel",
-          "type": "u8"
-        },
-        {
-          "name": "nftUri",
-          "type": "string"
-        },
-        {
-          "name": "merkleProof",
-          "type": {
-            "vec": {
-              "array": [
-                "u8",
-                32
-              ]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "mintCaster",
-      "accounts": [
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "gameSigner",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "merkleRootNft",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "metaplexMetadataAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "metaplexTokenMetadataProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nftMint",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "nftToken",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nftMetadata",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "itemLevel",
-          "type": "u8"
-        },
-        {
-          "name": "nftUri",
-          "type": "string"
-        },
-        {
-          "name": "merkleProof",
-          "type": {
-            "vec": {
-              "array": [
-                "u8",
-                32
-              ]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "redeemItem",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nftMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nftToken",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nftMetadata",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "redeemCaster",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nftMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nftToken",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nftMetadata",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "updateMerkleRoot",
-      "accounts": [
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "gameAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "merkleRootNft",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "itemTypeStr",
-          "type": "string"
-        },
-        {
-          "name": "itemLevel",
-          "type": "u8"
-        },
-        {
-          "name": "merkleRootNft",
-          "type": {
-            "array": [
-              "u8",
-              32
-            ]
-          }
-        }
-      ]
-    },
-    {
-      "name": "manualItemBurn",
+      "name": "claimInterests",
       "accounts": [
         {
           "name": "tokenProgram",
@@ -1679,148 +158,12 @@
           "isSigner": false
         },
         {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
           "name": "authority",
           "isMut": true,
           "isSigner": true
         },
         {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameSigner",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "transferCaster",
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "oldGame",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "newGame",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "oldPlayer",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newPlayer",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "oldSeason",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newSeason",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "oldCaster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "newCaster",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "ladaMint",
+          "name": "stakingSigner",
           "isMut": true,
           "isSigner": false
         },
@@ -1828,12 +171,27 @@
           "name": "ladaTokenAccount",
           "isMut": true,
           "isSigner": false
+        },
+        {
+          "name": "userLadaToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakeInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingContract",
+          "isMut": true,
+          "isSigner": false
         }
       ],
       "args": []
     },
     {
-      "name": "casterCommitMoveS1",
+      "name": "unstakeLada",
       "accounts": [
         {
           "name": "tokenProgram",
@@ -1851,72 +209,12 @@
           "isSigner": false
         },
         {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
           "name": "authority",
           "isMut": true,
           "isSigner": true
         },
         {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "resource1MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3MintAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource1TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource2TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "resource3TokenAccount",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "gameTurnData",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "ladaMint",
+          "name": "stakingSigner",
           "isMut": true,
           "isSigner": false
         },
@@ -1924,259 +222,25 @@
           "name": "ladaTokenAccount",
           "isMut": true,
           "isSigner": false
-        }
-      ],
-      "args": [
-        {
-          "name": "lvl",
-          "type": "u8"
         },
         {
-          "name": "clm",
-          "type": "u8"
-        }
-      ]
-    },
-    {
-      "name": "casterCommitCraftS1",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "associatedTokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
+          "name": "ladaPool",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "player",
+          "name": "userLadaToken",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "caster",
+          "name": "stakeInfo",
           "isMut": true,
           "isSigner": false
         },
         {
-          "name": "season",
+          "name": "stakingContract",
           "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item1",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item2",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "item3",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "ladaMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "ladaTokenAccount",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "redeemCasters",
-      "accounts": [
-        {
-          "name": "tokenProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "nftMint",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "nftToken",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "metaplexTokenMetadataProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "metaplexTokenMetadata",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "caster1",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "caster2",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "casterRedeemCraftS1",
-      "accounts": [
-        {
-          "name": "systemProgram",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "rent",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "authority",
-          "isMut": true,
-          "isSigner": true
-        },
-        {
-          "name": "game",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "player",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "season",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "instructionSysvarAccount",
-          "isMut": false,
-          "isSigner": false
-        },
-        {
-          "name": "item",
-          "isMut": true,
-          "isSigner": true
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "fixRedeemSpell",
-      "accounts": [
-        {
-          "name": "authority",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        }
-      ],
-      "args": []
-    },
-    {
-      "name": "fixStuckCaster",
-      "accounts": [
-        {
-          "name": "authority",
-          "isMut": false,
-          "isSigner": true
-        },
-        {
-          "name": "caster",
-          "isMut": true,
-          "isSigner": false
-        },
-        {
-          "name": "slots",
-          "isMut": false,
           "isSigner": false
         }
       ],
@@ -2185,7 +249,7 @@
   ],
   "accounts": [
     {
-      "name": "Game",
+      "name": "StakingContract",
       "type": {
         "kind": "struct",
         "fields": [
@@ -2194,1178 +258,121 @@
             "type": "publicKey"
           },
           {
-            "name": "map",
-            "type": {
-              "array": [
-                {
-                  "array": [
-                    {
-                      "option": {
-                        "defined": "Tile"
-                      }
-                    },
-                    3
-                  ]
-                },
-                30
-              ]
-            }
-          },
-          {
-            "name": "turnInfo",
-            "type": {
-              "defined": "GameTurnInfo"
-            }
-          },
-          {
-            "name": "lastTurnAdded",
-            "type": "u32"
-          },
-          {
-            "name": "signerBump",
-            "type": "u8"
-          },
-          {
-            "name": "resource1MintAccount",
-            "type": "publicKey"
-          },
-          {
-            "name": "resource2MintAccount",
-            "type": "publicKey"
-          },
-          {
-            "name": "resource3MintAccount",
-            "type": "publicKey"
-          },
-          {
-            "name": "ladaMintAccount",
-            "type": "publicKey"
-          },
-          {
-            "name": "ladaTokenAccount",
-            "type": "publicKey"
-          },
-          {
-            "name": "isClosed",
-            "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "TurnData",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "bump",
-            "type": "u8"
-          },
-          {
-            "name": "resource1Burned",
+            "name": "minAmount",
             "type": "u64"
           },
           {
-            "name": "resource2Burned",
-            "type": "u64"
-          },
-          {
-            "name": "resource3Burned",
-            "type": "u64"
-          },
-          {
-            "name": "map",
-            "type": {
-              "array": [
-                {
-                  "array": [
-                    {
-                      "option": {
-                        "defined": "TileType"
-                      }
-                    },
-                    3
-                  ]
-                },
-                30
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "Season",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "bump",
+            "name": "apy",
             "type": "u8"
           },
           {
-            "name": "game",
-            "type": "publicKey"
-          },
-          {
-            "name": "seasonNumber",
-            "type": "u8"
-          },
-          {
-            "name": "isCurrentSeason",
-            "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MerkleRootNFT",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "bump",
-            "type": "u8"
-          },
-          {
-            "name": "merkleRootNft",
-            "type": {
-              "array": [
-                "u8",
-                32
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "MetadataNFTItem",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "selfBump",
-            "type": "u8"
-          },
-          {
-            "name": "mintBump",
-            "type": "u8"
-          },
-          {
-            "name": "mint",
-            "type": "publicKey"
-          },
-          {
-            "name": "item",
-            "type": {
-              "defined": "MetadataItem"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "MetadataNFTCaster",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "selfBump",
-            "type": "u8"
-          },
-          {
-            "name": "mintBump",
-            "type": "u8"
-          },
-          {
-            "name": "mint",
-            "type": "publicKey"
-          },
-          {
-            "name": "caster",
-            "type": {
-              "defined": "MetadataCaster"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "Player",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "authority",
-            "type": "publicKey"
-          },
-          {
-            "name": "game",
-            "type": "publicKey"
-          },
-          {
-            "name": "bump",
-            "type": "u8"
-          },
-          {
-            "name": "seasonNumber",
-            "type": "u8"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Caster",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "version",
-            "type": "u8"
-          },
-          {
-            "name": "level",
-            "type": "u8"
-          },
-          {
-            "name": "experience",
-            "type": "u64"
-          },
-          {
-            "name": "owner",
-            "type": "publicKey"
-          },
-          {
-            "name": "modifiers",
-            "type": {
-              "defined": "Modifiers"
-            }
-          },
-          {
-            "name": "turnCommit",
-            "type": {
-              "option": {
-                "defined": "TurnCommit"
-              }
-            }
-          },
-          {
-            "name": "seasonNumber",
-            "type": "u8"
-          },
-          {
-            "name": "casterType",
-            "type": "u8"
-          },
-          {
-            "name": "edition",
-            "type": "u8"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Item",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "game",
-            "type": "publicKey"
-          },
-          {
-            "name": "owner",
-            "type": "publicKey"
-          },
-          {
-            "name": "level",
-            "type": "u8"
-          },
-          {
-            "name": "itemType",
-            "type": {
-              "defined": "ItemType"
-            }
-          },
-          {
-            "name": "equippedOwner",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "seasonNumber",
-            "type": "u8"
-          }
-        ]
-      }
-    }
-  ],
-  "types": [
-    {
-      "name": "MetadataItem",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "game",
-            "type": "publicKey"
-          },
-          {
-            "name": "owner",
-            "type": "publicKey"
-          },
-          {
-            "name": "level",
-            "type": "u8"
-          },
-          {
-            "name": "itemType",
-            "type": {
-              "defined": "ItemType"
-            }
-          },
-          {
-            "name": "equippedOwner",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "seasonNumber",
-            "type": "u8"
-          }
-        ]
-      }
-    },
-    {
-      "name": "MetadataCaster",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "version",
-            "type": "u8"
-          },
-          {
-            "name": "level",
-            "type": "u8"
-          },
-          {
-            "name": "experience",
-            "type": "u64"
-          },
-          {
-            "name": "owner",
-            "type": "publicKey"
-          },
-          {
-            "name": "modifiers",
-            "type": {
-              "defined": "Modifiers"
-            }
-          },
-          {
-            "name": "turnCommit",
-            "type": {
-              "option": {
-                "defined": "TurnCommit"
-              }
-            }
-          },
-          {
-            "name": "seasonNumber",
-            "type": "u8"
-          },
-          {
-            "name": "casterType",
-            "type": "u8"
-          },
-          {
-            "name": "edition",
-            "type": "u8"
-          }
-        ]
-      }
-    },
-    {
-      "name": "GameTurnInfo",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "turn",
-            "type": "u32"
-          },
-          {
-            "name": "turnDelay",
+            "name": "lockPeriodInDays",
             "type": "u16"
           },
           {
-            "name": "lastCrankSeconds",
+            "name": "endTime",
+            "type": {
+              "option": "i64"
+            }
+          },
+          {
+            "name": "totalTvl",
+            "type": "u64"
+          },
+          {
+            "name": "totalClaimed",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LadaStakeInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakedAmount",
+            "type": "u64"
+          },
+          {
+            "name": "stakingContract",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakedStartTime",
             "type": "i64"
           },
           {
-            "name": "lastTileSpawn",
-            "type": "u32"
-          },
-          {
-            "name": "tileSpawnDelay",
-            "type": "u32"
+            "name": "lastClaimed",
+            "type": "i64"
           }
         ]
       }
-    },
-    {
-      "name": "Tile",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "tileType",
-            "type": {
-              "defined": "TileType"
-            }
-          },
-          {
-            "name": "life",
-            "type": "u8"
-          },
-          {
-            "name": "isFirstTimeSpawning",
-            "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "PlayerBonuses",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "criticalChance",
-            "type": "u16"
-          },
-          {
-            "name": "magicFindChance",
-            "type": "u16"
-          },
-          {
-            "name": "resource1Chance",
-            "type": "u16"
-          },
-          {
-            "name": "resource2Chance",
-            "type": "u16"
-          },
-          {
-            "name": "resource3Chance",
-            "type": "u16"
-          }
-        ]
-      }
-    },
-    {
-      "name": "TurnCommit",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "turn",
-            "type": "u32"
-          },
-          {
-            "name": "resourcesBurned",
-            "type": {
-              "array": [
-                "u64",
-                3
-              ]
-            }
-          },
-          {
-            "name": "actions",
-            "type": {
-              "defined": "CommittedActions"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "CommittedActions",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "loot",
-            "type": "bool"
-          },
-          {
-            "name": "spell",
-            "type": {
-              "option": {
-                "defined": "SpellSnapshot"
-              }
-            }
-          },
-          {
-            "name": "mv",
-            "type": {
-              "option": {
-                "array": [
-                  "u8",
-                  2
-                ]
-              }
-            }
-          },
-          {
-            "name": "crafting",
-            "type": {
-              "option": {
-                "defined": "CraftingSnapshot"
-              }
-            }
-          },
-          {
-            "name": "actionOrder",
-            "type": {
-              "array": [
-                "u8",
-                4
-              ]
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "CraftingSnapshot",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "minLevel",
-            "type": "u8"
-          },
-          {
-            "name": "minRarity",
-            "type": {
-              "defined": "ItemRarity"
-            }
-          },
-          {
-            "name": "maxRarity",
-            "type": {
-              "defined": "ItemRarity"
-            }
-          },
-          {
-            "name": "optionItemType",
-            "type": {
-              "option": {
-                "defined": "ItemTypeForCrafting"
-              }
-            }
-          },
-          {
-            "name": "optionEquipItemType",
-            "type": {
-              "option": {
-                "defined": "EquipmentType"
-              }
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "SpellSnapshot",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "isExtraLevelBonus",
-            "type": "bool"
-          }
-        ]
-      }
-    },
-    {
-      "name": "Modifiers",
-      "type": {
-        "kind": "struct",
-        "fields": [
-          {
-            "name": "tileLevel",
-            "type": "u8"
-          },
-          {
-            "name": "tileColumn",
-            "type": "u8"
-          },
-          {
-            "name": "head",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "robe",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "staff",
-            "type": {
-              "option": "publicKey"
-            }
-          },
-          {
-            "name": "spellBook",
-            "type": {
-              "option": "publicKey"
-            }
-          }
-        ]
-      }
-    },
-    {
-      "name": "TileType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Resource3"
-          },
-          {
-            "name": "Resource2"
-          },
-          {
-            "name": "Resource1"
-          },
-          {
-            "name": "Crafting"
-          },
-          {
-            "name": "Legendary"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ItemType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Zombie"
-          },
-          {
-            "name": "Chest",
-            "fields": [
-              {
-                "name": "tier",
-                "type": "u8"
-              }
-            ]
-          },
-          {
-            "name": "Equipment",
-            "fields": [
-              {
-                "name": "feature",
-                "type": {
-                  "defined": "ItemFeature"
-                }
-              },
-              {
-                "name": "rarity",
-                "type": {
-                  "defined": "ItemRarity"
-                }
-              },
-              {
-                "name": "equipment_type",
-                "type": {
-                  "defined": "EquipmentType"
-                }
-              },
-              {
-                "name": "value",
-                "type": "u16"
-              }
-            ]
-          },
-          {
-            "name": "SpellBook",
-            "fields": [
-              {
-                "name": "spell",
-                "type": {
-                  "defined": "SpellType"
-                }
-              },
-              {
-                "name": "cost_feature",
-                "type": {
-                  "defined": "ItemFeature"
-                }
-              },
-              {
-                "name": "rarity",
-                "type": {
-                  "defined": "ItemRarity"
-                }
-              },
-              {
-                "name": "cost",
-                "type": "u16"
-              },
-              {
-                "name": "value",
-                "type": "u16"
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "name": "ItemFeature",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Power"
-          },
-          {
-            "name": "Magic"
-          },
-          {
-            "name": "Resource1"
-          },
-          {
-            "name": "Resource3"
-          },
-          {
-            "name": "Resource2"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ItemRarity",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Common"
-          },
-          {
-            "name": "Rare"
-          },
-          {
-            "name": "Epic"
-          },
-          {
-            "name": "Legendary"
-          }
-        ]
-      }
-    },
-    {
-      "name": "EquipmentType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Head"
-          },
-          {
-            "name": "Robe"
-          },
-          {
-            "name": "Staff"
-          }
-        ]
-      }
-    },
-    {
-      "name": "SpellType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Resource1"
-          },
-          {
-            "name": "Resource2"
-          },
-          {
-            "name": "Resource3"
-          },
-          {
-            "name": "Experience"
-          },
-          {
-            "name": "Craft"
-          },
-          {
-            "name": "Item"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ActionType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Loot"
-          },
-          {
-            "name": "Move"
-          },
-          {
-            "name": "Spell"
-          },
-          {
-            "name": "Craft"
-          },
-          {
-            "name": "Reward"
-          }
-        ]
-      }
-    },
-    {
-      "name": "CasterType",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Caster"
-          },
-          {
-            "name": "Shaman"
-          }
-        ]
-      }
-    },
-    {
-      "name": "CasterEdition",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Normal"
-          },
-          {
-            "name": "Limited"
-          }
-        ]
-      }
-    },
-    {
-      "name": "ItemTypeForCrafting",
-      "type": {
-        "kind": "enum",
-        "variants": [
-          {
-            "name": "Equipment"
-          },
-          {
-            "name": "SpellBook"
-          }
-        ]
-      }
-    }
-  ],
-  "events": [
-    {
-      "name": "NewTurn",
-      "fields": [
-        {
-          "name": "turn",
-          "type": "u32",
-          "index": false
-        },
-        {
-          "name": "tileMap",
-          "type": {
-            "array": [
-              {
-                "array": [
-                  {
-                    "option": {
-                      "defined": "Tile"
-                    }
-                  },
-                  3
-                ]
-              },
-              30
-            ]
-          },
-          "index": false
-        }
-      ]
     }
   ],
   "errors": [
     {
       "code": 6000,
-      "name": "InvalidFunction",
-      "msg": "Invalid Function"
+      "name": "NotSuperAdmin",
+      "msg": "Only super admin can do this action."
     },
     {
       "code": 6001,
-      "name": "PrematureCrankPull",
-      "msg": "Turn isn't over yet!"
-    },
-    {
-      "code": 6002,
-      "name": "InvalidMove",
-      "msg": "Invalid Move."
-    },
-    {
-      "code": 6003,
-      "name": "PendingTurn",
-      "msg": "Pending turn needs to be redeemed first."
-    },
-    {
-      "code": 6004,
-      "name": "EmptyTurnCommit",
-      "msg": "No turn to redeem."
-    },
-    {
-      "code": 6005,
-      "name": "SameTurnRedeem",
-      "msg": "Turn needs to advance before you can redeem!"
-    },
-    {
-      "code": 6006,
-      "name": "PlayerIsPoor",
-      "msg": "Not enough resources for action."
-    },
-    {
-      "code": 6007,
-      "name": "ActionAlreadyDone",
-      "msg": "You already did this action, wait for next turn."
-    },
-    {
-      "code": 6008,
-      "name": "ItemAlreadyInUse",
-      "msg": "Item already equipped by another caster."
-    },
-    {
-      "code": 6009,
-      "name": "ItemNotExists",
-      "msg": "Item does not exist."
-    },
-    {
-      "code": 6010,
-      "name": "ItemTypeAlreadyEquipped",
-      "msg": "Already have an item of that type equipped."
-    },
-    {
-      "code": 6011,
-      "name": "ItemLevelTooHigh",
-      "msg": "Item level is higher than your caster's level."
-    },
-    {
-      "code": 6012,
-      "name": "InvalidEquipItemType",
-      "msg": "Item can't be equipped / unequipped."
-    },
-    {
-      "code": 6013,
-      "name": "InvalidItemType",
-      "msg": "Item can't be used for crafting."
-    },
-    {
-      "code": 6014,
-      "name": "NotCraftingTile",
-      "msg": "This is not a crafting tile."
-    },
-    {
-      "code": 6015,
-      "name": "ItemIsNotAChest",
-      "msg": "Item is not a chest."
-    },
-    {
-      "code": 6016,
-      "name": "InvalidResourceTypeForBurn",
-      "msg": "Invalid resource for manual burn."
-    },
-    {
-      "code": 6017,
-      "name": "InvalidTokenAmount",
-      "msg": "Invalid token amount for burn."
-    },
-    {
-      "code": 6018,
-      "name": "NoEquipUnequipOnPendingTurn",
-      "msg": "You can't equip or unequip while you have a pending turn."
-    },
-    {
-      "code": 6019,
-      "name": "TileNotExists",
-      "msg": "Invalid location."
-    },
-    {
-      "code": 6020,
-      "name": "InvalidTileForLooting",
-      "msg": "Invalid tile type for looting."
-    },
-    {
-      "code": 6021,
-      "name": "SpellAccountMissing",
-      "msg": "To redeem a spell you need to provide spell account."
-    },
-    {
-      "code": 6022,
-      "name": "SpellKeyMismatch",
-      "msg": "Spell key mismatch."
-    },
-    {
-      "code": 6023,
-      "name": "NotSuperAdmin",
-      "msg": "Only super admin can create new game."
-    },
-    {
-      "code": 6024,
-      "name": "InvalidCasterMintEquipped",
-      "msg": "Caster can't be minted if it has equipped items."
-    },
-    {
-      "code": 6025,
-      "name": "InvalidCasterMintPendingTurn",
-      "msg": "Caster can't be minted if it has a pending turn."
-    },
-    {
-      "code": 6026,
-      "name": "InvalidSpellCost",
-      "msg": "Invalid cost type for spell."
-    },
-    {
-      "code": 6027,
-      "name": "ProvidedSpellBookIsNull",
-      "msg": "Provided spell book for redeem is null."
-    },
-    {
-      "code": 6028,
-      "name": "InvalidGame",
-      "msg": "Invalid game provided."
-    },
-    {
-      "code": 6029,
       "name": "InvalidLadaMint",
       "msg": "Invalid lada mint provided."
     },
     {
-      "code": 6030,
-      "name": "InvalidLadaTokenGameAccount",
-      "msg": "Invalid lada token for game provided."
+      "code": 6002,
+      "name": "InvalidStakingLadaTokenPoolAccount",
+      "msg": "Invalid lada pool for game provided."
     },
     {
-      "code": 6031,
-      "name": "InvalidItemForMerkleProof",
-      "msg": "Invalid item for merkle proof."
+      "code": 6003,
+      "name": "InvalidLadaTokenPoolAccount",
+      "msg": "Invalid lada pool for game provided."
     },
     {
-      "code": 6032,
-      "name": "InvalidNFTURI",
-      "msg": "Invalid uri passed for NFT minting."
+      "code": 6004,
+      "name": "InvalidLadaTokenUserAccount",
+      "msg": "Invalid lada user token account provided."
     },
     {
-      "code": 6033,
-      "name": "InvalidMerkleRootSent",
-      "msg": "Invalid merkle root sent."
+      "code": 6005,
+      "name": "InvalidStakeInfoForUser",
+      "msg": "Invalid stake info for user account provided."
     },
     {
-      "code": 6034,
-      "name": "ItemCantBeMintIfEquipped",
-      "msg": "Item can't be equipped to mint it."
+      "code": 6006,
+      "name": "InvalidStakingContractValue",
+      "msg": "Invalid staking contract value provided."
     },
     {
-      "code": 6035,
-      "name": "ActionOrderError",
-      "msg": "The order of the actions committed wasn't respected."
+      "code": 6007,
+      "name": "InvalidStakingContract",
+      "msg": "Invalid staking contract provided."
     },
     {
-      "code": 6036,
-      "name": "InvalidInstructionOrdering",
-      "msg": "Invalid number of instructions provided."
+      "code": 6008,
+      "name": "StakingAmountTooLow",
+      "msg": "Amount staked is too low for contract."
     },
     {
-      "code": 6037,
-      "name": "NoSpellInTurnCommit",
-      "msg": "No spell were caster for that turn."
+      "code": 6009,
+      "name": "StakingContractEnded",
+      "msg": "Staking contract is not available anymore."
     },
     {
-      "code": 6038,
-      "name": "ItemNotDifferent",
-      "msg": "All crafting items must be different."
-    },
-    {
-      "code": 6039,
-      "name": "NotAvailableForSeason",
-      "msg": "Functionality not available in current season"
-    },
-    {
-      "code": 6040,
-      "name": "WrongSeasonUsed",
-      "msg": "Wrong season used."
-    },
-    {
-      "code": 6041,
-      "name": "InvalidCasterTransfer",
-      "msg": "Trying to transfer to old season."
-    },
-    {
-      "code": 6042,
-      "name": "InvalidCasterLevelForTransfer",
-      "msg": "Caster needs to be level 30 to transfer."
-    },
-    {
-      "code": 6043,
-      "name": "CasterDoesNotBelongPlayer",
-      "msg": "Caster does not belong to player."
-    },
-    {
-      "code": 6044,
-      "name": "NFTMetadataNotBelongMint",
-      "msg": "NFT Metadata does not belong to NFT mint."
-    },
-    {
-      "code": 6045,
-      "name": "NFTTokenNotBelongMind",
-      "msg": "NFT Token does not belong to NFT mint."
-    },
-    {
-      "code": 6046,
-      "name": "InvalidUpdateAuthorityForMetadata",
-      "msg": "Invalid update authority for collection."
-    },
-    {
-      "code": 6047,
-      "name": "ItemRarityToLowForMint",
-      "msg": "Item rarity too low to mint."
-    },
-    {
-      "code": 6048,
-      "name": "ClosedGameAction",
-      "msg": "Closed games cannot perform this task."
+      "code": 6010,
+      "name": "PrematureUnstaking",
+      "msg": "Too early to unstake lada tokens."
     }
   ],
   "metadata": {
-    "address": "LCNTy2Q4HsKUecKEETwwzujjbAx9DGFJort8SjGzGFj"
+    "address": "9HF1H8yzA23KYGUEidSZrKbqiRXo4dWyypAxyMZUC7ho"
   }
 }

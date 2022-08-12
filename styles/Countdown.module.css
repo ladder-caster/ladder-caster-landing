@@ -15,7 +15,7 @@
   align-items: center;
   width: 100px;
   height: 90px;
-  color: #fff;
+  color: #fff9f6;
 }
 
 .countdown > div {
@@ -58,7 +58,7 @@
   bottom: -32px;
   text-align: center;
   width: 100%;
-  color: white;
+  color: #fff9f6;
 }
 
 @media only screen and (max-width: 1200px) {

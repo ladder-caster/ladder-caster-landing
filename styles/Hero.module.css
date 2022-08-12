@@ -21,6 +21,9 @@
   flex-direction: column;
   width: 650px;
   position: relative;
+  margin: 0 auto;
+  right: 0;
+  left: 0;
 }
 
 .chain > svg {
@@ -33,7 +36,7 @@
   font-size: 86px;
   font-weight: 700;
   line-height: 72px;
-  color: #fff;
+  color: #fff9f6;
   letter-spacing: 1px;
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -46,7 +49,7 @@
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 600;
-  color: #fff;
+  color: #fff9f6;
   letter-spacing: 1px;
   text-shadow: 1px 1px 1px rgba(52, 42, 60, 0.5);
   position: absolute;
@@ -106,7 +109,7 @@
   padding-bottom: 16px;
   margin-bottom: 16px;
   font-weight: 600;
-  color: #fff;
+  color: #fff9f6;
   text-align: center;
   width: 450px;
   margin-bottom: 48px;
@@ -129,7 +132,7 @@
 .button > a > svg {
   width: 24px;
   margin-right: 12px;
-  fill: #fff;
+  fill: #fff9f6;
 }
 
 .button > a > div {
@@ -157,7 +160,7 @@
     rgb(78 111 100) 51%,
     rgb(30 65 84) 100%
   );
-  color: white;
+  color: #fff9f6;
   padding: 8px;
   border: none;
   font-size: 16px;
@@ -188,7 +191,6 @@
   font-weight: 600;
   font-size: 16px;
   letter-spacing: 1px;
-  /* color: white; */
 }
 
 .button > a > span > svg {
@@ -210,7 +212,7 @@
   cursor: pointer;
   background: none;
   background-color: #5159e9;
-  color: white;
+  color: #fff9f6;
   padding: 8px;
   border: none;
   font-size: 16px;
@@ -228,7 +230,7 @@
 .discord > a > span > svg {
   width: 28px;
   margin-right: 8px;
-  fill: #fff;
+  fill: #fff9f6;
 }
 
 .discord > a:hover {
@@ -261,7 +263,7 @@
   text-align: center;
   margin-left: 6px;
   margin-bottom: 32px;
-  color: white;
+  color: #fff9f6;
   font-weight: 600;
 }
 

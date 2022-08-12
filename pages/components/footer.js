@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
-import styles from '../../styles/Footer.module.css';
-import { motion, AnimatePresence } from 'framer-motion';
-import { logoHat, discordIcon, twitterIcon } from '../../shared/icons';
+import { useMemo } from "react";
+import styles from "../../styles/Footer.module.css";
+import { motion, AnimatePresence } from "framer-motion";
+import { logoHat, discordIcon, twitterIcon } from "../../shared/icons";
 
 const Footer = () => {
   return (
@@ -14,7 +14,7 @@ const Footer = () => {
           <div className={styles.title}>Game</div>
           <a
             onClick={() => {
-              const el = document.getElementById('#faq');
+              const el = document.getElementById("#faq");
               if (el) {
                 const distance =
                   window.pageYOffset + el.getBoundingClientRect().top;
@@ -59,7 +59,7 @@ const Footer = () => {
           <a
             target="_blank"
             rel="noreferrer"
-            href={'https://discord.com/invite/laddercaster'}
+            href={"https://discord.com/invite/laddercaster"}
             className={styles.link}
           >
             Community
@@ -82,13 +82,13 @@ const Footer = () => {
             href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/governance"
             className={styles.link}
           >
-            Governancey
+            Governance
           </a>
           <a
             target="_blank"
             rel="noreferrer"
             href={
-              'https://ladder-caster.gitbook.io/laddercaster/tokenomics/how-to-buy-lada'
+              "https://ladder-caster.gitbook.io/laddercaster/tokenomics/how-to-buy-lada"
             }
             className={styles.link}
           >
@@ -100,9 +100,9 @@ const Footer = () => {
           <a
             target="_blank"
             rel="noreferrer"
-            href={'https://discord.com/invite/laddercaster'}
+            href={"https://discord.com/invite/laddercaster"}
             className={styles.social}
-            style={{ backgroundColor: '#5159e9' }}
+            style={{ backgroundColor: "#5159e9" }}
           >
             {discordIcon()} Join the Discord
           </a>
@@ -111,7 +111,7 @@ const Footer = () => {
             rel="noreferrer"
             href="https://twitter.com/LadderCaster"
             className={styles.social}
-            style={{ backgroundColor: '#00acee' }}
+            style={{ backgroundColor: "#00acee" }}
           >
             {twitterIcon()} Join our Twitter
           </a>

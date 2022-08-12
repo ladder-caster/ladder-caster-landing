@@ -1,7 +1,6 @@
-import { useMemo, useState } from 'react';
-import styles from '../../styles/FAQ.module.css';
-import { motion, AnimatePresence } from 'framer-motion';
-import { logoHat, chevron, wizard, lock } from '../../shared/icons';
+import { useState } from "react";
+import styles from "../../../styles/FAQ.module.css";
+import { chevron, wizard, lock } from "../../../shared/icons";
 
 const FAQ = () => {
   const [isActive, setIsActive] = useState(null);
@@ -24,13 +23,13 @@ const FAQ = () => {
           <div className={styles.lineRight}></div>
           <div className={styles.card}>
             <div>Staking released {lock()}</div>
-            <span className={styles.date}>May 6th, 2022</span>
+            <span className={styles.date}>Q4 2022</span>
           </div>
         </div>
         <div className={styles.row}>
           <div className={styles.card}>
             <div>DAO Formation {lock()}</div>
-            <span className={styles.date}>June 2022</span>
+            <span className={styles.date}>Q1 2023</span>
           </div>
           <div className={styles.lineLeft}></div>
         </div>
@@ -38,13 +37,13 @@ const FAQ = () => {
           <div className={styles.lineRight}></div>
           <div className={styles.card}>
             <div>Treasury Unlock {lock()}</div>
-            <span className={styles.date}>October 2022</span>
+            <span className={styles.date}>Q3 2023</span>
           </div>
         </div>
         <div className={styles.row}>
           <div className={styles.card}>
             <div>Community Takeover {lock()}</div>
-            <span className={styles.date}>January 2023</span>
+            <span className={styles.date}>Q4 2023</span>
           </div>
         </div>
       </div>
@@ -56,14 +55,14 @@ const FAQ = () => {
         >
           <div
             className={`${styles.title}  ${
-              isActive === 1 ? styles.active : ''
+              isActive === 1 ? styles.active : ""
             }`}
           >
             What is LadderCaster? {chevron()}
           </div>
           <div
             className={`${styles.desc}  ${
-              isActive === 1 ? styles.expanded : ''
+              isActive === 1 ? styles.expanded : ""
             }`}
           >
             <div>
@@ -78,7 +77,7 @@ const FAQ = () => {
         >
           <div
             className={`${styles.title}  ${
-              isActive === 2 ? styles.active : ''
+              isActive === 2 ? styles.active : ""
             }`}
           >
             What is LADA? How do I get it?
@@ -86,7 +85,7 @@ const FAQ = () => {
           </div>
           <div
             className={`${styles.desc}  ${
-              isActive === 2 ? styles.expanded : ''
+              isActive === 2 ? styles.expanded : ""
             }`}
           >
             LADA will be the native LadderCaster in-game Token. It will be
@@ -100,14 +99,14 @@ const FAQ = () => {
         >
           <div
             className={`${styles.title}  ${
-              isActive === 3 ? styles.active : ''
+              isActive === 3 ? styles.active : ""
             }`}
           >
             Is there a Whitelist or Pre-Sale? {chevron()}
           </div>
           <div
             className={`${styles.desc}  ${
-              isActive === 3 ? styles.expanded : ''
+              isActive === 3 ? styles.expanded : ""
             }`}
           >
             There are no Whitelists or Pre-Sales. The only way to get LADA Token
@@ -120,18 +119,18 @@ const FAQ = () => {
         >
           <div
             className={`${styles.title}  ${
-              isActive === 4 ? styles.active : ''
+              isActive === 4 ? styles.active : ""
             }`}
           >
             When is the mint? {chevron()}
           </div>
           <div
             className={`${styles.desc}  ${
-              isActive === 4 ? styles.expanded : ''
+              isActive === 4 ? styles.expanded : ""
             }`}
           >
             You will only be able to Mint Casters on April, 8th at 18:OO UTC.
-            Casters will always cost 1000 LADA Tokens.
+            Casters will cost 1000 LADA Tokens.
           </div>
         </div>
         <div
@@ -140,14 +139,14 @@ const FAQ = () => {
         >
           <div
             className={`${styles.title}  ${
-              isActive === 5 ? styles.active : ''
+              isActive === 5 ? styles.active : ""
             }`}
           >
             What marketplaces can I use? {chevron()}
           </div>
           <div
             className={`${styles.desc}  ${
-              isActive === 5 ? styles.expanded : ''
+              isActive === 5 ? styles.expanded : ""
             }`}
           >
             LadderCaster characters and items can be listed on Fractal.is, a

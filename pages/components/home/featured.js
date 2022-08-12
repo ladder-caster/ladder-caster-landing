@@ -1,6 +1,6 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import styles from '../../styles/Featured.module.css';
-import { useMemo } from 'react';
+import { motion, AnimatePresence } from "framer-motion";
+import styles from "../../../styles/Featured.module.css";
+import { useMemo } from "react";
 import {
   serumLogo,
   web3AuthLogo,
@@ -10,7 +10,7 @@ import {
   bigBrainLogo,
   raydiumLogo,
   arweaveLogo,
-} from '../../shared/icons';
+} from "../../../shared/icons";
 
 const Featured = () => {
   return (
@@ -47,18 +47,18 @@ const Featured = () => {
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://phantom.app/"
+          href="https://www.home.ludexgames.com/"
           className={styles.image}
         >
-          <img src="phantom.png" />
+          <img src="ludex.png" />
         </a>
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://slope.finance/"
+          href="https://phantom.app/"
           className={styles.image}
         >
-          {slopeLogo()}
+          <img src="phantom.png" />
         </a>
         <a
           target="_blank"
@@ -114,14 +114,6 @@ const Featured = () => {
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://www.home.ludexgames.com/"
-          className={styles.image}
-        >
-          <img src="ludex.png" />
-        </a>
-        <a
-          target="_blank"
-          rel="noreferrer"
           href="https://web3auth.io"
           className={styles.image}
         >
@@ -144,22 +136,6 @@ const Featured = () => {
         >
           <img src="cardinal.png" />
         </a>
-        {/* <a
-          target="_blank"
-          rel="noreferrer"
-          href="https://magiceden.io/"
-          className={styles.image}
-        >
-          {magicEdenLogo()}
-        </a>
-        <a
-          target="_blank"
-          rel="noreferrer"
-          href="	https://monkedao.io/"
-          className={styles.image}
-        >
-          <img src="monkeyDAO.png" />
-        </a> */}
         <a
           target="_blank"
           rel="noreferrer"

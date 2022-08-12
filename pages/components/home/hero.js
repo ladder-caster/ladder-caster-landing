@@ -1,8 +1,12 @@
-import { useMemo } from 'react';
-import styles from '../../styles/Hero.module.css';
-import { motion, AnimatePresence } from 'framer-motion';
-import Countdown from './countdown';
-import { discordIcon, solanaIcon, lock, jupiterLogo } from '../../shared/icons';
+import { useMemo } from "react";
+import styles from "../../../styles/Hero.module.css";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  discordIcon,
+  solanaIcon,
+  lock,
+  jupiterLogo,
+} from "../../../shared/icons";
 
 const Hero = () => {
   return (
@@ -25,17 +29,11 @@ const Hero = () => {
           </div>
         </div>
         <div className={styles.wrapper}>
-          <div className={styles.countdown}>
-            <a>
-              <span>Now Live!</span>
-              <Countdown />
-            </a>
-          </div>
           <div className={styles.button}>
             <a
               target="_blank"
               rel="noreferrer"
-              href={'https://jup.ag/swap/USDC-LADA'}
+              href={"https://jup.ag/swap/USDC-LADA"}
             >
               <span>
                 {jupiterLogo()} <h2>Buy $LADA</h2>
@@ -46,7 +44,7 @@ const Hero = () => {
             <a
               target="_blank"
               rel="noreferrer"
-              href={'https://discord.com/invite/laddercaster'}
+              href={"https://discord.com/invite/laddercaster"}
             >
               <span>{discordIcon()} Join the Discord</span>
             </a>

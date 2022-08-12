@@ -1,10 +1,11 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Nav from './components/nav';
-import Hero from './components/hero';
-import Footer from './components/footer';
-import FAQ from './components/faq';
-import Featured from './components/featued';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Nav from "./components/nav";
+import Hero from "./components/home/hero";
+import Footer from "./components/footer";
+import FAQ from "./components/home/faq";
+import Featured from "./components/home/featured";
+
 export default function Home() {
   const myLoader = ({ src, width, quality }) => {
     return `../../../libs/design/assets/Landing1.jpg?w=${1920}&h=${1080}$"&q=${
@@ -22,9 +23,7 @@ export default function Home() {
     }`;
   };
 
-
   return (
-        
     <div className={styles.container}>
       <Head>
         <title>LadderCaster</title>
@@ -57,7 +56,6 @@ export default function Home() {
       <Featured />
       <FAQ />
       <Footer />
-          </div>
-  
+    </div>
   );
 }
