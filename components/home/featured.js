@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import styles from "../../../styles/Featured.module.css";
+import styles from "../../styles/Featured.module.css";
 import { useMemo } from "react";
 import {
   serumLogo,
@@ -10,7 +10,7 @@ import {
   bigBrainLogo,
   raydiumLogo,
   arweaveLogo,
-} from "../../../shared/icons";
+} from "../../shared/icons";
 
 const Featured = () => {
   return (
@@ -47,7 +47,7 @@ const Featured = () => {
         <a
           target="_blank"
           rel="noreferrer"
-          href="https://www.home.ludexgames.com/"
+          href="https://www.ludex.gg/"
           className={styles.image}
         >
           <img src="ludex.png" />

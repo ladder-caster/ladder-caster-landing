@@ -5,8 +5,8 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
-import styles from "../../../styles/Staking.module.css";
-import { updateData, useWalletStore } from "../../../zustand";
+import styles from "../../styles/Staking.module.css";
+import { updateData, useWalletStore } from "../../zustand";
 import { StakingContext } from "../../wallet/StakingContext";
 
 export const StakingForm = ({}) => {
@@ -15,14 +15,30 @@ export const StakingForm = ({}) => {
   const [ladaToRedeem, setLadaToRedeem] = useState(0);
   const [totalStaked, setTotalStaked] = useState(0);
   const ladaBalance = useWalletStore((state) => state.ladaBalance);
+  const chainClock = useWalletStore((state) => state.chainClock);
   const client = useWalletStore((state) => state.client);
   const status = useWalletStore((state) => state.status);
+  const refStatus = useRef({});
   const setStatus = useWalletStore((state) => state.setStatus);
   const category = useWalletStore((state) => state.category);
   const stakingContracts = useWalletStore((state) => state.stakingContracts);
   const userStakedAccounts = useWalletStore(
     (state) => state.userStakedAccounts
   );
+
+  const color = useMemo(() => {
+    switch (category) {
+      case 1: {
+        return "blue";
+      }
+      case 2: {
+        return "purple";
+      }
+      case 3: {
+        return "orange";
+      }
+    }
+  }, [category]);
 
   const handleInputChange = (event) => {
     const floatValue = parseFloat(event.target.value);
@@ -40,15 +56,18 @@ export const StakingForm = ({}) => {
     }
   };
 
-  const changeStatus = (type, statusLabel, message) => {
-    setStatus({
-      ...status,
-      [type]: {
-        status: statusLabel,
-        message: message,
-      },
-    });
-  };
+  const changeStatus = useCallback(
+    (type, statusLabel, message) => {
+      setStatus({
+        ...refStatus.current,
+        [type]: {
+          status: statusLabel,
+          message: message,
+        },
+      });
+    },
+    [status]
+  );
 
   const stakeLada = async () => {
     let error = "";
@@ -102,9 +121,15 @@ export const StakingForm = ({}) => {
     if (ladaToRedeem <= 0) return;
 
     try {
+      //TODO: fix
       changeStatus("claim", "loading", "Claiming...");
-      await client.connection.confirmTransaction(
-        await new StakingContext(client).claim(userStakedAccounts[0])
+      const stakingContractPK = StakingContext.getTier(category);
+      await new StakingContext(client).bulkClaim(
+        userStakedAccounts.filter((acc) => {
+          return (
+            acc.stakingContract.toString() === stakingContractPK.toString()
+          );
+        })
       );
       changeStatus("claim", "success", "Claiming successful!");
     } catch (e) {
@@ -144,12 +169,15 @@ export const StakingForm = ({}) => {
       })
       .forEach((acc) => {
         const apyPerSec = contractObj.apy / 100 / 31536000;
+        const localTimeGap = new Date().getTime() / 1000 - chainClock.locale;
+
         const ellapsedSeconds = Math.trunc(
-          new Date().getTime() / 1000 - acc.lastClaimed
+          chainClock.chain + localTimeGap - acc.lastClaimed.toNumber()
         );
 
-        toClaim += (acc.stakedAmount / 1e9) * apyPerSec * ellapsedSeconds;
-        totStaked += acc.stakedAmount / 1e9;
+        toClaim +=
+          (acc.stakedAmount.toNumber() / 1e9) * apyPerSec * ellapsedSeconds;
+        totStaked += acc.stakedAmount.toNumber() / 1e9;
       });
 
     setTotalStaked(totStaked);
@@ -157,6 +185,10 @@ export const StakingForm = ({}) => {
     toClaim = toClaim.toFixed(4);
     return toClaim;
   }, [category, userStakedAccounts, stakingContracts]);
+
+  useEffect(() => {
+    refStatus.current = status;
+  }, [status]);
 
   useEffect(() => {
     let timeout;
@@ -202,8 +234,8 @@ export const StakingForm = ({}) => {
     if (user) {
       let disabled = true,
         remainingString = "";
-      if (contractObj.lockPeriodInDays !== 0) {
-        const lockInSecs = 86400 * contractObj.lockPeriodInDays;
+      if (contractObj.lockPeriodInSeconds !== 0) {
+        const lockInSecs = contractObj.lockPeriodInSeconds;
         const stakedSecs = new Date().getTime() / 1000 - user.stakedStartTime;
 
         if (stakedSecs < lockInSecs) {
@@ -230,12 +262,14 @@ export const StakingForm = ({}) => {
     }
 
     return [true, null];
-  }, [accountSelected, stakingContracts, userStakedAccounts]);
+  }, [accountSelected, stakingContracts, userStakedAccounts, category]);
 
   return (
     <div id="modal" className={styles["staking-modal-container"]}>
-      <div className={styles["staking-modal"]}>
-        <div className={styles["staking-modal-title"]}>Stake</div>
+      <div className={`${styles["staking-modal"]}`}>
+        <div className={`${styles["staking-modal-title"]} ${styles[color]}`}>
+          Stake
+        </div>
         <div className={styles["input-container"]}>
           <div className={styles["value-container"]}>
             <img src="LADA.png" className={styles["icon"]} />
@@ -250,8 +284,8 @@ export const StakingForm = ({}) => {
             </div>
           </div>
           <button
-            className={styles["button"]}
-            // disabled={ladaBalance <= 0 || !client}
+            className={`${styles["button"]}`}
+            disabled={ladaBalance <= 0 || !client}
             onClick={stakeLada}
           >
             Stake
@@ -259,24 +293,26 @@ export const StakingForm = ({}) => {
         </div>
         <div className={styles["detail-segment"]}>
           <div className={styles["row"]}>
-            <div className={styles["info"]}>
+            <div className={`${styles["info"]} ${styles["spread"]}`}>
               <div className={styles["text"]}>LADA Earned</div>
               <div className={styles["text"]}>{ladaToRedeem}</div>
             </div>
             <div className={styles["info"]}>
               <button
                 className={styles["button"]}
-                // disabled={ladaToRedeem <= 0}
+                disabled={ladaToRedeem <= 0}
                 onClick={redeemLada}
               >
                 Claim
               </button>
             </div>
           </div>
-          <div className={styles["row"]}>
-            <div className={styles["info"]}>
-              <div className={styles["text"]}>Total Staked</div>
-              <div className={styles["text"]}>
+          <div className={`${styles["row"]} ${styles["top"]}`}>
+            <div className={`${styles["info"]} ${styles["spread"]}`}>
+              <div className={`${styles["text"]} ${styles[color]}`}>
+                Total Staked
+              </div>
+              <div className={`${styles["text"]} ${styles[color]}`}>
                 {totalStaked?.toLocaleString()}
               </div>
             </div>

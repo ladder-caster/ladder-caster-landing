@@ -42,6 +42,10 @@ build/*
 **/build/*
 
 .parcel-cache/
+out/
+.serverless/
+.serverless_nextjs/
 
 .next
+.env
 jwt

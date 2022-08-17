@@ -1,12 +1,7 @@
 import { useMemo } from "react";
-import styles from "../../../styles/Hero.module.css";
+import styles from "../../styles/Hero.module.css";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  discordIcon,
-  solanaIcon,
-  lock,
-  jupiterLogo,
-} from "../../../shared/icons";
+import { discordIcon, solanaIcon, lock, jupiterLogo } from "../../shared/icons";
 
 const Hero = () => {
   return (

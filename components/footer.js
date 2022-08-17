@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import styles from "../../styles/Footer.module.css";
+import styles from "../styles/Footer.module.css";
 import { motion, AnimatePresence } from "framer-motion";
-import { logoHat, discordIcon, twitterIcon } from "../../shared/icons";
+import { logoHat, discordIcon, twitterIcon } from "../shared/icons";
 
 const Footer = () => {
   return (

@@ -1,14 +1,8 @@
 {
-  "include": [
-    "shared/*",
-    "pages/*"
-  ],
+  "include": ["shared/*", "pages/*", "wallet"],
   "compilerOptions": {
     "module": "commonjs",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "importHelpers": true,
     "declaration": true,
     "declarationDir": "dist/types",
@@ -31,7 +25,5 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

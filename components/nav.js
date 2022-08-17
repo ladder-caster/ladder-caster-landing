@@ -1,13 +1,13 @@
-import { useMemo } from 'react';
-import styles from '../../styles/Nav.module.css';
-import { motion, AnimatePresence } from 'framer-motion';
-import { logoHat } from '../../shared/icons';
+import { useMemo } from "react";
+import styles from "../styles/Nav.module.css";
+import { motion, AnimatePresence } from "framer-motion";
+import { logoHat } from "../shared/icons";
 
 const Nav = () => {
   return (
     <div className={styles.nav}>
       <div className={styles.wrapper}>
-        <a className={styles.logo} href='/' target='_self' rel='noreferrer'>
+        <a className={styles.logo} href="/" target="_self" rel="noreferrer">
           {logoHat()} <span>LadderCaster</span>
         </a>
         <div className={styles.container}>
@@ -31,7 +31,7 @@ const Nav = () => {
             <a
               className={styles.link}
               onClick={() => {
-                const el = document.getElementById('#faq');
+                const el = document.getElementById("#faq");
                 if (el) {
                   const distance =
                     window.pageYOffset + el.getBoundingClientRect().top;
@@ -53,7 +53,7 @@ const Nav = () => {
           <a
             target="_blank"
             rel="noreferrer"
-            href={'https://play.laddercaster.com'}
+            href={"https://play.laddercaster.com"}
             className={styles.button}
           >
             Play Game

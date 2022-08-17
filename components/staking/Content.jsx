@@ -1,16 +1,12 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Footer from "../footer";
 import Nav from "../nav";
-import {
-  initGlobalValues,
-  initStakeData,
-  useWalletStore,
-} from "../../../zustand";
+import { initGlobalValues, initStakeData, useWalletStore } from "../../zustand";
 import ConnectWallet from "./connectWallet";
 import { StakingCard } from "./StakingCard";
 import { StakingInfo } from "./StakingInfo";
 import { Status } from "./Status";
-import styles from "../../../styles/Staking.module.css";
+import styles from "../../styles/Staking.module.css";
 import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import { StakingForm } from "./StakingForm";
 import { Client } from "../../wallet/Connection";
@@ -52,7 +48,7 @@ function Content() {
   useEffect(() => {
     if (category > 0 && document.getElementById("modal")) {
       const scrollDiv = document.getElementById("modal").offsetTop;
-      window.scrollTo({ top: scrollDiv - 470, behavior: "smooth" });
+      window.scrollTo({ top: scrollDiv - 465, behavior: "smooth" });
     }
   }, [category]);
 
@@ -104,6 +100,7 @@ no questions asked for one whole year!`}
             active={category == 0x1 ? "active" : "default"}
             connected={connected}
             area={"d"}
+            color={"blue"}
           />
           <StakingCard
             title={"The Hodl'er"}
@@ -114,6 +111,7 @@ no questions asked for one whole year!`}
             active={category == 0x2 ? "active" : "default"}
             connected={connected}
             area={"e"}
+            color={"purple"}
           />
           <StakingCard
             title={"Diamond Hands"}
@@ -124,6 +122,7 @@ no questions asked for one whole year!`}
             active={category == 0x3 ? "active" : "default"}
             connected={connected}
             area={"f"}
+            color={"orange"}
           />
         </div>
         {category >= 1 ? <StakingForm /> : null}

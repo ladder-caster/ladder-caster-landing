@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import Footer from "./components/footer";
-import Nav from "./components/nav";
-import ConnectWallet from "./components/staking/connectWallet";
-import { StakingCard } from "./components/staking/StakingCard";
-import { StakingInfo } from "./components/staking/StakingInfo";
+import Footer from "../components/footer";
+import Nav from "../components/nav";
+import ConnectWallet from "../components/staking/connectWallet";
+import { StakingCard } from "../components/staking/StakingCard";
+import { StakingInfo } from "../components/staking/StakingInfo";
 import styles from "../styles/Staking.module.css";
 import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
-import { Client } from "./wallet/Connection";
+import { Client } from "../wallet/Connection";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -22,7 +22,7 @@ import {
   SolletWalletAdapter,
   SlopeWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import Content from "./components/staking/Content";
+import Content from "../components/staking/Content";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 

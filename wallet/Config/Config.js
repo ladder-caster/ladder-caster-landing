@@ -1,5 +1,5 @@
-import stakingIDL from "./staking-mainnet.json";
-export const environment = process.env.REACT_APP_ENV || "local";
+import stakingIDL from "./staking.json";
+export const environment = process.env.REACT_APP_ENV || "devnet";
 export const isProd = environment === "mainnet";
 
 const config = {

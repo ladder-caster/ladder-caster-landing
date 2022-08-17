@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import styles from "../../../styles/Staking.module.css";
+import styles from "../../styles/Staking.module.css";
 
 export const StakingCard = ({
   title,
@@ -9,6 +9,7 @@ export const StakingCard = ({
   active,
   area,
   connected,
+  color,
 }) => {
   const ref = useRef();
 
@@ -23,7 +24,7 @@ export const StakingCard = ({
       ref={ref}
       className={`${styles["staking-item"]} ${
         connected ? styles["connected"] : ""
-      } ${styles[active]} `}
+      } ${styles[active]} ${styles[color]}`}
       onClick={(e) => {
         if (connected) callback(e);
       }}

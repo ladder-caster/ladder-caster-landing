@@ -1,10 +1,10 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Nav from "./components/nav";
-import Hero from "./components/home/hero";
-import Footer from "./components/footer";
-import FAQ from "./components/home/faq";
-import Featured from "./components/home/featured";
+import Nav from "../components/nav";
+import Hero from "../components/home/hero";
+import Footer from "../components/footer";
+import FAQ from "../components/home/faq";
+import Featured from "../components/home/featured";
 
 export default function Home() {
   const myLoader = ({ src, width, quality }) => {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from "../../../styles/Staking.module.css";
+import styles from "../../styles/Staking.module.css";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import usePrevious from "./hooks/usePrevious";

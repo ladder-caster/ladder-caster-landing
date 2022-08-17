@@ -1,4 +1,5 @@
-import styles from "../../../styles/Staking.module.css";
+import react from "react";
+import styles from "../../styles/Staking.module.css";
 
 export const StakingInfo = ({ title, subtitle, area }) => {
   return (

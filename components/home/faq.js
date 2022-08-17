@@ -1,6 +1,6 @@
 import { useState } from "react";
-import styles from "../../../styles/FAQ.module.css";
-import { chevron, wizard, lock } from "../../../shared/icons";
+import styles from "../../styles/FAQ.module.css";
+import { chevron, wizard, lock } from "../../shared/icons";
 
 const FAQ = () => {
   const [isActive, setIsActive] = useState(null);

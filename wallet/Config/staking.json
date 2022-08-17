@@ -36,8 +36,8 @@
           "type": "u8"
         },
         {
-          "name": "lockPeriodInDays",
-          "type": "u16"
+          "name": "lockPeriodInSeconds",
+          "type": "u64"
         },
         {
           "name": "endInNumberOfDays",
@@ -266,8 +266,8 @@
             "type": "u8"
           },
           {
-            "name": "lockPeriodInDays",
-            "type": "u16"
+            "name": "lockPeriodInSeconds",
+            "type": "u64"
           },
           {
             "name": "endTime",

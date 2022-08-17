@@ -2,7 +2,7 @@ import * as anchor from "@project-serum/anchor";
 import { Connection } from "@solana/web3.js";
 import NodeWallet from "./NodeWallet";
 import jwt from "jsonwebtoken";
-import config, { environment } from "./config/config";
+import config, { environment } from "./Config/Config";
 
 export type Environment =
   | "mainnet"
@@ -43,7 +43,7 @@ export class Client {
 
   static async getBearerToken() {
     // read private key
-    const privateKey = require("../../jwt/private_key.json");
+    const privateKey = require("../jwt/private_key.json");
 
     //Create payload and JWT
     var token = jwt.sign({}, privateKey, {

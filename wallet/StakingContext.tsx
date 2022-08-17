@@ -1,15 +1,27 @@
 import { findProgramAddressSync } from "@project-serum/anchor/dist/cjs/utils/pubkey";
-import { Keypair, PublicKey, SYSVAR_RENT_PUBKEY } from "@solana/web3.js";
+import {
+  Keypair,
+  PublicKey,
+  SYSVAR_RENT_PUBKEY,
+  Transaction,
+} from "@solana/web3.js";
 import { Client } from "./Connection";
 import * as anchor from "@project-serum/anchor";
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
+  Token,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
 import Keys from "./Config/keys.json";
 
 export class StakingContext {
   constructor(private client: Client) {}
+
+  async getClock() {
+    return await this.client.connection.getBlockTime(
+      await this.client.connection.getSlot()
+    );
+  }
 
   async getStakingContracts() {
     const stakingAccounts =
@@ -86,39 +98,88 @@ export class StakingContext {
     });
   }
 
-  async claim(userStakeAccount: any) {
+  claim(userStakeAccount: any, stakingSigner: PublicKey, blockhash: string) {
+    const tx = new Transaction();
+
+    tx.add(
+      this.client.program.instruction.claimInterests({
+        accounts: {
+          tokenProgram: TOKEN_PROGRAM_ID,
+          systemProgram: anchor.web3.SystemProgram.programId,
+          associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
+          authority: this.client.wallet.publicKey,
+          stakingSigner: stakingSigner,
+          ladaTokenAccount: new PublicKey(Keys.ladaPoolInterest),
+          userLadaToken: new PublicKey(Keys.userTokenAccount),
+          stakeInfo: userStakeAccount.publicKey,
+          stakingContract: userStakeAccount.stakingContract,
+        },
+        signers: [],
+      })
+    );
+
+    tx.recentBlockhash = blockhash;
+    tx.feePayer = this.client.wallet.publicKey!;
+
+    return tx;
+  }
+
+  async bulkClaim(accounts: any[]) {
     const [stakingSigner] = await anchor.web3.PublicKey.findProgramAddress(
       [Buffer.from("staking_signer")],
       this.client.program.programId
     );
+    const blockhash = (await this.client.connection.getLatestBlockhash())
+      .blockhash;
+    const transactions: Transaction[] = [];
 
-    return await this.client.program.rpc.claimInterests({
-      accounts: {
-        tokenProgram: TOKEN_PROGRAM_ID,
-        systemProgram: anchor.web3.SystemProgram.programId,
-        associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
-        authority: this.client.wallet.publicKey,
-        stakingSigner: stakingSigner,
-        ladaTokenAccount: new PublicKey(Keys.ladaPoolInterest),
-        userLadaToken: new PublicKey(Keys.userTokenAccount),
-        stakeInfo: userStakeAccount.publicKey,
-        stakingContract: userStakeAccount.stakingContract,
-      },
-      signers: [],
+    accounts.forEach((acc) => {
+      transactions.push(this.claim(acc, stakingSigner, blockhash));
     });
+
+    const signedTxns =
+      await this.client.program.provider.wallet.signAllTransactions(
+        transactions
+      );
+
+    const txPromises: any[] = [];
+
+    signedTxns.forEach((tx) => {
+      const promise = async () => {
+        return await this.client.connection.confirmTransaction(
+          await this.client.connection.sendRawTransaction(tx.serialize())
+        );
+      };
+
+      txPromises.push(promise());
+    });
+
+    return await Promise.all(txPromises);
   }
 
   async getUserLadaBalance() {
-    // const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
-    //   ASSOCIATED_TOKEN_PROGRAM_ID,
-    //   TOKEN_PROGRAM_ID,
-    //   LADA_ACCOUNT,
-    //   this.client.wallet.publicKey
-    // );
+    let balance: anchor.web3.TokenAmount;
+    try {
+      balance = (
+        await this.client.connection.getTokenAccountBalance(
+          new PublicKey(Keys.userTokenAccount)
+        )
+      ).value;
+    } catch (e) {
+      const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
+        ASSOCIATED_TOKEN_PROGRAM_ID,
+        TOKEN_PROGRAM_ID,
+        new PublicKey(Keys.ladaTokenAccount),
+        this.client.wallet.publicKey
+      );
+      balance = (
+        await this.client.connection.getTokenAccountBalance(
+          userLadaTokenAccount
+        )
+      ).value;
+    }
 
-    return await this.client.connection.getTokenAccountBalance(
-      new PublicKey(Keys.userTokenAccount)
-    );
+    return balance.uiAmount;
   }
 
   static getTier(tier: number) {
