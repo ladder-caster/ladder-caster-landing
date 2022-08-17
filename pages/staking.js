@@ -1,12 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import Footer from "../components/footer";
-import Nav from "../components/nav";
-import ConnectWallet from "../components/staking/connectWallet";
-import { StakingCard } from "../components/staking/StakingCard";
-import { StakingInfo } from "../components/staking/StakingInfo";
-import styles from "../styles/Staking.module.css";
-import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
-import { Client } from "../wallet/Connection";
+import React, { useMemo } from "react";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -17,12 +9,11 @@ import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
   TorusWalletAdapter,
   PhantomWalletAdapter,
-  SolletExtensionWalletAdapter,
   SolflareWalletAdapter,
-  SolletWalletAdapter,
   SlopeWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
 import Content from "../components/staking/Content";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -49,5 +40,11 @@ function Staking() {
     </ConnectionProvider>
   );
 }
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common"])),
+  },
+});
 
 export default Staking;

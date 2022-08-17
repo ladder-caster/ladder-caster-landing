@@ -1,21 +1,19 @@
-import { motion, AnimatePresence } from "framer-motion";
 import styles from "../../styles/Featured.module.css";
-import { useMemo } from "react";
 import {
   serumLogo,
   web3AuthLogo,
-  slopeLogo,
-  magicEdenLogo,
   promoPlanetLogo,
   bigBrainLogo,
   raydiumLogo,
   arweaveLogo,
 } from "../../shared/icons";
+import { useTranslation } from "next-i18next";
 
 const Featured = () => {
+  const { t } = useTranslation();
   return (
     <div className={styles.featured}>
-      <div className={styles.title}>Investors</div>
+      <div className={styles.title}>{t("home.featured.investors")}</div>
       <div className={styles.container}>
         <a
           target="_blank"
@@ -42,7 +40,7 @@ const Featured = () => {
           <img src="palCapital.png" />
         </a>
       </div>
-      <div className={styles.title}>Powered by</div>
+      <div className={styles.title}>{t("home.featured.poweredBy")}</div>
       <div className={styles.container}>
         <a
           target="_blank"
@@ -101,7 +99,7 @@ const Featured = () => {
           <img src="jupiter.png" />
         </a>
       </div>
-      <div className={styles.title}>Partnered with</div>
+      <div className={styles.title}>{t("home.featured.partneredWith")}</div>
       <div className={styles.container}>
         <a
           target="_blank"

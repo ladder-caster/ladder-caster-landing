@@ -8,8 +8,10 @@ import React, {
 import styles from "../../styles/Staking.module.css";
 import { updateData, useWalletStore } from "../../zustand";
 import { StakingContext } from "../../wallet/StakingContext";
+import { useTranslation } from "next-i18next";
 
 export const StakingForm = ({}) => {
+  const { t } = useTranslation();
   const [ladaToStake, setLadaToStake] = useState("");
   const [accountSelected, setAccountSelected] = useState(0);
   const [ladaToRedeem, setLadaToRedeem] = useState(0);
@@ -25,7 +27,20 @@ export const StakingForm = ({}) => {
   const userStakedAccounts = useWalletStore(
     (state) => state.userStakedAccounts
   );
-
+  const stakingContractPK = useMemo(() => {
+    return StakingContext.getTier(category);
+  }, [category]);
+  const filteredStakedAccounts = useMemo(() => {
+    return userStakedAccounts.filter((acc) => {
+      return acc.stakingContract.toString() === stakingContractPK?.toString();
+    });
+  }, [userStakedAccounts, category, stakingContractPK]);
+  const contractObj = useMemo(() => {
+    return stakingContracts.find(
+      (contract) =>
+        contract.publicKey.toString() === stakingContractPK?.toString()
+    );
+  }, [stakingContracts, stakingContractPK]);
   const color = useMemo(() => {
     switch (category) {
       case 1: {
@@ -39,7 +54,6 @@ export const StakingForm = ({}) => {
       }
     }
   }, [category]);
-
   const handleInputChange = (event) => {
     const floatValue = parseFloat(event.target.value);
     if (floatValue > 0 && !isNaN(floatValue)) {
@@ -55,7 +69,6 @@ export const StakingForm = ({}) => {
       setLadaToStake(event.target.value);
     }
   };
-
   const changeStatus = useCallback(
     (type, statusLabel, message) => {
       setStatus({
@@ -69,84 +82,63 @@ export const StakingForm = ({}) => {
     [status]
   );
 
-  const stakeLada = async () => {
-    let error = "";
-    if (ladaToStake <= 0) return;
+  const stakeLada = useCallback(async () => {
     if (ladaToStake > ladaBalance) {
-      changeStatus("stake", "error", "Can't stake more that your balance.");
+      changeStatus("stake", "error", t("staking.form.error.stakeBalance"));
       return;
     }
 
     try {
-      changeStatus("stake", "loading", "Staking...");
+      changeStatus("stake", "loading", t("staking.form.error.stakeLoading"));
       await client.connection.confirmTransaction(
         await new StakingContext(client).stakeLADA(ladaToStake, category)
       );
-      changeStatus("stake", "success", "Staking successfully!");
+      changeStatus("stake", "success", t("staking.form.error.stakeSuccess"));
     } catch (e) {
-      let errorMessage;
-      if (typeof e === "string") errorMessage = e;
-      else errorMessage = e.message;
-      changeStatus("stake", "error", errorMessage);
+      changeStatus("stake", "error", typeof e === "string" ? e : e.message);
     } finally {
       updateData(client);
     }
-  };
+  }, [ladaToStake, ladaBalance, client, category, t]);
 
-  const unstakeLada = async () => {
+  const unstakeLada = useCallback(async () => {
     try {
-      changeStatus("unstake", "loading", "Unstaking...");
-      const stakingContractPK = StakingContext.getTier(category);
+      changeStatus("unstake", "loading", t("staking.form.error.stakeLoading"));
       await client.connection.confirmTransaction(
         await new StakingContext(client).unstakeLADA(
-          userStakedAccounts.filter((acc) => {
-            return (
-              acc.stakingContract.toString() === stakingContractPK.toString()
-            );
-          })[accountSelected]
+          filteredStakedAccounts[accountSelected]
         )
       );
-      changeStatus("unstake", "success", "Unstaking successful!");
-    } catch (e) {
-      let errorMessage;
-      if (typeof e === "string") errorMessage = e;
-      else errorMessage = e.message;
-      changeStatus("unstake", "error", errorMessage);
-    } finally {
-      updateData(client);
-    }
-  };
-
-  const redeemLada = async () => {
-    if (ladaToRedeem <= 0) return;
-
-    try {
-      //TODO: fix
-      changeStatus("claim", "loading", "Claiming...");
-      const stakingContractPK = StakingContext.getTier(category);
-      await new StakingContext(client).bulkClaim(
-        userStakedAccounts.filter((acc) => {
-          return (
-            acc.stakingContract.toString() === stakingContractPK.toString()
-          );
-        })
+      changeStatus(
+        "unstake",
+        "success",
+        t("staking.form.error.unstakeSuccess")
       );
-      changeStatus("claim", "success", "Claiming successful!");
     } catch (e) {
-      let errorMessage;
-      if (typeof e === "string") errorMessage = e;
-      else errorMessage = e.message;
-      changeStatus("claim", "error", errorMessage);
+      changeStatus("unstake", "error", typeof e === "string" ? e : e.message);
     } finally {
       updateData(client);
     }
-  };
+  }, [client, filteredStakedAccounts, accountSelected, t]);
 
-  const maxInput = () => {
+  const redeemLada = useCallback(async () => {
+    if (ladaToRedeem <= 0) return;
+    try {
+      changeStatus("claim", "loading", t("staking.form.error.claimLoading"));
+      await new StakingContext(client).bulkClaim(filteredStakedAccounts);
+      changeStatus("claim", "success", t("staking.form.error.claimSuccess"));
+    } catch (e) {
+      changeStatus("claim", "error", typeof e === "string" ? e : e.message);
+    } finally {
+      updateData(client);
+    }
+  }, [ladaToRedeem, client, filteredStakedAccounts, t]);
+
+  const maxInput = useCallback(() => {
     if (ladaToStake < ladaBalance) {
       setLadaToStake(ladaBalance);
     }
-  };
+  }, [ladaToStake, ladaBalance]);
 
   const handleDropdown = (event) => {
     setAccountSelected(event.target.value);
@@ -155,36 +147,25 @@ export const StakingForm = ({}) => {
   const calcRedeemAmount = useCallback(() => {
     let toClaim = 0,
       totStaked = 0;
-    const stakingContractPK = StakingContext.getTier(category);
-    const contractObj = stakingContracts.find(
-      (contract) =>
-        contract.publicKey.toString() === stakingContractPK.toString()
-    );
 
-    if (!contractObj) return;
+    filteredStakedAccounts.forEach((acc) => {
+      const apyPerSec = contractObj?.apy / 100 / 31536000;
+      const localTimeGap = new Date().getTime() / 1000 - chainClock.locale;
 
-    userStakedAccounts
-      .filter((acc) => {
-        return acc.stakingContract.toString() === stakingContractPK.toString();
-      })
-      .forEach((acc) => {
-        const apyPerSec = contractObj.apy / 100 / 31536000;
-        const localTimeGap = new Date().getTime() / 1000 - chainClock.locale;
+      const ellapsedSeconds = Math.trunc(
+        chainClock.chain + localTimeGap - acc.lastClaimed.toNumber()
+      );
 
-        const ellapsedSeconds = Math.trunc(
-          chainClock.chain + localTimeGap - acc.lastClaimed.toNumber()
-        );
-
-        toClaim +=
-          (acc.stakedAmount.toNumber() / 1e9) * apyPerSec * ellapsedSeconds;
-        totStaked += acc.stakedAmount.toNumber() / 1e9;
-      });
+      toClaim +=
+        (acc.stakedAmount.toNumber() / 1e9) * apyPerSec * ellapsedSeconds;
+      totStaked += acc.stakedAmount.toNumber() / 1e9;
+    });
 
     setTotalStaked(totStaked);
 
     toClaim = toClaim.toFixed(4);
     return toClaim;
-  }, [category, userStakedAccounts, stakingContracts]);
+  }, [filteredStakedAccounts, contractObj]);
 
   useEffect(() => {
     refStatus.current = status;
@@ -192,7 +173,11 @@ export const StakingForm = ({}) => {
 
   useEffect(() => {
     let timeout;
-    if (userStakedAccounts?.length && category && stakingContracts?.length) {
+    if (
+      filteredStakedAccounts?.length &&
+      category &&
+      stakingContracts?.length
+    ) {
       setLadaToRedeem(calcRedeemAmount());
 
       timeout = setInterval(() => {
@@ -203,39 +188,31 @@ export const StakingForm = ({}) => {
     return () => {
       if (timeout) clearTimeout(timeout);
     };
-  }, [category, userStakedAccounts, stakingContracts]);
+  }, [category, filteredStakedAccounts, stakingContracts]);
 
   const options = useMemo(() => {
     let list = [];
 
-    const stakingContractPK = StakingContext.getTier(category);
-    userStakedAccounts
-      .filter((acc) => {
-        return acc.stakingContract.toString() === stakingContractPK.toString();
-      })
-      .forEach((acc, key) => {
-        list.push({
-          label: `Account ${key + 1} - ${acc.stakedAmount / 1e9} LADA`,
-          value: key,
-        });
+    filteredStakedAccounts.forEach((acc, key) => {
+      list.push({
+        label: `${t("staking.form.account")} ${key + 1} - ${
+          acc.stakedAmount / 1e9
+        } LADA`,
+        value: key,
       });
+    });
 
     return list;
-  }, [userStakedAccounts, category]);
+  }, [filteredStakedAccounts, t]);
 
   const [unstakeDisabled, remainingDays] = useMemo(() => {
-    const stakingContractPK = StakingContext.getTier(category);
-    const user = userStakedAccounts[accountSelected];
-    const contractObj = stakingContracts.find(
-      (contract) =>
-        contract.publicKey.toString() === stakingContractPK.toString()
-    );
+    const user = filteredStakedAccounts[accountSelected];
 
     if (user) {
       let disabled = true,
         remainingString = "";
-      if (contractObj.lockPeriodInSeconds !== 0) {
-        const lockInSecs = contractObj.lockPeriodInSeconds;
+      if (contractObj?.lockPeriodInSeconds !== 0) {
+        const lockInSecs = contractObj?.lockPeriodInSeconds;
         const stakedSecs = new Date().getTime() / 1000 - user.stakedStartTime;
 
         if (stakedSecs < lockInSecs) {
@@ -262,13 +239,13 @@ export const StakingForm = ({}) => {
     }
 
     return [true, null];
-  }, [accountSelected, stakingContracts, userStakedAccounts, category]);
+  }, [accountSelected, filteredStakedAccounts, contractObj]);
 
   return (
     <div id="modal" className={styles["staking-modal-container"]}>
       <div className={`${styles["staking-modal"]}`}>
         <div className={`${styles["staking-modal-title"]} ${styles[color]}`}>
-          Stake
+          {t("staking.form.stake")}
         </div>
         <div className={styles["input-container"]}>
           <div className={styles["value-container"]}>
@@ -280,7 +257,7 @@ export const StakingForm = ({}) => {
               onChange={handleInputChange}
             />
             <div className={styles["max-button"]} onClick={maxInput}>
-              MAX
+              {t("staking.form.max")}
             </div>
           </div>
           <button
@@ -288,13 +265,15 @@ export const StakingForm = ({}) => {
             disabled={ladaBalance <= 0 || !client}
             onClick={stakeLada}
           >
-            Stake
+            {t("staking.form.stake")}
           </button>
         </div>
         <div className={styles["detail-segment"]}>
           <div className={styles["row"]}>
             <div className={`${styles["info"]} ${styles["spread"]}`}>
-              <div className={styles["text"]}>LADA Earned</div>
+              <div className={styles["text"]}>
+                {t("staking.form.LADAEarned")}
+              </div>
               <div className={styles["text"]}>{ladaToRedeem}</div>
             </div>
             <div className={styles["info"]}>
@@ -303,14 +282,14 @@ export const StakingForm = ({}) => {
                 disabled={ladaToRedeem <= 0}
                 onClick={redeemLada}
               >
-                Claim
+                {t("staking.form.claim")}
               </button>
             </div>
           </div>
           <div className={`${styles["row"]} ${styles["top"]}`}>
             <div className={`${styles["info"]} ${styles["spread"]}`}>
               <div className={`${styles["text"]} ${styles[color]}`}>
-                Total Staked
+                {t("staking.form.totalStaked")}
               </div>
               <div className={`${styles["text"]} ${styles[color]}`}>
                 {totalStaked?.toLocaleString()}
@@ -337,7 +316,7 @@ export const StakingForm = ({}) => {
                     disabled={unstakeDisabled}
                     onClick={unstakeLada}
                   >
-                    Unstake
+                    {t("staking.form.unstake")}
                   </button>
                 </div>
               </>

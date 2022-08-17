@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useMemo } from "react";
 import styles from "../../styles/Staking.module.css";
 import { useWalletStore } from "../../zustand";
@@ -57,12 +57,18 @@ export const Status = () => {
     forEach(status, (stat, key) => {
       if (stat.status !== prevStatus[key]?.status) {
         if (stat.status === "success" || stat.status === "error") {
-          const timeout = setTimeout(() => {
-            clearStatus(key);
-          }, 5000);
+          cleaners.push(
+            setTimeout(() => {
+              clearStatus(key);
+            }, 5000)
+          );
         }
       }
     });
+
+    return () => {
+      forEach(cleaners, (timeoutId) => clearTimeout(timeoutId));
+    };
   }, [status, prevStatus]);
 
   return <div className={styles["overlay"]}>{statusCards}</div>;

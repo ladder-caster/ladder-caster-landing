@@ -1,9 +1,9 @@
-import { useMemo } from "react";
 import styles from "../../styles/Hero.module.css";
-import { motion, AnimatePresence } from "framer-motion";
 import { discordIcon, solanaIcon, lock, jupiterLogo } from "../../shared/icons";
+import { useTranslation } from "next-i18next";
 
 const Hero = () => {
+  const { t } = useTranslation();
   return (
     <div className={styles.hero}>
       <div className={styles.float}>
@@ -13,15 +13,15 @@ const Hero = () => {
         <div className={styles.overlay} />
       </div>
       <main className={styles.main}>
-        <div className={styles.chain}>{solanaIcon()} Powered by Solana</div>
+        <div className={styles.chain}>
+          {solanaIcon()} {t("home.hero.poweredSolana")}
+        </div>
         <div className={styles.info}>
           <div className={styles.brush}>
             <img src="./brush.png" />
           </div>
-          <h1>LadderCaster</h1>
-          <div className={styles.desc}>
-            Real-time mobile strategy &amp; NFT market economy game
-          </div>
+          <h1>{t("laddercaster")}</h1>
+          <div className={styles.desc}>{t("home.hero.realtimeMobile")}</div>
         </div>
         <div className={styles.wrapper}>
           <div className={styles.button}>
@@ -31,7 +31,7 @@ const Hero = () => {
               href={"https://jup.ag/swap/USDC-LADA"}
             >
               <span>
-                {jupiterLogo()} <h2>Buy $LADA</h2>
+                {jupiterLogo()} <h2>{t("home.hero.buyLADA")}</h2>
               </span>
             </a>
           </div>
@@ -41,7 +41,9 @@ const Hero = () => {
               rel="noreferrer"
               href={"https://discord.com/invite/laddercaster"}
             >
-              <span>{discordIcon()} Join the Discord</span>
+              <span>
+                {discordIcon()} {t("home.hero.joinDiscord")}
+              </span>
             </a>
           </div>
         </div>

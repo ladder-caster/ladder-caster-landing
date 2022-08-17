@@ -1,17 +1,18 @@
-import { useMemo } from "react";
 import styles from "../styles/Footer.module.css";
-import { motion, AnimatePresence } from "framer-motion";
 import { logoHat, discordIcon, twitterIcon } from "../shared/icons";
+import { useTranslation } from "next-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.footer}>
       <div className={styles.wrapper}>
         <div className={styles.logo}>
-          {logoHat()} LadderCaster <span>Copyright ©2022</span>
+          {logoHat()} {t("laddercaster")} <span>{t("footer.copyright")}</span>
         </div>
         <div className={styles.container}>
-          <div className={styles.title}>Game</div>
+          <div className={styles.title}>{t("game")}</div>
           <a
             onClick={() => {
               const el = document.getElementById("#faq");
@@ -23,7 +24,7 @@ const Footer = () => {
             }}
             className={styles.link}
           >
-            FAQ
+            {t("footer.faq")}
           </a>
           <a
             target="_blank"
@@ -31,7 +32,7 @@ const Footer = () => {
             href="https://ladder-caster.gitbook.io/laddercaster"
             className={styles.link}
           >
-            Whitepaper
+            {t("footer.whitepaper")}
           </a>
           <a
             target="_blank"
@@ -39,22 +40,22 @@ const Footer = () => {
             href="https://ladder-caster.gitbook.io/laddercaster/items"
             className={styles.link}
           >
-            Items
+            {t("footer.items")}
           </a>
         </div>
         <div className={styles.container}>
-          <div className={styles.title}>About</div>
+          <div className={styles.title}>{t("footer.about")}</div>
           <a
             target="_blank"
             rel="noreferrer"
             href="https://laddercaster.gitbook.io/laddercaster"
             className={styles.link}
           >
-            Team
+            {t("footer.team")}
           </a>
 
           <a href="mailto:info@laddercaster.com" className={styles.link}>
-            Contact
+            {t("footer.contact")}
           </a>
           <a
             target="_blank"
@@ -62,27 +63,26 @@ const Footer = () => {
             href={"https://discord.com/invite/laddercaster"}
             className={styles.link}
           >
-            Community
+            {t("footer.community")}
           </a>
         </div>
         <div className={styles.container}>
-          <div className={styles.title}>Tokenomics</div>
+          <div className={styles.title}>{t("footer.community")}</div>
           <a
             target="_blank"
             rel="noreferrer"
             href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/resources"
             className={styles.link}
           >
-            Resources
+            {t("footer.resources")}
           </a>
-
           <a
             target="_blank"
             rel="noreferrer"
             href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/governance"
             className={styles.link}
           >
-            Governance
+            {t("footer.governance")}
           </a>
           <a
             target="_blank"
@@ -92,11 +92,11 @@ const Footer = () => {
             }
             className={styles.link}
           >
-            How to buy LADA
+            {t("footer.howToBuy")}
           </a>
         </div>
         <div className={styles.container}>
-          <div className={styles.title}>Social</div>
+          <div className={styles.title}>{t("footer.social")}</div>
           <a
             target="_blank"
             rel="noreferrer"
@@ -104,7 +104,7 @@ const Footer = () => {
             className={styles.social}
             style={{ backgroundColor: "#5159e9" }}
           >
-            {discordIcon()} Join the Discord
+            {discordIcon()} {t("footer.joinDiscord")}
           </a>
           <a
             target="_blank"
@@ -113,7 +113,7 @@ const Footer = () => {
             className={styles.social}
             style={{ backgroundColor: "#00acee" }}
           >
-            {twitterIcon()} Join our Twitter
+            {twitterIcon()} {t("footer.joinTwitter")}
           </a>
         </div>
       </div>

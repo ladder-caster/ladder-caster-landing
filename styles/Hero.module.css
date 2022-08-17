@@ -237,42 +237,6 @@
   background-color: #363b9f;
 }
 
-.countdown > a {
-  margin-bottom: 48px;
-  font-size: 18px;
-  width: 100%;
-  height: 72px;
-  letter-spacing: 2px;
-  cursor: default;
-  filter: grayscale(35%);
-  background-color: transparent;
-  box-shadow: none;
-  flex-direction: column;
-  text-transform: uppercase;
-  padding: 0px;
-}
-
-.countdown > a > span {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  font-size: 18px;
-  letter-spacing: 6px;
-  width: 100%;
-  text-align: center;
-  margin-left: 6px;
-  margin-bottom: 32px;
-  color: #fff9f6;
-  font-weight: 600;
-}
-
-.countdown > a > span > svg {
-  width: 14px;
-  height: 14px;
-  margin-left: 8px;
-}
-
 @media only screen and (max-width: 1400px) {
   .info {
     margin-left: 48px;
@@ -352,9 +316,6 @@
       line-height: 21px;
     }
 
-    .countdown > a > span {
-      margin-bottom: 8px;
-    }
   }
 }
 
@@ -400,9 +361,6 @@
     width: 24px;
   }
 
-  .countdown > a > span {
-    margin-bottom: 16px;
-  }
 }
 
 @media only screen and (max-width: 450px) {
@@ -424,9 +382,6 @@
     width: 100%;
   }
 
-  .countdown > a {
-    font-size: 16px;
-  }
 
   .brush {
     top: 0;

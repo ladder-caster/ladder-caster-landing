@@ -1,14 +1,15 @@
-import { useMemo } from "react";
 import styles from "../styles/Nav.module.css";
-import { motion, AnimatePresence } from "framer-motion";
 import { logoHat } from "../shared/icons";
+import { useTranslation } from "next-i18next";
 
 const Nav = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.nav}>
       <div className={styles.wrapper}>
         <a className={styles.logo} href="/" target="_self" rel="noreferrer">
-          {logoHat()} <span>LadderCaster</span>
+          {logoHat()} <span>{t("laddercaster")}</span>
         </a>
         <div className={styles.container}>
           <div className={styles.links}>
@@ -18,7 +19,7 @@ const Nav = () => {
               href="https://ladder-caster.gitbook.io/laddercaster"
               className={styles.link}
             >
-              Whitepaper
+              {t("nav.whitepaper")}
             </a>
             <a
               target="_blank"
@@ -26,7 +27,7 @@ const Nav = () => {
               href="https://ladder-caster.gitbook.io/laddercaster/items"
               className={styles.link}
             >
-              Items
+              {t("nav.items")}
             </a>
             <a
               className={styles.link}
@@ -39,7 +40,7 @@ const Nav = () => {
                 }
               }}
             >
-              FAQ
+              {t("nav.faq")}
             </a>
             <a
               className={styles.link}
@@ -47,7 +48,7 @@ const Nav = () => {
               rel="noreferrer"
               href="staking"
             >
-              Staking
+              {t("nav.staking")}
             </a>
           </div>
           <a
@@ -56,7 +57,7 @@ const Nav = () => {
             href={"https://play.laddercaster.com"}
             className={styles.button}
           >
-            Play Game
+            {t("nav.playGame")}
           </a>
         </div>
       </div>
