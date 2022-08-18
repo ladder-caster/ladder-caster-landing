@@ -30,7 +30,7 @@ export class Client {
     if (config)
       return new anchor.web3.Connection(
         config.rpc,
-        environment === "localprod"
+        environment === "devnet"
           ? {
               httpHeaders: {
                 Authorization: `Bearer ${await this.getBearerToken()}`,

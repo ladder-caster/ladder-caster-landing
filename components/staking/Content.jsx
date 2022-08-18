@@ -16,7 +16,8 @@ import {
   _column,
   _title,
   _subTitle,
-  _grid,
+  _top,
+  _bottom,
 } from "../../styles/staking.styled";
 
 function Content() {
@@ -48,7 +49,9 @@ function Content() {
   useEffect(() => {
     if (category > 0 && document.getElementById("modal")) {
       const scrollDiv = document.getElementById("modal").offsetTop;
-      window.scrollTo({ top: scrollDiv - 465, behavior: "smooth" });
+      const isMobile = window.innerWidth < 450;
+      const subtractor = isMobile ? 200 : 490;
+      window.scrollTo({ top: scrollDiv - subtractor, behavior: "smooth" });
     }
   }, [category]);
 
@@ -68,14 +71,16 @@ function Content() {
           <_title>{t("content.stakeLADA")}</_title>
           <_subTitle>{t("content.stakeDesc")}</_subTitle>
         </_column>
-        <_grid>
+        <_top>
           <StakingInfo
             title={t("content.tvl")}
             subtitle={`${globalStakedLada?.toLocaleString()} LADA`}
             area={"a"}
           />
           {!connected ? (
-            <ConnectWallet />
+            <_column $info>
+              <ConnectWallet />
+            </_column>
           ) : (
             <StakingInfo
               title={t("content.inWallet")}
@@ -88,6 +93,8 @@ function Content() {
             subtitle={`${globalRewardsGiven?.toLocaleString()} LADA`}
             area={"c"}
           />
+        </_top>
+        <_bottom>
           <StakingCard
             title={t("content.flexible")}
             apy={t("content.flexibleAPY")}
@@ -118,7 +125,7 @@ function Content() {
             area={"f"}
             color={"orange"}
           />
-        </_grid>
+        </_bottom>
         {category >= 1 ? <StakingForm /> : null}
       </_content>
       <Footer />

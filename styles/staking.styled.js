@@ -34,10 +34,40 @@ export const _column = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 8px;
+
+  ${({ $info }) =>
+    $info &&
+    css`
+      &:nth-child(1) {
+        order: 1;
+        flex: 1 1 50%;
+        ${media.tablet`
+          order: 1;
+          flex: 1 1 33%;
+        `}
+      }
+      &:nth-child(2) {
+        order: 3;
+        flex: 1 1 100%;
+        margin-top: 16px;
+        ${media.tablet`
+          order: 2;
+          flex: 1 1 33%;
+        `}
+      }
+      &:nth-child(3) {
+        order: 2;
+        flex: 1 1 50%;
+        ${media.tablet`
+          order: 3;
+          flex: 1 1 33%;
+        `}
+      }
+    `}
 `;
 
 export const _title = styled.div`
-  font-size: 42px;
+  font-size: 38px;
   font-weight: 600;
   line-height: 66px;
   margin-bottom: 8px;
@@ -53,28 +83,53 @@ export const _title = styled.div`
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  ${media.mobile`
+    font-size: 42px;
+  `}
 `;
 
 export const _subTitle = styled.div`
-  font-size: 18px;
-  font-weight: 300;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 28px;
   text-align: center;
   max-width: 500px;
+
+  ${media.mobile`
+    font-size: 18px;
+    font-weight: 300;
+  `}
 `;
 
-export const _grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, minmax(42px, max-content));
-  column-gap: 96px;
-  row-gap: 56px;
-  margin-top: 48px;
-  grid-template-areas:
-    " a b c"
-    " d e f";
+export const _top = styled.div`
+  margin-top: 36px;
+  display: flex;
+  max-width: 800px;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  ${media.tablet`
+  margin-top: 48px;
+    flex-wrap: nowrap;
+  `}
+`;
+
+export const _bottom = styled.div`
+  margin-top: 64px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  ${media.desktop`
+    flex-wrap: nowrap;
+    max-width: 900px;
+    margin-top: 84px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  `}
 `;
 
 export const _stakingTitle = styled.div`
@@ -108,13 +163,14 @@ export const _stakingContent = styled.div`
 export const _item = styled.div`
   position: relative;
   width: 250px;
-  min-height: 300px;
+  min-height: 275px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
   padding: 4px;
   padding-top: 12px;
+  margin-bottom: 48px;
   justify-self: center;
   align-self: center;
 
@@ -123,6 +179,10 @@ export const _item = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
+
+  ${media.desktop`
+    margin-bottom: 0;
+  `}
 
   cursor: ${({ $connected }) => ($connected ? "pointer" : "default")};
 
@@ -233,11 +293,15 @@ export const _modal = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 700px;
-  width: 100%;
   border-radius: 20px;
   padding: 32px;
-
   border: 1px solid rgba(255, 255, 255, 0.5);
+  margin: 0 16px;
+
+  ${media.mobile`
+    width: 100%;
+    margin: 0
+  `}
 `;
 
 export const _modalContainer = styled.div`
@@ -247,9 +311,13 @@ export const _modalContainer = styled.div`
   height: 100%;
   justify-content: center;
   align-items: center;
-  margin-top: 96px;
+  margin-top: 176px;
   margin-bottom: 32px;
-  gap: 16px;
+
+  ${media.tablet`
+  margin-top: 96px;
+  
+  `}
 `;
 
 export const _modalTitle = styled.div`
@@ -281,9 +349,12 @@ export const _modalTitle = styled.div`
 export const _inputContainer = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 16px;
+  flex-direction: column;
+
+  ${media.tablet`
+    flex-direction: row;
+    align-items: center;
+  `}
 `;
 
 export const _valueContainer = styled.div`
@@ -296,7 +367,6 @@ export const _valueContainer = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 14px;
   padding: 16px 88px 16px 52px;
-  gap: 8px;
   cursor: pointer;
   position: relative;
 
@@ -342,7 +412,7 @@ export const _button = styled.button`
   ${({ $stake }) =>
     $stake &&
     css`
-      height: 52px;
+      height: 46px;
       border: none;
       outline: none;
       font-size: 18px;
@@ -352,10 +422,18 @@ export const _button = styled.button`
       border-radius: 8px;
       padding: 4px 32px 4px 32px;
       cursor: pointer;
+      margin-top: 8px;
 
       &:hover {
         background-position: 90% 100%;
       }
+
+      ${media.tablet`
+        height: 52px;
+        margin-top: 0;
+        padding: 4px 32px 4px 32px;
+        margin-left: 8px;
+      `}
     `}
 
   ${({ $secondary }) =>
@@ -393,7 +471,6 @@ export const _detailSegment = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  gap: 0;
 `;
 
 export const _row = styled.div`
@@ -406,6 +483,18 @@ export const _row = styled.div`
     css`
       margin-top: 4px;
       margin-bottom: 24px;
+    `}
+
+  ${({ $drop }) =>
+    $drop &&
+    css`
+      flex-direction: column;
+      align-items: flex-start;
+
+      ${media.tablet`
+        flex-direction: row;
+        align-items: center;
+      `}
     `}
 `;
 
@@ -422,14 +511,45 @@ export const _info = styled.div`
     css`
       display: flex;
       flex-direction: row;
-      gap: 8px;
     `}
+
   ${({ $spread }) =>
     $spread &&
     css`
       display: flex;
-      width: 200px;
+      width: 175px;
       justify-content: space-between;
+
+      ${media.tablet`
+        width: 200px;
+      `}
+    `}
+
+
+  ${({ $drop }) =>
+    $drop &&
+    css`
+      margin-top: 8px;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+
+      > div {
+        &:nth-child(1) {
+          order: 2;
+
+          ${media.tablet`
+            order: 1;
+          `}
+        }
+        &:nth-child(2) {
+          order: 1;
+          ${media.tablet`
+            order: 2;
+          `}
+        }
+      }
     `}
 `;
 
@@ -445,7 +565,11 @@ export const _text = styled.div`
   ${({ $duration }) =>
     $duration &&
     css`
-      display: contents;
+      margin-left: 8px;
+      ${media.tablet`
+        margin-left: 0;
+        margin-right: 8px;
+      `}
     `}
 
   ${({ $color }) => {

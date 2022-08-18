@@ -87,18 +87,18 @@
   },
   "content": {
     "stakeLADA": "Stake your LADA",
-    "stakeDesc": "By staking your LADA here you become a total boss no questions asked for one whole year!",
+    "stakeDesc": "Want to put your LADA to work? Stake & earn LADA passively and lets get back to looting!",
     "tvl": "Total Value Locked",
     "inWallet": "LADA in wallet",
     "rewardsPaid": "Rewards Paid",
     "flexible": "Flexible",
     "flexibleAPY": "16% APY",
-    "flexibleDesc": "By staking your LADA here you become a total boss and a boss no questions asked for one whole year!",
+    "flexibleDesc": "No lock on your funds means you can unstake at any point and claim your accrued LADA.",
     "hodler": "The Hodl'er",
     "hodlerAPY": "36% APY",
-    "hodlerDesc": "By staking your LADA here you become a total boss and a boss no questions asked for one whole year!",
+    "hodlerDesc": "Lock up your funds for 90 days and earn a better APY. Claim your accrued LADA any time to compound your returns.",
     "diamond": "Diamond Hands",
     "diamondAPY": "60% APY",
-    "diamondDesc": "By staking your LADA here you become a total boss and a boss no questions asked for one whole year!"
+    "diamondDesc": "Investors get the best APY we will ever offer by locking up for 180 days. Claim your accrued LADA any time to compound your returns."
   }
 }

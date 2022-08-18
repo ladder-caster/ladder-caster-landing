@@ -259,7 +259,7 @@ export const StakingForm = ({}) => {
 
   return (
     <_modalContainer>
-      <_modal>
+      <_modal id="modal">
         <_modalTitle $color={color}>{t("staking.form.stake")}</_modalTitle>
         <_inputContainer>
           <_valueContainer>
@@ -301,7 +301,7 @@ export const StakingForm = ({}) => {
               <_text $color={color}>{totalStaked?.toLocaleString()}</_text>
             </_info>
           </_row>
-          <_row>
+          <_row $drop>
             {options?.length ? (
               <>
                 <_info $row>
@@ -312,7 +312,7 @@ export const StakingForm = ({}) => {
                   />
                 </_info>
 
-                <_info $row>
+                <_info $row $drop>
                   <_text $duration>{remainingDays}</_text>
                   <_button
                     disabled={unstakeDisabled}
