@@ -1,30 +1,43 @@
-import styles from "../../styles/Hero.module.css";
-import { discordIcon, solanaIcon, lock, jupiterLogo } from "../../shared/icons";
+import { discordIcon, solanaIcon, jupiterLogo } from "../../shared/icons";
 import { useTranslation } from "next-i18next";
+import {
+  _hero,
+  _float,
+  _background,
+  _overlay,
+  _main,
+  _chain,
+  _info,
+  _brush,
+  _desc,
+  _wrapper,
+  _button,
+  _discord,
+} from "../../styles/hero.styled";
 
 const Hero = () => {
   const { t } = useTranslation();
   return (
-    <div className={styles.hero}>
-      <div className={styles.float}>
-        <div className={styles.background} />
-      </div>
-      <div className={styles.float}>
-        <div className={styles.overlay} />
-      </div>
-      <main className={styles.main}>
-        <div className={styles.chain}>
+    <_hero>
+      <_float>
+        <_background />
+      </_float>
+      <_float>
+        <_overlay />
+      </_float>
+      <_main>
+        <_chain>
           {solanaIcon()} {t("home.hero.poweredSolana")}
-        </div>
-        <div className={styles.info}>
-          <div className={styles.brush}>
+        </_chain>
+        <_info>
+          <_brush>
             <img src="./brush.png" />
-          </div>
+          </_brush>
           <h1>{t("laddercaster")}</h1>
-          <div className={styles.desc}>{t("home.hero.realtimeMobile")}</div>
-        </div>
-        <div className={styles.wrapper}>
-          <div className={styles.button}>
+          <_desc>{t("home.hero.realtimeMobile")}</_desc>
+        </_info>
+        <_wrapper>
+          <_button>
             <a
               target="_blank"
               rel="noreferrer"
@@ -34,8 +47,8 @@ const Hero = () => {
                 {jupiterLogo()} <h2>{t("home.hero.buyLADA")}</h2>
               </span>
             </a>
-          </div>
-          <div className={styles.discord}>
+          </_button>
+          <_discord>
             <a
               target="_blank"
               rel="noreferrer"
@@ -45,10 +58,10 @@ const Hero = () => {
                 {discordIcon()} {t("home.hero.joinDiscord")}
               </span>
             </a>
-          </div>
-        </div>
-      </main>
-    </div>
+          </_discord>
+        </_wrapper>
+      </_main>
+    </_hero>
   );
 };
 

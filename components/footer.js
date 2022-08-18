@@ -1,19 +1,27 @@
-import styles from "../styles/Footer.module.css";
 import { logoHat, discordIcon, twitterIcon } from "../shared/icons";
 import { useTranslation } from "next-i18next";
+import {
+  _footer,
+  _wrapper,
+  _logo,
+  _container,
+  _title,
+  _link,
+  _social,
+} from "../styles/footer.styled";
 
 const Footer = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.footer}>
-      <div className={styles.wrapper}>
-        <div className={styles.logo}>
+    <_footer>
+      <_wrapper>
+        <_logo>
           {logoHat()} {t("laddercaster")} <span>{t("footer.copyright")}</span>
-        </div>
-        <div className={styles.container}>
-          <div className={styles.title}>{t("game")}</div>
-          <a
+        </_logo>
+        <_container>
+          <_title>{t("footer.game")}</_title>
+          <_link
             onClick={() => {
               const el = document.getElementById("#faq");
               if (el) {
@@ -22,102 +30,92 @@ const Footer = () => {
                 window.scrollTo(0, distance);
               }
             }}
-            className={styles.link}
           >
             {t("footer.faq")}
-          </a>
-          <a
+          </_link>
+          <_link
             target="_blank"
             rel="noreferrer"
             href="https://ladder-caster.gitbook.io/laddercaster"
-            className={styles.link}
           >
             {t("footer.whitepaper")}
-          </a>
-          <a
+          </_link>
+          <_link
             target="_blank"
             rel="noreferrer"
             href="https://ladder-caster.gitbook.io/laddercaster/items"
-            className={styles.link}
           >
             {t("footer.items")}
-          </a>
-        </div>
-        <div className={styles.container}>
-          <div className={styles.title}>{t("footer.about")}</div>
-          <a
+          </_link>
+        </_container>
+        <_container>
+          <_title>{t("footer.about")}</_title>
+          <_link
             target="_blank"
             rel="noreferrer"
             href="https://laddercaster.gitbook.io/laddercaster"
-            className={styles.link}
           >
             {t("footer.team")}
-          </a>
+          </_link>
 
-          <a href="mailto:info@laddercaster.com" className={styles.link}>
+          <_link href="mailto:info@laddercaster.com">
             {t("footer.contact")}
-          </a>
-          <a
+          </_link>
+          <_link
             target="_blank"
             rel="noreferrer"
             href={"https://discord.com/invite/laddercaster"}
-            className={styles.link}
           >
             {t("footer.community")}
-          </a>
-        </div>
-        <div className={styles.container}>
-          <div className={styles.title}>{t("footer.community")}</div>
-          <a
+          </_link>
+        </_container>
+        <_container>
+          <_title>{t("footer.tokenomics")}</_title>
+          <_link
             target="_blank"
             rel="noreferrer"
             href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/resources"
-            className={styles.link}
           >
             {t("footer.resources")}
-          </a>
-          <a
+          </_link>
+          <_link
             target="_blank"
             rel="noreferrer"
             href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/governance"
-            className={styles.link}
           >
             {t("footer.governance")}
-          </a>
-          <a
+          </_link>
+          <_link
             target="_blank"
             rel="noreferrer"
             href={
               "https://ladder-caster.gitbook.io/laddercaster/tokenomics/how-to-buy-lada"
             }
-            className={styles.link}
           >
             {t("footer.howToBuy")}
-          </a>
-        </div>
-        <div className={styles.container}>
-          <div className={styles.title}>{t("footer.social")}</div>
-          <a
+          </_link>
+        </_container>
+        <_container>
+          <_title>{t("footer.social")}</_title>
+          <_social
             target="_blank"
             rel="noreferrer"
             href={"https://discord.com/invite/laddercaster"}
-            className={styles.social}
             style={{ backgroundColor: "#5159e9" }}
           >
             {discordIcon()} {t("footer.joinDiscord")}
-          </a>
-          <a
+          </_social>
+          <_social
             target="_blank"
             rel="noreferrer"
             href="https://twitter.com/LadderCaster"
-            className={styles.social}
             style={{ backgroundColor: "#00acee" }}
           >
             {twitterIcon()} {t("footer.joinTwitter")}
-          </a>
-        </div>
-      </div>
-    </div>
+          </_social>
+        </_container>
+      </_wrapper>
+    </_footer>
   );
 };
 

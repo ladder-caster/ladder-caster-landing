@@ -6,11 +6,18 @@ import ConnectWallet from "./connectWallet";
 import { StakingCard } from "./StakingCard";
 import { StakingInfo } from "./StakingInfo";
 import { Status } from "./Status";
-import styles from "../../styles/Staking.module.css";
 import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import { StakingForm } from "./StakingForm";
 import { Client } from "../../wallet/Connection";
 import { useTranslation } from "next-i18next";
+import {
+  _page,
+  _content,
+  _column,
+  _title,
+  _subTitle,
+  _grid,
+} from "../../styles/staking.styled";
 
 function Content() {
   const { t } = useTranslation();
@@ -19,7 +26,6 @@ function Content() {
   const setClient = useWalletStore((state) => state.setClient);
   const category = useWalletStore((state) => state.category);
   const setCategory = useWalletStore((state) => state.setCategory);
-
   const anchorWallet = useAnchorWallet();
   const { connected, disconnect } = useWallet();
   // per tier : {tier1: ladaCount, tier2: ladaCount, tier3: ladaCount}
@@ -55,14 +61,14 @@ function Content() {
   };
 
   return (
-    <div className={styles.page}>
+    <_page>
       <Nav />
-      <div className={styles.content}>
-        <div className={styles.column}>
-          <div className={styles.title}>{t("content.stakeLADA")}</div>
-          <div className={styles.subtitle}>{t("content.stakeDesc")}</div>
-        </div>
-        <div className={styles["staking-grid"]}>
+      <_content>
+        <_column>
+          <_title>{t("content.stakeLADA")}</_title>
+          <_subTitle>{t("content.stakeDesc")}</_subTitle>
+        </_column>
+        <_grid>
           <StakingInfo
             title={t("content.tvl")}
             subtitle={`${globalStakedLada?.toLocaleString()} LADA`}
@@ -87,7 +93,7 @@ function Content() {
             apy={t("content.flexibleAPY")}
             subtitle={t("content.flexibleDesc")}
             callback={(v) => cardSelect(v.target ? 0x1 : -1)}
-            active={category == 0x1 ? "active" : "default"}
+            active={category == 0x1 ? "active" : null}
             connected={connected}
             area={"d"}
             color={"blue"}
@@ -97,7 +103,7 @@ function Content() {
             apy={t("content.hodlerAPY")}
             subtitle={t("content.hodlerDesc")}
             callback={(v) => cardSelect(v.target ? 0x2 : -1)}
-            active={category == 0x2 ? "active" : "default"}
+            active={category == 0x2 ? "active" : null}
             connected={connected}
             area={"e"}
             color={"purple"}
@@ -107,17 +113,17 @@ function Content() {
             apy={t("content.diamondAPY")}
             subtitle={t("content.diamondDesc")}
             callback={(v) => cardSelect(v.target ? 0x3 : -1)}
-            active={category == 0x3 ? "active" : "default"}
+            active={category == 0x3 ? "active" : null}
             connected={connected}
             area={"f"}
             color={"orange"}
           />
-        </div>
+        </_grid>
         {category >= 1 ? <StakingForm /> : null}
-      </div>
+      </_content>
       <Footer />
       <Status />
-    </div>
+    </_page>
   );
 }
 

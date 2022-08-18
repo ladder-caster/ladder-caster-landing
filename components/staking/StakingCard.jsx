@@ -1,5 +1,11 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import styles from "../../styles/Staking.module.css";
+import React, { useRef } from "react";
+import {
+  _item,
+  _stakingTitle,
+  _apy,
+  _container,
+  _contentSubtitle,
+} from "../../styles/staking.styled";
 
 export const StakingCard = ({
   title,
@@ -7,7 +13,6 @@ export const StakingCard = ({
   subtitle,
   callback,
   active,
-  area,
   connected,
   color,
 }) => {
@@ -20,22 +25,21 @@ export const StakingCard = ({
   };
 
   return (
-    <div
+    <_item
       ref={ref}
-      className={`${styles["staking-item"]} ${
-        connected ? styles["connected"] : ""
-      } ${styles[active]} ${styles[color]}`}
+      $connected={connected}
+      $active={active}
+      $color={color}
       onClick={(e) => {
         if (connected) callback(e);
       }}
       onBlur={deselect}
-      style={{ gridArea: area }}
     >
-      <div className={styles["staking-title"]}>{title}</div>
-      <div className={styles["staking-apy"]}>{apy}</div>
-      <div className={styles["staking-content-container"]}>
-        <div className={styles["staking-content-subtitle"]}>{subtitle}</div>
-      </div>
-    </div>
+      <_stakingTitle $title>{title}</_stakingTitle>
+      <_apy>{apy}</_apy>
+      <_container>
+        <_contentSubtitle>{subtitle}</_contentSubtitle>
+      </_container>
+    </_item>
   );
 };

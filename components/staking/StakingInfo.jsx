@@ -1,11 +1,14 @@
-import react from "react";
-import styles from "../../styles/Staking.module.css";
+import {
+  _column,
+  _stakingTitle,
+  _stakingContent,
+} from "../../styles/staking.styled";
 
-export const StakingInfo = ({ title, subtitle, area }) => {
+export const StakingInfo = ({ title, subtitle }) => {
   return (
-    <div className={styles.column} style={{ gridArea: area }}>
-      <div className={styles["staking-title"]}>{title}</div>
-      <div className={styles["staking-content"]}>{subtitle}</div>
-    </div>
+    <_column>
+      <_stakingTitle>{title}</_stakingTitle>
+      <_stakingContent>{subtitle}</_stakingContent>
+    </_column>
   );
 };

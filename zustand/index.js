@@ -1,10 +1,4 @@
-import { PublicKey, Transaction } from "@solana/web3.js";
 import create from "zustand";
-import {
-  ASSOCIATED_TOKEN_PROGRAM_ID,
-  Token,
-  TOKEN_PROGRAM_ID,
-} from "@solana/spl-token";
 import { StakingContext } from "../wallet/StakingContext";
 
 export const useWalletStore = create((set) => ({
@@ -37,27 +31,27 @@ export const useWalletStore = create((set) => ({
 export const initGlobalValues = async (client) => {
   if (!client) return;
 
-  // try {
-  const stakingContext = new StakingContext(client);
-  const stakingAccounts = await stakingContext.getStakingContracts();
-  let totalTVL = 0,
-    totalRewards = 0;
+  try {
+    const stakingContext = new StakingContext(client);
+    const stakingAccounts = await stakingContext.getStakingContracts();
+    let totalTVL = 0,
+      totalRewards = 0;
 
-  stakingAccounts.forEach((acc) => {
-    totalTVL += acc.totalTvl.toNumber();
-    totalRewards += acc.totalClaimed.toNumber();
-  });
+    stakingAccounts.forEach((acc) => {
+      totalTVL += acc.totalTvl.toNumber();
+      totalRewards += acc.totalClaimed.toNumber();
+    });
 
-  const blockTime = await stakingContext.getClock();
+    const blockTime = await stakingContext.getClock();
 
-  useWalletStore.getState().setChainClock({
-    chain: blockTime,
-    locale: Math.trunc(new Date().getTime() / 1000),
-  });
-  useWalletStore.getState().setStakingContracts(stakingAccounts);
-  useWalletStore.getState().setGlobalStakedLada(totalTVL / 1e9);
-  useWalletStore.getState().setGlobalRewardsGiven(totalRewards / 1e9);
-  // } catch (e) {}
+    useWalletStore.getState().setChainClock({
+      chain: blockTime,
+      locale: Math.trunc(new Date().getTime() / 1000),
+    });
+    useWalletStore.getState().setStakingContracts(stakingAccounts);
+    useWalletStore.getState().setGlobalStakedLada(totalTVL / 1e9);
+    useWalletStore.getState().setGlobalRewardsGiven(totalRewards / 1e9);
+  } catch (e) {}
 };
 
 export const initStakeData = async (client) => {

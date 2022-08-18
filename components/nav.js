@@ -1,36 +1,41 @@
-import styles from "../styles/Nav.module.css";
 import { logoHat } from "../shared/icons";
 import { useTranslation } from "next-i18next";
+import {
+  _nav,
+  _wrapper,
+  _logo,
+  _container,
+  _links,
+  _link,
+  _button,
+} from "../styles/nav.styled";
 
 const Nav = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.nav}>
-      <div className={styles.wrapper}>
-        <a className={styles.logo} href="/" target="_self" rel="noreferrer">
+    <_nav>
+      <_wrapper>
+        <_logo href="/" target="_self" rel="noreferrer">
           {logoHat()} <span>{t("laddercaster")}</span>
-        </a>
-        <div className={styles.container}>
-          <div className={styles.links}>
-            <a
+        </_logo>
+        <_container>
+          <_links>
+            <_link
               target="_blank"
               rel="noreferrer"
               href="https://ladder-caster.gitbook.io/laddercaster"
-              className={styles.link}
             >
               {t("nav.whitepaper")}
-            </a>
-            <a
+            </_link>
+            <_link
               target="_blank"
               rel="noreferrer"
               href="https://ladder-caster.gitbook.io/laddercaster/items"
-              className={styles.link}
             >
               {t("nav.items")}
-            </a>
-            <a
-              className={styles.link}
+            </_link>
+            <_link
               onClick={() => {
                 const el = document.getElementById("#faq");
                 if (el) {
@@ -41,27 +46,21 @@ const Nav = () => {
               }}
             >
               {t("nav.faq")}
-            </a>
-            <a
-              className={styles.link}
-              target="_self"
-              rel="noreferrer"
-              href="staking"
-            >
+            </_link>
+            <_link target="_self" rel="noreferrer" href="staking">
               {t("nav.staking")}
-            </a>
-          </div>
-          <a
+            </_link>
+          </_links>
+          <_button
             target="_blank"
             rel="noreferrer"
             href={"https://play.laddercaster.com"}
-            className={styles.button}
           >
             {t("nav.playGame")}
-          </a>
-        </div>
-      </div>
-    </div>
+          </_button>
+        </_container>
+      </_wrapper>
+    </_nav>
   );
 };
 

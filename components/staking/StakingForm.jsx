@@ -5,10 +5,26 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
-import styles from "../../styles/Staking.module.css";
 import { updateData, useWalletStore } from "../../zustand";
 import { StakingContext } from "../../wallet/StakingContext";
 import { useTranslation } from "next-i18next";
+import {
+  _selectContainer,
+  _select,
+  _modalContainer,
+  _modal,
+  _modalTitle,
+  _inputContainer,
+  _valueContainer,
+  _input,
+  _maxButton,
+  _button,
+  _detailSegment,
+  _row,
+  _info,
+  _text,
+  _icon,
+} from "../../styles/staking.styled";
 
 export const StakingForm = ({}) => {
   const { t } = useTranslation();
@@ -242,100 +258,87 @@ export const StakingForm = ({}) => {
   }, [accountSelected, filteredStakedAccounts, contractObj]);
 
   return (
-    <div id="modal" className={styles["staking-modal-container"]}>
-      <div className={`${styles["staking-modal"]}`}>
-        <div className={`${styles["staking-modal-title"]} ${styles[color]}`}>
-          {t("staking.form.stake")}
-        </div>
-        <div className={styles["input-container"]}>
-          <div className={styles["value-container"]}>
-            <img src="LADA.png" className={styles["icon"]} />
-            <input
-              className={styles["input"]}
+    <_modalContainer>
+      <_modal>
+        <_modalTitle $color={color}>{t("staking.form.stake")}</_modalTitle>
+        <_inputContainer>
+          <_valueContainer>
+            <_icon src="LADA.png" />
+            <_input
               placeholder="Amount"
               value={ladaToStake}
               onChange={handleInputChange}
             />
-            <div className={styles["max-button"]} onClick={maxInput}>
-              {t("staking.form.max")}
-            </div>
-          </div>
-          <button
-            className={`${styles["button"]}`}
+            <_maxButton onClick={maxInput}>{t("staking.form.max")}</_maxButton>
+          </_valueContainer>
+          <_button
             disabled={ladaBalance <= 0 || !client}
             onClick={stakeLada}
+            $stake
           >
             {t("staking.form.stake")}
-          </button>
-        </div>
-        <div className={styles["detail-segment"]}>
-          <div className={styles["row"]}>
-            <div className={`${styles["info"]} ${styles["spread"]}`}>
-              <div className={styles["text"]}>
-                {t("staking.form.LADAEarned")}
-              </div>
-              <div className={styles["text"]}>{ladaToRedeem}</div>
-            </div>
-            <div className={styles["info"]}>
-              <button
-                className={styles["button"]}
+          </_button>
+        </_inputContainer>
+        <_detailSegment>
+          <_row>
+            <_info $spread $row>
+              <_text>{t("staking.form.LADAEarned")}</_text>
+              <_text>{ladaToRedeem}</_text>
+            </_info>
+            <_info $row>
+              <_button
                 disabled={ladaToRedeem <= 0}
                 onClick={redeemLada}
+                $secondary
               >
                 {t("staking.form.claim")}
-              </button>
-            </div>
-          </div>
-          <div className={`${styles["row"]} ${styles["top"]}`}>
-            <div className={`${styles["info"]} ${styles["spread"]}`}>
-              <div className={`${styles["text"]} ${styles[color]}`}>
-                {t("staking.form.totalStaked")}
-              </div>
-              <div className={`${styles["text"]} ${styles[color]}`}>
-                {totalStaked?.toLocaleString()}
-              </div>
-            </div>
-          </div>
-          <div className={styles["row"]}>
+              </_button>
+            </_info>
+          </_row>
+          <_row $top>
+            <_info $spread $row>
+              <_text $color={color}>{t("staking.form.totalStaked")}</_text>
+              <_text $color={color}>{totalStaked?.toLocaleString()}</_text>
+            </_info>
+          </_row>
+          <_row>
             {options?.length ? (
               <>
-                <div className={styles["info"]}>
+                <_info $row>
                   <Dropdown
                     options={options}
                     value={accountSelected}
                     onChange={handleDropdown}
                   />
-                </div>
+                </_info>
 
-                <div className={styles["info"]}>
-                  <div className={styles["text"] + " " + styles["duration"]}>
-                    {remainingDays}
-                  </div>
-                  <button
-                    className={styles["button"]}
+                <_info $row>
+                  <_text $duration>{remainingDays}</_text>
+                  <_button
                     disabled={unstakeDisabled}
                     onClick={unstakeLada}
+                    $secondary
                   >
                     {t("staking.form.unstake")}
-                  </button>
-                </div>
+                  </_button>
+                </_info>
               </>
             ) : null}
-          </div>
-        </div>
-      </div>
-    </div>
+          </_row>
+        </_detailSegment>
+      </_modal>
+    </_modalContainer>
   );
 };
 
 const Dropdown = ({ value, options, onChange }) => {
   return (
-    <div className={styles["select-container"]}>
-      <select className={styles["select"]} value={value} onChange={onChange}>
+    <_selectContainer>
+      <_select value={value} onChange={onChange}>
         {options.map((option) => (
           <option value={option.value}>{option.label}</option>
         ))}
-      </select>
-    </div>
+      </_select>
+    </_selectContainer>
   );
 };

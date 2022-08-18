@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
-import styles from "../../styles/Staking.module.css";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import usePrevious from "./hooks/usePrevious";
 import { useTranslation } from "next-i18next";
+import {
+  _connectText,
+  _connectButton,
+  _connectCenter,
+} from "../../styles/staking.styled";
 
 function ConnectWallet() {
   const { setVisible } = useWalletModal();
@@ -22,13 +26,11 @@ function ConnectWallet() {
   }, [wallet, prevWallet, connected]);
 
   return (
-    <div className={styles["connect-button-center"]}>
-      <div className={styles["connect-button"]} onClick={connectWallet}>
-        <div className={styles["connect-button-text"]}>
-          {t("staking.connect.wallet")}
-        </div>
-      </div>
-    </div>
+    <_connectCenter>
+      <_connectButton onClick={connectWallet}>
+        <_connectText>{t("staking.connect.wallet")}</_connectText>
+      </_connectButton>
+    </_connectCenter>
   );
 }
 
