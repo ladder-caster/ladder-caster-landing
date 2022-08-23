@@ -27,10 +27,7 @@ export class Client {
   }
 
   static async getConnection(): Promise<anchor.web3.Connection> {
-    if (config)
-      return new anchor.web3.Connection(
-        config.rpc
-      );
+    if (config) return new anchor.web3.Connection(config.rpc);
     return new anchor.web3.Connection(config.rpc);
   }
 

@@ -53,6 +53,7 @@ export const _column = styled.div`
         ${media.tablet`
           order: 2;
           flex: 1 1 33%;
+        margin-top: 0;
         `}
       }
       &:nth-child(3) {
@@ -300,7 +301,7 @@ export const _modal = styled.div`
 
   ${media.mobile`
     width: 100%;
-    margin: 0
+    margin: 0;
   `}
 `;
 
@@ -315,8 +316,7 @@ export const _modalContainer = styled.div`
   margin-bottom: 32px;
 
   ${media.tablet`
-  margin-top: 96px;
-  
+    margin-top: 96px;
   `}
 `;
 
@@ -535,7 +535,8 @@ export const _info = styled.div`
       justify-content: flex-start;
       align-items: center;
 
-      > div {
+      > div,
+      button {
         &:nth-child(1) {
           order: 2;
 

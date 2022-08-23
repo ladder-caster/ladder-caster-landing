@@ -58,6 +58,15 @@ export const _logo = styled.a`
 
   > span {
     cursor: pointer;
+
+    ${media.tablet`
+      display: none;
+    
+    `}
+
+    ${media.desktop`
+      display: inline;
+    `}
   }
 
   ${media.mobile`
@@ -182,8 +191,12 @@ export const _button = styled.a`
     color: #535ab6;
     background-color: #fff9f6;
   `}
+
   ${media.desktop`
     padding: 12px 32px;
+  `}
+  
+  ${media.wide`
     margin-left: 32px;
   `}
 `;

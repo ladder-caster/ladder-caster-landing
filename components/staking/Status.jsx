@@ -25,6 +25,7 @@ export const Status = () => {
       forEach(status, (item, key) => {
         list.push(
           <_card
+            key={`${key}-status`}
             onClick={() => {
               const newStatus = { ...status };
               delete newStatus[key];
@@ -71,9 +72,9 @@ export const Status = () => {
       }
     });
 
-    return () => {
-      forEach(cleaners, (timeoutId) => clearTimeout(timeoutId));
-    };
+    // return () => {
+    //   forEach(cleaners, (timeoutId) => clearTimeout(timeoutId));
+    // };
   }, [status, prevStatus]);
 
   return <_overlay>{statusCards}</_overlay>;

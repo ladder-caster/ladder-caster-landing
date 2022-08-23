@@ -35,7 +35,7 @@ const Nav = () => {
             >
               {t("nav.items")}
             </_link>
-            <_link
+            {/* <_link
               onClick={() => {
                 const el = document.getElementById("#faq");
                 if (el) {
@@ -46,10 +46,10 @@ const Nav = () => {
               }}
             >
               {t("nav.faq")}
+            </_link> */}
+            <_link target="_self" rel="noreferrer" href="staking">
+              {t("nav.staking")}
             </_link>
-            {/*<_link target="_self" rel="noreferrer" href="staking">*/}
-            {/*  {t("nav.staking")}*/}
-            {/*</_link>*/}
           </_links>
           <_button
             target="_blank"

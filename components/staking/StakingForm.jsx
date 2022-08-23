@@ -236,12 +236,12 @@ export const StakingForm = ({}) => {
 
           if (remainingSecs > 86400) {
             const days = Math.trunc(remainingSecs / 86400);
-            remainingString = `${days} day${days !== 0 ? "s" : ""} left`;
+            remainingString = `${days} day${days > 1 ? "s" : ""} left`;
           } else if (remainingSecs > 3600) {
             const hours = Math.trunc(remainingSecs / 3600);
-            remainingString = `${hours} hour${hours !== 0 ? "s" : ""} left`;
+            remainingString = `${hours} hour${hours > 1 ? "s" : ""} left`;
           } else if (remainingSecs > 60) {
-            const minutes = Math.trunc(remainingSecs / 3600);
+            const minutes = Math.trunc(remainingSecs / 60);
             remainingString = `${minutes} min left`;
           }
         } else {
@@ -336,7 +336,9 @@ const Dropdown = ({ value, options, onChange }) => {
     <_selectContainer>
       <_select value={value} onChange={onChange}>
         {options.map((option) => (
-          <option key={option.value} value={option.value}>{option.label}</option>
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
         ))}
       </_select>
     </_selectContainer>

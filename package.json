@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "vercel dev",
     "build": "vercel build",
-    "deploy": "vercel build && vercel deploy --prebuilt",
+    "deploy": "vercel deploy --prebuilt",
     "start": "next start",
     "lint": "next lint"
   },
