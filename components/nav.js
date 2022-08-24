@@ -47,9 +47,9 @@ const Nav = () => {
             >
               {t("nav.faq")}
             </_link>
-            <_link target="_self" rel="noreferrer" href="staking">
-              {t("nav.staking")}
-            </_link>
+            {/*<_link target="_self" rel="noreferrer" href="staking">*/}
+            {/*  {t("nav.staking")}*/}
+            {/*</_link>*/}
           </_links>
           <_button
             target="_blank"
