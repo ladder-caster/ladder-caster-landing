@@ -29,29 +29,9 @@ export class Client {
   static async getConnection(): Promise<anchor.web3.Connection> {
     if (config)
       return new anchor.web3.Connection(
-        config.rpc,
-        environment === "devnet"
-          ? {
-              httpHeaders: {
-                Authorization: `Bearer ${await this.getBearerToken()}`,
-              },
-            }
-          : {}
+        config.rpc
       );
     return new anchor.web3.Connection(config.rpc);
-  }
-
-  static async getBearerToken() {
-    // read private key
-    const privateKey = require("../jwt/private_key.json");
-
-    //Create payload and JWT
-    var token = jwt.sign({}, privateKey, {
-      algorithm: "RS256", //algo used to create JWT
-      expiresIn: "2d", // set a 2 day expiration
-    });
-
-    return token;
   }
 
   private static getProgram(conn: anchor.web3.Connection, wallet?: NodeWallet) {
