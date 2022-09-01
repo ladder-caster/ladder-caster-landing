@@ -42,6 +42,7 @@ export const _logo = styled.a`
   font-family: "Poppins", sans-serif;
   padding-left: 8px;
   font-size: 14px;
+  z-index: 100;
 
   > svg {
     cursor: pointer;
@@ -105,18 +106,12 @@ export const _links = styled.div`
   align-items: center;
   margin-right: 0;
   display: none;
+  right: 0;
+  left: 0;
 
   ${media.tablet`
-    margin-right: 32px;
     display: flex;
-  `}
-  ${media.desktop`
-    margin-right: 0;
-    display: flex;
-  `}
-  ${media.wide`
-    margin-right: 80px;
-    display: flex;
+    position: absolute;
   `}
 `;
 
@@ -186,17 +181,19 @@ export const _button = styled.a`
 
   ${media.tablet`
     padding: 12px 32px;
-    width: 250px;
+    width: 200px;
     margin-left: 8px;
     color: #535ab6;
     background-color: #fff9f6;
   `}
 
   ${media.desktop`
+    width: 225px;
     padding: 12px 32px;
   `}
   
   ${media.wide`
+    width: 250px;
     margin-left: 32px;
   `}
 `;

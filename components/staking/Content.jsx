@@ -18,6 +18,8 @@ import {
   _subTitle,
   _top,
   _bottom,
+  _float,
+  _background,
 } from "../../styles/staking.styled";
 
 function Content() {
@@ -51,7 +53,8 @@ function Content() {
       const scrollDiv = document.getElementById("modal").offsetTop;
       const isMobile = window.innerWidth < 450;
       const subtractor = isMobile ? 200 : 490;
-      window.scrollTo({ top: scrollDiv - subtractor, behavior: "smooth" });
+      if (isMobile)
+        window.scrollTo({ top: scrollDiv - subtractor, behavior: "smooth" });
     }
   }, [category]);
 
@@ -67,6 +70,9 @@ function Content() {
     <_page>
       <Nav />
       <_content>
+        <_float>
+          <_background />
+        </_float>
         <_column>
           <_title>{t("content.stakeLADA")}</_title>
           <_subTitle>{t("content.stakeDesc")}</_subTitle>
@@ -99,7 +105,7 @@ function Content() {
             title={t("content.flexible")}
             apy={t("content.flexibleAPY")}
             subtitle={t("content.flexibleDesc")}
-            callback={(v) => cardSelect(v.target ? 0x1 : -1)}
+            callback={(v) => cardSelect(0x1)}
             active={category == 0x1 ? "active" : null}
             connected={connected}
             area={"d"}
@@ -109,7 +115,7 @@ function Content() {
             title={t("content.hodler")}
             apy={t("content.hodlerAPY")}
             subtitle={t("content.hodlerDesc")}
-            callback={(v) => cardSelect(v.target ? 0x2 : -1)}
+            callback={(v) => cardSelect(0x2)}
             active={category == 0x2 ? "active" : null}
             connected={connected}
             area={"e"}
@@ -119,7 +125,7 @@ function Content() {
             title={t("content.diamond")}
             apy={t("content.diamondAPY")}
             subtitle={t("content.diamondDesc")}
-            callback={(v) => cardSelect(v.target ? 0x3 : -1)}
+            callback={(v) => cardSelect(0x3)}
             active={category == 0x3 ? "active" : null}
             connected={connected}
             area={"f"}

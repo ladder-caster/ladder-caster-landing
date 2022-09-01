@@ -58,6 +58,13 @@ export class StakingContext {
     );
     const stakeInfo = Keypair.generate();
 
+    const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+      TOKEN_PROGRAM_ID,
+      new PublicKey(Keys.ladaTokenAccount),
+      this.client.wallet.publicKey
+    );
+
     return await this.client.program.rpc.stakeLada(new anchor.BN(amount), {
       accounts: {
         tokenProgram: TOKEN_PROGRAM_ID,
@@ -67,7 +74,7 @@ export class StakingContext {
         authority: this.client.wallet.publicKey,
         stakingSigner: stakingSigner,
         ladaPool: new PublicKey(Keys.ladaPool),
-        userLadaToken: new PublicKey(Keys.userTokenAccount),
+        userLadaToken: userLadaTokenAccount,
         stakeInfo: stakeInfo.publicKey,
         stakingContract: StakingContext.getTier(tier)!,
       },
@@ -80,6 +87,12 @@ export class StakingContext {
       [Buffer.from("staking_signer")],
       this.client.program.programId
     );
+    const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+      TOKEN_PROGRAM_ID,
+      new PublicKey(Keys.ladaTokenAccount),
+      this.client.wallet.publicKey
+    );
 
     return await this.client.program.rpc.unstakeLada({
       accounts: {
@@ -90,7 +103,7 @@ export class StakingContext {
         stakingSigner: stakingSigner,
         ladaTokenAccount: new PublicKey(Keys.ladaPoolInterest),
         ladaPool: new PublicKey(Keys.ladaPool),
-        userLadaToken: new PublicKey(Keys.userTokenAccount),
+        userLadaToken: userLadaTokenAccount,
         stakeInfo: userStakeAccount.publicKey,
         stakingContract: userStakeAccount.stakingContract,
       },
@@ -98,7 +111,12 @@ export class StakingContext {
     });
   }
 
-  claim(userStakeAccount: any, stakingSigner: PublicKey, blockhash: string) {
+  claim(
+    userStakeAccount: any,
+    stakingSigner: PublicKey,
+    blockhash: string,
+    userLadaTokenAccount: PublicKey
+  ) {
     const tx = new Transaction();
 
     tx.add(
@@ -110,7 +128,7 @@ export class StakingContext {
           authority: this.client.wallet.publicKey,
           stakingSigner: stakingSigner,
           ladaTokenAccount: new PublicKey(Keys.ladaPoolInterest),
-          userLadaToken: new PublicKey(Keys.userTokenAccount),
+          userLadaToken: userLadaTokenAccount,
           stakeInfo: userStakeAccount.publicKey,
           stakingContract: userStakeAccount.stakingContract,
         },
@@ -131,10 +149,18 @@ export class StakingContext {
     );
     const blockhash = (await this.client.connection.getLatestBlockhash())
       .blockhash;
+    const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+      TOKEN_PROGRAM_ID,
+      new PublicKey(Keys.ladaTokenAccount),
+      this.client.wallet.publicKey
+    );
     const transactions: Transaction[] = [];
 
     accounts.forEach((acc) => {
-      transactions.push(this.claim(acc, stakingSigner, blockhash));
+      transactions.push(
+        this.claim(acc, stakingSigner, blockhash, userLadaTokenAccount)
+      );
     });
 
     const signedTxns =
@@ -159,25 +185,15 @@ export class StakingContext {
 
   async getUserLadaBalance() {
     let balance: anchor.web3.TokenAmount;
-    try {
-      balance = (
-        await this.client.connection.getTokenAccountBalance(
-          new PublicKey(Keys.userTokenAccount)
-        )
-      ).value;
-    } catch (e) {
-      const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
-        ASSOCIATED_TOKEN_PROGRAM_ID,
-        TOKEN_PROGRAM_ID,
-        new PublicKey(Keys.ladaTokenAccount),
-        this.client.wallet.publicKey
-      );
-      balance = (
-        await this.client.connection.getTokenAccountBalance(
-          userLadaTokenAccount
-        )
-      ).value;
-    }
+    const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
+      ASSOCIATED_TOKEN_PROGRAM_ID,
+      TOKEN_PROGRAM_ID,
+      new PublicKey(Keys.ladaTokenAccount),
+      this.client.wallet.publicKey
+    );
+    balance = (
+      await this.client.connection.getTokenAccountBalance(userLadaTokenAccount)
+    ).value;
 
     return balance.uiAmount;
   }

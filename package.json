@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vercel dev",
-    "build": "vercel build",
-    "deploy": "vercel deploy --prebuilt",
+    "vercel-build": "next build",
+    "dev": "next",
+    "deploy": "vercel build && vercel deploy --prebuilt",
     "start": "next start",
     "lint": "next lint"
   },
@@ -17,6 +17,7 @@
     "@solana/wallet-adapter-react-ui": "^0.9.10",
     "@solana/wallet-adapter-wallets": "^0.16.8",
     "@solana/web3.js": "^1.50.1",
+    "babel-preset-next": "^1.4.0",
     "date-fns": "^2.19.0",
     "framer-motion": "^6.2.8",
     "jsonwebtoken": "^8.5.1",

@@ -9,7 +9,7 @@ export const useWalletStore = create((set) => ({
   userStakedAccounts: [],
   stakingContracts: [],
   errorInput: "",
-  category: null,
+  category: 0x1,
   status: {},
   chainClock: { chain: 0, locale: 0 },
   setChainClock: (chainClock) => set((state) => ({ chainClock })),

@@ -35,7 +35,7 @@ export const StakingCard = ({
       }}
       onBlur={deselect}
     >
-      <_stakingTitle $title>{title}</_stakingTitle>
+      {/* <_stakingTitle $title>{title}</_stakingTitle> */}
       <_apy>{apy}</_apy>
       <_container>
         <_contentSubtitle>{subtitle}</_contentSubtitle>

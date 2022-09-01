@@ -57,6 +57,7 @@ export const StakingForm = ({}) => {
         contract.publicKey.toString() === stakingContractPK?.toString()
     );
   }, [stakingContracts, stakingContractPK]);
+
   const color = useMemo(() => {
     switch (category) {
       case 1: {
@@ -70,6 +71,7 @@ export const StakingForm = ({}) => {
       }
     }
   }, [category]);
+
   const handleInputChange = (event) => {
     const floatValue = parseFloat(event.target.value);
     if (floatValue > 0 && !isNaN(floatValue)) {
@@ -199,6 +201,9 @@ export const StakingForm = ({}) => {
       timeout = setInterval(() => {
         setLadaToRedeem(calcRedeemAmount());
       }, 10000);
+    } else {
+      setTotalStaked(0);
+      setLadaToRedeem(0);
     }
 
     return () => {
@@ -235,13 +240,13 @@ export const StakingForm = ({}) => {
           const remainingSecs = lockInSecs - stakedSecs;
 
           if (remainingSecs > 86400) {
-            const days = Math.trunc(remainingSecs / 86400);
+            const days = Math.ceil(remainingSecs / 86400);
             remainingString = `${days} day${days > 1 ? "s" : ""} left`;
           } else if (remainingSecs > 3600) {
-            const hours = Math.trunc(remainingSecs / 3600);
+            const hours = Math.ceil(remainingSecs / 3600);
             remainingString = `${hours} hour${hours > 1 ? "s" : ""} left`;
           } else if (remainingSecs > 60) {
-            const minutes = Math.trunc(remainingSecs / 60);
+            const minutes = Math.ceil(remainingSecs / 60);
             remainingString = `${minutes} min left`;
           }
         } else {

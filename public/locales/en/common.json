@@ -75,7 +75,7 @@
       "unstake": "Unstake",
       "account": "Account",
       "error": {
-        "stakeBalance": "Can't stake more that your balance.",
+        "stakeBalance": "Can't stake more than your balance.",
         "stakeLoading": "Staking...",
         "stakeSuccess": "Staking successfully!",
         "unstakeLoading": "Unstaking...",
@@ -86,19 +86,19 @@
     }
   },
   "content": {
-    "stakeLADA": "Stake your LADA",
+    "stakeLADA": "LADA Staking",
     "stakeDesc": "Want to put your LADA to work? Stake & earn LADA passively and lets get back to looting!",
     "tvl": "Total Value Locked",
     "inWallet": "LADA in wallet",
-    "rewardsPaid": "Rewards Paid",
+    "rewardsPaid": "Total Rewards Claimed",
     "flexible": "Flexible",
     "flexibleAPY": "16% APY",
-    "flexibleDesc": "No lock on your funds means you can unstake at any point and claim your accrued LADA.",
+    "flexibleDesc": "No Lock up",
     "hodler": "The Hodl'er",
     "hodlerAPY": "36% APY",
-    "hodlerDesc": "Lock up your funds for 90 days and earn a better APY. Claim your accrued LADA any time to compound your returns.",
+    "hodlerDesc": "90-day lockup",
     "diamond": "Diamond Hands",
     "diamondAPY": "60% APY",
-    "diamondDesc": "Investors get the best APY we will ever offer by locking up for 180 days. Claim your accrued LADA any time to compound your returns."
+    "diamondDesc": "180-day lockup"
   }
 }
