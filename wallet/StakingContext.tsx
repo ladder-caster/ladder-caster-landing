@@ -61,7 +61,7 @@ export class StakingContext {
     const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
       ASSOCIATED_TOKEN_PROGRAM_ID,
       TOKEN_PROGRAM_ID,
-      new PublicKey(Keys.ladaTokenAccount),
+      new PublicKey(Keys.mintAccount),
       this.client.wallet.publicKey
     );
 
@@ -90,7 +90,7 @@ export class StakingContext {
     const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
       ASSOCIATED_TOKEN_PROGRAM_ID,
       TOKEN_PROGRAM_ID,
-      new PublicKey(Keys.ladaTokenAccount),
+      new PublicKey(Keys.mintAccount),
       this.client.wallet.publicKey
     );
 
@@ -152,7 +152,7 @@ export class StakingContext {
     const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
       ASSOCIATED_TOKEN_PROGRAM_ID,
       TOKEN_PROGRAM_ID,
-      new PublicKey(Keys.ladaTokenAccount),
+      new PublicKey(Keys.mintAccount),
       this.client.wallet.publicKey
     );
     const transactions: Transaction[] = [];
@@ -188,7 +188,7 @@ export class StakingContext {
     const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
       ASSOCIATED_TOKEN_PROGRAM_ID,
       TOKEN_PROGRAM_ID,
-      new PublicKey(Keys.ladaTokenAccount),
+      new PublicKey(Keys.mintAccount),
       this.client.wallet.publicKey
     );
     balance = (

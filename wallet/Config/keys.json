@@ -1,11 +1,8 @@
 {
-  "mintAuthority": "HDscrLeKQCRArWcBi9AQbJVjinSBXeSe11YtDmtt98aX",
-  "mintAccount": "CgBJnCgWios74gt5jEkrY6ixE3L22aJTZB29zYsSZqBS",
-  "ladaTokenAccount": "7wZW8m4rEQRNQeoFpyFXEKBupzrCSLrBQE169LCnNJUt",
-  "contract1": "DXpYokYoENUjPHdUoEqDMVFFg5bf3Afgd4Kp7JHKnrpf",
-  "contract2": "GfmXwxkQXGxKVscH3XfmMy7QQDkvgyCQizffB7V8yKBy",
-  "contract3": "7UzTB7RfiVG7NVDR7k7mUu22YHZRDRhaods2rdeqEmD5",
-  "ladaPool": "GWEMLaFKJMSUVb8o55ewMeymuwy8rBRkNSXfrgYEmqZb",
-  "ladaPoolInterest": "121mmKjtr4La1QkHz5tVzPjuXxpUhtUXRi4Bb44YErne",
-  "userTokenAccount": "DVb2zGepHXNaL5iAVspXMQQSry4LB3wo63RY4xRQMuHH"
+  "mintAccount": "95bzgMCtKw2dwaWufV9iZyu64DQo1eqw6QWnFMUSnsuF",
+  "ladaPool": "7Ako91kLT1Zu99a7YooH3eBU25JAKQk44Ai2dbY4P58j",
+  "ladaPoolInterest": "4yNn3sQZ1vkSDTpGzTashp2ebU2YWsqqU1AeAJHa8bEP",
+  "contract1": "7wizXsGgczQKyJKoDLaSepCvu5Qfptm8GhMQnj56R45X",
+  "contract2": "8pWkzv1GVPRZE1Hh12TkTHj4TGNtwhu1K4giKRWcp1xp",
+  "contract3": "CsVkDcEh2iQnWGkUDFqg1sZMqwY8WFZwU28JjX4BEhca"
 }

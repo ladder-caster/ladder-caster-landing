@@ -59,10 +59,6 @@ function Content() {
   }, [category]);
 
   const cardSelect = (value) => {
-    if (category === value) {
-      setCategory(-1);
-      return;
-    }
     setCategory(value);
   };
 
@@ -75,7 +71,10 @@ function Content() {
         </_float>
         <_column>
           <_title>{t("content.stakeLADA")}</_title>
-          <_subTitle>{t("content.stakeDesc")}</_subTitle>
+          <_subTitle>
+            {t("content.stakeDesc")}
+            <br /> {t("content.stakeDesc2")}
+          </_subTitle>
         </_column>
         <_top>
           <StakingInfo

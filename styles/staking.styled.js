@@ -126,7 +126,7 @@ export const _title = styled.div`
   line-height: 66px;
   margin-bottom: 8px;
   text-align: center;
-  background: linear-gradient(
+  /* background: linear-gradient(
     135deg,
     hsla(192, 91%, 82%, 1) 7%,
     hsla(236, 98%, 80%, 1) 53%,
@@ -136,7 +136,7 @@ export const _title = styled.div`
   );
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent; */
 
   ${media.mobile`
     font-size: 52px;

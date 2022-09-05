@@ -121,7 +121,11 @@ export const StakingForm = ({}) => {
 
   const unstakeLada = useCallback(async () => {
     try {
-      changeStatus("unstake", "loading", t("staking.form.error.stakeLoading"));
+      changeStatus(
+        "unstake",
+        "loading",
+        t("staking.form.error.unstakeLoading")
+      );
       await client.connection.confirmTransaction(
         await new StakingContext(client).unstakeLADA(
           filteredStakedAccounts[accountSelected]
@@ -181,6 +185,7 @@ export const StakingForm = ({}) => {
 
     setTotalStaked(totStaked);
 
+    if (toClaim < 0) toClaim = 0;
     toClaim = toClaim.toFixed(4);
     return toClaim;
   }, [filteredStakedAccounts, contractObj]);

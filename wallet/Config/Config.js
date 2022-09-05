@@ -1,5 +1,5 @@
 import stakingIDL from "./staking.json";
-export const environment = process.env.REACT_APP_ENV || "devnet";
+export const environment = process.env.REACT_APP_ENV || "mainnet";
 export const isProd = environment === "mainnet";
 
 const config = {
@@ -13,7 +13,7 @@ const config = {
   },
   ["localprod"]: {
     idl: stakingIDL,
-    rpc: "https://wandering-divine-dream.solana-mainnet.quiknode.pro/51a28202db85ffa02345f9ba72ad73394732af13/",
+    rpc: "https://wandering-divine-dream.solana-mainnet.quiknode.pro/e4ff6afb31ec8f31d05d2f2c4231ea6c3b4f3af4/",
   },
   ["local"]: {
     idl: stakingIDL,
