@@ -77,11 +77,11 @@
       "error": {
         "stakeBalance": "Can't stake more than your balance.",
         "stakeLoading": "Staking...",
-        "stakeSuccess": "Staking successfully!",
+        "stakeSuccess": "Staking successful!",
         "unstakeLoading": "Unstaking...",
-        "unstakeSuccess": "Unstaking successfully!",
+        "unstakeSuccess": "Unstaking successful!",
         "claimLoading": "Claiming...",
-        "claimSuccess": "Claiming successfully!"
+        "claimSuccess": "Claiming successful!"
       }
     }
   },

@@ -158,6 +158,7 @@ export const _link = styled.a`
 `;
 
 export const _button = styled.a`
+  z-index: 10;
   color: #8553ca;
   background-color: #fff9f6;
   text-transform: uppercase;
