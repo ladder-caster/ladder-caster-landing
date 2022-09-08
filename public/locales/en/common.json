@@ -93,13 +93,13 @@
     "inWallet": "LADA in wallet",
     "rewardsPaid": "Total Rewards Claimed",
     "flexible": "Flexible",
-    "flexibleAPY": "15% APY",
+    "flexibleAPY": "15% APR",
     "flexibleDesc": "No Lock up",
     "hodler": "The Hodl'er",
-    "hodlerAPY": "30% APY",
+    "hodlerAPY": "30% APR",
     "hodlerDesc": "90-day lockup",
     "diamond": "Diamond Hands",
-    "diamondAPY": "60% APY",
+    "diamondAPY": "60% APR",
     "diamondDesc": "180-day lockup"
   }
 }
