@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { media } from "./utils";
 
 export const _nav = styled.div`
@@ -36,9 +36,7 @@ export const _logo = styled.a`
   width: 400px;
   font-weight: 600;
   line-height: 1;
-  color: #fff9f6;
   letter-spacing: 1px;
-  text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.5);
   font-family: "Poppins", sans-serif;
   padding-left: 8px;
   font-size: 14px;
@@ -74,6 +72,41 @@ export const _logo = styled.a`
     padding-left: 24px;
     font-size: 18px;
   `}
+
+  ${({ $simple }) => {
+    if ($simple) {
+      return css`
+        color: white;
+        padding: 48px;
+        font-size: 32px;
+
+        ${media.mobile`
+          font-size: 24px;
+        `}
+      `;
+    } else {
+      return css`
+        color: #fff9f6;
+        text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.5);
+      `;
+    }
+  }}
+`;
+
+export const _connectContainer = styled.div`
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 8px 0 0;
+
+  > button,
+  div > button {
+    background-color: rgb(98, 91, 254);
+    box-shadow: 0px 0px 32px -6px rgba(0, 0, 0, 0.1);
+  }
 `;
 
 export const _container = styled.div`

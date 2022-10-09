@@ -1,0 +1,783 @@
+{
+  "version": "0.1.0",
+  "name": "buddylink",
+  "instructions": [
+    {
+      "name": "initMasterOrganization",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "masterOrganization",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "shareKeptInBps",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "updateMasterOrganization",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "masterOrganization",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "shareKeptInBps",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "initOrganization",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "organization",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "shareKeptInBps",
+          "type": "u16"
+        },
+        {
+          "name": "requiredMint",
+          "type": {
+            "option": "publicKey"
+          }
+        },
+        {
+          "name": "limitedTier1Places",
+          "type": {
+            "option": "u16"
+          }
+        }
+      ]
+    },
+    {
+      "name": "initBuddy",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "organization",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrer",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "buddy",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "shareKeptInBps",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "initChest",
+      "accounts": [
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "organization",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "buddy",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddyChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddyTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "transferRewardChecked",
+      "accounts": [
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "refereeTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrer",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "referrerChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "transferRewardUnchecked",
+      "accounts": [
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "refereeTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "transferUp",
+      "accounts": [
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganization",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganizationChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganizationTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrer",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "referrerChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddy",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "buddyChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddyTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "claim",
+      "accounts": [
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganization",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganizationChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganizationTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrer",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "referrerChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrerTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddy",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "buddyChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddyTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "organizationClaim",
+      "accounts": [
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganization",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganizationChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganizationTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddy",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "buddyChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddyTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "masterOrganizationClaim",
+      "accounts": [
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "mint",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganization",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganizationChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "masterOrganizationTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "adminTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "MasterOrganization",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "shareKeptInBps",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Buddy",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "organization",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "shareKeptInBps",
+            "type": "u16"
+          },
+          {
+            "name": "referrer",
+            "type": {
+              "option": "publicKey"
+            }
+          },
+          {
+            "name": "dateCreated",
+            "type": "i64"
+          },
+          {
+            "name": "requiredMint",
+            "type": {
+              "option": "publicKey"
+            }
+          },
+          {
+            "name": "hasRequiredMint",
+            "type": "bool"
+          },
+          {
+            "name": "limitedTier1Places",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "currentTier1PlacesTaken",
+            "type": "u16"
+          }
+        ]
+      }
+    },
+    {
+      "name": "TreasuryChest",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": {
+              "option": "u8"
+            }
+          },
+          {
+            "name": "mint",
+            "type": "publicKey"
+          },
+          {
+            "name": "frozenBalance",
+            "type": "u64"
+          },
+          {
+            "name": "totalEarned",
+            "type": "u128"
+          },
+          {
+            "name": "totalShared",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NotSuperAdmin",
+      "msg": "Only super admin can do this action."
+    },
+    {
+      "code": 6001,
+      "name": "InvalidBPSProvided",
+      "msg": "Invalid BPS provided."
+    },
+    {
+      "code": 6002,
+      "name": "InvalidReferrerProvided",
+      "msg": "Invalid referrer provided."
+    },
+    {
+      "code": 6003,
+      "name": "InvalidUserToClaim",
+      "msg": "Invalid user to claim."
+    },
+    {
+      "code": 6004,
+      "name": "OrganizationCantTransferUp",
+      "msg": "Organizations can't transfer up."
+    },
+    {
+      "code": 6005,
+      "name": "InvalidOrganizationProvided",
+      "msg": "Invalid organization provided."
+    },
+    {
+      "code": 6006,
+      "name": "InvalidBumpProvided",
+      "msg": "Invalid bump provided for PDA."
+    },
+    {
+      "code": 6007,
+      "name": "ReferrerDoesntHaveRequiredMintChest",
+      "msg": "Referrer doesn't have required mint chest."
+    },
+    {
+      "code": 6008,
+      "name": "MaximumTier1ReferralsReached",
+      "msg": "Organization already has maximum number of tier 1."
+    },
+    {
+      "code": 6009,
+      "name": "InvalidMasterOrganizationPubkey",
+      "msg": "Invalid pub key for master organization."
+    }
+  ],
+  "metadata": {
+    "address": "budiYF71pS9mSDN1v8F5zoNRPPHiMQwtwdFNhdKZD63"
+  }
+}

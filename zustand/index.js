@@ -86,3 +86,7 @@ export const updateData = async (client) => {
   initStakeData(client);
   initGlobalValues(client);
 };
+
+export const initBuddyClient = async (client) => {
+  useWalletStore.getState().setClient(client);
+};
