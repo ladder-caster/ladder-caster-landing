@@ -1,0 +1,378 @@
+{
+  "version": "0.1.0",
+  "name": "lcstaking",
+  "instructions": [
+    {
+      "name": "createStakingContract",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingContract",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "minAmount",
+          "type": "u64"
+        },
+        {
+          "name": "apy",
+          "type": "u8"
+        },
+        {
+          "name": "lockPeriodInSeconds",
+          "type": "u64"
+        },
+        {
+          "name": "endInNumberOfDays",
+          "type": {
+            "option": "u16"
+          }
+        }
+      ]
+    },
+    {
+      "name": "updateStakingContractEndTime",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingContract",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "endInNumberOfDays",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "stakeLada",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingSigner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ladaPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userLadaToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakeInfo",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingContract",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "stakedAmount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claimInterests",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingSigner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ladaTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userLadaToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakeInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingContract",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "unstakeLada",
+      "accounts": [
+        {
+          "name": "tokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "associatedTokenProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingSigner",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ladaTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ladaPool",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "userLadaToken",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakeInfo",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "stakingContract",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "StakingContract",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "minAmount",
+            "type": "u64"
+          },
+          {
+            "name": "apy",
+            "type": "u8"
+          },
+          {
+            "name": "lockPeriodInSeconds",
+            "type": "u64"
+          },
+          {
+            "name": "endTime",
+            "type": {
+              "option": "i64"
+            }
+          },
+          {
+            "name": "totalTvl",
+            "type": "u64"
+          },
+          {
+            "name": "totalClaimed",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LadaStakeInfo",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakedAmount",
+            "type": "u64"
+          },
+          {
+            "name": "stakingContract",
+            "type": "publicKey"
+          },
+          {
+            "name": "stakedStartTime",
+            "type": "i64"
+          },
+          {
+            "name": "lastClaimed",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NotSuperAdmin",
+      "msg": "Only super admin can do this action."
+    },
+    {
+      "code": 6001,
+      "name": "InvalidLadaMint",
+      "msg": "Invalid lada mint provided."
+    },
+    {
+      "code": 6002,
+      "name": "InvalidStakingLadaTokenPoolAccount",
+      "msg": "Invalid lada pool for game provided."
+    },
+    {
+      "code": 6003,
+      "name": "InvalidLadaTokenPoolAccount",
+      "msg": "Invalid lada pool for game provided."
+    },
+    {
+      "code": 6004,
+      "name": "InvalidLadaTokenUserAccount",
+      "msg": "Invalid lada user token account provided."
+    },
+    {
+      "code": 6005,
+      "name": "InvalidStakeInfoForUser",
+      "msg": "Invalid stake info for user account provided."
+    },
+    {
+      "code": 6006,
+      "name": "InvalidStakingContractValue",
+      "msg": "Invalid staking contract value provided."
+    },
+    {
+      "code": 6007,
+      "name": "InvalidStakingContract",
+      "msg": "Invalid staking contract provided."
+    },
+    {
+      "code": 6008,
+      "name": "StakingAmountTooLow",
+      "msg": "Amount staked is too low for contract."
+    },
+    {
+      "code": 6009,
+      "name": "StakingContractEnded",
+      "msg": "Staking contract is not available anymore."
+    },
+    {
+      "code": 6010,
+      "name": "PrematureUnstaking",
+      "msg": "Too early to unstake lada tokens."
+    }
+  ],
+  "metadata": {
+    "address": "DoDbKaQKaNM8JAQyqwtrc53UKcaK6B71PuqB62TBZATc"
+  }
+}

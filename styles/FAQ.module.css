@@ -3,7 +3,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 1.4;
-  color: #fff;
+  color: #fff9f6;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
-  color: #fff;
+  color: #fff9f6;
   letter-spacing: 1px;
   text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
   text-transform: uppercase;
@@ -88,7 +88,7 @@
 
 .desc {
   position: relative;
-  color: white;
+  color: fff9f6;
   font-size: 16px;
   letter-spacing: 2px;
   text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
@@ -118,7 +118,7 @@
 
 .title {
   position: relative;
-  color: white;
+  color: #fff9f6;
   font-size: 14px;
   letter-spacing: 2px;
   text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
@@ -143,10 +143,10 @@
 
 .button {
   padding: 12px 24px;
-  color: white;
+  color: #fff9f6;
   text-transform: uppercase;
   font-size: 12px;
-  border: 1px solid white;
+  border: 1px solid #fff9f6;
   border-radius: 6px;
   margin-left: 32px;
   cursor: pointer;
@@ -156,7 +156,7 @@
 
 .button:hover {
   color: #9a8ea4;
-  background-color: white;
+  background-color: #fff9f6;
 }
 
 .row {

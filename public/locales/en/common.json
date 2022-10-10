@@ -1,0 +1,109 @@
+{
+  "laddercaster": "LadderCaster",
+  "nav": {
+    "whitepaper": "Whitepaper",
+    "items": "Items",
+    "faq": "FAQ",
+    "staking": "Staking",
+    "playGame": "Play Game"
+  },
+  "footer": {
+    "copyright": "Copyright ©2022",
+    "game": "Game",
+    "faq": "FAQ",
+    "whitepaper": "Whitepaper",
+    "items": "Items",
+    "about": "About",
+    "team": "Team",
+    "contact": "Contact",
+    "community": "Community",
+    "tokenomics": "Tokenomics",
+    "resources": "Resources",
+    "governance": "Governance",
+    "howToBuy": "How to buy LADA",
+    "social": "Social",
+    "joinDiscord": "Join the Discord",
+    "joinTwitter": "Join our Twitter"
+  },
+  "home": {
+    "hero": {
+      "poweredSolana": "Powered by Solana",
+      "realtimeMobile": "Real-time mobile strategy & NFT market economy game",
+      "buyLADA": "Buy $LADA",
+      "joinDiscord": "Join the Discord"
+    },
+    "featured": {
+      "investors": "Investors",
+      "poweredBy": "Powered by",
+      "partneredWith": "Partnered with"
+    },
+    "faq": {
+      "roadmap": "Roadmap",
+      "alphaLaunch": "Alpha Launch",
+      "alphaDate": "April 8th, 2022",
+      "stakingReleased": "Staking released",
+      "stakingDate": "Q4 2022",
+      "DAOFormation": "DAO Formation",
+      "DAODate": "Q1 2023",
+      "treasuryUnlock": "Treasury Unlock",
+      "treasuryDate": "Q3 2023",
+      "communityTakeover": "Community Takeover",
+      "communityDate": "Q4 2023",
+      "frequentlyAsked": "Frequently asked questions",
+      "whatsLC": "What is LadderCaster?",
+      "LCDesc": "A realtime mobile strategy and NFT market economy game, built on Solana.",
+      "whatsLADA": "What is LADA? How do I get it?",
+      "LADADesc": "LADA will be the native LadderCaster in-game Token. It will be available on the Serum orderbook on launch day. LADA Tokens will initially be sold for $0.01.",
+      "whitelist": "Is there a Whitelist or Pre-Sale?",
+      "whitelistDesc": "There are no Whitelists or Pre-Sales. The only way to get LADA Token is to trade it on Serum/Jupiter April 8th at 18:00 UTC.",
+      "whenMint": "When is the mint?",
+      "mintDesc": "You will only be able to Mint Casters on April, 8th at 18:OO UTC. Casters will cost 1000 LADA Tokens.",
+      "whatMarketplaces": "What marketplaces can I use?",
+      "marketplaceDesc": "LadderCaster characters and items can be listed on Fractal.is, a gaming NFT marketplace; Holaplex, an open-source marketplace, and Magic Eden, Solana’s largest marketplace. Players are able to list NFT drops for durable in-game assets and sell directly to other players."
+    }
+  },
+  "staking": {
+    "connect": {
+      "wallet": "Connect Wallet"
+    },
+    "form": {
+      "stake": "Stake",
+      "max": "MAX",
+      "LADAEarned": "LADA Earned",
+      "claim": "Claim",
+      "totalStaked": "Total Staked",
+      "unstake": "Unstake",
+      "account": "Account",
+      "error": {
+        "stakeBalance": "Can't stake more than your balance.",
+        "stakeLoading": "Staking...",
+        "stakeSuccess": "Staking successful!",
+        "unstakeLoading": "Unstaking...",
+        "unstakeSuccess": "Unstaking successful!",
+        "claimLoading": "Claiming...",
+        "claimSuccess": "Claiming successful!"
+      }
+    }
+  },
+  "content": {
+    "stakeLADA": "LADA Staking",
+    "stakeDesc": "Want to put your LADA to work?",
+    "stakeDesc2": "Stake and get back to looting.",
+    "tvl": "Total Value Locked",
+    "inWallet": "LADA in wallet",
+    "rewardsPaid": "Total Rewards Claimed",
+    "flexible": "Flexible",
+    "flexibleAPY": "15% APR",
+    "flexibleDesc": "No Lock up",
+    "hodler": "The Hodl'er",
+    "hodlerAPY": "30% APR",
+    "hodlerDesc": "90-day lockup",
+    "diamond": "Diamond Hands",
+    "diamondAPY": "60% APR",
+    "diamondDesc": "180-day lockup"
+  },
+  "referrals": {
+    "title": "Start your journey today!",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  }
+}

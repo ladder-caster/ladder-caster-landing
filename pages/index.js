@@ -1,27 +1,13 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Nav from './components/nav';
-import Hero from './components/hero';
-import Footer from './components/footer';
-import FAQ from './components/faq';
-import Featured from './components/featued';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Nav from "../components/nav";
+import Hero from "../components/home/hero";
+import Footer from "../components/footer";
+import FAQ from "../components/home/faq";
+import Featured from "../components/home/featured";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export default function Home() {
-  const myLoader = ({ src, width, quality }) => {
-    return `../../../libs/design/assets/Landing1.jpg?w=${1920}&h=${1080}$"&q=${
-      100 || 75
-    }`;
-  };
-  const myLoader2 = ({ src, width, quality }) => {
-    return `../../../libs/design/assets/background-2.jpg?w=${1920}&h=${1080}$"&q=${
-      100 || 75
-    }`;
-  };
-  const myLoader3 = ({ src, width, quality }) => {
-    return `../../../libs/design/assets/background-dark.jpg?w=${1920}&h=${1080}$"&q=${
-      100 || 75
-    }`;
-  };
+const Home = () => {
   return (
     <div className={styles.container}>
       <Head>
@@ -57,4 +43,12 @@ export default function Home() {
       <Footer />
     </div>
   );
-}
+};
+
+export const getStaticProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common"])),
+  },
+});
+
+export default Home;
