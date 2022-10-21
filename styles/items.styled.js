@@ -30,66 +30,36 @@ export const _main = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   margin: 0 auto;
   max-width: 95%;
-  padding-top: 125px;
-  padding: 0 32px;
-
-  ${media.tiny`
-    padding-top: 110px;
-  `}
-  ${media.mobile`
-    padding-top: 30vh;
-  `}
-`;
-
-export const _chain = styled.div`
-  display: flex;
-  align-items: center;
-  text-transform: uppercase;
-  font-size: 12px;
-  font-weight: 600;
-  color: #fff9f6;
-  letter-spacing: 1px;
-  text-shadow: 1px 1px 1px rgba(52, 42, 60, 0.5);
-  position: absolute;
-  bottom: 16px;
-  width: 100%;
-  right: auto;
-  justify-content: center;
-  > svg {
-    width: 18px;
-    height: 18px;
-    margin-right: 12px;
-  }
-
-  ${media.mobile`
-    justify-content: flex-end;
-    right: 24px;
-  `}
+  padding-top: 64px;
+  padding-left: 32px;
 `;
 
 export const _info = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  width: 100%;
+  width: 47%;
   margin-left: 0;
   padding: 16px;
   padding-top: 32px;
+
   > h1 {
     font-weight: 800;
-    line-height: 72px;
+    line-height: 62px;
     color: #fff9f6;
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
     font-size: 54px;
+    text-align: center;
+
     ${media.mobile`
         padding: 0 0 16px;
-        font-size: 86px;
+        font-size: 54px;
     `}
   }
 
@@ -106,14 +76,15 @@ export const _desc = styled.div`
   font-weight: 200;
   color: #fff9f6;
   letter-spacing: 1px;
-  line-height: 28px;
+  line-height: 21px;
   width: 90%;
   font-size: 32px;
   font-family: "Poppins", sans-serif;
+  text-align: center;
 
   ${media.mobile`
-    width: 450px;
-    font-size: 28px;
+    width: 90%;
+    font-size: 15px;
   `}
 `;
 
@@ -125,10 +96,21 @@ export const _wrapper = styled.div`
   margin-top: 16px;
 `;
 
+export const _subtitle = styled.div`
+  font-weight: 200;
+  color: #fff9f6;
+  letter-spacing: 1px;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 54px;
+
+  ${media.mobile`
+        font-size: 28px;
+    `}
+`;
+
 export const _button = styled.div`
   > a {
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -136,37 +118,16 @@ export const _button = styled.div`
     font-weight: 200;
     letter-spacing: 0.5px;
     cursor: pointer;
-    background: none;
-    background-color: transparent;
-    font-size: 14px;
+    background-color: white;
     border: 1px solid #fff9f6;
-    color: #fff9f6;
+    color: #3d232c;
     padding: 8px;
     font-size: 14px;
     width: 180px;
     height: 42px;
     transition: all 0.15s ease-in;
     margin-right: 15px;
-    > div {
-      display: flex;
-      align-items: center;
-    }
-    > svg,
-    img {
-      width: 18px;
-      margin-left: 12px;
-      fill: #fff9f6;
-    }
-    > span {
-      display: flex;
-      align-items: center;
-      > svg {
-        font-weight: 200;
-        width: 24px;
-        margin-left: 8px;
-        fill: white;
-      }
-    }
+
     &:hover {
       transform: translateY(-4px);
     }

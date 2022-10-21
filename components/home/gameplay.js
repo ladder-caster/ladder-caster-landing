@@ -13,9 +13,10 @@ import {
   _wrapper,
   _button,
   _discord,
-} from "../../styles/hero.styled";
+  _subtitle,
+} from "../../styles/gameplay.styled";
 
-const Hero = () => {
+const Gameplay = () => {
   const { t } = useTranslation();
   return (
     <_hero>
@@ -24,29 +25,24 @@ const Hero = () => {
       </_float>
       <_main>
         <_info>
-          <h1>{t("laddercaster")}</h1>
-          <_desc>{t("home.hero.realtimeMobile")}</_desc>
+          <_subtitle>Gameplay</_subtitle>
+          <h1>A Mobile Strategy and Market Game</h1>
+          <_desc>
+            Drawing inspiration from Runescape's market, Diablo's ladder, and
+            DND's community-led storytelling, LadderCaster is a fresh new look
+            at the world of blockchain gaming - and it's mobile-first!
+            Experience a thrilling story that unfolds across a dynamic
+            boardscape, loot your way through eight levels with an unlimited
+            number of casters, and race your way to the top.
+          </_desc>
           <_wrapper>
             <_button>
               <a
                 target="_blank"
                 rel="noreferrer"
                 href={"https://jup.ag/swap/USDC-LADA"}
-                style={{ color: "#8553ca", backgroundColor: "white" }}
               >
                 Join the Waitlist
-              </a>
-            </_button>
-            <_button>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={"https://discord.com/invite/laddercaster"}
-              >
-                <span>
-                  Play the Alpha
-                  {discordIcon()}
-                </span>
               </a>
             </_button>
           </_wrapper>
@@ -56,4 +52,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Gameplay;

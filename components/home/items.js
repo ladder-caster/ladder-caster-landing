@@ -13,9 +13,10 @@ import {
   _wrapper,
   _button,
   _discord,
-} from "../../styles/hero.styled";
+  _subtitle,
+} from "../../styles/items.styled";
 
-const Hero = () => {
+const Items = () => {
   const { t } = useTranslation();
   return (
     <_hero>
@@ -24,29 +25,21 @@ const Hero = () => {
       </_float>
       <_main>
         <_info>
-          <h1>{t("laddercaster")}</h1>
-          <_desc>{t("home.hero.realtimeMobile")}</_desc>
+          <_subtitle>Items</_subtitle>
+          <h1>Loot and Trade</h1>
+          <_desc>
+            Every item is fully on-chain. With over 400,000 NFT item and
+            character combinations, equip your characters with items to maximize
+            your strategy. Only the best will top the leaderboards.
+          </_desc>
           <_wrapper>
             <_button>
               <a
                 target="_blank"
                 rel="noreferrer"
                 href={"https://jup.ag/swap/USDC-LADA"}
-                style={{ color: "#8553ca", backgroundColor: "white" }}
               >
-                Join the Waitlist
-              </a>
-            </_button>
-            <_button>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={"https://discord.com/invite/laddercaster"}
-              >
-                <span>
-                  Play the Alpha
-                  {discordIcon()}
-                </span>
+                View Items
               </a>
             </_button>
           </_wrapper>
@@ -56,4 +49,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Items;

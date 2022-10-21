@@ -4,8 +4,11 @@ import Nav from "../components/nav";
 import Hero from "../components/home/hero";
 import Footer from "../components/footer";
 import FAQ from "../components/home/faq";
-import Featured from "../components/home/featured";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Gameplay from "../components/home/gameplay";
+import Story from "../components/home/story";
+import Playgame from "../components/home/playgame";
+import Items from "../components/home/items";
 
 const Home = () => {
   return (
@@ -38,8 +41,11 @@ const Home = () => {
       </Head>
       <Nav />
       <Hero />
-      <Featured />
+      <Gameplay />
+      <Story />
+      <Items />
       <FAQ />
+      <Playgame />
       <Footer />
     </div>
   );

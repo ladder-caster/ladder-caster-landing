@@ -27,38 +27,26 @@ const Nav = ({ simple }) => {
           </_connectContainer>
         ) : (
           <>
-            <_links>
-              <_link
-                target="_blank"
-                rel="noreferrer"
-                href="https://ladder-caster.gitbook.io/laddercaster"
-              >
-                {t("nav.whitepaper")}
-              </_link>
-              <_link
-                target="_blank"
-                rel="noreferrer"
-                href="https://ladder-caster.gitbook.io/laddercaster/items"
-              >
-                {t("nav.items")}
-              </_link>
-              {/* <_link
-           onClick={() => {
-             const el = document.getElementById("#faq");
-             if (el) {
-               const distance =
-                 window.pageYOffset + el.getBoundingClientRect().top;
-               window.scrollTo(0, distance);
-             }
-           }}
-         >
-           {t("nav.faq")}
-         </_link> */}
-              <_link target="_self" rel="noreferrer" href="staking">
-                {t("nav.staking")}
-              </_link>
-            </_links>
             <_container>
+              <_links>
+                <_link
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://ladder-caster.gitbook.io/laddercaster"
+                >
+                  {t("nav.whitepaper")}
+                </_link>
+                <_link
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://ladder-caster.gitbook.io/laddercaster/items"
+                >
+                  {t("nav.items")}
+                </_link>
+                <_link target="_self" rel="noreferrer" href="staking">
+                  {t("nav.staking")}
+                </_link>
+              </_links>
               <_button
                 target="_blank"
                 rel="noreferrer"

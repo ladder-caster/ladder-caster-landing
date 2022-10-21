@@ -13,9 +13,10 @@ import {
   _wrapper,
   _button,
   _discord,
-} from "../../styles/hero.styled";
+  _subtitle,
+} from "../../styles/playgame.styled";
 
-const Hero = () => {
+const Playgame = () => {
   const { t } = useTranslation();
   return (
     <_hero>
@@ -24,29 +25,21 @@ const Hero = () => {
       </_float>
       <_main>
         <_info>
-          <h1>{t("laddercaster")}</h1>
-          <_desc>{t("home.hero.realtimeMobile")}</_desc>
+          <_subtitle>Play Game</_subtitle>
+          <h1>Answer the Call to Save Avaria</h1>
+          <_desc>
+            The world of Avaria has been fractured into multiple universes and
+            it needs your help to master time and restore order. Join the
+            waitlist and recruit your friends for a special offer!
+          </_desc>
           <_wrapper>
             <_button>
               <a
                 target="_blank"
                 rel="noreferrer"
                 href={"https://jup.ag/swap/USDC-LADA"}
-                style={{ color: "#8553ca", backgroundColor: "white" }}
               >
                 Join the Waitlist
-              </a>
-            </_button>
-            <_button>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={"https://discord.com/invite/laddercaster"}
-              >
-                <span>
-                  Play the Alpha
-                  {discordIcon()}
-                </span>
               </a>
             </_button>
           </_wrapper>
@@ -56,4 +49,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default Playgame;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media } from "./utils";
 
 export const _footer = styled.div`
-  background: linear-gradient(135deg, #030405, #27223b 70%, #31294d 90%);
+  background: #27223b;
   box-sizing: border-box;
   font-size: 16px;
   font-weight: 400;
@@ -42,7 +42,7 @@ export const _logo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-weight: 600;
+  font-weight: 800;
   line-height: 1;
   color: #fff9f6;
   letter-spacing: 1px;
@@ -102,7 +102,7 @@ export const _title = styled.div`
   letter-spacing: 2px;
   margin: 0px 24px;
   text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
-  font-weight: 600;
+  font-weight: 800;
   text-transform: uppercase;
 
   &:after {
@@ -140,6 +140,7 @@ export const _link = styled.a`
   text-transform: uppercase;
   font-size: 15px;
   margin: 0px 24px;
+  font-weight: 200;
 
   ${media.mobile`
     font-size: 14px;
@@ -164,7 +165,7 @@ export const _social = styled.a`
   align-items: center;
   border-radius: 8px;
   box-shadow: 0px 8px 24px 0 rgb(0 0 0 / 15%);
-  font-weight: 600;
+  font-weight: 200;
   transition: all 0.1s ease;
   > svg {
     fill: #fff9f6;
