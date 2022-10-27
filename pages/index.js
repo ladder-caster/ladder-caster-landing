@@ -9,6 +9,7 @@ import Gameplay from "../components/home/gameplay";
 import Story from "../components/home/story";
 import Playgame from "../components/home/playgame";
 import Items from "../components/home/items";
+import VOR from "./vor";
 
 const Home = () => {
   return (
@@ -46,6 +47,7 @@ const Home = () => {
       <Items />
       <FAQ />
       <Playgame />
+      <VOR />
       <Footer />
     </div>
   );

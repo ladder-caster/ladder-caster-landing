@@ -4,8 +4,6 @@ import { chevron, wizard, lock } from "../../shared/icons";
 import { useTranslation } from "next-i18next";
 import {
   _faq,
-  _float,
-  _background,
   _wrapper,
   _container,
   _title,
@@ -19,9 +17,6 @@ const FAQ = () => {
 
   return (
     <_faq>
-      <_float>
-        <_background />
-      </_float>
       <_wrapper id="#faq">
         <div>
           <_subtitle>FAQs</_subtitle>

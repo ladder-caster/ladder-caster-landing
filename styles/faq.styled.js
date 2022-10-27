@@ -3,11 +3,12 @@ import { media } from "./utils";
 
 export const _faq = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: #302052;
 `;
 
 export const _container = styled.div`
@@ -45,17 +46,6 @@ export const _float = styled.div`
   flex-direction: column;
   position: absolute;
   top: 0;
-`;
-
-export const _background = styled.div`
-  min-width: 100%;
-  width: 100%;
-  min-height: 100vh;
-  height: 100vh;
-  background-image: url("/background-dark.jpg");
-  background-size: cover;
-  background-position: center;
-  z-index: -1;
 `;
 
 export const _wrapper = styled.div`

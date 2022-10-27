@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { media } from "./utils";
 
 export const _hero = styled.div`
-  min-height: 100vh;
+  min-height: 120vh;
   position: relative;
 `;
 
@@ -17,9 +17,9 @@ export const _float = styled.div`
 export const _background = styled.div`
   min-width: 100%;
   width: 100%;
-  min-height: 100vh;
+  min-height: 120vh;
   height: 100vh;
-  background-image: url("/background-dark.jpg");
+  background-image: url("/books.png");
   background-size: cover;
   background-position: center;
   z-index: -1;

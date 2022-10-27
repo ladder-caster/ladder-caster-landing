@@ -20,8 +20,39 @@ const Story = () => {
   const { t } = useTranslation();
   return (
     <_hero>
+      <img
+        src="/light.png"
+        style={{
+          width: "100%",
+          position: "absolute",
+          top: "0",
+          left: "0",
+          zIndex: 1,
+        }}
+      />
+      <img
+        src="/backGrass.png"
+        style={{
+          width: "100%",
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          zIndex: 1,
+        }}
+      />
+      <img
+        src="/fgGrass.png"
+        style={{
+          width: "100%",
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          zIndex: 2,
+        }}
+      />
       <_float>
         <_background />
+        <_overlay />
       </_float>
       <_main>
         <_info>

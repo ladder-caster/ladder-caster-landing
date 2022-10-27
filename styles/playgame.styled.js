@@ -4,6 +4,7 @@ import { media } from "./utils";
 export const _hero = styled.div`
   min-height: 100vh;
   position: relative;
+  overflow: hidden;
 `;
 
 export const _float = styled.div`
@@ -19,7 +20,7 @@ export const _background = styled.div`
   width: 100%;
   min-height: 100vh;
   height: 100vh;
-  background-image: url("/background-dark.jpg");
+  background-image: url("/trees.png");
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -31,27 +32,30 @@ export const _main = styled.main`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
-  margin: 0 auto;
-  max-width: 95%;
-  padding-top: 125px;
-
-  ${media.tiny`
-    padding-top: 110px;
-  `}
-  ${media.mobile`
-    padding-top: 30vh;
-  `}
+  max-width: 100%;
 `;
 
 export const _info = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 60vw;
+  height: 100vh;
+  margin-left: 0;
+  padding: 16px;
+  background-color: #303f5a;
+  z-index: 9999;
+`;
+
+export const _info_wrapper = styled.div`
+  display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  width: 40%;
+  width: 65%;
   margin-left: 0;
   padding: 16px;
-  padding-top: 32px;
 
   > h1 {
     font-weight: 800;
@@ -68,14 +72,6 @@ export const _info = styled.div`
         font-size: 54px;
     `}
   }
-
-  ${media.mobile`
-      padding: 0;
-  `}
-
-  ${media.desktop`
-        padding: 0;
-    `}
 `;
 
 export const _desc = styled.div`
@@ -83,7 +79,7 @@ export const _desc = styled.div`
   color: #fff9f6;
   letter-spacing: 1px;
   line-height: 21px;
-  width: 90%;
+  width: 40%;
   font-size: 32px;
   font-family: "Poppins", sans-serif;
   padding-right: 32px;

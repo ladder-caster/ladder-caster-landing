@@ -1,4 +1,3 @@
-import { discordIcon, solanaIcon, jupiterLogo } from "../../shared/icons";
 import { useTranslation } from "next-i18next";
 import {
   _hero,
@@ -19,6 +18,57 @@ const Hero = () => {
   const { t } = useTranslation();
   return (
     <_hero>
+      <img
+        src="/cliff.png"
+        style={{
+          width: "100vw",
+          height: "calc(110vh + 182px)",
+          position: "absolute",
+          bottom: "-100vh",
+          right: "-48px",
+          zIndex: 1,
+        }}
+      />
+      <img
+        src="/sideCliff.png"
+        style={{
+          width: "35vw",
+          position: "absolute",
+          bottom: "-64px",
+          right: 0,
+          zIndex: 4,
+        }}
+      />
+      <img
+        src="/backLight.png"
+        style={{
+          width: "20vw",
+          position: "absolute",
+          bottom: "40vh",
+          right: 0,
+          zIndex: 1,
+        }}
+      />
+      <img
+        src="/frontLight.png"
+        style={{
+          width: "100vw",
+          position: "absolute",
+          top: "0",
+          right: 0,
+          zIndex: 3,
+        }}
+      />
+      <img
+        src="/sideLawn.png"
+        style={{
+          width: "20vw",
+          position: "absolute",
+          bottom: "0",
+          left: 0,
+          zIndex: 2,
+        }}
+      />
       <_float>
         <_background />
       </_float>
@@ -45,7 +95,7 @@ const Hero = () => {
               >
                 <span>
                   Play the Alpha
-                  {discordIcon()}
+                  <img src="/arrow.png" />
                 </span>
               </a>
             </_button>

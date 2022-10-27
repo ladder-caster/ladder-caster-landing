@@ -12,6 +12,11 @@ import {
   _wandTile,
   _wizardAndBook,
   _parent,
+  _mountainLightTransition,
+  _particlesForest,
+  _wizardsScene,
+  _wizard,
+  _particlesForestWizard,
 } from "../styles/vor.styled";
 
 const VOR = () => {
@@ -20,38 +25,48 @@ const VOR = () => {
     autoplay: true,
   };
 
-  const scrollControls = {
+  const loopControlsStop = {
     loop: false,
     autoplay: false,
+  };
+
+  const scrollControls = {
+    loop: true,
+    autoplay: true,
   };
 
   const BGArray = [
     {
       filename: "skyTransition",
       sComponent: _skyTransition,
-      controls: scrollControls,
-      isScroll: true,
+      controls: loopControlsStop,
+      isScroll: false,
+    },
+    {
+      filename: "mountainLightTransition",
+      sComponent: _mountainLightTransition,
+      controls: loopControlsStop,
     },
     {
       filename: "midGroundLightTransition",
       sComponent: _midGroundLightTransition,
-      controls: scrollControls,
-      isScroll: true,
+      controls: loopControlsStop,
+      isScroll: false,
     },
     {
       filename: "cloudsDaytime",
       sComponent: _cloudsDaytime,
-      controls: loopControls,
+      controls: loopControlsStop,
     },
     {
       filename: "cloudsSunset",
       sComponent: _cloudsSunset,
-      controls: loopControls,
+      controls: loopControlsStop,
     },
     {
       filename: "forceField",
       sComponent: _forceField,
-      controls: loopControls,
+      controls: loopControlsStop,
     },
   ];
 
@@ -59,10 +74,18 @@ const VOR = () => {
     {
       filename: "lightAndParticles",
       sComponent: _lightAndParticles,
+      controls: loopControlsStop,
+    },
+    {
+      filename: "backWizard",
+      sComponent: _backWizard,
       controls: loopControls,
     },
-    { filename: "backWizard", sComponent: _backWizard, controls: loopControls },
-    { filename: "midWizard", sComponent: _midWizard, controls: loopControls },
+    {
+      filename: "midWizard",
+      sComponent: _midWizard,
+      controls: loopControls,
+    },
     {
       filename: "frontWizard",
       sComponent: _frontWizard,
@@ -75,6 +98,32 @@ const VOR = () => {
     {
       filename: "wizardAndBook",
       sComponent: _wizardAndBook,
+      controls: loopControls,
+    },
+  ];
+
+  const SCR3Array = [
+    {
+      filename: "particlesForest",
+      sComponent: _particlesForest,
+      controls: loopControls,
+    },
+    {
+      filename: "wizardsScene",
+      sComponent: _wizardsScene,
+      controls: loopControls,
+    },
+  ];
+
+  const SCR6Array = [
+    {
+      filename: "particlesForest",
+      sComponent: _particlesForestWizard,
+      controls: loopControls,
+    },
+    {
+      filename: "wizard",
+      sComponent: _wizard,
       controls: loopControls,
     },
   ];
@@ -119,11 +168,21 @@ const VOR = () => {
     return handleAnimationComponent(SCR2Array);
   }, [SCR2Array, lottie]);
 
+  const animationSCR3 = useMemo(() => {
+    return handleAnimationComponent(SCR3Array);
+  }, [SCR3Array, lottie]);
+
+  const animationSCR6 = useMemo(() => {
+    return handleAnimationComponent(SCR6Array);
+  }, [SCR6Array, lottie]);
+
   return (
     <div id="container1-2">
-      {animationsBG}
+      {/* {animationsBG} */}
       <_parent>{animationSCR1}</_parent>
       <_parent>{animationSCR2}</_parent>
+      <_parent>{animationSCR3}</_parent>
+      <_parent>{animationSCR6}</_parent>
     </div>
   );
 };
@@ -140,37 +199,38 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
         renderer: "svg",
         path: `/animations/${animate.filename}.json`,
         ...controls,
+        rendererSettings: { preserveAspectRatio: "none" },
       });
 
-      if (isScroll) {
-        window.addEventListener("scroll", () => {
-          let supportPageOffset = window.pageXOffset !== undefined;
-          let isCSS1Compat = (document.compatMode || "") === "CSS1Compat";
-          let scroll = {
-            x: supportPageOffset
-              ? window.pageXOffset
-              : isCSS1Compat
-              ? document.documentElement.scrollLeft
-              : document.body.scrollLeft,
-            y: supportPageOffset
-              ? window.pageYOffset
-              : isCSS1Compat
-              ? document.documentElement.scrollTop
-              : document.body.scrollTop,
-          };
+      // if (isScroll) {
+      //   window.addEventListener("scroll", () => {
+      //     let supportPageOffset = window.pageXOffset !== undefined;
+      //     let isCSS1Compat = (document.compatMode || "") === "CSS1Compat";
+      //     let scroll = {
+      //       x: supportPageOffset
+      //         ? window.pageXOffset
+      //         : isCSS1Compat
+      //         ? document.documentElement.scrollLeft
+      //         : document.body.scrollLeft,
+      //       y: supportPageOffset
+      //         ? window.pageYOffset
+      //         : isCSS1Compat
+      //         ? document.documentElement.scrollTop
+      //         : document.body.scrollTop,
+      //     };
 
-          let scrollPercent =
-            (scroll.y /
-              (document.documentElement.offsetHeight - window.innerHeight)) *
-            100;
+      //     let scrollPercent =
+      //       (scroll.y /
+      //         (document.documentElement.offsetHeight - window.innerHeight)) *
+      //       100;
 
-          let scrollPercentRounded = Math.round(
-            scrollPercent > 100 ? 100 : scrollPercent
-          );
+      //     let scrollPercentRounded = Math.round(
+      //       scrollPercent > 100 ? 100 : scrollPercent
+      //     );
 
-          animation.goToAndStop((scrollPercentRounded / 100) * 1500);
-        });
-      }
+      //     animation.goToAndStop((scrollPercentRounded / 100) * 1500);
+      //   });
+      // }
 
       return () => animation.destroy();
     }

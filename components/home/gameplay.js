@@ -20,6 +20,16 @@ const Gameplay = () => {
   const { t } = useTranslation();
   return (
     <_hero>
+      <img
+        src="/table.png"
+        style={{
+          width: "100%",
+          position: "absolute",
+          bottom: "0",
+          left: "0",
+          zIndex: 1,
+        }}
+      />
       <_float>
         <_background />
       </_float>

@@ -14,12 +14,26 @@ export const _float = styled.div`
   flex-direction: column;
 `;
 
+export const _overlay = styled.div`
+  position: absolute;
+  min-width: 100%;
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  background: linear-gradient(
+    270deg,
+    rgba(0, 0, 0, 0) 70%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 3;
+`;
+
 export const _background = styled.div`
   min-width: 100%;
   width: 100%;
   min-height: 100vh;
   height: 100vh;
-  background-image: url("/background-dark.jpg");
+  background-image: url("/trees.png");
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -53,6 +67,7 @@ export const _info = styled.div`
   margin-left: 0;
   padding: 16px;
   padding-top: 32px;
+  z-index: 9999;
 
   > h1 {
     font-weight: 800;
@@ -86,6 +101,7 @@ export const _desc = styled.div`
   font-size: 32px;
   font-family: "Poppins", sans-serif;
   padding-right: 32px;
+  padding-bottom: 24px;
 
   ${media.mobile`
     width: 90%;

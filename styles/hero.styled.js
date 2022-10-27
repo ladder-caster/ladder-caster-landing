@@ -19,7 +19,7 @@ export const _background = styled.div`
   width: 100%;
   min-height: 100vh;
   height: 100vh;
-  background-image: url("/background-dark.jpg");
+  background-image: url("/bg1.png");
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -79,6 +79,8 @@ export const _info = styled.div`
   margin-left: 0;
   padding: 16px;
   padding-top: 32px;
+  z-index: 99999;
+
   > h1 {
     font-weight: 800;
     line-height: 72px;
@@ -89,7 +91,7 @@ export const _info = styled.div`
     font-size: 54px;
     ${media.mobile`
         padding: 0 0 16px;
-        font-size: 86px;
+        font-size: 84px;
     `}
   }
 
@@ -112,8 +114,7 @@ export const _desc = styled.div`
   font-family: "Poppins", sans-serif;
 
   ${media.mobile`
-    width: 450px;
-    font-size: 28px;
+    font-size: 24px;
   `}
 `;
 
@@ -153,7 +154,7 @@ export const _button = styled.div`
     }
     > svg,
     img {
-      width: 18px;
+      width: 16px;
       margin-left: 12px;
       fill: #fff9f6;
     }
