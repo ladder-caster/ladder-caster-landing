@@ -174,6 +174,7 @@ export const _link = styled.a`
 
   ${media.tablet`
     display: inline;
+    margin: 0 16px;
   `}
 
   ${media.desktop`
@@ -206,12 +207,11 @@ export const _button = styled.a`
 
   ${media.tablet`
     padding: 12px 32px;
-    width: 200px;
+    width: 225px;
     margin-left: 8px;
   `}
 
   ${media.desktop`
-    width: 225px;
     padding: 12px 32px;
   `}
   

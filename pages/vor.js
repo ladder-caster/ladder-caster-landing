@@ -19,7 +19,7 @@ import {
   _particlesForestWizard,
 } from "../styles/vor.styled";
 
-const VOR = () => {
+const VOR = ({ render }) => {
   const loopControls = {
     loop: true,
     autoplay: true,
@@ -176,13 +176,29 @@ const VOR = () => {
     return handleAnimationComponent(SCR6Array);
   }, [SCR6Array, lottie]);
 
+  const animation = useMemo(() => {
+    switch (render) {
+      case "SCR1": {
+        return <_parent>{animationSCR1}</_parent>;
+      }
+      case "SCR2": {
+        return <div>{animationSCR2}</div>;
+      }
+      case "SCR3": {
+        return <div>{animationSCR3}</div>;
+      }
+      case "SCR6": {
+        return <div>{animationSCR6}</div>;
+      }
+      default:
+        return <></>;
+    }
+  }, [render, animationSCR1, animationSCR2, animationSCR3, animationSCR6]);
+
   return (
     <div id="container1-2" style={{ position: "relative" }}>
       {/* {animationsBG} */}
-      <_parent>{animationSCR1}</_parent>
-      <_parent>{animationSCR2}</_parent>
-      <_parent>{animationSCR3}</_parent>
-      <_parent>{animationSCR6}</_parent>
+      {animation}
     </div>
   );
 };

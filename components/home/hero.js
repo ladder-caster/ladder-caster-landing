@@ -1,73 +1,31 @@
 import { useTranslation } from "next-i18next";
+import VOR from "../../pages/vor";
 import {
   _hero,
   _float,
   _background,
-  _overlay,
   _main,
-  _chain,
   _info,
-  _brush,
   _desc,
   _wrapper,
   _button,
-  _discord,
+  _cliff,
+  _sideCliff,
+  _backLight,
+  _frontLight,
+  _sideLawn,
 } from "../../styles/hero.styled";
 
 const Hero = () => {
   const { t } = useTranslation();
   return (
     <_hero>
-      <img
-        src="/cliff.png"
-        style={{
-          height: "calc(110vh + 210px)",
-          position: "absolute",
-          bottom: "-100vh",
-          right: "-48px",
-          zIndex: 1,
-        }}
-      />
-      <img
-        src="/sideCliff.png"
-        style={{
-          width: "600px",
-          position: "absolute",
-          bottom: "-40px",
-          right: 0,
-          zIndex: 4,
-        }}
-      />
-      <img
-        src="/backLight.png"
-        style={{
-          width: "400px",
-          position: "absolute",
-          bottom: "350px",
-          right: 0,
-          zIndex: 1,
-        }}
-      />
-      <img
-        src="/frontLight.png"
-        style={{
-          width: "850px",
-          position: "absolute",
-          bottom: "72px",
-          right: 0,
-          zIndex: 3,
-        }}
-      />
-      <img
-        src="/sideLawn.png"
-        style={{
-          width: "20vw",
-          position: "absolute",
-          bottom: "0",
-          left: 0,
-          zIndex: 2,
-        }}
-      />
+      <VOR render="SCR1" />
+      <_cliff src="/cliff.png" />
+      <_sideCliff src="/sideCliff.png" />
+      <_backLight src="/backLight.png" />
+      <_frontLight src="/frontLight.png" />
+      <_sideLawn src="/sideLawn.png" />
       <_float>
         <_background />
       </_float>

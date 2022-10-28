@@ -42,7 +42,7 @@ export const _info = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 47%;
+  width: 90%;
   margin-left: 0;
   padding: 16px;
   padding-top: 32px;
@@ -56,34 +56,50 @@ export const _info = styled.div`
     font-family: "Poppins", sans-serif;
     font-size: 54px;
     text-align: center;
+    padding: 32px 0;
 
-    ${media.mobile`
-        padding: 0 0 16px;
-        font-size: 54px;
+    ${media.desktop`
+      text-align: left;
+      font-size: 32px;
+      line-height: 40px;
+      padding: 0 0 16px;
+    `}
+
+    ${media.wide`
+      line-height: 62px;
+      font-size: 54px;
     `}
   }
 
-  ${media.mobile`
+  ${media.desktop`
       padding: 0;
+      width: 70%;
   `}
 
-  ${media.desktop`
-        padding: 0;
-    `}
+  ${media.extraWide`
+    width: 47%;
+  `}
 `;
 
 export const _desc = styled.div`
   font-weight: 200;
   color: #fff9f6;
   letter-spacing: 1px;
-  line-height: 21px;
+  line-height: 32px;
   width: 90%;
-  font-size: 32px;
+  font-size: 24px;
   font-family: "Poppins", sans-serif;
   text-align: center;
+  padding-bottom: 16px;
 
-  ${media.mobile`
-    width: 90%;
+  ${media.desktop`
+    width: 100%;
+    font-size: 13px;
+    line-height: 21px;
+  `}
+
+  ${media.wide`
+    padding-right: 32px;
     font-size: 15px;
   `}
 `;
@@ -122,11 +138,24 @@ export const _button = styled.div`
     border: 1px solid #fff9f6;
     color: #3d232c;
     padding: 8px;
-    font-size: 14px;
+    font-size: 16px;
     width: 180px;
     height: 42px;
     transition: all 0.15s ease-in;
     margin-right: 15px;
+
+    ${media.tablet`
+      font-size: 16px;
+      height: 54px;
+      width: 220px;
+    `}
+
+    ${media.desktop`
+      margin-right: 15px;
+      font-size: 14px;
+      height: 42px;
+      width: 180px;
+    `}
 
     &:hover {
       transform: translateY(-4px);

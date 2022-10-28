@@ -1,35 +1,27 @@
-import { discordIcon, solanaIcon, jupiterLogo } from "../../shared/icons";
 import { useTranslation } from "next-i18next";
+import VOR from "../../pages/vor";
 import {
-  _hero,
+  _gameplay,
   _float,
   _background,
-  _overlay,
   _main,
-  _chain,
   _info,
-  _brush,
   _desc,
   _wrapper,
   _button,
-  _discord,
   _subtitle,
+  _table,
+  _animationContainer,
 } from "../../styles/gameplay.styled";
 
 const Gameplay = () => {
   const { t } = useTranslation();
   return (
-    <_hero>
-      <img
-        src="/table.png"
-        style={{
-          width: "1700px",
-          position: "absolute",
-          bottom: "0",
-          left: "0",
-          zIndex: 1,
-        }}
-      />
+    <_gameplay>
+      <_animationContainer>
+        <VOR render="SCR2" />
+      </_animationContainer>
+      <_table src="/table.png" />
       <_float>
         <_background />
       </_float>
@@ -58,7 +50,7 @@ const Gameplay = () => {
           </_wrapper>
         </_info>
       </_main>
-    </_hero>
+    </_gameplay>
   );
 };
 

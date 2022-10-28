@@ -1,55 +1,31 @@
-import { discordIcon, solanaIcon, jupiterLogo } from "../../shared/icons";
 import { useTranslation } from "next-i18next";
+import VOR from "../../pages/vor";
 import {
-  _hero,
+  _story,
   _float,
   _background,
   _overlay,
   _main,
-  _chain,
   _info,
-  _brush,
   _desc,
   _wrapper,
   _button,
-  _discord,
   _subtitle,
+  _animationContainer,
+  _light,
+  _backGrass,
+  _fgGrass,
 } from "../../styles/story.styled";
 
 const Story = () => {
-  const { t } = useTranslation();
   return (
-    <_hero>
-      <img
-        src="/light.png"
-        style={{
-          width: "100%",
-          position: "absolute",
-          top: "0",
-          left: "0",
-          zIndex: 1,
-        }}
-      />
-      <img
-        src="/backGrass.png"
-        style={{
-          width: "1700px",
-          position: "absolute",
-          bottom: "0",
-          left: "0",
-          zIndex: 1,
-        }}
-      />
-      <img
-        src="/fgGrass.png"
-        style={{
-          width: "1700px",
-          position: "absolute",
-          bottom: "0",
-          left: "0",
-          zIndex: 2,
-        }}
-      />
+    <_story>
+      <_animationContainer>
+        <VOR render="SCR3" />
+      </_animationContainer>
+      <_light src="/light.png" />
+      <_backGrass src="/backGrass.png" />
+      <_fgGrass src="/fgGrass.png" />
       <_float>
         <_background />
         <_overlay />
@@ -83,7 +59,7 @@ const Story = () => {
           </_wrapper>
         </_info>
       </_main>
-    </_hero>
+    </_story>
   );
 };
 

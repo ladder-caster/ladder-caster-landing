@@ -52,14 +52,19 @@ export const _wrapper = styled.div`
   padding-top: 64px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   width: 90%;
   min-height: 100vh;
 
-  ${media.desktop`
-    padding-top: 0;
+  ${media.tablet`
+    flex-direction: column;
   `}
+  ${media.desktop`
+    flex-direction: row;
+    justify-content: space-between;
+  `}
+
   > div {
     width: 40%;
     > h1 {
@@ -71,12 +76,19 @@ export const _wrapper = styled.div`
       font-family: "Poppins", sans-serif;
       font-size: 54px;
       max-width: 70%;
+      padding-bottom: 32px;
 
-      ${media.mobile`
+      ${media.desktop`
         padding: 0 0 300px;
         font-size: 54px;
     `}
     }
+    ${media.tablet`
+      width: 90%;
+    `}
+    ${media.desktop`
+      width: 40%;
+    `}
   }
 `;
 

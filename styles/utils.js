@@ -5,8 +5,9 @@ const breakpoints = {
   mobile: 450,
   tablet: 700,
   desktop: 900,
-  wide: 1200,
+  wide: 1100,
   extraWide: 1400,
+  largeWide: 1700,
   maxWide: 2000,
 };
 
