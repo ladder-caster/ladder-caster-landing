@@ -33,7 +33,7 @@ const Story = () => {
       <img
         src="/backGrass.png"
         style={{
-          width: "100%",
+          width: "1700px",
           position: "absolute",
           bottom: "0",
           left: "0",
@@ -43,7 +43,7 @@ const Story = () => {
       <img
         src="/fgGrass.png"
         style={{
-          width: "100%",
+          width: "1700px",
           position: "absolute",
           bottom: "0",
           left: "0",

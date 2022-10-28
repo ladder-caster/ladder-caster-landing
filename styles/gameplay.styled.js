@@ -17,8 +17,8 @@ export const _float = styled.div`
 export const _background = styled.div`
   min-width: 100%;
   width: 100%;
-  min-height: 100vh;
-  height: 100vh;
+  min-height: 120vh;
+  height: 120vh;
   background-image: url("/sunset.png");
   background-size: cover;
   background-position: center;
@@ -34,12 +34,13 @@ export const _main = styled.main`
   margin: 0 auto;
   max-width: 95%;
   padding-top: 125px;
+  padding-right: 2vw;
 
   ${media.tiny`
     padding-top: 110px;
   `}
   ${media.mobile`
-    padding-top: 30vh;
+    padding-top: 15vw;
   `}
 `;
 
@@ -48,10 +49,9 @@ export const _info = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  width: 40%;
+  width: 600px;
   margin-left: 0;
   padding: 16px;
-  padding-top: 32px;
   z-index: 99999;
 
   > h1 {

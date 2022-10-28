@@ -23,7 +23,7 @@ const Gameplay = () => {
       <img
         src="/table.png"
         style={{
-          width: "100%",
+          width: "1700px",
           position: "absolute",
           bottom: "0",
           left: "0",

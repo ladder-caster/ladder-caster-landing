@@ -34,7 +34,7 @@ const Playgame = () => {
       <img
         src="/backGrass.png"
         style={{
-          width: "100%",
+          width: "1700px",
           position: "absolute",
           bottom: "0",
           left: "0",
@@ -44,7 +44,7 @@ const Playgame = () => {
       <img
         src="/fgGrass.png"
         style={{
-          width: "100%",
+          width: "1700px",
           position: "absolute",
           bottom: "0",
           left: "0",

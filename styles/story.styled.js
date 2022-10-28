@@ -54,7 +54,7 @@ export const _main = styled.main`
     padding-top: 110px;
   `}
   ${media.mobile`
-    padding-top: 30vh;
+    padding-top: 15vw;
   `}
 `;
 
@@ -63,7 +63,7 @@ export const _info = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  width: 47%;
+  width: 45%;
   margin-left: 0;
   padding: 16px;
   padding-top: 32px;

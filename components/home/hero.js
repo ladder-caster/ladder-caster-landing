@@ -21,8 +21,7 @@ const Hero = () => {
       <img
         src="/cliff.png"
         style={{
-          width: "100vw",
-          height: "calc(110vh + 182px)",
+          height: "calc(110vh + 210px)",
           position: "absolute",
           bottom: "-100vh",
           right: "-48px",
@@ -32,9 +31,9 @@ const Hero = () => {
       <img
         src="/sideCliff.png"
         style={{
-          width: "35vw",
+          width: "600px",
           position: "absolute",
-          bottom: "-64px",
+          bottom: "-40px",
           right: 0,
           zIndex: 4,
         }}
@@ -42,9 +41,9 @@ const Hero = () => {
       <img
         src="/backLight.png"
         style={{
-          width: "20vw",
+          width: "400px",
           position: "absolute",
-          bottom: "40vh",
+          bottom: "350px",
           right: 0,
           zIndex: 1,
         }}
@@ -52,9 +51,9 @@ const Hero = () => {
       <img
         src="/frontLight.png"
         style={{
-          width: "100vw",
+          width: "850px",
           position: "absolute",
-          top: "0",
+          bottom: "72px",
           right: 0,
           zIndex: 3,
         }}

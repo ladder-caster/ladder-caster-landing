@@ -83,7 +83,7 @@ export const _info = styled.div`
 
   > h1 {
     font-weight: 800;
-    line-height: 72px;
+    line-height: 32px;
     color: #fff9f6;
     letter-spacing: 1px;
     margin: 0;
@@ -91,7 +91,11 @@ export const _info = styled.div`
     font-size: 54px;
     ${media.mobile`
         padding: 0 0 16px;
-        font-size: 84px;
+        font-size: 4vw;
+    `}
+    ${media.extraWide`
+    line-height: 72px;
+        font-size: 5vw;
     `}
   }
 

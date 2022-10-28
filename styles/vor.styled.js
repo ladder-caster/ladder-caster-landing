@@ -1,4 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
+import styled, { css } from "styled-components";
+import { media } from "./utils";
 
 export const __bgFixed = css`
   position: absolute;
@@ -61,39 +62,42 @@ export const _lightAndParticles = styled.div`
 
 export const _backWizard = styled.div`
   ${_sc1}
-  top: -64px;
-  left: 96px;
+  bottom: 48px;
+  right: 32px;
   z-index: 2;
+  width: 1400px;
 `;
 
 export const _midWizard = styled.div`
   ${_sc1}
-  width: calc(100% - 164px);
-  left: 164px;
-  top: -164px;
+  right: 32px;
+  bottom: 48px;
   z-index: 2;
+  width: 1400px;
 `;
 
 export const _frontWizard = styled.div`
   ${_sc1}
-  width: calc(100% - 164px);
-  left: 164px;
-  top: -164px;
+  right: 32px;
+  bottom: 48px;
   z-index: 2;
+  width: 1400px;
 `;
 
 export const _wandTile = styled.div`
   ${_sc2}
-  left: 8px;
-  z-index: 1;
-  width: 100%;
+  top: calc(100vh + 244px);
+  left: 64px;
+  z-index: 2;
+  width: 1600px;
 `;
 
 export const _wizardAndBook = styled.div`
   ${_sc2}
-  left: -24px;
-  z-index: 1;
-  width: 100%;
+  top: calc(100vh + 284px);
+  left: 66px;
+  z-index: 2;
+  width: 1475px;
 `;
 
 export const _particlesForest = styled.div`
@@ -105,9 +109,13 @@ export const _particlesForest = styled.div`
 
 export const _wizardsScene = styled.div`
   ${_sc3}
-  left: -24px;
-  z-index: 1;
-  width: 100%;
+  right: -96px;
+  z-index: 2;
+  width: 1500px;
+
+  ${media.extraWide`
+    right: 24px;
+  `}
 `;
 
 export const _particlesForestWizard = styled.div`
@@ -126,19 +134,14 @@ export const _particlesForestWizard = styled.div`
 
 export const _wizard = styled.div`
   ${_sc6}
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100vh;
-
-  > svg {
-    position: absolute;
-    left: -40vw;
-    width: 100% !important;
-  }
+  left: -650px;
+  z-index: 2;
+  width: 1500px;
 `;
 
 export const _parent = styled.div`
-  /* height: 100vh; */
-  /* width: 50vw; */
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
 `;

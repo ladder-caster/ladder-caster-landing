@@ -71,11 +71,11 @@ const VOR = () => {
   ];
 
   const SCR1Array = [
-    {
-      filename: "lightAndParticles",
-      sComponent: _lightAndParticles,
-      controls: loopControlsStop,
-    },
+    // {
+    //   filename: "lightAndParticles",
+    //   sComponent: _lightAndParticles,
+    //   controls: loopControlsStop,
+    // },
     {
       filename: "backWizard",
       sComponent: _backWizard,
@@ -177,7 +177,7 @@ const VOR = () => {
   }, [SCR6Array, lottie]);
 
   return (
-    <div id="container1-2">
+    <div id="container1-2" style={{ position: "relative" }}>
       {/* {animationsBG} */}
       <_parent>{animationSCR1}</_parent>
       <_parent>{animationSCR2}</_parent>

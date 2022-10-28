@@ -6,6 +6,8 @@ const breakpoints = {
   tablet: 700,
   desktop: 900,
   wide: 1200,
+  extraWide: 1400,
+  maxWide: 2000,
 };
 
 export const media = Object.keys(breakpoints).reduce((acc, label) => {

@@ -14,6 +14,7 @@ import VOR from "./vor";
 const Home = () => {
   return (
     <div className={styles.container}>
+      <VOR />
       <Head>
         <title>LadderCaster</title>
         <meta
@@ -47,7 +48,6 @@ const Home = () => {
       <Items />
       <FAQ />
       <Playgame />
-      <VOR />
       <Footer />
     </div>
   );
