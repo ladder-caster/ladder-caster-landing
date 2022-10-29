@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { media } from "./utils";
 
 export const _story = styled.div`
-  min-height: 100vh;
+  min-height: 155vh;
   position: relative;
   overflow: hidden;
+
   ${media.tablet`
-    min-height: 135vh;
+    min-height: 120vh;
   `}
 
   ${media.desktop`
@@ -19,27 +20,27 @@ export const _float = styled.div`
   width: 100%;
   height: 0;
   display: flex;
-  flex-direction: column;
 `;
 
 export const _overlay = styled.div`
   position: absolute;
   min-width: 100%;
   width: 100%;
-  min-height: 100vh;
+  min-height: 155vh;
   height: 100vh;
   background: linear-gradient(
     270deg,
     rgba(0, 0, 0, 0) 70%,
     rgba(0, 0, 0, 0.8) 100%
   );
-  z-index: 3;
+  z-index: 1;
 
   ${media.tablet`
-    min-height: 135vh;
+    min-height: 120vh;
   `}
 
   ${media.desktop`
+    z-index: 3;
     min-height: 100vh;
   `}
 `;
@@ -47,14 +48,15 @@ export const _overlay = styled.div`
 export const _background = styled.div`
   min-width: 100%;
   width: 100%;
-  min-height: 100vh;
-  height: 100vh;
+  min-height: 155vh;
+  height: 155vh;
   background-image: url("/trees.png");
   background-size: cover;
   background-position: center;
   z-index: -1;
+
   ${media.tablet`
-    min-height: 135vh;
+    min-height: 120vh;
   `}
 
   ${media.desktop`
@@ -67,15 +69,13 @@ export const _main = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   margin: 0 auto;
   max-width: 95%;
-  padding-top: 64px;
   padding-top: 64px;
 
   ${media.tablet`
     padding-top: 96px;
-    align-items: center;
   `}
 
   ${media.desktop`
@@ -90,25 +90,24 @@ export const _main = styled.main`
 
 export const _info = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   width: 90%;
   margin-left: 0;
-  padding: 16px;
-  padding-top: 32px;
+  padding: 32px 0 0;
   z-index: 9999;
 
   > h1 {
     font-weight: 800;
-    line-height: 62px;
+    line-height: 40px;
     color: #fff9f6;
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
-    font-size: 54px;
+    font-size: 36px;
     text-align: center;
-    padding: 32px 0;
+    padding: 16px 0;
 
     ${media.desktop`
       text-align: left;
@@ -125,18 +124,17 @@ export const _info = styled.div`
 
   ${media.tablet`
     padding: 0;
-    align-items: center;
-    justify-content: center;
   `}
 
   ${media.desktop`
     align-items: flex-start;
     justify-content: flex-start;
-    width: 45%;
+    width: 50%;
+    padding-left: 64px;
   `}
 
   ${media.wide`
-    width: 700px;
+    width: 750px;
   `}
 `;
 
@@ -144,11 +142,11 @@ export const _desc = styled.div`
   font-weight: 200;
   color: #fff9f6;
   letter-spacing: 1px;
-  line-height: 32px;
-  width: 90%;
-  font-size: 24px;
+  line-height: 21px;
+  font-size: 16px;
   font-family: "Poppins", sans-serif;
   text-align: center;
+  width: 100%;
   padding-bottom: 16px;
 
   ${media.desktop`
@@ -178,11 +176,7 @@ export const _subtitle = styled.div`
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
-  font-size: 54px;
-
-  ${media.mobile`
-        font-size: 28px;
-    `}
+  font-size: 28px;
 `;
 
 export const _button = styled.div`
@@ -199,16 +193,10 @@ export const _button = styled.div`
     color: #333e42;
     padding: 8px;
     font-size: 16px;
-    width: 180px;
-    height: 42px;
+    height: 54px;
+    width: 220px;
     transition: all 0.15s ease-in;
     margin-right: 15px;
-
-    ${media.tablet`
-      font-size: 16px;
-      height: 54px;
-      width: 220px;
-    `}
 
     ${media.desktop`
       margin-right: 15px;
@@ -226,8 +214,9 @@ export const _button = styled.div`
 export const _light = styled.img`
   width: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
+  width: 900px;
+  left: -112px;
+  top: 40%;
   z-index: 1;
 
   ${media.tablet`

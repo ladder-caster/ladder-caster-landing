@@ -30,17 +30,16 @@ export const _main = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   margin: 0 auto;
   padding-top: 125px;
-  padding: 0 32px;
 
   ${media.tiny`
     padding-top: 20vh;
   `}
 
   ${media.tablet`
-    align-items: center;
+    padding-top: 15vh;
   `}
 
   ${media.desktop`
@@ -57,9 +56,8 @@ export const _info = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   margin-left: 0;
-  padding: 16px;
-  padding-top: 32px;
   z-index: 99999;
+  padding-top: 32px;
 
   > h1 {
     font-weight: 800;
@@ -68,10 +66,10 @@ export const _info = styled.div`
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
-    font-size: 54px;
+    font-size: 40px;
     text-align: center;
 
-    ${media.tablet`
+    ${media.mobile`
         padding: 0 0 16px;
     `}
     ${media.desktop`
@@ -84,8 +82,8 @@ export const _info = styled.div`
     `}
   }
 
-  ${media.mobile`
-      padding: 0;
+  ${media.tablet`
+    padding-top: 32px;
   `}
 
   ${media.desktop`
@@ -99,11 +97,11 @@ export const _desc = styled.div`
   color: #fff9f6;
   letter-spacing: 1px;
   line-height: 28px;
-  font-size: 32px;
+  font-size: 20px;
   font-family: "Poppins", sans-serif;
   text-align: center;
 
-  ${media.mobile`
+  ${media.tablet`
     font-size: 24px;
   `}
 
@@ -117,17 +115,17 @@ export const _wrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  margin-top: 24px;
+  justify-content: space-between;
+  margin-top: 16px;
 
-  ${media.desktop`
-    margin-top: 16px;
+  ${media.tablet`
+    justify-content: center;
   `}
 `;
 
 export const _button = styled.div`
   > a {
-    width: 100%;
+    width: 180px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -142,22 +140,23 @@ export const _button = styled.div`
     border: 1px solid #fff9f6;
     color: #fff9f6;
     padding: 8px;
-    font-size: 16px;
-    width: 180px;
     height: 42px;
     transition: all 0.15s ease-in;
-    margin-right: 15px;
+    margin: 0 8px;
 
     ${media.tablet`
+      margin: 0;
       font-size: 16px;
       height: 54px;
       width: 220px;
+      margin: 0 8px;
     `}
 
     ${media.desktop`
       font-size: 14px;
       height: 42px;
       width: 180px;
+      margin: 0;
     `}
 
     > div {
@@ -187,11 +186,17 @@ export const _button = styled.div`
 `;
 
 export const _cliff = styled.img`
-  height: calc(120vh + 210px);
+  height: calc(125vh + 125px);
   position: absolute;
-  bottom: -110vh;
-  right: -224px;
+  bottom: -120vh;
+  right: -324px;
   z-index: 1;
+
+  ${media.tablet`
+    height: calc(120vh + 210px);
+    bottom: -110vh;
+    right: -224px;
+  `}
 
   ${media.desktop`
     right: -48px;
@@ -216,11 +221,16 @@ export const _cliff = styled.img`
 `;
 
 export const _sideCliff = styled.img`
-  width: 600px;
+  width: 350px;
   position: absolute;
-  bottom: -40px;
+  bottom: -84px;
   right: 0;
   z-index: 4;
+
+  ${media.tablet`
+    width: 600px;
+    bottom: -40px;
+  `}
 
   ${media.desktop`
     bottom: -16px;
@@ -239,13 +249,14 @@ export const _sideCliff = styled.img`
 `;
 
 export const _backLight = styled.img`
-  width: 400px;
+  width: 200px;
   position: absolute;
-  bottom: 350px;
-  right: 0;
+  bottom: 170px;
+  right: -16px;
   z-index: 1;
 
   ${media.tablet`
+    right: 0;
     bottom: 300px;
     width: 350px;
   `}
@@ -267,10 +278,10 @@ export const _backLight = styled.img`
 `;
 
 export const _frontLight = styled.img`
-  width: 850px;
+  width: 450px;
   position: absolute;
-  bottom: 72px;
-  right: 0;
+  bottom: 0px;
+  right: -16px;
   z-index: 3;
 
   ${media.tablet`

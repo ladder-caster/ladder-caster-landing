@@ -18,14 +18,9 @@ export const _wrapper = styled.div`
   align-items: center;
   width: 100%;
   padding-right: 4px;
-  padding-top: 24px;
 
   ${media.tiny`
     padding-right: 0;
-  `}
-
-  ${media.mobile`
-    padding-top: 0;
   `}
 `;
 
@@ -39,13 +34,13 @@ export const _logo = styled.a`
   letter-spacing: 1px;
   font-family: "Poppins", sans-serif;
   padding-left: 8px;
-  font-size: 14px;
+  font-size: 12px;
   z-index: 100;
 
   > svg {
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     margin-right: 4px;
 
     ${media.mobile`
@@ -69,8 +64,11 @@ export const _logo = styled.a`
   }
 
   ${media.mobile`
-    padding-left: 24px;
     font-size: 18px;
+  `}
+
+  ${media.tablet`
+    padding-left: 24px;
   `}
 
   ${({ $simple }) => {
@@ -115,9 +113,9 @@ export const _container = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 8px 0 0;
+  padding: 32px 0;
 
-  ${media.mobile`
+  ${media.tablet`
     padding: 48px 32px 48px 0;
   `}
 
@@ -132,12 +130,16 @@ export const _container = styled.div`
 `;
 
 export const _links = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: 0;
+  display: none;
+
+  ${media.tablet`
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 0;
+  `}
 `;
 
 export const _link = styled.a`
@@ -184,9 +186,9 @@ export const _link = styled.a`
 
 export const _button = styled.a`
   z-index: 10;
-  color: white;
-  background-color: transparent;
-  font-size: 14px;
+  color: #8553ca;
+  background-color: rgba(255, 255, 255, 1);
+  font-size: 12px;
   border: 1px solid #fff9f6;
   border-radius: 12px;
   cursor: pointer;
@@ -195,20 +197,24 @@ export const _button = styled.a`
   font-weight: 200;
   display: flex;
   justify-content: center;
-  padding: 12px 16px;
+  padding: 10px 12px;
   margin-left: 0;
-  width: 180px;
+  width: 150px;
   font-family: "Poppins", sans-serif;
-
-  &:hover {
-    color: #8553ca;
-    background-color: rgba(255, 255, 255, 1);
-  }
+  margin-right: 8px;
 
   ${media.tablet`
+    color: white;
+    margin-right: 0px;
+    background-color: transparent;
+    &:hover {
+      color: #8553ca;
+      background-color: rgba(255, 255, 255, 1);
+    }
     padding: 12px 32px;
     width: 225px;
     margin-left: 8px;
+    font-size: 14px;
   `}
 
   ${media.desktop`

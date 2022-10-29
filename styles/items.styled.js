@@ -2,8 +2,12 @@ import styled from "styled-components";
 import { media } from "./utils";
 
 export const _hero = styled.div`
-  min-height: 120vh;
+  min-height: 140vh;
   position: relative;
+
+  ${media.tablet`
+    min-height: 120vh;
+  `}
 `;
 
 export const _float = styled.div`
@@ -17,12 +21,17 @@ export const _float = styled.div`
 export const _background = styled.div`
   min-width: 100%;
   width: 100%;
-  min-height: 120vh;
-  height: 100vh;
+  min-height: 140vh;
+  height: 140vh;
   background-image: url("/books.png");
   background-size: cover;
   background-position: center;
   z-index: -1;
+
+  ${media.tablet`
+    min-height: 120vh;
+    height: 120vh;
+  `}
 `;
 
 export const _main = styled.main`
@@ -33,8 +42,14 @@ export const _main = styled.main`
   align-items: center;
   margin: 0 auto;
   max-width: 95%;
-  padding-top: 64px;
-  padding-left: 32px;
+
+  ${media.tablet`
+    padding-left: 32px; 
+  `}
+
+  ${media.desktop`
+    padding-top: 64px;
+  `}
 `;
 
 export const _info = styled.div`
@@ -44,8 +59,7 @@ export const _info = styled.div`
   flex-direction: column;
   width: 90%;
   margin-left: 0;
-  padding: 16px;
-  padding-top: 32px;
+  padding: 96px 16px 0;
 
   > h1 {
     font-weight: 800;
@@ -54,9 +68,14 @@ export const _info = styled.div`
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
-    font-size: 54px;
+    font-size: 36px;
     text-align: center;
-    padding: 32px 0;
+
+    ${media.tablet`
+      padding: 32px 0;
+      font-size: 54px;
+      line-height: 62px;
+    `}
 
     ${media.desktop`
       text-align: left;
@@ -85,17 +104,17 @@ export const _desc = styled.div`
   font-weight: 200;
   color: #fff9f6;
   letter-spacing: 1px;
-  line-height: 32px;
-  width: 90%;
-  font-size: 24px;
+  line-height: 21px;
+  font-size: 16px;
   font-family: "Poppins", sans-serif;
   text-align: center;
+  width: 100%;
   padding-bottom: 16px;
 
-  ${media.desktop`
-    width: 100%;
-    font-size: 13px;
-    line-height: 21px;
+  ${media.tablet`
+    width: 90%;
+    font-size: 24px;
+    line-height: 32px;
   `}
 
   ${media.wide`
@@ -118,11 +137,7 @@ export const _subtitle = styled.div`
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
-  font-size: 54px;
-
-  ${media.mobile`
-        font-size: 28px;
-    `}
+  font-size: 28px;
 `;
 
 export const _button = styled.div`
@@ -139,16 +154,9 @@ export const _button = styled.div`
     color: #3d232c;
     padding: 8px;
     font-size: 16px;
-    width: 180px;
-    height: 42px;
+    height: 54px;
+    width: 220px;
     transition: all 0.15s ease-in;
-    margin-right: 15px;
-
-    ${media.tablet`
-      font-size: 16px;
-      height: 54px;
-      width: 220px;
-    `}
 
     ${media.desktop`
       margin-right: 15px;

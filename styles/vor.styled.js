@@ -57,12 +57,13 @@ export const _lightAndParticles = styled.div`
 
 export const _backWizard = styled.div`
   ${_sc1}
-  bottom: 48px;
-  right: 48px;
+  bottom: -48px;
+  right: -32px;
   z-index: 2;
-  width: 1400px;
+  width: 800px;
 
   ${media.tablet`
+    bottom: 48px;
     right: 64px;
     width: 1200px;
   `}
@@ -89,12 +90,13 @@ export const _backWizard = styled.div`
 
 export const _midWizard = styled.div`
   ${_sc1}
-  right: 32px;
-  bottom: 48px;
+  right: -48px;
+  bottom: -32px;
   z-index: 2;
-  width: 1200px;
+  width: 800px;
 
   ${media.tablet`
+    bottom: 48px;
     right: 64px;
     width: 1200px;
   `}
@@ -121,12 +123,13 @@ export const _midWizard = styled.div`
 
 export const _frontWizard = styled.div`
   ${_sc1}
-  right: 32px;
-  bottom: 48px;
+  right: -32px;
+  bottom: -32px;
   z-index: 2;
-  width: 1400px;
+  width: 800px;
 
   ${media.tablet`
+    bottom: 48px;
     right: 64px;
     width: 1200px;
   `}
@@ -153,10 +156,10 @@ export const _frontWizard = styled.div`
 
 export const _wandTile = styled.div`
   ${_sc2}
-  top: -335px;
-  left: 4px;
+  top: 176px;
+  left: -92px;
   z-index: 2;
-  width: 1700px;
+  width: 800px;
 
   ${media.tablet`
     left: -110px;
@@ -192,10 +195,10 @@ export const _wandTile = styled.div`
 
 export const _wizardAndBook = styled.div`
   ${_sc2}
-  top: -335px;
-  left: -20px;
+  top: 180px;
+  left: -104px;
   z-index: 2;
-  width: 1700px;
+  width: 800px;
 
   ${media.tablet`
     left: -130px;
@@ -232,10 +235,10 @@ export const _wizardAndBook = styled.div`
 
 export const _particlesForest = styled.div`
   ${_sc3}
-  top: -425px;
-  left: -15px;
+  top: -50px;
+  left: -500px;
   z-index: 2;
-  width: 1700px;
+  width: 1000px;
 
   ${media.tablet`
     width: 1600px;
@@ -274,10 +277,10 @@ export const _particlesForest = styled.div`
 
 export const _wizardsScene = styled.div`
   ${_sc3}
-  top: -425px;
-  left: -15px;
+  top: -50px;
+  left: -500px;
   z-index: 2;
-  width: 1700px;
+  width: 1000px;
 
   ${media.tablet`
     width: 1600px;
@@ -316,10 +319,10 @@ export const _wizardsScene = styled.div`
 
 export const _particlesForestWizard = styled.div`
   ${_sc6}
-  top: -425px;
-  left: -650px;
+  top: -150px;
+  left: -500px;
   z-index: 2;
-  width: 1700px;
+  width: 1200px;
 
   ${media.tablet`
     width: 1800px;
@@ -357,10 +360,10 @@ export const _particlesForestWizard = styled.div`
 
 export const _wizard = styled.div`
   ${_sc6}
-  top: -425px;
-  left: -45%;
+  top: -150px;
+  left: -500px;
   z-index: 2;
-  width: 1700px;
+  width: 1200px;
 
   ${media.tablet`
     width: 1800px;

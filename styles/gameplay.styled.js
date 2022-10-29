@@ -59,24 +59,30 @@ export const _main = styled.main`
 
 export const _info = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  width: 90%;
+  width: 100%;
   margin-left: 0;
-  padding: 16px;
+  padding: 64px 16px 0;
   z-index: 99999;
 
   > h1 {
     font-weight: 800;
-    line-height: 62px;
+    line-height: 40px;
     color: #fff9f6;
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
-    font-size: 54px;
+    font-size: 36px;
     text-align: center;
-    padding: 32px 0;
+    padding: 16px 0;
+
+    ${media.tablet`
+      padding: 32px 0;
+      font-size: 54px;
+      line-height: 62px;
+    `}
 
     ${media.desktop`
       text-align: left;
@@ -92,9 +98,8 @@ export const _info = styled.div`
   }
 
   ${media.tablet`
-    padding: 0;
-    align-items: center;
-    justify-content: center;
+    width: 90%;
+    padding: 16px;
   `}
 
   ${media.desktop`
@@ -112,11 +117,17 @@ export const _desc = styled.div`
   font-weight: 200;
   color: #fff9f6;
   letter-spacing: 1px;
-  line-height: 32px;
-  width: 90%;
-  font-size: 24px;
+  line-height: 21px;
+  font-size: 16px;
   font-family: "Poppins", sans-serif;
   text-align: center;
+  width: 100%;
+
+  ${media.tablet`
+    width: 90%;
+    font-size: 24px;
+    line-height: 32px;
+  `}
 
   ${media.desktop`
     text-align: left;
@@ -149,11 +160,7 @@ export const _subtitle = styled.div`
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
-  font-size: 54px;
-
-  ${media.mobile`
-        font-size: 28px;
-    `}
+  font-size: 28px;
 `;
 
 export const _button = styled.div`
@@ -170,15 +177,9 @@ export const _button = styled.div`
     color: #703a3e;
     padding: 8px;
     font-size: 16px;
-    width: 180px;
-    height: 42px;
+    height: 54px;
+    width: 220px;
     transition: all 0.15s ease-in;
-
-    ${media.tablet`
-      font-size: 16px;
-      height: 54px;
-      width: 220px;
-    `}
 
     ${media.desktop`
       margin-right: 15px;
@@ -194,10 +195,10 @@ export const _button = styled.div`
 `;
 
 export const _table = styled.img`
-  width: 1700px;
+  width: 800px;
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: -96px;
   z-index: 1;
 
   ${media.tablet`

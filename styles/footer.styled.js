@@ -103,7 +103,6 @@ export const _title = styled.div`
   margin: 0px 24px;
   text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
   font-weight: 800;
-  text-transform: uppercase;
 
   &:after {
     content: "";
@@ -137,7 +136,6 @@ export const _link = styled.a`
   color: rgb(173, 181, 189);
   letter-spacing: 2px;
   text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
-  text-transform: uppercase;
   font-size: 15px;
   margin: 0px 24px;
   font-weight: 200;

@@ -49,43 +49,48 @@ export const _float = styled.div`
 `;
 
 export const _wrapper = styled.div`
-  padding-top: 64px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 90%;
   min-height: 100vh;
+  flex-direction: column;
 
   ${media.tablet`
-    flex-direction: column;
+    padding-top: 64px;
   `}
+
   ${media.desktop`
     flex-direction: row;
     justify-content: space-between;
   `}
 
   > div {
-    width: 40%;
+    width: 100%;
     > h1 {
       font-weight: 800;
-      line-height: 62px;
+      line-height: 40px;
       color: #fff9f6;
       letter-spacing: 1px;
       margin: 0;
       font-family: "Poppins", sans-serif;
-      font-size: 54px;
-      max-width: 70%;
+      font-size: 36px;
       padding-bottom: 32px;
+      text-align: center;
+
+      ${media.tablet`
+        max-width: 70%;
+        text-align: left;
+        line-height: 62px;
+        font-size: 54px;
+      `}
 
       ${media.desktop`
         padding: 0 0 300px;
         font-size: 54px;
-    `}
+      `}
     }
-    ${media.tablet`
-      width: 90%;
-    `}
     ${media.desktop`
       width: 40%;
     `}
@@ -98,11 +103,14 @@ export const _subtitle = styled.div`
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
-  font-size: 54px;
+  font-size: 28px;
+  text-align: center;
+  padding-bottom: 32px;
 
-  ${media.mobile`
-        font-size: 28px;
-    `}
+  ${media.tablet`
+    padding-bottom: 0;
+    text-align: left;
+  `}
 `;
 
 export const _desc = styled.div`
@@ -142,7 +150,7 @@ export const _expanded = styled.div`
 export const _title = styled.div`
   position: relative;
   color: #fff9f6;
-  font-size: 14px;
+  font-size: 11px;
   letter-spacing: 2px;
   text-shadow: 1px 1px 0 rgba(52, 42, 60, 0.1);
   font-weight: 600;
@@ -151,10 +159,6 @@ export const _title = styled.div`
   align-items: center;
   width: 100%;
   text-transform: uppercase;
-  ${media.mobile`
-    font-size: 11px;
-    
-  `}
 
   > svg {
     width: 18px;
