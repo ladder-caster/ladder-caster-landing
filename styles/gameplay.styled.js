@@ -71,6 +71,7 @@ export const _info = styled.div`
     font-weight: 800;
     line-height: 40px;
     color: #fff9f6;
+    text-shadow: 1px 1px 0 #553030;
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -80,7 +81,7 @@ export const _info = styled.div`
 
     ${media.tablet`
       padding: 32px 0;
-      font-size: 54px;
+      font-size: 36px;
       line-height: 62px;
     `}
 
@@ -116,6 +117,7 @@ export const _info = styled.div`
 export const _desc = styled.div`
   font-weight: 200;
   color: #fff9f6;
+  text-shadow: 1px 1px 0 #553030;
   letter-spacing: 1px;
   line-height: 21px;
   font-size: 16px;
@@ -157,6 +159,7 @@ export const _wrapper = styled.div`
 export const _subtitle = styled.div`
   font-weight: 200;
   color: #fff9f6;
+  text-shadow: 1px 1px 0 #553030;
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -169,16 +172,15 @@ export const _button = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    font-weight: 200;
+    font-weight: 500;
     letter-spacing: 0.5px;
     cursor: pointer;
-    background-color: white;
-    border: 1px solid #fff9f6;
-    color: #703a3e;
-    padding: 8px;
+    background-color: #703a3e;
+    border-bottom: 4px solid #553030;
+    color: #fff;
+    padding: 8px 32px;
     font-size: 16px;
     height: 54px;
-    width: 220px;
     transition: all 0.15s ease-in;
 
     ${media.desktop`

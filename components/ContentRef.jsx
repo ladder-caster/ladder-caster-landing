@@ -34,12 +34,15 @@ import { Success } from "./referrals/Success";
 import { useMesh } from "../core/state/mesh/useMesh";
 import { BUDDY, BUDDY_CHEST, CLIENT, STEP } from "../core/actions/actions";
 import { QRCode } from "./referrals/QRCode";
+import { SuccessComponent } from "./referrals/SuccessComponent";
+import {LC_USER} from "../core/actions";
 
 const REF_BASIS_POINTS = 9999;
 
 function Content({ refId }) {
   const { t } = useTranslation();
   const [step, setStep] = useMesh(STEP);
+  const [user] = useMesh(LC_USER);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [hover, setHover] = useState(false);
@@ -168,6 +171,7 @@ function Content({ refId }) {
               <_actionButton
                 onClick={() => {
                   createContact(email);
+                  setStep(1);
                 }}
                 $hover={hover}
               >

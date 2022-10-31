@@ -42,10 +42,10 @@ const Home = () => {
 			<Nav />
 			<Hero />
 			<Gameplay />
-			<Story />
-			<Items />
-			<FAQ />
 			<Playgame />
+			<Story />
+			<FAQ />
+			<Items />
 			<Footer />
 		</div>
 	);

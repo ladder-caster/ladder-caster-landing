@@ -80,10 +80,11 @@ export const _wrapper = styled.div`
       text-align: center;
 
       ${media.tablet`
-        max-width: 70%;
+        max-width: 60%;
         text-align: left;
         line-height: 62px;
-        font-size: 54px;
+        font-size: 36px;
+        max-width: 80%;
       `}
 
       ${media.desktop`

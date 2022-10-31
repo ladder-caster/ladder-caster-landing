@@ -4,10 +4,10 @@ import { media } from "./utils";
 export const _playgame = styled.div`
   position: relative;
   overflow: hidden;
-  min-height: 140vh;
+  //min-height: 140vh;
 
   ${media.desktop`
-    min-height: 100vh;
+    // min-height: 100vh;
   `}
 `;
 
@@ -35,15 +35,14 @@ export const _background = styled.div`
 `;
 
 export const _main = styled.main`
-  min-height: 140vh;
+  //min-height: 140vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
   max-width: 100%;
-
   ${media.desktop`
-    min-height: 100vh;
+    align-items: flex-start;
   `}
 `;
 
@@ -60,24 +59,29 @@ export const _info = styled.div`
   z-index: 9999;
 
   ${media.desktop`
-    height: 100vh;
-    width: 60vw;
+    
+    flex-direction: row;
   `}
 `;
 
 export const _info_wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   width: 100%;
   margin-left: 0;
   padding: 16px;
+  
+  ${media.desktop`
+    max-width: 560px;
+  `}
 
   > h1 {
     font-weight: 800;
     line-height: 40px;
     color: #fff9f6;
+    text-shadow: 1px 1px 0 #314959;
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -87,7 +91,7 @@ export const _info_wrapper = styled.div`
 
     ${media.tablet`
       padding: 32px 0;
-      font-size: 54px;
+      font-size: 36px;
       line-height: 62px;
     `}
 
@@ -123,6 +127,7 @@ export const _info_wrapper = styled.div`
 export const _desc = styled.div`
   font-weight: 200;
   color: #fff9f6;
+  text-shadow: 1px 1px 0 #314959;
   letter-spacing: 1px;
   line-height: 21px;
   font-size: 16px;
@@ -162,6 +167,7 @@ export const _wrapper = styled.div`
 export const _subtitle = styled.div`
   font-weight: 200;
   color: #fff9f6;
+  text-shadow: 1px 1px 0 #314959;
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -174,16 +180,15 @@ export const _button = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    font-weight: 200;
+    font-weight: 500;
     letter-spacing: 0.5px;
     cursor: pointer;
-    background-color: white;
-    border: 1px solid #fff9f6;
-    color: #303f5a;
-    padding: 8px;
+    background-color: #395d6f;
+    border-bottom: 4px solid #314959;
+    color: #fff;
+    padding: 8px 32px;
     font-size: 16px;
     height: 54px;
-    width: 220px;
     transition: all 0.15s ease-in;
     margin-right: 15px;
 

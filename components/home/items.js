@@ -25,12 +25,10 @@ const Items = () => {
       </_float>
       <_main>
         <_info>
-          <_subtitle>Items</_subtitle>
-          <h1>Loot and Trade</h1>
+          <_subtitle>{t('home.loot.title')}</_subtitle>
+          <h1>{t('home.loot.header')}</h1>
           <_desc>
-            Every item is fully on-chain. With over 400,000 NFT item and
-            character combinations, equip your characters with items to maximize
-            your strategy. Only the best will top the leaderboards.
+            {t('home.loot.description')}
           </_desc>
           <_wrapper>
             <_button>
@@ -39,7 +37,7 @@ const Items = () => {
                 rel="noreferrer"
                 href={"https://jup.ag/swap/USDC-LADA"}
               >
-                View Items
+                {t('home.loot.cta')}
               </a>
             </_button>
           </_wrapper>

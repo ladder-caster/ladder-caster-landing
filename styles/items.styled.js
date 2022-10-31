@@ -65,6 +65,7 @@ export const _info = styled.div`
     font-weight: 800;
     line-height: 62px;
     color: #fff9f6;
+    text-shadow: 1px 1px 0 #553030;
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -73,12 +74,12 @@ export const _info = styled.div`
 
     ${media.tablet`
       padding: 32px 0;
-      font-size: 54px;
+      font-size: 36px;
       line-height: 62px;
     `}
 
     ${media.desktop`
-      text-align: left;
+      text-align: center;
       font-size: 32px;
       line-height: 40px;
       padding: 0 0 16px;
@@ -103,6 +104,7 @@ export const _info = styled.div`
 export const _desc = styled.div`
   font-weight: 200;
   color: #fff9f6;
+  text-shadow: 1px 1px 0 #553030;
   letter-spacing: 1px;
   line-height: 21px;
   font-size: 16px;
@@ -115,6 +117,14 @@ export const _desc = styled.div`
     width: 90%;
     font-size: 24px;
     line-height: 32px;
+  `}
+
+  ${media.desktop`
+    text-align: center;
+    width: 100%;
+    line-height: 21px;
+    font-size: 13px;
+    padding-bottom: 16px;
   `}
 
   ${media.wide`
@@ -134,6 +144,7 @@ export const _wrapper = styled.div`
 export const _subtitle = styled.div`
   font-weight: 200;
   color: #fff9f6;
+  text-shadow: 1px 1px 0 #553030;
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -146,12 +157,12 @@ export const _button = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    font-weight: 200;
+    font-weight: 500;
     letter-spacing: 0.5px;
     cursor: pointer;
-    background-color: white;
-    border: 1px solid #fff9f6;
-    color: #3d232c;
+    background-color: #703a3e;
+    border-bottom: 4px solid #553030;
+    color: #fff;
     padding: 8px;
     font-size: 16px;
     height: 54px;

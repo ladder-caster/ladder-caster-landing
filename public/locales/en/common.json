@@ -28,9 +28,28 @@
   "home": {
     "hero": {
       "poweredSolana": "Powered by Solana",
-      "realtimeMobile": "A Blockchain Strategy Game",
+      "realtimeMobile": "A Community Strategy Game",
+      "cta": "Refer a Friend!",
       "buyLADA": "Buy $LADA",
       "joinDiscord": "Join the Discord"
+    },
+    "gameplay": {
+      "title": "Gameplay",
+      "header": "A Fun Mobile Trading Game",
+      "description": "The goal of the game is to move as many casters on the board using their stamina, and loot. Resources you find can be used to level up, and chests will contain items that you can trade to gain more wealth and power.",
+      "cta": "Refer a Friend!"
+    },
+    "story": {
+      "title": "Story",
+      "header": "A Most Magical Adventure",
+      "description": "In the land of Avaria where magic reigns supreme, GrandCaster Mejulah, the Oracle of Space and Time, has disappeared! In his absence, adventurers must collect resources to level up and master time.",
+      "cta": "Refer a Friend!"
+    },
+    "loot": {
+      "title": "Items",
+      "header": "Equip and Loot",
+      "description": "Equip your casters with items to increase the number of resources they can collect. Rare items will give you a significant boost and be coveted by others. Grind your way up the leaderboards to earn rewards.",
+      "cta": "View Items!"
     },
     "featured": {
       "investors": "Investors",

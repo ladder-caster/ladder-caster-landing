@@ -21,24 +21,22 @@ const Playgame = () => {
   const { t } = useTranslation();
   return (
     <_playgame>
-      <_animationContainer>
-        <VOR render="SCR6" />
-      </_animationContainer>
-      <_light src="/light.png" />
-      <_backGrass src="/backGrass.png" />
-      <_fgGrass src="/fgGrass.png" />
-      <_float>
-        <_background />
-      </_float>
+      {/*<_animationContainer>*/}
+      {/*  <VOR render="SCR6" />*/}
+      {/*</_animationContainer>*/}
+      {/*<_light src="/light.png" />*/}
+      {/*<_backGrass src="/backGrass.png" />*/}
+      {/*<_fgGrass src="/fgGrass.png" />*/}
+      {/*<_float>*/}
+      {/*  <_background />*/}
+      {/*</_float>*/}
       <_main>
         <_info>
           <_info_wrapper>
-            <_subtitle>Play Game</_subtitle>
-            <h1>Answer the Call to Save Avaria</h1>
+            <_subtitle>Invite Friends</_subtitle>
+            <h1>Share & Earn $10</h1>
             <_desc>
-              The world of Avaria has been fractured into multiple universes and
-              it needs your help to master time and restore order. Join the
-              waitlist and recruit your friends for a special offer!
+              Join the community and invite your friends to gain rewards. Connect to the BuddyLink Network to share your username and earn $10 each time your referees buy any casters.
             </_desc>
             <_wrapper>
               <_button>
@@ -47,7 +45,7 @@ const Playgame = () => {
                   rel="noreferrer"
                   href={"https://jup.ag/swap/USDC-LADA"}
                 >
-                  Join the Waitlist
+                  Refer a Friend!
                 </a>
               </_button>
             </_wrapper>
