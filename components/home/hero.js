@@ -42,9 +42,9 @@ const Hero = () => {
           <h1>{t("laddercaster")}</h1>
           <_desc>{t("home.hero.realtimeMobile")}</_desc>
           <_wrapper>
-            <_button $color={'#8553ca'} $background={'#fff'}>
+            <_button>
               <Link href={'/r/LadderCaster'}>
-                Join the Waitlist
+                {t("home.hero.cta")}
               </Link>
             </_button>
           </_wrapper>

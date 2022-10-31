@@ -108,6 +108,7 @@ export const _info = styled.div`
     font-size: 36px;
     text-align: center;
     padding: 16px 0;
+    text-shadow: 1px 1px 0 #314959;
 
     ${media.desktop`
       text-align: left;
@@ -148,6 +149,13 @@ export const _desc = styled.div`
   text-align: center;
   width: 100%;
   padding-bottom: 16px;
+  text-shadow: 1px 1px 0 #314959;
+
+  ${media.tablet`
+    width: 90%;
+    font-size: 24px;
+    line-height: 32px;
+  `}
 
   ${media.desktop`
     text-align: left;
@@ -173,6 +181,7 @@ export const _wrapper = styled.div`
 export const _subtitle = styled.div`
   font-weight: 200;
   color: #fff9f6;
+  text-shadow: 1px 1px 0 #314959;
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -185,24 +194,23 @@ export const _button = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    font-weight: 200;
+    font-weight: 500;
     letter-spacing: 0.5px;
     cursor: pointer;
-    background-color: white;
-    border: 1px solid #fff9f6;
-    color: #333e42;
-    padding: 8px;
+    background-color: #395d6f;
+    border-bottom: 4px solid #314959;
+    color: #fff;
+    padding: 8px 32px;
     font-size: 16px;
     height: 54px;
-    width: 220px;
     transition: all 0.15s ease-in;
     margin-right: 15px;
+    white-space: nowrap;
 
     ${media.desktop`
       margin-right: 15px;
       font-size: 14px;
       height: 42px;
-      width: 180px;
     `}
 
     &:hover {
