@@ -45,7 +45,6 @@ export const _page = styled.div`
   color: #fff9f6;
   letter-spacing: 0.4px;
   overflow: hidden;
-  /* background-color: #ff9e3c; */
 `;
 
 export const _background = styled.div`
@@ -213,11 +212,15 @@ export const _progressPromo = styled.div`
 export const _stepContainer = styled.div`
   border-radius: 8px;
   padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const _actionDescription = styled.div`
   text-align: center;
-  padding: 0 16px 16px 16px;
+  max-width: 420px;
+  padding: 0 0 16px 0;
   font-size: 24px;
   font-weight: 700;
   width: 100%;

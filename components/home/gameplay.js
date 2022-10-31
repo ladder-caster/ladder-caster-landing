@@ -13,6 +13,7 @@ import {
   _table,
   _animationContainer,
 } from "../../styles/gameplay.styled";
+import Link from "next/link";
 
 const Gameplay = () => {
   const { t } = useTranslation();
@@ -25,25 +26,16 @@ const Gameplay = () => {
       <_float>{/* <_background /> */}</_float>
       <_main>
         <_info>
-          <_subtitle>Gameplay</_subtitle>
-          <h1>A Mobile Strategy and Market Game</h1>
+          <_subtitle>{t('home.gameplay.title')}</_subtitle>
+          <h1>{t('home.gameplay.header')}</h1>
           <_desc>
-            Drawing inspiration from Runescape&#39;s market, Diablo&#39;s
-            ladder, and DND&#39;s community-led storytelling, LadderCaster is a
-            fresh new look at the world of blockchain gaming - and it&#39;s
-            mobile-first! Experience a thrilling story that unfolds across a
-            dynamic boardscape, loot your way through eight levels with an
-            unlimited number of casters, and race your way to the top.
+            {t('home.gameplay.description')}
           </_desc>
           <_wrapper>
             <_button>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={"https://jup.ag/swap/USDC-LADA"}
-              >
-                Join the Waitlist
-              </a>
+              <Link href={'/r/LadderCaster'}>
+                {t('home.gameplay.cta')}
+              </Link>
             </_button>
           </_wrapper>
         </_info>

@@ -77,19 +77,23 @@ export const _info = styled.div`
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
-    font-size: 40px;
+    font-size: 54px;
     text-align: center;
+    text-shadow: 1px 1px 0 #388fe5;
 
     ${media.mobile`
         padding: 0 0 16px;
     `}
+    ${media.tablet`
+      font-size: 54px
+    `}
     ${media.desktop`
-      font-size: 5vw;
+      font-size: 54px
       text-align: left;
     `}
     ${media.extraWide`
         line-height: 72px;
-        font-size: 5vw;
+        font-size: 54px
     `}
   }
 
@@ -108,9 +112,11 @@ export const _desc = styled.div`
   color: #fff9f6;
   letter-spacing: 1px;
   line-height: 28px;
-  font-size: 20px;
+  font-size: 24px;
   font-family: "Poppins", sans-serif;
   text-align: center;
+  margin-bottom: 8px;
+  text-shadow: 1px 1px 0 #388fe5;
 
   ${media.tablet`
     font-size: 24px;
@@ -147,18 +153,18 @@ export const _button = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 12px;
-    font-weight: 200;
+    font-weight: 500;
     letter-spacing: 0.5px;
     cursor: pointer;
-    background: none;
-    background-color: transparent;
-    font-size: 14px;
-    border: 1px solid #fff9f6;
-    color: #fff9f6;
-    padding: 8px;
-    height: 42px;
+    background: #4fa7ec;
+    font-size: 16px;
+    border-bottom: 4px solid #388fe5;
+    color: #fff;
+    padding: 8px 32px;
+    height: 54px;
     transition: all 0.15s ease-in;
     margin: 0 8px;
+    white-space: nowrap;
 
     ${media.tablet`
       margin: 0;

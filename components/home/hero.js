@@ -18,6 +18,7 @@ import {
   _mountainsMid,
   _sky,
 } from "../../styles/hero.styled";
+import Link from "next/link";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -42,27 +43,10 @@ const Hero = () => {
           <_desc>{t("home.hero.realtimeMobile")}</_desc>
           <_wrapper>
             <_button>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={"https://jup.ag/swap/USDC-LADA"}
-                style={{ color: "#8553ca", backgroundColor: "white" }}
-              >
-                Join the Waitlist
-              </a>
+              <Link href={'/r/LadderCaster'}>
+                {t("home.hero.cta")}
+              </Link>
             </_button>
-            {/* <_button>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={"https://discord.com/invite/laddercaster"}
-              >
-                <span>
-                  Play the Alpha
-                  <img src="/arrow.png" />
-                </span>
-              </a>
-            </_button> */}
           </_wrapper>
         </_info>
       </_main>
