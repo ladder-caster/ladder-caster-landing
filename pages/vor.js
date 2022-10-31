@@ -17,6 +17,7 @@ import {
   _wizardsScene,
   _wizard,
   _particlesForestWizard,
+  _container,
 } from "../styles/vor.styled";
 
 const VOR = ({ render }) => {
@@ -31,42 +32,45 @@ const VOR = ({ render }) => {
   };
 
   const scrollControls = {
-    loop: true,
-    autoplay: true,
+    loop: false,
+    autoplay: false,
   };
 
   const BGArray = [
     {
       filename: "skyTransition",
       sComponent: _skyTransition,
-      controls: loopControlsStop,
-      isScroll: false,
+      controls: scrollControls,
+      isScroll: true,
     },
-    {
-      filename: "mountainLightTransition",
-      sComponent: _mountainLightTransition,
-      controls: loopControlsStop,
-    },
-    {
-      filename: "midGroundLightTransition",
-      sComponent: _midGroundLightTransition,
-      controls: loopControlsStop,
-      isScroll: false,
-    },
-    {
-      filename: "cloudsDaytime",
-      sComponent: _cloudsDaytime,
-      controls: loopControlsStop,
-    },
-    {
-      filename: "cloudsSunset",
-      sComponent: _cloudsSunset,
-      controls: loopControlsStop,
-    },
+    // {
+    //   filename: "mountainLightTransition",
+    //   sComponent: _mountainLightTransition,
+    //   controls: loopControlsStop,
+    // },
+    // {
+    //   filename: "midGroundLightTransition",
+    //   sComponent: _midGroundLightTransition,
+    //   controls: loopControlsStop,
+    //   isScroll: true,
+    // },
+    // {
+    //   filename: "cloudsDaytime",
+    //   sComponent: _cloudsDaytime,
+    //   controls: loopControlsStop,
+    // },
+    // {
+    //   filename: "cloudsSunset",
+    //   sComponent: _cloudsSunset,
+    //   controls: loopControlsStop,
+    // },
+  ];
+
+  const forcefield = [
     {
       filename: "forceField",
       sComponent: _forceField,
-      controls: loopControlsStop,
+      controls: loopControls,
     },
   ];
 
@@ -74,7 +78,7 @@ const VOR = ({ render }) => {
     // {
     //   filename: "lightAndParticles",
     //   sComponent: _lightAndParticles,
-    //   controls: loopControlsStop,
+    //   controls: loopControls,
     // },
     {
       filename: "backWizard",
@@ -129,18 +133,20 @@ const VOR = ({ render }) => {
   ];
 
   const [lottie, setLottie] = useState(null);
+
   useEffect(() => {
     import("lottie-web").then((Lottie) => setLottie(Lottie.default));
   }, []);
 
   const handleAnimationComponent = useCallback(
-    (arr) => {
+    (arr, screen) => {
       if (lottie) {
         let list = [];
 
-        arr.forEach((obj) => {
+        arr.forEach((obj, key) => {
           list.push(
             <Animation
+              key={`${key}-${screen}`}
               animate={obj}
               lottie={lottie}
               controls={obj.controls}
@@ -157,24 +163,28 @@ const VOR = ({ render }) => {
   );
 
   const animationsBG = useMemo(() => {
-    return handleAnimationComponent(BGArray);
+    return handleAnimationComponent(BGArray, "bg");
   }, [BGArray, lottie]);
 
   const animationSCR1 = useMemo(() => {
-    return handleAnimationComponent(SCR1Array);
+    return handleAnimationComponent(SCR1Array, "SCR1");
   }, [SCR1Array, lottie]);
 
   const animationSCR2 = useMemo(() => {
-    return handleAnimationComponent(SCR2Array);
+    return handleAnimationComponent(SCR2Array, "SCR2");
   }, [SCR2Array, lottie]);
 
   const animationSCR3 = useMemo(() => {
-    return handleAnimationComponent(SCR3Array);
+    return handleAnimationComponent(SCR3Array, "SCR3");
   }, [SCR3Array, lottie]);
 
   const animationSCR6 = useMemo(() => {
-    return handleAnimationComponent(SCR6Array);
+    return handleAnimationComponent(SCR6Array, "SCR4");
   }, [SCR6Array, lottie]);
+
+  const animationForceField = useMemo(() => {
+    return handleAnimationComponent(forcefield, "forcefield");
+  }, [forcefield, lottie]);
 
   const animation = useMemo(() => {
     switch (render) {
@@ -190,23 +200,35 @@ const VOR = ({ render }) => {
       case "SCR6": {
         return <div>{animationSCR6}</div>;
       }
+      case "bg": {
+        return <div>{animationsBG}</div>;
+      }
+      case "forcefield": {
+        return <div>{animationForceField}</div>;
+      }
       default:
         return <></>;
     }
-  }, [render, animationSCR1, animationSCR2, animationSCR3, animationSCR6]);
+  }, [
+    render,
+    animationSCR1,
+    animationSCR2,
+    animationSCR3,
+    animationSCR6,
+    animationsBG,
+    animationForceField,
+  ]);
 
-  return (
-    <div id="container1-2" style={{ position: "relative" }}>
-      {/* {animationsBG} */}
-      {animation}
-    </div>
-  );
+  return <_container id="container1-2">{animation}</_container>;
 };
 
 export default VOR;
 
 const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
   const ref = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+  const [painted, setPainted] = useState(0);
+  const [position, setPosition] = useState(0);
 
   useEffect(() => {
     if (lottie && ref.current) {
@@ -218,39 +240,61 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
         rendererSettings: { preserveAspectRatio: "none" },
       });
 
-      // if (isScroll) {
-      //   window.addEventListener("scroll", () => {
-      //     let supportPageOffset = window.pageXOffset !== undefined;
-      //     let isCSS1Compat = (document.compatMode || "") === "CSS1Compat";
-      //     let scroll = {
-      //       x: supportPageOffset
-      //         ? window.pageXOffset
-      //         : isCSS1Compat
-      //         ? document.documentElement.scrollLeft
-      //         : document.body.scrollLeft,
-      //       y: supportPageOffset
-      //         ? window.pageYOffset
-      //         : isCSS1Compat
-      //         ? document.documentElement.scrollTop
-      //         : document.body.scrollTop,
-      //     };
+      animation.addEventListener("loaded_images", () => {
+        setLoaded(true);
+      });
 
-      //     let scrollPercent =
-      //       (scroll.y /
-      //         (document.documentElement.offsetHeight - window.innerHeight)) *
-      //       100;
+      if (isScroll) {
+        window.addEventListener("scroll", () => {
+          let supportPageOffset = window.pageXOffset !== undefined;
+          let isCSS1Compat = (document.compatMode || "") === "CSS1Compat";
+          let scroll = {
+            x: supportPageOffset
+              ? window.pageXOffset
+              : isCSS1Compat
+              ? document.documentElement.scrollLeft
+              : document.body.scrollLeft,
+            y: supportPageOffset
+              ? window.pageYOffset
+              : isCSS1Compat
+              ? document.documentElement.scrollTop
+              : document.body.scrollTop,
+          };
 
-      //     let scrollPercentRounded = Math.round(
-      //       scrollPercent > 100 ? 100 : scrollPercent
-      //     );
+          let scrollPercent =
+            (scroll.y /
+              (document.documentElement.offsetHeight - window.innerHeight)) *
+            100;
 
-      //     animation.goToAndStop((scrollPercentRounded / 100) * 1500);
-      //   });
-      // }
+          let scrollPercentRounded = Math.round(
+            scrollPercent > 100 ? 100 : scrollPercent
+          );
+
+          animation.goToAndStop((scrollPercentRounded / 100) * 10000);
+
+          let MAX_POSITION = 100;
+
+          setPosition(
+            Math.min((scrollPercentRounded / 100) * MAX_POSITION * 5, 90)
+          );
+        });
+      }
+
+      //This makes zero sense but this fixes the transition issue. DO NOT REMOVE
+      setPainted(painted + 1);
 
       return () => animation.destroy();
     }
   }, [lottie, ref.current]);
 
-  return <_sComponent ref={ref} />;
+  return (
+    <_sComponent
+      ref={ref}
+      $loaded={loaded}
+      style={{
+        transition: "transform 0.1s",
+        transform: `translateY(-${position}px)`,
+      }}
+    />
+  );
 };

@@ -215,7 +215,7 @@ export const _light = styled.img`
   width: 100%;
   position: absolute;
   width: 900px;
-  left: -112px;
+  left: 96px;
   top: 40%;
   z-index: 1;
 
@@ -226,6 +226,8 @@ export const _light = styled.img`
   `}
 
   ${media.desktop`
+    left: 0;
+    top: 0;
     width: 1100px;
   `}
 

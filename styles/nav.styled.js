@@ -179,8 +179,8 @@ export const _link = styled.a`
     margin: 0 16px;
   `}
 
-  ${media.desktop`
-    margin: 0 64px;
+  ${media.wide`
+      margin: 0 64px;
   `}
 `;
 

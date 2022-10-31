@@ -12,6 +12,15 @@ export const _float = styled.div`
   height: 0;
   display: flex;
   flex-direction: column;
+
+  > div {
+    min-width: 100%;
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    z-index: -1;
+    position: fixed;
+  }
 `;
 
 export const _background = styled.div`
@@ -19,6 +28,7 @@ export const _background = styled.div`
   width: 100%;
   min-height: 100vh;
   height: 100vh;
+  position: fixed;
   background-image: url("/bg1.png");
   background-size: cover;
   background-position: center;
@@ -58,6 +68,7 @@ export const _info = styled.div`
   margin-left: 0;
   z-index: 99999;
   padding-top: 32px;
+  padding-left: 24px;
 
   > h1 {
     font-weight: 800;
@@ -73,7 +84,7 @@ export const _info = styled.div`
         padding: 0 0 16px;
     `}
     ${media.desktop`
-      font-size: 4vw;
+      font-size: 5vw;
       text-align: left;
     `}
     ${media.extraWide`
@@ -124,6 +135,11 @@ export const _wrapper = styled.div`
 `;
 
 export const _button = styled.div`
+  &:nth-child(1) {
+    ${media.tablet`
+       margin-right: 16px;
+    `}
+  }
   > a {
     width: 180px;
     height: 100%;
@@ -192,11 +208,11 @@ export const _cliff = styled.img`
   right: -324px;
   z-index: 1;
 
-  ${media.tablet`
+  /* ${media.tablet`
     height: calc(120vh + 210px);
     bottom: -110vh;
     right: -224px;
-  `}
+  `} */
 
   ${media.desktop`
     right: -48px;
@@ -227,10 +243,10 @@ export const _sideCliff = styled.img`
   right: 0;
   z-index: 4;
 
-  ${media.tablet`
+  /* ${media.tablet`
     width: 600px;
     bottom: -40px;
-  `}
+  `} */
 
   ${media.desktop`
     bottom: -16px;
@@ -255,15 +271,15 @@ export const _backLight = styled.img`
   right: -16px;
   z-index: 1;
 
-  ${media.tablet`
+  /* ${media.tablet`
     right: 0;
     bottom: 300px;
     width: 350px;
-  `}
+  `} */
 
   ${media.desktop`
-    bottom: 200px;
-    width: 200px;
+    bottom: 190px;
+    width: 250px;
   `}
 
   ${media.wide`
@@ -284,14 +300,15 @@ export const _frontLight = styled.img`
   right: -16px;
   z-index: 3;
 
-  ${media.tablet`
+  /* ${media.tablet`
     bottom: 72px;
     width: 750px;
-  `}
+  `} */
 
   ${media.desktop`
-    bottom: 50px;
-    width: 425px;
+    right: 0;
+    bottom: 30px;
+    width: 500px;
   `}
 
   ${media.wide`
@@ -307,13 +324,98 @@ export const _frontLight = styled.img`
 
 export const _sideLawn = styled.img`
   width: 20vw;
-  position: absolute;
-  bottom: 0;
+  position: fixed;
+  bottom: -10px;
   left: 0;
-  z-index: 2;
+  z-index: -1;
   display: none;
 
   ${media.desktop`
     display: block;
   `}
+`;
+
+export const _bottomBG = styled.img`
+  position: fixed;
+  bottom: 0;
+  z-index: -1;
+  width: 800px;
+  bottom: 0;
+  left: -96px;
+
+  ${media.tablet`
+    width: 1300px;
+    left: -112px;
+  `}
+
+  ${media.desktop`
+    width: 1100px;
+    left: 0;
+  `}
+
+  ${media.wide`
+    width: 1400px;
+  `}
+
+  ${media.extraWide`
+    width: 1700px;
+  `}
+
+  ${media.largeWide`
+    width: 2000px;
+  `}
+
+  ${media.maxWide`
+    width: 2300px;
+  `}
+`;
+
+export const _mountainsMid = styled.img`
+  bottom: 100px;
+  position: fixed;
+  z-index: -1;
+  width: 800px;
+  left: -96px;
+
+  ${media.tablet`
+    width: 1300px;
+    left: -112px;
+  `}
+
+  ${media.desktop`
+    width: 1100px;
+    left: 0;
+  `}
+
+  ${media.wide`
+    width: 1400px;
+  `}
+
+  ${media.extraWide`
+    width: 1700px;
+  `}
+
+  ${media.largeWide`
+    width: 2000px;
+  `}
+
+  ${media.maxWide`
+    width: 2300px;
+  `}
+`;
+
+export const _sky = styled.img`
+  position: fixed;
+  top: 0;
+  z-index: -1;
+  min-width: 100%;
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  background: rgb(79, 167, 236);
+  background: linear-gradient(
+    0deg,
+    rgba(79, 167, 236, 1) 0%,
+    rgba(64, 122, 232, 1) 100%
+  );
 `;

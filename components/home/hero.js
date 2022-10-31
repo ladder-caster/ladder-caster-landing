@@ -14,6 +14,9 @@ import {
   _backLight,
   _frontLight,
   _sideLawn,
+  _bottomBG,
+  _mountainsMid,
+  _sky,
 } from "../../styles/hero.styled";
 
 const Hero = () => {
@@ -25,9 +28,13 @@ const Hero = () => {
       <_sideCliff src="/sideCliff.png" />
       <_backLight src="/backLight.png" />
       <_frontLight src="/frontLight.png" />
-      <_sideLawn src="/sideLawn.png" />
       <_float>
-        <_background />
+        <_sky />
+        <VOR render="bg" />
+        <_mountainsMid src="/mountains-mid.png" />
+        <_bottomBG src="/bottom-bg.png" />
+        <VOR render="forcefield" />
+        <_sideLawn src="/sideLawn.png" />
       </_float>
       <_main>
         <_info>

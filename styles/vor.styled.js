@@ -1,24 +1,68 @@
 import styled, { css } from "styled-components";
 import { media } from "./utils";
 
+export const fadeIn = css`
+  transition: opacity 0.5s ease-in;
+  opacity: 0;
+
+  ${({ $loaded }) =>
+    $loaded &&
+    css`
+      opacity: 1;
+    `};
+`;
+
 export const __bgFixed = css`
-  position: absolute;
-  top: 0;
+  ${fadeIn}
+
+  position: fixed;
+  z-index: -1;
+  width: 1500px;
+
+  ${media.tablet`
+    width: 1300px;
+    left: -112px;
+  `}
+
+  ${media.desktop`
+    width: 1400px;
+    left: 0;
+  `}
+
+  ${media.wide`
+    width: 1400px;
+  `}
+
+  ${media.extraWide`
+    width: 1700px;
+  `}
+
+  ${media.largeWide`
+    width: 2000px;
+  `}
+
+  ${media.maxWide`
+    width: 2300px;
+  `}
 `;
 
 export const _sc1 = css`
+  ${fadeIn}
   position: absolute;
 `;
 
 export const _sc2 = css`
+  ${fadeIn}
   position: absolute;
 `;
 
 export const _sc3 = css`
+  ${fadeIn}
   position: absolute;
 `;
 
 export const _sc6 = css`
+  ${fadeIn}
   position: absolute;
 `;
 
@@ -62,19 +106,21 @@ export const _backWizard = styled.div`
   z-index: 2;
   width: 800px;
 
-  ${media.tablet`
+  /* ${media.tablet`
     bottom: 48px;
     right: 64px;
     width: 1200px;
-  `}
+  `} */
 
   ${media.desktop`
-    bottom: 24px;
-    width: 800px;
+    right: 32px;
+    bottom: 5px;
+    width: 900px;
   `}
 
   ${media.wide`
-    bottom: 64px;
+  right: 100px;
+    bottom: 40px;
     width: 900px;
   `}
 
@@ -95,19 +141,21 @@ export const _midWizard = styled.div`
   z-index: 2;
   width: 800px;
 
-  ${media.tablet`
+  /* ${media.tablet`
     bottom: 48px;
     right: 64px;
     width: 1200px;
-  `}
+  `} */
 
   ${media.desktop`
-    bottom: 24px;
-    width: 800px;
+    right: 24px;
+    bottom: 0;
+    width: 900px;
   `}
 
   ${media.wide`
-    bottom: 72px;
+    right: 70px;
+    bottom: 60px;
     width: 900px;
   `}
 
@@ -128,23 +176,27 @@ export const _frontWizard = styled.div`
   z-index: 2;
   width: 800px;
 
-  ${media.tablet`
+  /* ${media.tablet`
     bottom: 48px;
     right: 64px;
     width: 1200px;
-  `}
+  `} */
 
   ${media.desktop`
-    bottom: 24px;
-    width: 800px;
-  `}
-
-  ${media.wide`
-    bottom: 72px;
+    bottom: 0;
+    right: 22px;
     width: 900px;
   `}
 
+  ${media.wide`
+    right: 50px;
+    bottom: 25px;
+    width: 1000px;
+  `}
+
   ${media.extraWide`
+    bottom: 62px;
+    right: 100px;
     width: 1200px;
   `}
 
@@ -169,6 +221,7 @@ export const _wandTile = styled.div`
 
   ${media.desktop`
     top: 0px;
+    left: 0;
     width: 1100px;
   `}
 
@@ -200,11 +253,11 @@ export const _wizardAndBook = styled.div`
   z-index: 2;
   width: 800px;
 
-  ${media.tablet`
+  /* ${media.tablet`
     left: -130px;
     top: -108px;
     width: 1300px;
-  `}
+  `} */
 
   ${media.desktop`
     top: 0px;
@@ -240,11 +293,11 @@ export const _particlesForest = styled.div`
   z-index: 2;
   width: 1000px;
 
-  ${media.tablet`
+  /* ${media.tablet`
     width: 1600px;
     top: -350px;
     left: -700px;
-  `}
+  `} */
 
   ${media.desktop`
     left: 32px;
@@ -282,11 +335,11 @@ export const _wizardsScene = styled.div`
   z-index: 2;
   width: 1000px;
 
-  ${media.tablet`
+  /* ${media.tablet`
     width: 1600px;
     top: -350px;
     left: -700px;
-  `}
+  `} */
 
   ${media.desktop`
     left: 32px;
@@ -324,11 +377,11 @@ export const _particlesForestWizard = styled.div`
   z-index: 2;
   width: 1200px;
 
-  ${media.tablet`
+  /* ${media.tablet`
     width: 1800px;
     top: -450px;
     left: -650px;
-  `}
+  `} */
 
   ${media.desktop`
     left: -425px;
@@ -365,11 +418,11 @@ export const _wizard = styled.div`
   z-index: 2;
   width: 1200px;
 
-  ${media.tablet`
+  /* ${media.tablet`
     width: 1800px;
     top: -450px;
     left: -650px;
-  `}
+  `} */
 
   ${media.desktop`
     left: -425px;
@@ -407,4 +460,8 @@ export const _parent = styled.div`
   top: 0;
   height: 100vh;
   width: 100vw;
+`;
+
+export const _container = styled.div`
+  position: relative;
 `;
