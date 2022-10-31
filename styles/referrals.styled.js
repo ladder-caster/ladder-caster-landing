@@ -211,7 +211,7 @@ export const _actionButton = styled.div`
   justify-content: center;
   cursor: pointer;
   transition: 1s box-shadow, 1s transform;
-  margin-top: 48px;
+  margin-top: 24px;
   font-weight: 700;
   letter-spacing: 2px;
 
@@ -253,7 +253,6 @@ export const _input = styled.input`
 `;
 
 export const _inputContainer = styled.div`
-  margin-top: 32px;
   width: 250px;
   display: flex;
   flex-direction: row;

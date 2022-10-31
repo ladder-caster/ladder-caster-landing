@@ -51,7 +51,7 @@ const Hero = () => {
                 Join the Waitlist
               </a>
             </_button>
-            <_button>
+            {/* <_button>
               <a
                 target="_blank"
                 rel="noreferrer"
@@ -62,7 +62,7 @@ const Hero = () => {
                   <img src="/arrow.png" />
                 </span>
               </a>
-            </_button>
+            </_button> */}
           </_wrapper>
         </_info>
       </_main>

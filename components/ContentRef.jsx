@@ -25,16 +25,14 @@ import {
   _loading,
 } from "../styles/referrals.styled";
 import Nav from "./nav";
-import { BuddyContext } from "../wallet/BuddyContext";
+import { BuddyContext, ORGANIZATION } from "../wallet/BuddyContext";
 import { Client } from "../wallet/Connection";
 import { initBuddyClient, useWalletStore } from "../zustand";
 import { useTranslation } from "react-i18next";
-import {
-  CSSTransition,
-  SwitchTransition,
-  Transition,
-} from "react-transition-group";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { SuccessComponent } from "./referrals/SuccessComponent";
+
+const REF_BASIS_POINTS = 9999;
 
 function Content({ refId }) {
   const { t } = useTranslation();
@@ -51,7 +49,6 @@ function Content({ refId }) {
   const client = useWalletStore((state) => state.client);
   const ref0 = useRef(null);
   const ref1 = useRef(null);
-  const ref2 = useRef(null);
   const ref3 = useRef(null);
 
   useEffect(() => {
@@ -70,13 +67,13 @@ function Content({ refId }) {
 
     try {
       const linked = await buddyContext.linkTransaction(
-        "LadderCaster",
+        ORGANIZATION,
         username,
-        9999,
-        refId && refId !== "LadderCaster" ? refId : ""
+        REF_BASIS_POINTS,
+        refId && refId !== ORGANIZATION ? refId : ""
       );
       console.log("success", linked);
-      setStep(3);
+      setStep(2);
     } catch (e) {
       console.log("error", e);
       setError(e);
@@ -85,6 +82,7 @@ function Content({ refId }) {
   };
 
   useEffect(() => {
+    console.log(step);
     if (step === 0 && !prevConnected.current & connected) {
       setStep(1);
     }
@@ -132,25 +130,11 @@ function Content({ refId }) {
                   }}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && username.length > 3) {
-                      setStep(2);
+                      linkBuddy();
                     }
                   }}
                 />
               </_inputContainer>
-              <_comment>(click enter ↵ to submit)</_comment>
-            </_buttonContainer>
-          </>
-        );
-        break;
-      }
-      case 2: {
-        nodeRef = ref2;
-        comp = (
-          <>
-            <_actionDescription>
-              Hey {username}, <br /> complete the transaction
-            </_actionDescription>
-            <_buttonContainer>
               <_actionButton
                 onClick={() => {
                   linkBuddy();
@@ -163,7 +147,7 @@ function Content({ refId }) {
         );
         break;
       }
-      case 3: {
+      case 2: {
         nodeRef = ref3;
         //Redirection to dashboard
         comp = <SuccessComponent />;

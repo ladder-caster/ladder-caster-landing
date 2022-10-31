@@ -6,14 +6,59 @@ import {
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
 import { PublicKey, Transaction } from "@solana/web3.js";
+import { Address } from "@project-serum/anchor";
 
+// Replace to your spl mint address if you need to
+//Remove if only need SOL
 const LADAMint = new PublicKey("95bzgMCtKw2dwaWufV9iZyu64DQo1eqw6QWnFMUSnsuF");
+export const ORGANIZATION = "zoolana";
 
 export class BuddyContext {
   constructor(private client: Client) {}
 
+  async getSOLBalanceToClaim(org: string, name: string) {
+    const fetchedMasterOrg = (
+      await this.client.program.account.masterOrganization.all()
+    )[0];
+    const [buddyPDA] = await anchor.web3.PublicKey.findProgramAddress(
+      [Buffer.from(org), Buffer.from(name)],
+      this.client.program.programId
+    );
+    const [buddySolChestPDA] = await anchor.web3.PublicKey.findProgramAddress(
+      [Buffer.from(org), Buffer.from(name), Buffer.from("solana_mint")],
+      this.client.program.programId
+    );
+
+    const fetchedBuddy = await this.client.program.account.buddy.fetch(
+      buddyPDA
+    );
+
+    const masterOrgBPS = fetchedMasterOrg.account.shareKeptInBps as number;
+    const referrerBPS = (
+      await this.client.program.account.buddy.fetch(
+        fetchedBuddy.referrer as Address
+      )
+    ).shareKeptInBps as number;
+
+    const solChestAccountInfo = (await this.client.connection.getAccountInfo(
+      buddySolChestPDA
+    ))!;
+
+    const amountMinusRent =
+      solChestAccountInfo.lamports -
+      (await this.client.connection.getMinimumBalanceForRentExemption(
+        solChestAccountInfo.data.length
+      ));
+
+    return (
+      (amountMinusRent -
+        Math.floor((amountMinusRent * masterOrgBPS) / 10_000) -
+        Math.floor((amountMinusRent * referrerBPS) / 10_000)) /
+      1e9
+    );
+  }
+
   async getReferrer(org: string, name: string) {
-    console.log("CLIENT", this.client);
     const [referrerPDA] = await anchor.web3.PublicKey.findProgramAddress(
       [Buffer.from(org), Buffer.from(name)],
       this.client.program.programId
@@ -22,21 +67,110 @@ export class BuddyContext {
     return await this.client.program.account.buddy.fetch(referrerPDA);
   }
 
+  async getBuddy() {
+    return (
+      await this.client.program.account.buddy.all([
+        {
+          memcmp: {
+            offset: 8,
+            bytes: this.client.wallet.publicKey.toBase58(),
+          },
+        },
+      ])
+    )[0];
+  }
+
+  async getSOLChest(name) {
+    const [buddyChestSOl] = await anchor.web3.PublicKey.findProgramAddress(
+      [
+        Buffer.from(ORGANIZATION),
+        Buffer.from(name),
+        Buffer.from("solana_mint"),
+      ],
+      this.client.program.programId
+    );
+
+    return await this.client.program.account.treasuryChest.fetch(buddyChestSOl);
+  }
+
+  async claim(org, name) {
+    const [buddyPDA] = await anchor.web3.PublicKey.findProgramAddress(
+      [Buffer.from(org), Buffer.from(name)],
+      this.client.program.programId
+    );
+    const buddy = await this.client.program.account.buddy.fetch(buddyPDA);
+
+    //Fetching referrer accounts
+    const referrer = await this.client.program.account.buddy.fetch(
+      buddy.referrer as Address
+    );
+
+    // Fetching master org accounts
+    const masterOrg = (
+      await this.client.program.account.masterOrganization.all()
+    )[0];
+    const [masterOrgTreasurySolChestPDA] =
+      await anchor.web3.PublicKey.findProgramAddress(
+        [Buffer.from("master"), Buffer.from("solana_mint")],
+        this.client.program.programId
+      );
+
+    const [referrerTreasurySolChestPDA] =
+      await anchor.web3.PublicKey.findProgramAddress(
+        [
+          Buffer.from(org),
+          Buffer.from(referrer.name as string),
+          Buffer.from("solana_mint"),
+        ],
+        this.client.program.programId
+      );
+
+    const [buddyTreasurySolChestPDA] =
+      await anchor.web3.PublicKey.findProgramAddress(
+        [Buffer.from(org), Buffer.from(name), Buffer.from("solana_mint")],
+        this.client.program.programId
+      );
+    const tx = new Transaction();
+
+    tx.add(
+      await this.client.program.methods
+        .claimSol()
+        .accounts({
+          systemProgram: anchor.web3.SystemProgram.programId,
+          rent: anchor.web3.SYSVAR_RENT_PUBKEY,
+          authority: this.client.wallet.publicKey,
+          masterOrganization: masterOrg.publicKey,
+          masterOrganizationSolChest: masterOrgTreasurySolChestPDA,
+          referrer: buddy.referrer as Address,
+          referrerSolChest: referrerTreasurySolChestPDA,
+          buddy: buddyPDA,
+          buddySolChest: buddyTreasurySolChestPDA,
+          receiverAccount: this.client.wallet.publicKey,
+        })
+        .instruction()
+    );
+
+    tx.feePayer = this.client.wallet.publicKey;
+
+    return await this.client.program.provider.send?.(tx);
+  }
+
   async linkTransaction(
     org: string,
     name: string,
     shareKeptInBPS: number,
     referrer: string
   ) {
-    const allOrgs = await this.client.program.account.buddy.all();
-    const allMasters =
-      await this.client.program.account.masterOrganization.all();
-    console.log(allOrgs, allMasters, org, name, shareKeptInBPS, referrer);
-
     const [organizationPDA] = await anchor.web3.PublicKey.findProgramAddress(
       [Buffer.from(org), Buffer.from("")],
       this.client.program.programId
     );
+
+    const [organizationConfigurationPDA] =
+      await anchor.web3.PublicKey.findProgramAddress(
+        [Buffer.from("config"), Buffer.from(org)],
+        this.client.program.programId
+      );
 
     const [referrerPDA] = await anchor.web3.PublicKey.findProgramAddress(
       [Buffer.from(org), Buffer.from(referrer)],
@@ -48,6 +182,11 @@ export class BuddyContext {
       this.client.program.programId
     );
 
+    const [buddySolChestPDA] = await anchor.web3.PublicKey.findProgramAddress(
+      [Buffer.from(org), Buffer.from(name), Buffer.from("solana_mint")],
+      this.client.program.programId
+    );
+
     const tx = new Transaction();
 
     tx.add(
@@ -56,10 +195,12 @@ export class BuddyContext {
         .accounts({
           systemProgram: anchor.web3.SystemProgram.programId,
           rent: anchor.web3.SYSVAR_RENT_PUBKEY,
-          authority: this.client.program.provider.wallet.publicKey,
+          authority: this.client.wallet.publicKey,
           organization: organizationPDA,
+          organizationConfiguration: organizationConfigurationPDA,
           referrer: referrerPDA,
           buddy: buddyPDA,
+          buddySolChest: buddySolChestPDA,
         })
         .instruction()
     );
@@ -89,9 +230,10 @@ export class BuddyContext {
             tokenProgram: TOKEN_PROGRAM_ID,
             systemProgram: anchor.web3.SystemProgram.programId,
             rent: anchor.web3.SYSVAR_RENT_PUBKEY,
-            authority: this.client.program.provider.wallet.publicKey,
+            authority: this.client.wallet.publicKey,
             mint: LADAMint,
             organization: organizationPDA,
+            organizationConfiguration: organizationConfigurationPDA,
             buddy: buddyPDA,
             buddyChest: buddyChestPDA,
             buddyTokenAccount: buddyTokenAccount,
@@ -100,8 +242,11 @@ export class BuddyContext {
       );
     }
 
-    tx.feePayer = this.client.program.provider.wallet.publicKey;
+    tx.feePayer = this.client.wallet.publicKey;
+    tx.recentBlockhash = (
+      await this.client.connection.getRecentBlockhash()
+    ).blockhash;
 
-    await this.client.program.provider.send(tx);
+    return await this.client.program.provider.send?.(tx);
   }
 }

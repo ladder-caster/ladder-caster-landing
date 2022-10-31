@@ -16,7 +16,7 @@ const Nav = ({ simple }) => {
   const { t } = useTranslation();
 
   return (
-    <_nav>
+    <_nav $simple={simple}>
       <_wrapper>
         <_logo href="/" target="_self" rel="noreferrer" $simple={simple}>
           {logoHat()} <span>LadderCaster</span>
@@ -47,13 +47,13 @@ const Nav = ({ simple }) => {
                   {t("nav.staking")}
                 </_link>
               </_links>
-              <_button
+              {/* <_button
                 target="_blank"
                 rel="noreferrer"
                 href={"https://play.laddercaster.com"}
               >
                 {t("nav.playGame")}
-              </_button>
+              </_button> */}
             </_container>
           </>
         )}

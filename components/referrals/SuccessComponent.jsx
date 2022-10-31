@@ -8,7 +8,7 @@ import {
   _redirection,
 } from "../../styles/referrals.styled";
 
-export const SuccessComponent = () => {
+export const SuccessComponent = ({ fetchBuddy }) => {
   const [lottie, setLottie] = useState(null);
   const ref = useRef(null);
   useEffect(() => {
@@ -33,7 +33,12 @@ export const SuccessComponent = () => {
       <_actionDescription>
         Welcome to the buddy link network!
       </_actionDescription>
-      <_redirection href={"https://google.com"} target="_blank">
+      <_redirection
+        onClick={async () => {
+          await fetchBuddy();
+          setStep(3);
+        }}
+      >
         <span>Manage your account</span> {chevron()}
       </_redirection>
     </_successContainer>

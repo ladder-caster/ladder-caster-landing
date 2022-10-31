@@ -9,6 +9,15 @@ export const _nav = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 90;
+  background: none;
+
+  ${media.tablet`
+
+  background: ${({ $simple }) =>
+    $simple
+      ? "none"
+      : "linear-gradient( 180deg, rgba(79, 167, 236, 1) 40%, rgba(79, 167, 236, 0.5) 70%, transparent 100%)"}
+  `}
 `;
 
 export const _wrapper = styled.div`
@@ -153,6 +162,7 @@ export const _link = styled.a`
   display: none;
   margin: 0 6px;
   font-family: "Poppins", sans-serif;
+  font-weight: 400;
 
   &:after {
     content: "";
