@@ -1,5 +1,6 @@
 import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
+import axios from "axios";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   _page,
@@ -31,16 +32,20 @@ import { initBuddyClient, useWalletStore } from "../zustand";
 import { useTranslation } from "react-i18next";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { SuccessComponent } from "./referrals/SuccessComponent";
+import {LC_USER} from "../core/actions";
+import {useMesh} from "../core/state/mesh/useMesh";
 
 const REF_BASIS_POINTS = 9999;
 
 function Content({ refId }) {
   const { t } = useTranslation();
+  const [user] = useMesh(LC_USER);
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [hover, setHover] = useState(false);
   const { connected } = useWallet();
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const prevConnected = useRef(connected);
   const { setVisible } = useWalletModal();
@@ -50,6 +55,8 @@ function Content({ refId }) {
   const ref0 = useRef(null);
   const ref1 = useRef(null);
   const ref3 = useRef(null);
+
+  console.log('user data', user);
 
   useEffect(() => {
     if (connected) {
@@ -81,12 +88,34 @@ function Content({ refId }) {
     setLoading(false);
   };
 
-  useEffect(() => {
-    console.log(step);
-    if (step === 0 && !prevConnected.current & connected) {
-      setStep(1);
+  const getWaitlist = async () => {
+    try {
+      const url = 'https://gnead1lomc.execute-api.us-east-1.amazonaws.com/prod/emails';
+
+      return await axios.get(url);
+    } catch (e) {
+      console.log('waitlist error', e);
     }
-  }, [step, connected, prevConnected]);
+  };
+
+
+  const createContact = async (email) => {
+    try {
+      const url = 'https://gnead1lomc.execute-api.us-east-1.amazonaws.com/prod/emails';
+
+      const config = {
+        headers: {'Access-Control-Allow-Origin': '*'}
+      };
+
+      return await axios.post(url, {
+        email,
+        referrer: '',
+        subscribe: false
+      }, config);
+    } catch (e) {
+      console.log('waitlist error', e);
+    }
+  };
 
   const multiStep = useMemo(() => {
     let comp, nodeRef;
@@ -96,13 +125,27 @@ function Content({ refId }) {
         comp = (
           <>
             <_actionDescription>
-              Create your buddylink acccount and get awesome promotions!
+              Enter your email to create your buddy link
             </_actionDescription>
+            <_inputContainer>
+              <_input
+                placeholder={"Email"}
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && username.length > 3) {
+                    createContact(email);
+                  }
+                }}
+              />
+            </_inputContainer>
             <_buttonContainer>
               <_actionButton
                 onClick={() => {
-                  if (connected) setStep(1);
-                  else setVisible(true);
+                  createContact(email);
+                  setStep(1);
                 }}
                 $hover={hover}
               >
@@ -118,12 +161,12 @@ function Content({ refId }) {
         comp = (
           <>
             <_actionDescription>
-              Get a username unique to you!
+              Choose a username
             </_actionDescription>
             <_buttonContainer>
               <_inputContainer>
                 <_input
-                  placeholder={"USERNAME"}
+                  placeholder={"Username"}
                   value={username}
                   onChange={(e) => {
                     setUsername(e.target.value);
@@ -137,7 +180,8 @@ function Content({ refId }) {
               </_inputContainer>
               <_actionButton
                 onClick={() => {
-                  linkBuddy();
+                  if (!connected) setVisible(true);
+                  else linkBuddy();
                 }}
               >
                 {!loading ? "Create Buddy" : <_loading />}
@@ -169,7 +213,7 @@ function Content({ refId }) {
         </CSSTransition>
       </SwitchTransition>
     );
-  }, [step, username, hover]);
+  }, [step, username, email, hover]);
 
   return (
     <_page>
@@ -198,7 +242,8 @@ function Content({ refId }) {
 
           <_innerBox>
             {/* <_progressPromo></_progressPromo> */}
-            <_promoTitle>Save 10% on gameplay fees</_promoTitle>
+            <_promoTitle>Save 10% on shop fees</_promoTitle>
+            {}
             {multiStep}
           </_innerBox>
         </_box>
