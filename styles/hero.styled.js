@@ -151,10 +151,10 @@ export const _button = styled.div`
     letter-spacing: 0.5px;
     cursor: pointer;
     background: none;
-    background-color: transparent;
+    background-color: ${({ $background }) => $background || 'transparent'};
     font-size: 14px;
     border: 1px solid #fff9f6;
-    color: #fff9f6;
+    color: ${({ $color }) => $color || '#fff9f6'};
     padding: 8px;
     height: 42px;
     transition: all 0.15s ease-in;

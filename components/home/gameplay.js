@@ -13,6 +13,7 @@ import {
   _table,
   _animationContainer,
 } from "../../styles/gameplay.styled";
+import Link from "next/link";
 
 const Gameplay = () => {
   const { t } = useTranslation();
@@ -37,13 +38,9 @@ const Gameplay = () => {
           </_desc>
           <_wrapper>
             <_button>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={"https://jup.ag/swap/USDC-LADA"}
-              >
+              <Link href={'/r/LadderCaster'}>
                 Join the Waitlist
-              </a>
+              </Link>
             </_button>
           </_wrapper>
         </_info>
