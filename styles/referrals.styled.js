@@ -45,7 +45,7 @@ export const _page = styled.div`
   color: #fff9f6;
   letter-spacing: 0.4px;
   overflow: hidden;
-  background-color: #ff850a;
+  /* background-color: #ff9e3c; */
 `;
 
 export const _background = styled.div`
@@ -75,58 +75,86 @@ export const _squareLeft = styled.div`
 
 export const _body = styled.div`
   max-width: 1200px;
-  padding-top: 200px;
+  padding-top: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  ${media.tablet`
+    padding-top: 200px;
+  `}
 `;
 
 export const _title = styled.div`
   padding-bottom: 32px;
-  font-size: 48px;
+  font-size: 24px;
   font-weight: 700;
   text-align: center;
   animation: ${fadeIn} 0.5s ease-in;
   text-shadow: 2px 2px 0 rgba(52, 42, 60, 0.1);
+  width: 100%;
+  padding: 16px;
+
+  ${media.tablet`
+    font-size: 48px;
+  `}
 `;
 
 export const _description = styled.div`
   font-size: 14px;
-  width: 65%;
   text-align: center;
   animation: ${fadeIn} 0.5s ease-in;
   animation-delay: 0.25s;
   animation-fill-mode: backwards;
   text-shadow: 2px 2px 0 rgba(52, 42, 60, 0.1);
+
+  width: 100vw;
+  padding: 0 16px;
+
+  ${media.tablet`
+    width: 65%;
+    padding: 16px;
+  `}
 `;
 
 export const _linkMe = styled.div``;
 
 export const _box = styled.div`
   position: relative;
+  width: 95vw;
   min-height: 500px;
   height: 500px;
-  width: 75%;
   background-color: rgb(235, 235, 235);
   margin-top: 48px;
   margin-bottom: 48px;
-  border-radius: 32px;
+  border-radius: 16px;
   box-shadow: 0px 0px 10px 8px rgba(0, 0, 0, 0.1);
   animation: ${fadeIn} 0.5s ease-in;
   animation-delay: 0.5s;
   animation-fill-mode: backwards;
+
+  ${media.tablet`
+  border-radius: 32px;
+    width: 75vw;
+  `}
 `;
 
 export const _innerBox = styled.div`
-  margin: 32px;
+  margin: 16px;
   background-color: rgb(33, 35, 73);
-  width: calc(100% - 64px);
-  height: calc(100% - 64px);
+  width: calc(100% - 32px);
+  height: calc(100% - 32px);
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 4px;
   overflow: hidden;
+
+  ${media.tablet`
+    margin: 32px;
+    width: calc(100% - 64px);
+    height: calc(100% - 64px);
+  `}
 `;
 
 export const _promoTitle = styled.div`
@@ -155,19 +183,26 @@ export const _coinAnimate = styled.div`
   top: 50px;
   right: -125px;
 
-  animation: ${fadeInMoveRight} 0.4s ease-in-out;
-  animation-delay: 1s;
-  animation-fill-mode: backwards;
+  display: none;
+
+  ${media.desktop`
+    display: block;
+  `}
 `;
 
 export const _wizard = styled.div`
   position: absolute;
   top: 45px;
-  left: -190px;
+  display: none;
+  left: -230px;
 
-  animation: ${fadeInMoveLeft} 0.4s ease-in-out;
-  animation-delay: 1s;
-  animation-fill-mode: backwards;
+  ${media.desktop`
+    display: block;
+  `}
+
+  ${media.wide`
+    left: -190px;
+  `}
 `;
 
 export const _progressPromo = styled.div`
@@ -177,15 +212,19 @@ export const _progressPromo = styled.div`
 
 export const _stepContainer = styled.div`
   border-radius: 8px;
-  width: 650px;
   padding: 48px;
 `;
 
 export const _actionDescription = styled.div`
   text-align: center;
-  padding: 0 64px 16px 64px;
+  padding: 0 16px 16px 16px;
   font-size: 24px;
   font-weight: 700;
+  width: 100%;
+
+  ${media.tablet`
+    padding: 0 64px 16px 64px;
+  `};
 `;
 
 export const _buttonContainer = styled.div`

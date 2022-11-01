@@ -12,11 +12,9 @@ export const _nav = styled.div`
   background: none;
 
   ${media.tablet`
-
-  background: ${({ $simple }) =>
-    $simple
-      ? "none"
-      : "linear-gradient( 180deg, rgba(79, 167, 236, 1) 40%, rgba(79, 167, 236, 0.5) 70%, transparent 100%)"}
+    ${({ $simple }) =>
+      $simple &&
+      "linear-gradient( 180deg, rgba(79, 167, 236, 1) 40%, rgba(79, 167, 236, 0.5) 70%, transparent 100%)"}
   `}
 `;
 
@@ -64,7 +62,6 @@ export const _logo = styled.a`
 
     ${media.tablet`
       display: none;
-    
     `}
 
     ${media.desktop`
@@ -83,13 +80,19 @@ export const _logo = styled.a`
   ${({ $simple }) => {
     if ($simple) {
       return css`
-        color: white;
-        padding: 48px;
-        font-size: 32px;
+        padding: 32px 16px;
 
-        ${media.mobile`
-          font-size: 24px;
+        ${media.desktop`
+          padding: 48px;
         `}
+
+        > span {
+          display: none;
+
+          ${media.desktop`
+            display: inline;
+          `}
+        }
       `;
     } else {
       return css`
@@ -112,6 +115,14 @@ export const _connectContainer = styled.div`
   div > button {
     background-color: rgb(98, 91, 254);
     box-shadow: 0px 0px 32px -6px rgba(0, 0, 0, 0.1);
+
+    > i {
+      display: none;
+
+      ${media.desktop`
+        display: inline;
+      `}
+    }
   }
 `;
 
