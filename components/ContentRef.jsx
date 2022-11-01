@@ -28,19 +28,18 @@ import {
 import Nav from "./nav";
 import { BuddyContext, ORGANIZATION } from "../wallet/BuddyContext";
 import { Client } from "../wallet/Connection";
-import { initBuddyClient, useWalletStore } from "../zustand";
 import { useTranslation } from "react-i18next";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
-import { SuccessComponent } from "./referrals/SuccessComponent";
-import {LC_USER} from "../core/actions";
-import {useMesh} from "../core/state/mesh/useMesh";
+import { Success } from "./referrals/Success";
+import { useMesh } from "../core/state/mesh/useMesh";
+import { BUDDY, BUDDY_CHEST, CLIENT, STEP } from "../core/actions/actions";
+import { QRCode } from "./referrals/QRCode";
 
 const REF_BASIS_POINTS = 9999;
 
 function Content({ refId }) {
   const { t } = useTranslation();
-  const [user] = useMesh(LC_USER);
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useMesh(STEP);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [hover, setHover] = useState(false);
@@ -50,19 +49,33 @@ function Content({ refId }) {
   const prevConnected = useRef(connected);
   const { setVisible } = useWalletModal();
   const anchorWallet = useAnchorWallet();
-  const setClient = useWalletStore((state) => state.setClient);
-  const client = useWalletStore((state) => state.client);
+  const [client, setClient] = useMesh(CLIENT);
+  const [buddy, setBuddy] = useMesh(BUDDY);
+  const prevBuddy = useRef(buddy);
+  const [, setBuddyChest] = useMesh(BUDDY_CHEST);
   const ref0 = useRef(null);
   const ref1 = useRef(null);
+  const ref2 = useRef(null);
   const ref3 = useRef(null);
 
-  console.log('user data', user);
+  const fetchBuddy = async (client) => {
+    const bud = await new BuddyContext(client).getBuddy();
+    console.log("buddy!!!", buddy);
+    if (bud) {
+      setBuddy(bud);
+      const budChest = await new BuddyContext(client).getSOLChest(
+        bud.account.name
+      );
+      if (budChest) setBuddyChest(budChest);
+    }
+  };
 
   useEffect(() => {
     if (connected) {
-      Client.connect(anchorWallet, "buddylink").then((res) =>
-        initBuddyClient(res)
-      );
+      Client.connect(anchorWallet, "buddylink").then(async (client) => {
+        await fetchBuddy(client);
+        setClient(client);
+      });
     } else {
       setClient(null);
     }
@@ -90,32 +103,42 @@ function Content({ refId }) {
 
   const getWaitlist = async () => {
     try {
-      const url = 'https://gnead1lomc.execute-api.us-east-1.amazonaws.com/prod/emails';
+      const url =
+        "https://gnead1lomc.execute-api.us-east-1.amazonaws.com/prod/emails";
 
       return await axios.get(url);
     } catch (e) {
-      console.log('waitlist error', e);
+      console.log("waitlist error", e);
     }
   };
-
 
   const createContact = async (email) => {
     try {
-      const url = 'https://gnead1lomc.execute-api.us-east-1.amazonaws.com/prod/emails';
+      const url =
+        "https://gnead1lomc.execute-api.us-east-1.amazonaws.com/prod/emails";
 
-      const config = {
-        headers: {'Access-Control-Allow-Origin': '*'}
-      };
+      const config = {};
 
-      return await axios.post(url, {
-        email,
-        referrer: '',
-        subscribe: false
-      }, config);
+      await axios.post(
+        url,
+        {
+          email,
+          referrer: "",
+          subscribe: false,
+        },
+        config
+      );
+      setStep(1);
     } catch (e) {
-      console.log('waitlist error', e);
+      console.log("waitlist error", e);
     }
   };
+
+  useEffect(() => {
+    if (!prevBuddy.current && buddy) {
+      setStep(3);
+    }
+  }, [buddy]);
 
   const multiStep = useMemo(() => {
     let comp, nodeRef;
@@ -145,7 +168,6 @@ function Content({ refId }) {
               <_actionButton
                 onClick={() => {
                   createContact(email);
-                  setStep(1);
                 }}
                 $hover={hover}
               >
@@ -160,9 +182,7 @@ function Content({ refId }) {
         nodeRef = ref1;
         comp = (
           <>
-            <_actionDescription>
-              Choose a username
-            </_actionDescription>
+            <_actionDescription>Choose a username</_actionDescription>
             <_buttonContainer>
               <_inputContainer>
                 <_input
@@ -192,10 +212,13 @@ function Content({ refId }) {
         break;
       }
       case 2: {
-        nodeRef = ref3;
-        //Redirection to dashboard
-        comp = <SuccessComponent />;
+        nodeRef = ref2;
+        comp = <Success fetchBuddy={fetchBuddy} />;
         break;
+      }
+      case 3: {
+        nodeRef = ref3;
+        comp = <QRCode />;
       }
     }
 
@@ -239,11 +262,8 @@ function Content({ refId }) {
           <_wizard>
             <img src="/wizLimited.png" width="500px" />
           </_wizard>
-
           <_innerBox>
-            {/* <_progressPromo></_progressPromo> */}
             <_promoTitle>Save 10% on shop fees</_promoTitle>
-            {}
             {multiStep}
           </_innerBox>
         </_box>
