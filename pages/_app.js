@@ -1,10 +1,14 @@
 import "../styles/globals.css";
 import { appWithTranslation } from "next-i18next";
-import useGoogleAnalytics from "../components/home/analytics";
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 function MyApp({ Component, pageProps }) {
-	useGoogleAnalytics();
-	return <Component {...pageProps} />;
+	return (
+		<>
+			<GoogleAnalytics trackPageViews />
+			<Component {...pageProps} />
+		</>
+	);
 }
 
 export default appWithTranslation(MyApp);
