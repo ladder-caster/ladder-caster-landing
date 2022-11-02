@@ -12,12 +12,23 @@ import {
   _wandTile,
   _wizardAndBook,
   _parent,
+  _mountainLightTransition,
+  _particlesForest,
+  _wizardsScene,
+  _wizard,
+  _particlesForestWizard,
+  _container,
 } from "../styles/vor.styled";
 
-const VOR = () => {
+const VOR = ({ render }) => {
   const loopControls = {
     loop: true,
     autoplay: true,
+  };
+
+  const loopControlsStop = {
+    loop: false,
+    autoplay: false,
   };
 
   const scrollControls = {
@@ -32,22 +43,30 @@ const VOR = () => {
       controls: scrollControls,
       isScroll: true,
     },
-    {
-      filename: "midGroundLightTransition",
-      sComponent: _midGroundLightTransition,
-      controls: scrollControls,
-      isScroll: true,
-    },
-    {
-      filename: "cloudsDaytime",
-      sComponent: _cloudsDaytime,
-      controls: loopControls,
-    },
-    {
-      filename: "cloudsSunset",
-      sComponent: _cloudsSunset,
-      controls: loopControls,
-    },
+    // {
+    //   filename: "mountainLightTransition",
+    //   sComponent: _mountainLightTransition,
+    //   controls: loopControlsStop,
+    // },
+    // {
+    //   filename: "midGroundLightTransition",
+    //   sComponent: _midGroundLightTransition,
+    //   controls: loopControlsStop,
+    //   isScroll: true,
+    // },
+    // {
+    //   filename: "cloudsDaytime",
+    //   sComponent: _cloudsDaytime,
+    //   controls: loopControlsStop,
+    // },
+    // {
+    //   filename: "cloudsSunset",
+    //   sComponent: _cloudsSunset,
+    //   controls: loopControlsStop,
+    // },
+  ];
+
+  const forcefield = [
     {
       filename: "forceField",
       sComponent: _forceField,
@@ -56,13 +75,21 @@ const VOR = () => {
   ];
 
   const SCR1Array = [
+    // {
+    //   filename: "lightAndParticles",
+    //   sComponent: _lightAndParticles,
+    //   controls: loopControls,
+    // },
     {
-      filename: "lightAndParticles",
-      sComponent: _lightAndParticles,
+      filename: "backWizard",
+      sComponent: _backWizard,
       controls: loopControls,
     },
-    { filename: "backWizard", sComponent: _backWizard, controls: loopControls },
-    { filename: "midWizard", sComponent: _midWizard, controls: loopControls },
+    {
+      filename: "midWizard",
+      sComponent: _midWizard,
+      controls: loopControls,
+    },
     {
       filename: "frontWizard",
       sComponent: _frontWizard,
@@ -79,19 +106,47 @@ const VOR = () => {
     },
   ];
 
+  const SCR3Array = [
+    {
+      filename: "particlesForest",
+      sComponent: _particlesForest,
+      controls: loopControls,
+    },
+    {
+      filename: "wizardsScene",
+      sComponent: _wizardsScene,
+      controls: loopControls,
+    },
+  ];
+
+  const SCR6Array = [
+    {
+      filename: "particlesForest",
+      sComponent: _particlesForestWizard,
+      controls: loopControls,
+    },
+    {
+      filename: "wizard",
+      sComponent: _wizard,
+      controls: loopControls,
+    },
+  ];
+
   const [lottie, setLottie] = useState(null);
+
   useEffect(() => {
     import("lottie-web").then((Lottie) => setLottie(Lottie.default));
   }, []);
 
   const handleAnimationComponent = useCallback(
-    (arr) => {
+    (arr, screen) => {
       if (lottie) {
         let list = [];
 
-        arr.forEach((obj) => {
+        arr.forEach((obj, key) => {
           list.push(
             <Animation
+              key={`${key}-${screen}`}
               animate={obj}
               lottie={lottie}
               controls={obj.controls}
@@ -108,30 +163,72 @@ const VOR = () => {
   );
 
   const animationsBG = useMemo(() => {
-    return handleAnimationComponent(BGArray);
+    return handleAnimationComponent(BGArray, "bg");
   }, [BGArray, lottie]);
 
   const animationSCR1 = useMemo(() => {
-    return handleAnimationComponent(SCR1Array);
+    return handleAnimationComponent(SCR1Array, "SCR1");
   }, [SCR1Array, lottie]);
 
   const animationSCR2 = useMemo(() => {
-    return handleAnimationComponent(SCR2Array);
+    return handleAnimationComponent(SCR2Array, "SCR2");
   }, [SCR2Array, lottie]);
 
-  return (
-    <div id="container1-2">
-      {animationsBG}
-      <_parent>{animationSCR1}</_parent>
-      <_parent>{animationSCR2}</_parent>
-    </div>
-  );
+  const animationSCR3 = useMemo(() => {
+    return handleAnimationComponent(SCR3Array, "SCR3");
+  }, [SCR3Array, lottie]);
+
+  const animationSCR6 = useMemo(() => {
+    return handleAnimationComponent(SCR6Array, "SCR4");
+  }, [SCR6Array, lottie]);
+
+  const animationForceField = useMemo(() => {
+    return handleAnimationComponent(forcefield, "forcefield");
+  }, [forcefield, lottie]);
+
+  const animation = useMemo(() => {
+    switch (render) {
+      case "SCR1": {
+        return <_parent>{animationSCR1}</_parent>;
+      }
+      case "SCR2": {
+        return <div>{animationSCR2}</div>;
+      }
+      case "SCR3": {
+        return <div>{animationSCR3}</div>;
+      }
+      case "SCR6": {
+        return <div>{animationSCR6}</div>;
+      }
+      case "bg": {
+        return <div>{animationsBG}</div>;
+      }
+      case "forcefield": {
+        return <div>{animationForceField}</div>;
+      }
+      default:
+        return <></>;
+    }
+  }, [
+    render,
+    animationSCR1,
+    animationSCR2,
+    animationSCR3,
+    animationSCR6,
+    animationsBG,
+    animationForceField,
+  ]);
+
+  return <_container id="container1-2">{animation}</_container>;
 };
 
 export default VOR;
 
 const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
   const ref = useRef(null);
+  const [loaded, setLoaded] = useState(false);
+  const [painted, setPainted] = useState(0);
+  const [position, setPosition] = useState(0);
 
   useEffect(() => {
     if (lottie && ref.current) {
@@ -140,6 +237,11 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
         renderer: "svg",
         path: `/animations/${animate.filename}.json`,
         ...controls,
+        rendererSettings: { preserveAspectRatio: "none" },
+      });
+
+      animation.addEventListener("loaded_images", () => {
+        setLoaded(true);
       });
 
       if (isScroll) {
@@ -168,13 +270,31 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
             scrollPercent > 100 ? 100 : scrollPercent
           );
 
-          animation.goToAndStop((scrollPercentRounded / 100) * 1500);
+          animation.goToAndStop((scrollPercentRounded / 100) * 10000);
+
+          let MAX_POSITION = 100;
+
+          setPosition(
+            Math.min((scrollPercentRounded / 100) * MAX_POSITION * 5, 90)
+          );
         });
       }
+
+      //This makes zero sense but this fixes the transition issue. DO NOT REMOVE
+      setPainted(painted + 1);
 
       return () => animation.destroy();
     }
   }, [lottie, ref.current]);
 
-  return <_sComponent ref={ref} />;
+  return (
+    <_sComponent
+      ref={ref}
+      $loaded={loaded}
+      style={{
+        transition: "transform 0.1s",
+        transform: `translateY(-${position}px)`,
+      }}
+    />
+  );
 };

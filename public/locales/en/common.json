@@ -5,7 +5,8 @@
     "items": "Items",
     "faq": "FAQ",
     "staking": "Staking",
-    "playGame": "Play Game"
+    "playGame": "Play Game",
+    "referrals": "Referrals"
   },
   "footer": {
     "copyright": "Copyright ©2022",
@@ -28,9 +29,28 @@
   "home": {
     "hero": {
       "poweredSolana": "Powered by Solana",
-      "realtimeMobile": "Real-time mobile strategy & NFT market economy game",
+      "realtimeMobile": "A Community Strategy Game",
+      "cta": "Refer a Friend!",
       "buyLADA": "Buy $LADA",
       "joinDiscord": "Join the Discord"
+    },
+    "gameplay": {
+      "title": "Gameplay",
+      "header": "A Fun Mobile Trading Game",
+      "description": "The goal of the game is to move as many casters on the board using their stamina, and loot. Resources you find can be used to level up, and chests will contain items that you can trade to gain more wealth and power.",
+      "cta": "Refer a Friend!"
+    },
+    "story": {
+      "title": "Story",
+      "header": "A Most Magical Adventure",
+      "description": "In the land of Avaria where magic reigns supreme, GrandCaster Mejulah, the Oracle of Space and Time, has disappeared! In his absence, adventurers must collect resources to level up and master time.",
+      "cta": "Refer a Friend!"
+    },
+    "loot": {
+      "title": "Items",
+      "header": "Equip and Loot",
+      "description": "Equip your casters with items to increase the number of resources they can collect. Rare items will give you a significant boost and be coveted by others. Grind your way up the leaderboards to earn rewards.",
+      "cta": "View Items!"
     },
     "featured": {
       "investors": "Investors",
@@ -103,7 +123,13 @@
     "diamondDesc": "180-day lockup"
   },
   "referrals": {
-    "title": "Start your journey today!",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "title": "Earn 10$ per purchase",
+    "header": "Refer a Friend",
+    "save": "Save 10% on shop fees",
+    "description": "Adventure is better together. Invite your friends and earn $10 per ticket they buy for pre-launch casters. They save $5, and you will earn 50%* rewards every time they spend in-game.",
+    "email": "Enter your email to create your account",
+    "username": "Choose a username",
+    "account": "Create account",
+    "conditions": "*Rewards may vary, and all values are subject to change at any time."
   }
 }
