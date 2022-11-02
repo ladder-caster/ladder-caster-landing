@@ -160,49 +160,53 @@ export const _links = styled.div`
     align-items: center;
     margin-right: 0;
   `}
-`;
+  
+  > a {
+    position: relative;
+    padding: 2px;
+    cursor: pointer;
+    color: #fff9f6;
+    font-size: 14px;
+    letter-spacing: 2px;
+    display: none;
+    margin: 0 6px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    text-shadow: 1px 1px 0 #388fe5;
 
-export const _link = styled.a`
-  position: relative;
-  padding: 2px;
-  cursor: pointer;
-  color: #fff9f6;
-  font-size: 14px;
-  letter-spacing: 2px;
-  font-weight: 200;
-  display: none;
-  margin: 0 6px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-
-  &:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 1px;
-    bottom: 0;
-    left: 0;
-    background-color: #fff9f6;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
-
-  &:hover {
     &:after {
-      transform: scaleX(1);
-      transform-origin: bottom left;
+      content: "";
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 1px;
+      bottom: 0;
+      left: 0;
+      background-color: #fff9f6;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
     }
-  }
 
-  ${media.tablet`
+    &:hover {
+      &:after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+    }
+
+    ${media.tablet`
     display: inline;
     margin: 0 16px;
   `}
 
-  ${media.wide`
+    ${media.wide`
       margin: 0 64px;
   `}
+  }
+`;
+
+export const _link = styled.a`
+  
 `;
 
 export const _button = styled.a`

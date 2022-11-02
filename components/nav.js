@@ -11,6 +11,7 @@ import {
   _button,
 } from "../styles/nav.styled";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import Link from "next/link";
 
 const Nav = ({ simple }) => {
   const { t } = useTranslation();
@@ -29,23 +30,26 @@ const Nav = ({ simple }) => {
           <>
             <_container>
               <_links>
-                <_link
+                <a
                   target="_blank"
                   rel="noreferrer"
                   href="https://ladder-caster.gitbook.io/laddercaster"
                 >
                   {t("nav.whitepaper")}
-                </_link>
-                <_link
+                </a>
+                <a
                   target="_blank"
                   rel="noreferrer"
                   href="https://ladder-caster.gitbook.io/laddercaster/items"
                 >
                   {t("nav.items")}
-                </_link>
-                <_link target="_self" rel="noreferrer" href="staking">
+                </a>
+                <Link href={'/r/LadderCaster'}>
+                  {t("nav.referrals")}
+                </Link>
+                <a target="_self" rel="noreferrer" href="staking">
                   {t("nav.staking")}
-                </_link>
+                </a>
               </_links>
               {/* <_button
                 target="_blank"
