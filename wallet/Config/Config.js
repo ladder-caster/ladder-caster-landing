@@ -1,7 +1,10 @@
 import stakingIDL from "./staking.json";
 import buddyIDL from "./buddy.json";
-export const environment = process.env.REACT_APP_ENV || "localprod";
+import buddyDevIDL from "./buddy-dev.json";
+export const environment = process.env.REACT_APP_ENV || "devnet";
 export const isProd = environment === "mainnet";
+
+console.log(environment);
 
 const config = {
   ["mainnet"]: {
@@ -26,7 +29,7 @@ const config = {
   },
   ["devnet"]: {
     stakingIdl: stakingIDL,
-    buddyIdl: buddyIDL,
+    buddyIdl: buddyDevIDL,
     rpc: "https://lively-still-wildflower.solana-devnet.quiknode.pro/7fd1afc95f8690531aa30719251004144802df33/",
   },
 };

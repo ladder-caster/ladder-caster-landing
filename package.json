@@ -28,6 +28,7 @@
     "next": "^12.2.5",
     "next-i18next": "^11.3.0",
     "nextjs-google-analytics": "^2.2.0",
+    "qr-code-styling": "^1.6.0-rc.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-ga": "^3.3.1",
