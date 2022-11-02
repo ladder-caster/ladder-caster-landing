@@ -18,7 +18,7 @@ import {
 } from "../../styles/story.styled";
 
 const Story = () => {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   return (
     <_story>
       <_animationContainer>
@@ -33,20 +33,12 @@ const Story = () => {
       </_float>
       <_main>
         <_info>
-          <_subtitle>{t('home.story.title')}</_subtitle>
-          <h1>{t('home.story.header')}</h1>
-          <_desc>
-            {t('home.story.description')}
-          </_desc>
+          <_subtitle>{t("home.story.title")}</_subtitle>
+          <h1>{t("home.story.header")}</h1>
+          <_desc>{t("home.story.description")}</_desc>
           <_wrapper>
             <_button>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href={"https://jup.ag/swap/USDC-LADA"}
-              >
-                {t('home.story.cta')}
-              </a>
+              <a href={"/r/laddercaster"}>{t("home.story.cta")}</a>
             </_button>
           </_wrapper>
         </_info>

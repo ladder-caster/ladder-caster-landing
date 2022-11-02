@@ -38,7 +38,7 @@ import { BUDDY, BUDDY_CHEST, CLIENT, STEP } from "../core/actions";
 import { QRCode } from "./referrals/QRCode";
 import { LC_USER } from "../core/actions";
 
-const REF_BASIS_POINTS = 9999;
+const REF_BASIS_POINTS = 1000;
 
 function Content({ refId }) {
   const { t } = useTranslation();
@@ -93,7 +93,7 @@ function Content({ refId }) {
         ORGANIZATION,
         username,
         REF_BASIS_POINTS,
-        refId && refId !== ORGANIZATION ? refId : ""
+        refId && refId.toLowerCase() !== ORGANIZATION ? refId.toLowerCase() : ""
       );
       console.log("success", linked);
       setStep(2);

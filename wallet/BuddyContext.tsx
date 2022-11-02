@@ -11,7 +11,7 @@ import { Address } from "@project-serum/anchor";
 // Replace to your spl mint address if you need to
 //Remove if only need SOL
 const LADAMint = new PublicKey("95bzgMCtKw2dwaWufV9iZyu64DQo1eqw6QWnFMUSnsuF");
-export const ORGANIZATION = "zoolana";
+export const ORGANIZATION = "laddercaster";
 
 export class BuddyContext {
   constructor(private client: Client) {}
@@ -187,6 +187,11 @@ export class BuddyContext {
       this.client.program.programId
     );
 
+    let [buddyNameCheckPDA] = await anchor.web3.PublicKey.findProgramAddress(
+      [Buffer.from("name_validation"), Buffer.from(org), buddyPDA.toBuffer()],
+      this.client.program.programId
+    );
+
     const tx = new Transaction();
 
     tx.add(
@@ -202,6 +207,13 @@ export class BuddyContext {
           buddy: buddyPDA,
           buddySolChest: buddySolChestPDA,
         })
+        .remainingAccounts([
+          {
+            pubkey: buddyNameCheckPDA,
+            isWritable: true,
+            isSigner: false,
+          },
+        ])
         .instruction()
     );
 

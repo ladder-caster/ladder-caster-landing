@@ -43,9 +43,7 @@ const Hero = () => {
           <_desc>{t("home.hero.realtimeMobile")}</_desc>
           <_wrapper>
             <_button>
-              <Link href={'/r/LadderCaster'}>
-                {t("home.hero.cta")}
-              </Link>
+              <Link href={"/r/laddercaster"}>{t("home.hero.cta")}</Link>
             </_button>
           </_wrapper>
         </_info>

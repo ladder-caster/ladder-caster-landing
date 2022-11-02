@@ -26,16 +26,12 @@ const Gameplay = () => {
       <_float>{/* <_background /> */}</_float>
       <_main>
         <_info>
-          <_subtitle>{t('home.gameplay.title')}</_subtitle>
-          <h1>{t('home.gameplay.header')}</h1>
-          <_desc>
-            {t('home.gameplay.description')}
-          </_desc>
+          <_subtitle>{t("home.gameplay.title")}</_subtitle>
+          <h1>{t("home.gameplay.header")}</h1>
+          <_desc>{t("home.gameplay.description")}</_desc>
           <_wrapper>
             <_button>
-              <Link href={'/r/LadderCaster'}>
-                {t('home.gameplay.cta')}
-              </Link>
+              <Link href={"/r/laddercaster"}>{t("home.gameplay.cta")}</Link>
             </_button>
           </_wrapper>
         </_info>

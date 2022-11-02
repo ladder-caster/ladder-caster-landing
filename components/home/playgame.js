@@ -36,17 +36,13 @@ const Playgame = () => {
             <_subtitle>Invite Friends</_subtitle>
             <h1>Share & Earn $10</h1>
             <_desc>
-              Join the community and invite your friends to gain rewards. Connect to the BuddyLink Network to share your username and earn $10 each time your referees buy any casters.
+              Join the community and invite your friends to gain rewards.
+              Connect to the BuddyLink Network to share your username and earn
+              $10 each time your referees buy any casters.
             </_desc>
             <_wrapper>
               <_button>
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href={"https://jup.ag/swap/USDC-LADA"}
-                >
-                  Refer a Friend!
-                </a>
+                <a href={"/r/laddercaster"}>Refer a Friend!</a>
               </_button>
             </_wrapper>
           </_info_wrapper>

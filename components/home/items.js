@@ -25,19 +25,17 @@ const Items = () => {
       </_float>
       <_main>
         <_info>
-          <_subtitle>{t('home.loot.title')}</_subtitle>
-          <h1>{t('home.loot.header')}</h1>
-          <_desc>
-            {t('home.loot.description')}
-          </_desc>
+          <_subtitle>{t("home.loot.title")}</_subtitle>
+          <h1>{t("home.loot.header")}</h1>
+          <_desc>{t("home.loot.description")}</_desc>
           <_wrapper>
             <_button>
               <a
-                target="_blank"
-                rel="noreferrer"
-                href={"https://jup.ag/swap/USDC-LADA"}
+                // target="_blank"
+                // rel="noreferrer"
+                href={"#"}
               >
-                {t('home.loot.cta')}
+                {t("home.loot.cta")}
               </a>
             </_button>
           </_wrapper>
