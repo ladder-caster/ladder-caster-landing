@@ -68,6 +68,20 @@ export const _sc6 = css`
 
 export const _skyTransition = styled.div`
   ${__bgFixed}
+
+  ${media.tablet`
+    width: 1600px;
+  
+  `}
+
+  ${media.desktop`
+    width: 1800px;
+  `}
+
+
+  ${media.wide`
+    width: 1900px;
+  `}
 `;
 
 export const _midGroundLightTransition = styled.div`
@@ -86,6 +100,7 @@ export const _cloudsSunset = styled.div`
 
 export const _forceField = styled.div`
   ${__bgFixed}
+  bottom: 0;
 `;
 export const _mountainLightTransition = styled.div`
   ${__bgFixed}
@@ -253,11 +268,11 @@ export const _wizardAndBook = styled.div`
   z-index: 2;
   width: 800px;
 
-  /* ${media.tablet`
+  ${media.tablet`
     left: -130px;
     top: -108px;
     width: 1300px;
-  `} */
+  `}
 
   ${media.desktop`
     top: 0px;

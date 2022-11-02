@@ -133,8 +133,9 @@ export const _box = styled.div`
   animation-fill-mode: backwards;
 
   ${media.tablet`
-  border-radius: 32px;
+    border-radius: 32px;
     width: 75vw;
+    max-width: 800px;
   `}
 `;
 
@@ -391,3 +392,21 @@ export const _conditions = styled.div`
   font-size: 14px;
   padding-bottom: 32px;
 `;
+export const _qrCode = styled.div``;
+
+export const _qr = styled.div``;
+
+export const _qrContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const _code = styled.div``;
+
+export const _url = styled.div`
+  font-size: 12px;
+  opacity: 0.7;
+`;
+
+export const _codeDesc = styled.div``;

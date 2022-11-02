@@ -25,7 +25,7 @@ import {
   _progressPromo,
   _loading,
   _subtitle,
-  _conditions
+  _conditions,
 } from "../styles/referrals.styled";
 import Nav from "./nav";
 import { BuddyContext, ORGANIZATION } from "../wallet/BuddyContext";
@@ -36,7 +36,7 @@ import { Success } from "./referrals/Success";
 import { useMesh } from "../core/state/mesh/useMesh";
 import { BUDDY, BUDDY_CHEST, CLIENT, STEP } from "../core/actions";
 import { QRCode } from "./referrals/QRCode";
-import {LC_USER} from "../core/actions";
+import { LC_USER } from "../core/actions";
 
 const REF_BASIS_POINTS = 9999;
 
@@ -150,9 +150,7 @@ function Content({ refId }) {
         nodeRef = ref0;
         comp = (
           <>
-            <_actionDescription>
-              {t("referrals.email")}
-            </_actionDescription>
+            <_actionDescription>{t("referrals.email")}</_actionDescription>
             <_inputContainer>
               <_input
                 placeholder={"Email"}
@@ -208,7 +206,7 @@ function Content({ refId }) {
                   else linkBuddy();
                 }}
               >
-                {!loading ? t('referrals.account') : <_loading />}
+                {!loading ? t("referrals.account") : <_loading />}
               </_actionButton>
             </_buttonContainer>
           </>
@@ -272,9 +270,7 @@ function Content({ refId }) {
             {multiStep}
           </_innerBox>
         </_box>
-        <_conditions>
-          {t("referrals.conditions")}
-        </_conditions>
+        <_conditions>{t("referrals.conditions")}</_conditions>
       </_body>
     </_page>
   );
