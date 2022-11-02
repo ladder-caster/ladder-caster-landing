@@ -5,7 +5,8 @@
     "items": "Items",
     "faq": "FAQ",
     "staking": "Staking",
-    "playGame": "Play Game"
+    "playGame": "Play Game",
+    "referrals": "Referrals"
   },
   "footer": {
     "copyright": "Copyright ©2022",
@@ -122,7 +123,13 @@
     "diamondDesc": "180-day lockup"
   },
   "referrals": {
-    "title": "Start your journey today!",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "title": "Earn 10$ per purchase",
+    "header": "Refer a Friend",
+    "save": "Save 10% on shop fees",
+    "description": "Adventure is better together. Invite your friends and earn $10 per ticket they buy for pre-launch casters. They save $5, and you will earn 50%* rewards every time they spend in-game.",
+    "email": "Enter your email to create your account",
+    "username": "Choose a username",
+    "account": "Create account",
+    "conditions": "*Rewards may vary, and all values are subject to change at any time."
   }
 }
