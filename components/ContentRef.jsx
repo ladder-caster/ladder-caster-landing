@@ -24,6 +24,8 @@ import {
   _inputContainer,
   _progressPromo,
   _loading,
+  _subtitle,
+  _conditions
 } from "../styles/referrals.styled";
 import Nav from "./nav";
 import { BuddyContext, ORGANIZATION } from "../wallet/BuddyContext";
@@ -32,9 +34,8 @@ import { useTranslation } from "react-i18next";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
 import { Success } from "./referrals/Success";
 import { useMesh } from "../core/state/mesh/useMesh";
-import { BUDDY, BUDDY_CHEST, CLIENT, STEP } from "../core/actions/actions";
+import { BUDDY, BUDDY_CHEST, CLIENT, STEP } from "../core/actions";
 import { QRCode } from "./referrals/QRCode";
-import { SuccessComponent } from "./referrals/SuccessComponent";
 import {LC_USER} from "../core/actions";
 
 const REF_BASIS_POINTS = 9999;
@@ -63,7 +64,6 @@ function Content({ refId }) {
 
   const fetchBuddy = async (client) => {
     const bud = await new BuddyContext(client).getBuddy();
-    console.log("buddy!!!", buddy);
     if (bud) {
       setBuddy(bud);
       const budChest = await new BuddyContext(client).getSOLChest(
@@ -151,7 +151,7 @@ function Content({ refId }) {
         comp = (
           <>
             <_actionDescription>
-              Enter your email to create your buddy link
+              {t("referrals.email")}
             </_actionDescription>
             <_inputContainer>
               <_input
@@ -186,7 +186,7 @@ function Content({ refId }) {
         nodeRef = ref1;
         comp = (
           <>
-            <_actionDescription>Choose a username</_actionDescription>
+            <_actionDescription>{t("referrals.username")}</_actionDescription>
             <_buttonContainer>
               <_inputContainer>
                 <_input
@@ -208,7 +208,7 @@ function Content({ refId }) {
                   else linkBuddy();
                 }}
               >
-                {!loading ? "Create Buddy" : <_loading />}
+                {!loading ? t('referrals.account') : <_loading />}
               </_actionButton>
             </_buttonContainer>
           </>
@@ -250,7 +250,8 @@ function Content({ refId }) {
         <_squareLeft />
       </_background>
       <_body>
-        <_title>{t("referrals.title")}</_title>
+        <_subtitle>{t("referrals.title")}</_subtitle>
+        <_title>{t("referrals.header")}</_title>
         <_description>{t("referrals.description")}</_description>
         <_box
           onMouseEnter={() => {
@@ -267,10 +268,13 @@ function Content({ refId }) {
             <img src="/wizLimited.png" width="500px" />
           </_wizard>
           <_innerBox>
-            <_promoTitle>Save 10% on shop fees</_promoTitle>
+            <_promoTitle>{t("referrals.save")}</_promoTitle>
             {multiStep}
           </_innerBox>
         </_box>
+        <_conditions>
+          {t("referrals.conditions")}
+        </_conditions>
       </_body>
     </_page>
   );

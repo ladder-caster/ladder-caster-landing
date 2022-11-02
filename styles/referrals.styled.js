@@ -370,3 +370,24 @@ export const _redirection = styled.a`
     transform: scale(0.98);
   }
 `;
+
+export const _subtitle = styled.div`
+  font-weight: 200;
+  color: #fff9f6;
+  text-shadow: 1px 1px 0 #553030;
+  letter-spacing: 1px;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 28px;
+`;
+
+export const _conditions = styled.div`
+  font-weight: 200;
+  color: #fff9f6;
+  text-shadow: 1px 1px 0 #553030;
+  letter-spacing: 1px;
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  padding-bottom: 32px;
+`;
