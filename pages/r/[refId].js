@@ -57,13 +57,12 @@ function Referrals() {
   );
 }
 
-// pages/blog/[slug].js
-// export async function getStaticPaths() {
-//   return {
-//     paths: [],
-//     fallback: true,
-//   };
-// }
+export async function getServerSidePaths() {
+  return {
+    paths: [],
+    fallback: true,
+  };
+}
 
 export const getServerSideProps = async ({ locale }) => ({
   props: {

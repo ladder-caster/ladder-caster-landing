@@ -71,13 +71,11 @@ export const _skyTransition = styled.div`
 
   ${media.tablet`
     width: 1600px;
-  
   `}
 
   ${media.desktop`
     width: 1800px;
   `}
-
 
   ${media.wide`
     width: 1900px;
@@ -275,8 +273,9 @@ export const _wizardAndBook = styled.div`
   `}
 
   ${media.desktop`
-    top: 0px;
-    width: 1100px;
+    top: -40px;
+    left: -60px;
+    width: 1200px;
   `}
 
   ${media.wide`
