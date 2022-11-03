@@ -226,22 +226,17 @@ export default VOR;
 
 const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
   const ref = useRef(null);
-  const [loaded, setLoaded] = useState(false);
-  const [painted, setPainted] = useState(0);
   const [position, setPosition] = useState(0);
+  const [animationData, setAnimationData] = useState(null);
 
   useEffect(() => {
-    if (lottie && ref.current) {
+    if (animationData) {
       const animation = lottie.loadAnimation({
         container: ref.current,
         renderer: "svg",
         path: `/animations/${animate.filename}.json`,
         ...controls,
         rendererSettings: { preserveAspectRatio: "none" },
-      });
-
-      animation.addEventListener("loaded_images", () => {
-        setLoaded(true);
       });
 
       if (isScroll) {
@@ -282,17 +277,21 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
         });
       }
 
-      //This makes zero sense but this fixes the transition issue. DO NOT REMOVE
-      setPainted(painted + 1);
-
       return () => animation.destroy();
+    }
+  }, [animationData]);
+
+  useEffect(() => {
+    if (lottie && ref.current) {
+      import(`/public/animations/${animate.filename}.json`).then(
+        setAnimationData
+      );
     }
   }, [lottie, ref.current]);
 
   return (
     <_sComponent
       ref={ref}
-      $loaded={loaded}
       style={{
         transition: "transform 0.1s",
         transform: `translateY(-${position}px)`,

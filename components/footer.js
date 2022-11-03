@@ -21,18 +21,7 @@ const Footer = () => {
         </_logo>
         <_container>
           <_title>{t("footer.game")}</_title>
-          <_link
-            onClick={() => {
-              const el = document.getElementById("#faq");
-              if (el) {
-                const distance =
-                  window.pageYOffset + el.getBoundingClientRect().top;
-                window.scrollTo(0, distance);
-              }
-            }}
-          >
-            {t("footer.faq")}
-          </_link>
+          <_link href={"#faq"}>{t("footer.faq")}</_link>
           <_link
             target="_blank"
             rel="noreferrer"

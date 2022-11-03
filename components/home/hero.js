@@ -30,7 +30,7 @@ const Hero = () => {
       <_backLight src="/backLight.webp" />
       <_frontLight src="/frontLight.webp" />
       <_float>
-        <_sky />
+        <_sky src="/sky.webp" />
         {/* <VOR render="bg" /> */}
         <_mountainsMid src="/mountains-mid.webp" />
         <_bottomBG src="/bottom-bg.webp" />
