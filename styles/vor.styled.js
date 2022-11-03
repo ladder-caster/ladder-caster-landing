@@ -1,20 +1,7 @@
 import styled, { css } from "styled-components";
 import { media } from "./utils";
 
-export const fadeIn = css`
-  transition: opacity 0.5s ease-in;
-  opacity: 0;
-
-  ${({ $loaded }) =>
-    $loaded &&
-    css`
-      opacity: 1;
-    `};
-`;
-
 export const __bgFixed = css`
-  ${fadeIn}
-
   position: fixed;
   z-index: -1;
   width: 1500px;
@@ -47,22 +34,18 @@ export const __bgFixed = css`
 `;
 
 export const _sc1 = css`
-  ${fadeIn}
   position: absolute;
 `;
 
 export const _sc2 = css`
-  ${fadeIn}
   position: absolute;
 `;
 
 export const _sc3 = css`
-  ${fadeIn}
   position: absolute;
 `;
 
 export const _sc6 = css`
-  ${fadeIn}
   position: absolute;
 `;
 

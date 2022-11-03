@@ -415,16 +415,33 @@ export const _mountainsMid = styled.img`
 
 export const _sky = styled.img`
   position: fixed;
-  top: 0;
   z-index: -1;
-  min-width: 100%;
-  width: 100%;
-  min-height: 100%;
-  height: 100%;
-  background: rgb(79, 167, 236);
-  background: linear-gradient(
-    0deg,
-    rgba(79, 167, 236, 1) 0%,
-    rgba(64, 122, 232, 1) 100%
-  );
+  left: -250px;
+  width: 1300px;
+
+  ${media.tablet`
+    width: 1300px;
+    left: -112px;
+  `}
+
+  ${media.desktop`
+    width: 1300px;
+    left: 0;
+  `}
+
+  ${media.wide`
+    width: 1400px;
+  `}
+
+  ${media.extraWide`
+    width: 1700px;
+  `}
+
+  ${media.largeWide`
+    width: 2000px;
+  `}
+
+  ${media.maxWide`
+    width: 2300px;
+  `}
 `;
