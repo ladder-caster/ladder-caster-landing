@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 import { media } from "./utils";
 
@@ -20,7 +21,7 @@ export const _background = styled.div`
   width: 100%;
   min-height: 120vh;
   height: 120vh;
-  background-image: url("/sunset.png");
+  background-image: url("/sunset.webp");
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -219,6 +220,7 @@ export const _table = styled.img`
 
   ${media.extraWide`
     width: 1700px;
+    height: 632.188px;
   `}
 
   ${media.largeWide`
@@ -228,6 +230,11 @@ export const _table = styled.img`
   ${media.maxWide`
     width: 2300px;
   `}
+
+  > img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const _animationContainer = styled.div`

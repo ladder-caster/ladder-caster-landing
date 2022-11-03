@@ -24,7 +24,7 @@ export const _background = styled.div`
   width: 100%;
   min-height: 140vh;
   height: 140vh;
-  background-image: url("/trees.png");
+  background-image: url("/trees.webp");
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -72,7 +72,7 @@ export const _info_wrapper = styled.div`
   width: 100%;
   margin-left: 0;
   padding: 16px;
-  
+
   ${media.desktop`
     max-width: 560px;
   `}

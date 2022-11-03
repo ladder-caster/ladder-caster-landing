@@ -246,37 +246,39 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
 
       if (isScroll) {
         window.addEventListener("scroll", () => {
-          let supportPageOffset = window.pageXOffset !== undefined;
-          let isCSS1Compat = (document.compatMode || "") === "CSS1Compat";
-          let scroll = {
-            x: supportPageOffset
-              ? window.pageXOffset
-              : isCSS1Compat
-              ? document.documentElement.scrollLeft
-              : document.body.scrollLeft,
-            y: supportPageOffset
-              ? window.pageYOffset
-              : isCSS1Compat
-              ? document.documentElement.scrollTop
-              : document.body.scrollTop,
-          };
+          if (window.outerWidth > 900) {
+            let supportPageOffset = window.pageXOffset !== undefined;
+            let isCSS1Compat = (document.compatMode || "") === "CSS1Compat";
+            let scroll = {
+              x: supportPageOffset
+                ? window.pageXOffset
+                : isCSS1Compat
+                ? document.documentElement.scrollLeft
+                : document.body.scrollLeft,
+              y: supportPageOffset
+                ? window.pageYOffset
+                : isCSS1Compat
+                ? document.documentElement.scrollTop
+                : document.body.scrollTop,
+            };
 
-          let scrollPercent =
-            (scroll.y /
-              (document.documentElement.offsetHeight - window.innerHeight)) *
-            100;
+            let scrollPercent =
+              (scroll.y /
+                (document.documentElement.offsetHeight - window.innerHeight)) *
+              100;
 
-          let scrollPercentRounded = Math.round(
-            scrollPercent > 100 ? 100 : scrollPercent
-          );
+            let scrollPercentRounded = Math.round(
+              scrollPercent > 100 ? 100 : scrollPercent
+            );
 
-          animation.goToAndStop((scrollPercentRounded / 100) * 10000);
+            animation.goToAndStop((scrollPercentRounded / 100) * 10000);
 
-          let MAX_POSITION = 100;
+            let MAX_POSITION = 100;
 
-          setPosition(
-            Math.min((scrollPercentRounded / 100) * MAX_POSITION * 5, 90)
-          );
+            setPosition(
+              Math.min((scrollPercentRounded / 100) * MAX_POSITION * 5, 90)
+            );
+          }
         });
       }
 

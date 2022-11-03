@@ -273,7 +273,7 @@ export const StakingForm = ({}) => {
         <_modalTitle $color={color}>{t("staking.form.stake")}</_modalTitle>
         <_inputContainer>
           <_valueContainer>
-            <_icon src="LADA.png" />
+            <_icon src="LADA.webp" />
             <_input
               placeholder="Amount"
               value={ladaToStake}

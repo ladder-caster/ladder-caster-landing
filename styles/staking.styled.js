@@ -70,7 +70,7 @@ export const _background = styled.div`
     radial-gradient(at 0% 200%, hsla(236, 100%, 79%, 1) 0px, transparent 60%),
     radial-gradient(at 200% 0%, hsla(265, 100%, 55%, 1) 0px, transparent 60%),
     radial-gradient(at 0% 0%, hsla(192, 100%, 81%, 1) 0px, transparent 60%); */
-  background-image: url("/bg-3.png");
+  background-image: url("/bg-3.webp");
 
   background-size: 200% 200%;
   background-position: center;
