@@ -14,6 +14,7 @@ import {
   _animationContainer,
 } from "../../styles/gameplay.styled";
 import Link from "next/link";
+import Image from "next/image";
 
 const Gameplay = () => {
   const { t } = useTranslation();
@@ -22,7 +23,7 @@ const Gameplay = () => {
       <_animationContainer>
         <VOR render="SCR2" />
       </_animationContainer>
-      <_table src="/table.png" />
+      <_table src="/table.webp"></_table>
       <_float>{/* <_background /> */}</_float>
       <_main>
         <_info>

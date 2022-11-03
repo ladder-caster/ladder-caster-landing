@@ -260,10 +260,10 @@ function Content({ refId }) {
           }}
         >
           <_coinAnimate>
-            <img src="/T4_chest.png" width="250px" height="250px" />
+            <img src="/T4_chest.webp" width="250px" height="250px" />
           </_coinAnimate>
           <_wizard>
-            <img src="/wizLimited.png" width="500px" />
+            <img src="/wizLimited.webp" width="500px" />
           </_wizard>
           <_innerBox>
             <_promoTitle>{t("referrals.save")}</_promoTitle>

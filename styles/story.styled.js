@@ -50,7 +50,7 @@ export const _background = styled.div`
   width: 100%;
   min-height: 155vh;
   height: 155vh;
-  background-image: url("/trees.png");
+  background-image: url("/trees.webp");
   background-size: cover;
   background-position: center;
   z-index: -1;

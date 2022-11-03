@@ -44,7 +44,7 @@ const Home = () => {
       <Gameplay />
       <Playgame />
       <Story />
-      <FAQ />
+      {/* <FAQ /> */}
       <Items />
       <Footer />
     </div>

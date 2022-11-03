@@ -24,9 +24,9 @@ const Story = () => {
       <_animationContainer>
         <VOR render="SCR3" />
       </_animationContainer>
-      <_light src="/light.png" />
-      <_backGrass src="/backGrass.png" />
-      <_fgGrass src="/fgGrass.png" />
+      <_light src="/light.webp" />
+      <_backGrass src="/backGrass.webp" />
+      <_fgGrass src="/fgGrass.webp" />
       <_float>
         <_background />
         <_overlay />

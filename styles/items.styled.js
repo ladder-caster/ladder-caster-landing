@@ -23,7 +23,7 @@ export const _background = styled.div`
   width: 100%;
   min-height: 140vh;
   height: 140vh;
-  background-image: url("/books.png");
+  background-image: url("/books.webp");
   background-size: cover;
   background-position: center;
   z-index: -1;

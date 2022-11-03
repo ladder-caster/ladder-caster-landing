@@ -391,6 +391,15 @@ export const _conditions = styled.div`
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   padding-bottom: 32px;
+  padding-left: 32px;
+  padding-right: 32px;
+  text-align: center;
+
+  ${media.desktop`
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+  `}
 `;
 export const _qrCode = styled.div``;
 

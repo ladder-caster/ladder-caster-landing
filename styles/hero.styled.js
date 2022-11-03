@@ -29,7 +29,7 @@ export const _background = styled.div`
   min-height: 100vh;
   height: 100vh;
   position: fixed;
-  background-image: url("/bg1.png");
+  background-image: url("/bg1.webp");
   background-size: cover;
   background-position: center;
   z-index: -1;
@@ -68,7 +68,10 @@ export const _info = styled.div`
   margin-left: 0;
   z-index: 99999;
   padding-top: 32px;
-  padding-left: 24px;
+
+  ${media.desktop`
+    padding-left: 24px;
+  `}
 
   > h1 {
     font-weight: 800;
@@ -77,7 +80,7 @@ export const _info = styled.div`
     letter-spacing: 1px;
     margin: 0;
     font-family: "Poppins", sans-serif;
-    font-size: 54px;
+    font-size: 40px;
     text-align: center;
     text-shadow: 1px 1px 0 #388fe5;
 
@@ -112,7 +115,7 @@ export const _desc = styled.div`
   color: #fff9f6;
   letter-spacing: 1px;
   line-height: 28px;
-  font-size: 24px;
+  font-size: 20px;
   font-family: "Poppins", sans-serif;
   text-align: center;
   margin-bottom: 8px;

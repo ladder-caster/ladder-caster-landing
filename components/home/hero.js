@@ -25,17 +25,17 @@ const Hero = () => {
   return (
     <_hero>
       <VOR render="SCR1" />
-      <_cliff src="/cliff.png" />
-      <_sideCliff src="/sideCliff.png" />
-      <_backLight src="/backLight.png" />
-      <_frontLight src="/frontLight.png" />
+      <_cliff src="/cliff.webp" />
+      <_sideCliff src="/sideCliff.webp" />
+      <_backLight src="/backLight.webp" />
+      <_frontLight src="/frontLight.webp" />
       <_float>
         <_sky />
-        <VOR render="bg" />
-        <_mountainsMid src="/mountains-mid.png" />
-        <_bottomBG src="/bottom-bg.png" />
+        {/* <VOR render="bg" /> */}
+        <_mountainsMid src="/mountains-mid.webp" />
+        <_bottomBG src="/bottom-bg.webp" />
         <VOR render="forcefield" />
-        <_sideLawn src="/sideLawn.png" />
+        <_sideLawn src="/sideLawn.webp" />
       </_float>
       <_main>
         <_info>
