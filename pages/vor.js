@@ -231,11 +231,15 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
 
   useEffect(() => {
     if (animationData) {
+      let finalControls = { ...controls };
+      if (window.innerWidth < 900) {
+        finalControls.autoplay = false;
+      }
       const animation = lottie.loadAnimation({
         container: ref.current,
         renderer: "svg",
         path: `/animations/${animate.filename}.json`,
-        ...controls,
+        ...finalControls,
         rendererSettings: { preserveAspectRatio: "none" },
       });
 
