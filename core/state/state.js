@@ -5,7 +5,7 @@ export const initialState = {
   [CLIENT]: null,
   [BUDDY]: null,
   [BUDDY_CHEST]: null,
-  [STEP]: 1,
+  [STEP]: 0,
   [LC_USER]: {
     name: "Calvin",
   },
