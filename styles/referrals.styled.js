@@ -253,26 +253,18 @@ export const _actionButton = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: 1s box-shadow, 1s transform;
+  transition: 1s box-shadow, 0.5s transform;
   margin-top: 24px;
   font-weight: 700;
   letter-spacing: 2px;
 
   &:hover {
     box-shadow: 0px 0px 50px -4px rgba(0, 0, 0, 0.66);
-    transform: translate(0px, -10px) scale(1.1);
+    transform: scale(1.05);
   }
 
-  ${({ $hover }) => {
-    if ($hover)
-      return css`
-        box-shadow: 0px 0px 50px -4px rgba(0, 0, 0, 0.66);
-        transform: translate(0px, -10px) scale(1.1);
-      `;
-  }}
-
   &:active {
-    transform: translate(0px, -10px) scale(0.9);
+    transform: scale(0.9);
   }
 `;
 

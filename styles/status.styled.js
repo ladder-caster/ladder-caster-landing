@@ -25,6 +25,12 @@ export const _card = styled.div`
   border-radius: 8px;
   cursor: pointer;
   margin-top: 8px;
+
+  ${({ $large }) =>
+    $large &&
+    css`
+      width: 350px;
+    `}
 `;
 
 export const _cardInfo = styled.div`

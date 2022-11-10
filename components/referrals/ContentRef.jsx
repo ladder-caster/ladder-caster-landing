@@ -1,7 +1,13 @@
 import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import axios from "axios";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   _page,
   _body,
@@ -26,41 +32,62 @@ import {
   _loading,
   _subtitle,
   _conditions,
-} from "../styles/referrals.styled";
-import Nav from "./nav";
-import { BuddyContext, ORGANIZATION } from "../wallet/BuddyContext";
-import { Client } from "../wallet/Connection";
+} from "../../styles/referrals.styled";
+import Nav from "../nav";
+import { BuddyContext, ORGANIZATION } from "../../wallet/BuddyContext";
+import { Client } from "../../wallet/Connection";
 import { useTranslation } from "react-i18next";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
-import { Success } from "./referrals/Success";
-import { useMesh } from "../core/state/mesh/useMesh";
-import { BUDDY, BUDDY_CHEST, CLIENT, STEP } from "../core/actions";
-import { QRCode } from "./referrals/QRCode";
-import { LC_USER } from "../core/actions";
+import { Success } from "./Success";
+import { useMesh } from "../../core/state/mesh/useMesh";
+import {
+  BUDDY,
+  BUDDY_CHEST,
+  CLIENT,
+  STATUS_REF,
+  STEP,
+} from "../../core/actions";
+import { QRCode } from "./QRCode";
+import StatusRef from "./StatusRef.jsx";
 
 const REF_BASIS_POINTS = 1000;
+
+const EMAIL_STATUS = "EMAIL_STATUS";
+const BUDDY_STATUS = "BUDDY_STATUS";
 
 function Content({ refId }) {
   const { t } = useTranslation();
   const [step, setStep] = useMesh(STEP);
-  const [user] = useMesh(LC_USER);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [hover, setHover] = useState(false);
   const { connected } = useWallet();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const prevConnected = useRef(connected);
   const { setVisible } = useWalletModal();
   const anchorWallet = useAnchorWallet();
   const [client, setClient] = useMesh(CLIENT);
   const [buddy, setBuddy] = useMesh(BUDDY);
   const prevBuddy = useRef(buddy);
+  const [status, setStatus] = useMesh(STATUS_REF);
   const [, setBuddyChest] = useMesh(BUDDY_CHEST);
   const ref0 = useRef(null);
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+
+  const changeStatus = useCallback(
+    (type, statusLabel, message) => {
+      setStatus({
+        ...status.current,
+        [type]: {
+          status: statusLabel,
+          message: message,
+        },
+      });
+    },
+    [status]
+  );
 
   const fetchBuddy = async (client) => {
     const bud = await new BuddyContext(client).getBuddy();
@@ -72,17 +99,6 @@ function Content({ refId }) {
       if (budChest) setBuddyChest(budChest);
     }
   };
-
-  useEffect(() => {
-    if (connected) {
-      Client.connect(anchorWallet, "buddylink").then(async (client) => {
-        await fetchBuddy(client);
-        setClient(client);
-      });
-    } else {
-      setClient(null);
-    }
-  }, [connected]);
 
   const linkBuddy = async () => {
     setLoading(true);
@@ -98,31 +114,26 @@ function Content({ refId }) {
       console.log("success", linked);
       setStep(2);
     } catch (e) {
+      changeStatus(
+        BUDDY_STATUS,
+        "error",
+        typeof e === "string" ? e : e.message
+      );
       console.log("error", e);
       setError(e);
     }
     setLoading(false);
   };
 
-  const getWaitlist = async () => {
-    try {
-      const url =
-        "https://gnead1lomc.execute-api.us-east-1.amazonaws.com/prod/emails";
-
-      return await axios.get(url);
-    } catch (e) {
-      console.log("waitlist error", e);
-    }
-  };
-
   const createContact = async (email) => {
+    setLoading(true);
     try {
       const url =
         "https://gnead1lomc.execute-api.us-east-1.amazonaws.com/prod/emails";
 
       const config = {};
 
-      await axios.post(
+      const response = await axios.post(
         url,
         {
           email,
@@ -131,17 +142,47 @@ function Content({ refId }) {
         },
         config
       );
+
+      console.log("response", response);
       setStep(1);
     } catch (e) {
+      changeStatus(
+        EMAIL_STATUS,
+        "error",
+        typeof e === "string" ? e : e.message
+      );
       console.log("waitlist error", e);
     }
+    setLoading(false);
   };
 
+  // const getWaitlist = async () => {
+  //   try {
+  //     const url =
+  //       "https://gnead1lomc.execute-api.us-east-1.amazonaws.com/prod/emails";
+
+  //     return await axios.get(url);
+  //   } catch (e) {
+  //     console.log("waitlist error", e);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (!prevBuddy.current && buddy) {
+  //     setStep(3);
+  //   }
+  // }, [buddy]);
+
   useEffect(() => {
-    if (!prevBuddy.current && buddy) {
-      setStep(3);
+    if (connected) {
+      Client.connect(anchorWallet, "buddylink").then(async (client) => {
+        await fetchBuddy(client);
+        setClient(client);
+      });
+    } else {
+      setClient(null);
     }
-  }, [buddy]);
+  }, [connected]);
 
   const multiStep = useMemo(() => {
     let comp, nodeRef;
@@ -159,7 +200,7 @@ function Content({ refId }) {
                   setEmail(e.target.value);
                 }}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" && username.length > 3) {
+                  if (e.key === "Enter") {
                     createContact(email);
                   }
                 }}
@@ -169,11 +210,9 @@ function Content({ refId }) {
               <_actionButton
                 onClick={() => {
                   createContact(email);
-                  setStep(1);
                 }}
-                $hover={hover}
               >
-                LINK ME!
+                {!loading ? "LINK ME!" : <_loading />}
               </_actionButton>
             </_buttonContainer>
           </>
@@ -238,7 +277,7 @@ function Content({ refId }) {
         </CSSTransition>
       </SwitchTransition>
     );
-  }, [step, username, email, hover]);
+  }, [step, username, email, hover, loading]);
 
   return (
     <_page>
@@ -272,6 +311,7 @@ function Content({ refId }) {
         </_box>
         <_conditions>{t("referrals.conditions")}</_conditions>
       </_body>
+      <StatusRef />
     </_page>
   );
 }
