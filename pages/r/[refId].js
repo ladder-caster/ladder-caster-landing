@@ -12,7 +12,7 @@ import {
   SolflareWalletAdapter,
   SlopeWalletAdapter,
 } from "@solana/wallet-adapter-wallets";
-import ContentRef from "../../components/ContentRef";
+import ContentRef from "../../components/referrals/ContentRef";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -35,10 +35,6 @@ function Referrals() {
   const router = useRouter();
   const { refId } = router.query;
 
-  const ContentRefMemo = useMemo(() => {
-    return <ContentRef refId={refId} />;
-  }, [refId]);
-
   return (
     <ConnectionProvider endpoint={endPoint}>
       <WalletProvider wallets={wallets} autoConnect={true}>
@@ -50,7 +46,7 @@ function Referrals() {
               as="font"
             />
           </Head>
-          {ContentRefMemo}
+          <ContentRef refId={refId} />
         </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
