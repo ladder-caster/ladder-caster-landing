@@ -30,26 +30,27 @@
     "hero": {
       "poweredSolana": "Powered by Solana",
       "realtimeMobile": "A Community Strategy Game",
-      "cta": "Refer a Friend!",
+      "cta": "Add a Friend",
       "buyLADA": "Buy $LADA",
       "joinDiscord": "Join the Discord"
     },
     "gameplay": {
       "title": "Gameplay",
-      "header": "A Fun Mobile Trading Game",
+      "header1": "A Fun Mobile",
+      "header2": "Trading Game",
       "description": "The goal of the game is to move as many casters on the board using their stamina, and loot. Resources you find can be used to level up, and chests will contain items that you can trade to gain more wealth and power.",
-      "cta": "Refer a Friend!"
+      "cta": "Add a Friend"
     },
     "story": {
       "title": "Story",
       "header": "A Most Magical Adventure",
       "description": "In the land of Avaria where magic reigns supreme, GrandCaster Mejulah, the Oracle of Space and Time, has disappeared! In his absence, adventurers must collect resources to level up and master time.",
-      "cta": "Refer a Friend!"
+      "cta": "Add a Friend"
     },
     "loot": {
       "title": "Items",
       "header": "Equip and Loot",
-      "description": "Equip your casters with items to increase the number of resources they can collect. Rare items will give you a significant boost and be coveted by others. Grind your way up the leaderboards to earn rewards.",
+      "description": "Equip your casters with items to increase the number of resources they can collect. Rare items will give you a significant boost and be coveted by others. Grind your way up the leaderboards to Add a Friend.",
       "cta": "View Items!"
     },
     "featured": {
@@ -89,7 +90,7 @@
     "form": {
       "stake": "Stake",
       "max": "MAX",
-      "LADAEarned": "LADA Earned",
+      "LADAGeted": "LADA Geted",
       "claim": "Claim",
       "totalStaked": "Total Staked",
       "unstake": "Unstake",
@@ -123,13 +124,13 @@
     "diamondDesc": "180-day lockup"
   },
   "referrals": {
-    "title": "Earn 10$ per purchase",
-    "header": "Refer a Friend",
+    "title": "Receive $10 Each",
+    "header": "Add a Friend",
     "save": "Save 10% on shop fees",
-    "description": "Adventure is better together. Invite your friends and earn $10 per ticket they buy for pre-launch casters. They save $5, and you will earn 50%* rewards every time they spend in-game.",
+    "description": "Adventure is better together. Invite your friends and you will each receive $10 per caster they buy before launch day. You will also receive 50% rewards every time they spend in-game. Casters cost $50 each. Laddercaster will be live in Q1 2023.",
     "email": "Enter your email to create your account",
     "username": "Choose a username",
     "account": "Create account",
-    "conditions": "*Rewards may vary, and all values are subject to change at any time."
+    "conditions": "Rewards may vary, and all values are subject to change at any time."
   }
 }

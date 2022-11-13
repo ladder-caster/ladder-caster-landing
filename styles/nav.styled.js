@@ -35,12 +35,12 @@ export const _logo = styled.a`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 400px;
+  width: 100%;
   font-weight: 900;
   line-height: 1;
   letter-spacing: 1px;
   font-family: "Poppins", sans-serif;
-  padding-left: 8px;
+  padding: 0 8px;
   font-size: 12px;
   z-index: 100;
 
@@ -74,7 +74,7 @@ export const _logo = styled.a`
   `}
 
   ${media.tablet`
-    padding-left: 24px;
+    padding: 0 24px;
   `}
 
   ${({ $simple }) => {
@@ -152,13 +152,19 @@ export const _container = styled.div`
 export const _links = styled.div`
   display: none;
 
-  ${media.tablet`
+  ${media.desktop`
     display: flex;
     width: 100%;
+    max-width: 760px;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     margin-right: 0;
+    border-radius: 50px;
+    border: 2px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(12px) saturate(140%) contrast(120%);
+    box-shadow: 0 8px 24px 0 rgba(56, 143, 229, 0.36);
+    padding: 12px 16px;
   `}
   
   > a {
@@ -199,9 +205,7 @@ export const _links = styled.div`
     margin: 0 16px;
   `}
 
-    ${media.wide`
-      margin: 0 64px;
-  `}
+    
   }
 `;
 
@@ -250,4 +254,22 @@ export const _button = styled.a`
     width: 220px;
     margin-left: 32px;
   `}
+`;
+
+export const _refer = styled.div`
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.24);
+  padding: 8px;
+  min-width: 164px;
+  width: 164px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  border: 2px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(16px) saturate(140%) contrast(120%);
+  box-shadow: 0 8px 24px 0 rgba(56, 143, 229, 0.36);
 `;

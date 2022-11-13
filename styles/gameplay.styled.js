@@ -32,7 +32,7 @@ export const _main = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: center;
   margin: 0 auto;
   max-width: 95%;
   padding-top: 64px;
@@ -59,15 +59,22 @@ export const _main = styled.main`
 `;
 
 export const _info = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  max-width: 580px;
   margin-left: 0;
-  padding: 64px 16px 0;
+  padding: 32px;
   z-index: 99999;
-
+  border-radius: 20px;
+  border: 2px solid rgba(255,255,255,0.2);
+  background: rgba(28, 21, 66, 0.32);
+  backdrop-filter: blur(40px) saturate(110%) brightness(160%) contrast(120%);
+  box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
+  
   > h1 {
     font-weight: 800;
     line-height: 40px;
@@ -78,40 +85,45 @@ export const _info = styled.div`
     font-family: "Poppins", sans-serif;
     font-size: 36px;
     text-align: center;
-    padding: 16px 0;
+    padding: 8px 0 16px 0;
 
     ${media.tablet`
-      padding: 32px 0;
-      font-size: 36px;
-      line-height: 62px;
+      text-align: center;
+      padding: 8px 0 16px 0;
     `}
 
     ${media.desktop`
       text-align: left;
       font-size: 32px;
-      line-height: 40px;
-      padding: 0 0 16px;
+      line-height: 36px;
+      padding: 8px 0 16px 0;
     `}
 
     ${media.wide`
-      line-height: 62px;
-      font-size: 54px;
+      line-height: 44px;
+      font-size: 42px;
     `}
   }
 
   ${media.tablet`
     width: 90%;
-    padding: 16px;
+    padding: 32px;
   `}
 
   ${media.desktop`
     align-items: flex-start;
-    justify-content: flex-start;
-    width: 450px;
+    justify-content: center;
+    width: 460px;
+    backdrop-filter: blur(40px) saturate(110%) brightness(140%) contrast(110%);
+    box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
   `}
 
   ${media.wide`
     width: 600px;
+  `}
+  
+  ${media.extraWide`
+    top: -100px;
   `}
 `;
 
@@ -127,33 +139,34 @@ export const _desc = styled.div`
   width: 100%;
 
   ${media.tablet`
-    width: 90%;
-    font-size: 24px;
-    line-height: 32px;
+    text-align: center;
+    width: 100%;
+    line-height: 21px;
+    font-size: 16px;
   `}
 
   ${media.desktop`
     text-align: left;
     width: 100%;
     line-height: 21px;
-    font-size: 13px;
+    font-size: 16px;
   `}
 
   ${media.wide`
     padding-right: 32px;
-    font-size: 15px;
+    font-size: 16px;
   `}
 `;
 
 export const _wrapper = styled.div`
+  width: 100%;
+  height: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: 32px;
-
+  justify-content: flex-start;
   ${media.desktop`
-    margin-top: 16px;
+    justify-content: flex-start;
   `}
 `;
 
@@ -165,6 +178,13 @@ export const _subtitle = styled.div`
   margin: 0;
   font-family: "Poppins", sans-serif;
   font-size: 28px;
+
+  ${media.tablet`
+    font-size: 22px;
+  `}
+  ${media.desktop`
+    font-size: 28px;
+  `}
 `;
 
 export const _button = styled.div`
@@ -228,7 +248,8 @@ export const _table = styled.img`
   `}
 
   ${media.maxWide`
-    width: 2300px;
+    height: 892px;
+    width: 2400px;
   `}
 
   > img {
@@ -262,6 +283,37 @@ export const _animationContainer = styled.div`
   `}
 
   ${media.maxWide`
-    width: 2300px;
+    width: 2400px;
   `}
+`;
+
+export const _refer = styled.div`
+  top: 64px;
+  position: relative;
+  z-index: 99999;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.24);
+  min-width: 164px;
+  width: 224px;
+  min-height: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background-color: rgba(255, 152, 48, 0.69);
+  border: 2px solid rgba(255, 152, 48, 0.69);
+  backdrop-filter: blur(40px) saturate(140%) hue-rotate(120deg) brightness(100%) contrast(140%);
+  box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
+  > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+  }
 `;

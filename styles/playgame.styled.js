@@ -87,19 +87,13 @@ export const _info_wrapper = styled.div`
     font-family: "Poppins", sans-serif;
     font-size: 36px;
     text-align: center;
-    padding: 16px 0;
-
-    ${media.tablet`
-      padding: 32px 0;
-      font-size: 36px;
-      line-height: 62px;
-    `}
+    padding: 0 0 16px 0;
 
     ${media.desktop`
       text-align: left;
       font-size: 32px;
       line-height: 40px;
-      padding: 0 0 16px;
+      padding: 0 0 16px 0;
     `}
 
     ${media.wide`
@@ -134,20 +128,14 @@ export const _desc = styled.div`
   font-family: "Poppins", sans-serif;
   text-align: center;
   width: 100%;
-  padding-bottom: 16px;
-
-  ${media.tablet`
-    width: 90%;
-    font-size: 24px;
-    line-height: 32px;
-  `}
+  padding: 16px;
 
   ${media.desktop`
     text-align: left;
     width: 100%;
     line-height: 21px;
     font-size: 13px;
-    padding-bottom: 0;
+    padding: 0;
   `}
 
   ${media.wide`
@@ -183,8 +171,7 @@ export const _button = styled.div`
     font-weight: 500;
     letter-spacing: 0.5px;
     cursor: pointer;
-    background-color: #395d6f;
-    border-bottom: 4px solid #314959;
+    background-color: #ffa64d;
     color: #fff;
     padding: 8px 32px;
     font-size: 16px;
@@ -323,4 +310,35 @@ export const _animationContainer = styled.div`
   ${media.maxWide`
     width: 2300px;
   `}
+`;
+
+export const _refer = styled.div`
+  position: relative;
+  z-index: 99999;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.24);
+  min-width: 164px;
+  width: 224px;
+  min-height: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 8px;
+  background-color: rgba(255, 152, 48, 0.69);
+  border: 2px solid rgba(255, 152, 48, 0.69);
+  backdrop-filter: blur(40px) saturate(110%) hue-rotate(160deg) brightness(60%) contrast(110%);
+  box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
+  > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+  }
 `;

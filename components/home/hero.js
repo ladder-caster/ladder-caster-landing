@@ -17,8 +17,11 @@ import {
   _bottomBG,
   _mountainsMid,
   _sky,
+  _social,
+  _refer
 } from "../../styles/hero.styled";
 import Link from "next/link";
+import {discordIcon, logoHat} from "../../shared/icons";
 
 const Hero = () => {
   const { t } = useTranslation();
@@ -42,9 +45,10 @@ const Hero = () => {
           <h1>{t("laddercaster")}</h1>
           <_desc>{t("home.hero.realtimeMobile")}</_desc>
           <_wrapper>
-            <_button>
-              <Link href={"/r/laddercaster"}>{t("home.hero.cta")}</Link>
-            </_button>
+            <_refer>
+              <Link href={"/r/laddercaster"}>
+                {t("home.hero.cta")}</Link>
+            </_refer>
           </_wrapper>
         </_info>
       </_main>

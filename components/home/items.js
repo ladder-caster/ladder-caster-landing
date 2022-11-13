@@ -14,7 +14,9 @@ import {
   _button,
   _discord,
   _subtitle,
+  _refer
 } from "../../styles/items.styled";
+import Link from "next/link";
 
 const Items = () => {
   const { t } = useTranslation();
@@ -29,15 +31,10 @@ const Items = () => {
           <h1>{t("home.loot.header")}</h1>
           <_desc>{t("home.loot.description")}</_desc>
           <_wrapper>
-            <_button>
-              <a
-                // target="_blank"
-                // rel="noreferrer"
-                href={"#"}
-              >
-                {t("home.loot.cta")}
-              </a>
-            </_button>
+            <_refer>
+              <Link href={"/r/laddercaster"}>
+                {t("home.hero.cta")}</Link>
+            </_refer>
           </_wrapper>
         </_info>
       </_main>
