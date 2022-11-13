@@ -14,8 +14,10 @@ import {
   _light,
   _backGrass,
   _fgGrass,
+  _refer
 } from "../../styles/playgame.styled";
 import VOR from "../../pages/vor";
+import Link from "next/link";
 
 const Playgame = () => {
   const { t } = useTranslation();
@@ -41,9 +43,10 @@ const Playgame = () => {
               $10 each time your referees buy any casters.
             </_desc>
             <_wrapper>
-              <_button>
-                <a href={"/r/laddercaster"}>Refer a Friend!</a>
-              </_button>
+              <_refer>
+                <Link href={"/r/laddercaster"}>
+                  {t("home.hero.cta")}</Link>
+              </_refer>
             </_wrapper>
           </_info_wrapper>
         </_info>

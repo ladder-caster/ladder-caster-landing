@@ -58,12 +58,13 @@ export const _info = styled.div`
   justify-content: center;
   flex-direction: column;
   width: 90%;
+  max-width: 560px;
   margin-left: 0;
   padding: 96px 16px 0;
 
   > h1 {
     font-weight: 800;
-    line-height: 62px;
+    line-height: 40px;
     color: #fff9f6;
     text-shadow: 1px 1px 0 #553030;
     letter-spacing: 1px;
@@ -73,16 +74,16 @@ export const _info = styled.div`
     text-align: center;
 
     ${media.tablet`
-      padding: 32px 0;
+      padding: 0 0 32px 0;
       font-size: 36px;
-      line-height: 62px;
+      line-height: 40px;
     `}
 
     ${media.desktop`
       text-align: center;
       font-size: 32px;
       line-height: 40px;
-      padding: 0 0 16px;
+      padding: 0 0 32px 0;
     `}
 
     ${media.wide`
@@ -115,21 +116,22 @@ export const _desc = styled.div`
 
   ${media.tablet`
     width: 90%;
-    font-size: 24px;
-    line-height: 32px;
+    line-height: 21px;
+  font-size: 16px;
   `}
 
   ${media.desktop`
     text-align: center;
     width: 100%;
     line-height: 21px;
-    font-size: 13px;
+  font-size: 16px;
     padding-bottom: 16px;
   `}
 
   ${media.wide`
     padding-right: 32px;
-    font-size: 15px;
+    line-height: 21px;
+    font-size: 16px;
   `}
 `;
 
@@ -179,5 +181,36 @@ export const _button = styled.div`
     &:hover {
       transform: translateY(-4px);
     }
+  }
+`;
+
+export const _refer = styled.div`
+  position: relative;
+  z-index: 99999;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.24);
+  min-width: 164px;
+  width: 224px;
+  min-height: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin-top: 8px;
+  background-color: rgba(255, 152, 48, 0.69);
+  border: 2px solid rgba(255, 152, 48, 0.69);
+  backdrop-filter: blur(40px) saturate(110%) hue-rotate(20deg) brightness(60%) contrast(110%);
+  box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
+  > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    width: 100%;
+    height: 100%;
   }
 `;

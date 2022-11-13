@@ -9,6 +9,7 @@ import {
   _links,
   _link,
   _button,
+  _refer
 } from "../styles/nav.styled";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Link from "next/link";
@@ -51,13 +52,6 @@ const Nav = ({ simple }) => {
                   {t("nav.staking")}
                 </a>
               </_links>
-              {/* <_button
-                target="_blank"
-                rel="noreferrer"
-                href={"https://play.laddercaster.com"}
-              >
-                {t("nav.playGame")}
-              </_button> */}
             </_container>
           </>
         )}

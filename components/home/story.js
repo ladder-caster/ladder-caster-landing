@@ -15,7 +15,9 @@ import {
   _light,
   _backGrass,
   _fgGrass,
+  _refer
 } from "../../styles/story.styled";
+import Link from "next/link";
 
 const Story = () => {
   const { t } = useTranslation();
@@ -37,9 +39,10 @@ const Story = () => {
           <h1>{t("home.story.header")}</h1>
           <_desc>{t("home.story.description")}</_desc>
           <_wrapper>
-            <_button>
-              <a href={"/r/laddercaster"}>{t("home.story.cta")}</a>
-            </_button>
+            <_refer>
+              <Link href={"/r/laddercaster"}>
+                {t("home.hero.cta")}</Link>
+            </_refer>
           </_wrapper>
         </_info>
       </_main>

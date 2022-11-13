@@ -66,21 +66,21 @@ export const _skyTransition = styled.div`
 `;
 
 export const _midGroundLightTransition = styled.div`
-  ${__bgFixed}
+  ${__bgFixed};
   width: 110vw;
 `;
 
 export const _cloudsDaytime = styled.div`
-  ${__bgFixed}
+  ${__bgFixed};
 `;
 
 export const _cloudsSunset = styled.div`
-  ${__bgFixed}
+  ${__bgFixed};
   opacity: 0;
 `;
 
 export const _forceField = styled.div`
-  ${__bgFixed}
+  ${__bgFixed};
   bottom: 0;
 `;
 export const _mountainLightTransition = styled.div`
@@ -88,7 +88,7 @@ export const _mountainLightTransition = styled.div`
 `;
 
 export const _lightAndParticles = styled.div`
-  ${_sc1}
+  ${_sc1};
   top: 100vh;
   left: 0;
   z-index: 1;
@@ -96,7 +96,7 @@ export const _lightAndParticles = styled.div`
 `;
 
 export const _backWizard = styled.div`
-  ${_sc1}
+  ${_sc1};
   bottom: -48px;
   right: -32px;
   z-index: 2;
@@ -126,12 +126,12 @@ export const _backWizard = styled.div`
 
   ${media.maxWide`
     bottom: 0;
-    width: 2000px;
+    width: 1600px;
   `}
 `;
 
 export const _midWizard = styled.div`
-  ${_sc1}
+  ${_sc1};
   right: -48px;
   bottom: -32px;
   z-index: 2;
@@ -161,12 +161,12 @@ export const _midWizard = styled.div`
 
   ${media.maxWide`
     bottom: 0;
-    width: 2000px;
+    width: 1600px;
   `}
 `;
 
 export const _frontWizard = styled.div`
-  ${_sc1}
+  ${_sc1};
   right: -32px;
   bottom: -32px;
   z-index: 2;
@@ -198,12 +198,12 @@ export const _frontWizard = styled.div`
 
   ${media.maxWide`
     bottom: 0;
-    width: 2000px;
+    width: 1600px;
   `}
 `;
 
 export const _wandTile = styled.div`
-  ${_sc2}
+  ${_sc2};
   top: 176px;
   left: -92px;
   z-index: 2;
@@ -232,18 +232,18 @@ export const _wandTile = styled.div`
   `}
 
   ${media.largeWide`
-    top: -500px;
+    top: -464px;
     width: 2000px;
   `}
 
   ${media.maxWide`
-    top: -680px;
-    width: 2300px;
+    top: -736px;
+    width: 2400px;
   `}
 `;
 
 export const _wizardAndBook = styled.div`
-  ${_sc2}
+  ${_sc2};
   top: 180px;
   left: -104px;
   z-index: 2;
@@ -273,18 +273,19 @@ export const _wizardAndBook = styled.div`
   `}
 
   ${media.largeWide`
-    top: -500px;
+    top: -460px;
     width: 2000px;
   `}
 
   ${media.maxWide`
-    top: -680px;
-    width: 2300px;
+    top: -736px;
+    left: -18px;
+    width: 2400px;
   `}
 `;
 
 export const _particlesForest = styled.div`
-  ${_sc3}
+  ${_sc3};
   top: -50px;
   left: -500px;
   z-index: 2;
@@ -326,7 +327,7 @@ export const _particlesForest = styled.div`
 `;
 
 export const _wizardsScene = styled.div`
-  ${_sc3}
+  ${_sc3};
   top: -50px;
   left: -500px;
   z-index: 2;
@@ -368,7 +369,7 @@ export const _wizardsScene = styled.div`
 `;
 
 export const _particlesForestWizard = styled.div`
-  ${_sc6}
+  ${_sc6};
   top: -150px;
   left: -500px;
   z-index: 2;
@@ -409,7 +410,7 @@ export const _particlesForestWizard = styled.div`
 `;
 
 export const _wizard = styled.div`
-  ${_sc6}
+  ${_sc6};
   top: -150px;
   left: -500px;
   z-index: 2;
