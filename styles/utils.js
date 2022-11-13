@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-const breakpoints = {
+export const breakpoints = {
   tiny: 375,
   mini: 400,
   mobile: 450,

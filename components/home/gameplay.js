@@ -12,12 +12,14 @@ import {
   _subtitle,
   _table,
   _animationContainer,
+  _refer
 } from "../../styles/gameplay.styled";
 import Link from "next/link";
 import Image from "next/image";
 
 const Gameplay = () => {
   const { t } = useTranslation();
+
   return (
     <_gameplay>
       <_animationContainer>
@@ -28,12 +30,13 @@ const Gameplay = () => {
       <_main>
         <_info>
           <_subtitle>{t("home.gameplay.title")}</_subtitle>
-          <h1>{t("home.gameplay.header")}</h1>
+          <h1>{t("home.gameplay.header1")}<br/>{t("home.gameplay.header2")}</h1>
           <_desc>{t("home.gameplay.description")}</_desc>
           <_wrapper>
-            <_button>
-              <Link href={"/r/laddercaster"}>{t("home.gameplay.cta")}</Link>
-            </_button>
+            <_refer>
+              <Link href={"/r/laddercaster"}>
+                {t("home.hero.cta")}</Link>
+            </_refer>
           </_wrapper>
         </_info>
       </_main>

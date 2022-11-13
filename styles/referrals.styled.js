@@ -85,17 +85,17 @@ export const _body = styled.div`
 `;
 
 export const _title = styled.div`
-  padding-bottom: 32px;
   font-size: 24px;
   font-weight: 700;
   text-align: center;
   animation: ${fadeIn} 0.5s ease-in;
   text-shadow: 2px 2px 0 rgba(52, 42, 60, 0.1);
   width: 100%;
-  padding: 16px;
+  padding: 0 16px 32px 16px;
 
   ${media.tablet`
     font-size: 48px;
+    line-height: 50px;
   `}
 `;
 
@@ -372,6 +372,7 @@ export const _subtitle = styled.div`
   margin: 0;
   font-family: "Poppins", sans-serif;
   font-size: 28px;
+  text-transform: uppercase;
 `;
 
 export const _conditions = styled.div`
