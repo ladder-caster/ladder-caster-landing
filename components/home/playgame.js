@@ -36,11 +36,11 @@ const Playgame = () => {
         <_info>
           <_info_wrapper>
             <_subtitle>Invite Friends</_subtitle>
-            <h1>Share & Earn $10</h1>
+            <h1>Share & Earn</h1>
             <_desc>
               Join the community and invite your friends to gain rewards.
               Connect to the BuddyLink Network to share your username and earn
-              $10 each time your referees buy any casters.
+              in-game rewards when your friends play the game!
             </_desc>
             <_wrapper>
               <_refer>
