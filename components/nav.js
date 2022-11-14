@@ -14,7 +14,7 @@ import {
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import Link from "next/link";
 
-const Nav = ({ simple }) => {
+const Nav = ({ simple, staking }) => {
   const { t } = useTranslation();
 
   return (
@@ -30,7 +30,7 @@ const Nav = ({ simple }) => {
         ) : (
           <>
             <_container>
-              <_links>
+              <_links $staking={staking}>
                 <a
                   target="_blank"
                   rel="noreferrer"

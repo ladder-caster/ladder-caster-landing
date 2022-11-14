@@ -43,6 +43,7 @@ export const _page = styled.div`
   position: relative;
   font-family: "Poppins", sans-serif;
   color: #fff9f6;
+  background: #777FF9;
   letter-spacing: 0.4px;
   overflow: hidden;
 `;
@@ -291,6 +292,7 @@ export const _input = styled.input`
 
   &::placeholder {
     font-size: 12px;
+    color: rgba(255,255,255,0.3);
   }
 `;
 

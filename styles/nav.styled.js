@@ -165,7 +165,14 @@ export const _links = styled.div`
     backdrop-filter: blur(12px) saturate(140%) contrast(120%);
     box-shadow: 0 8px 24px 0 rgba(56, 143, 229, 0.36);
     padding: 12px 16px;
+    ${({ $staking }) => $staking && css`
+      border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: none;
+      box-shadow: none;
+    `};
   `}
+
+  
   
   > a {
     position: relative;
@@ -179,6 +186,10 @@ export const _links = styled.div`
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     text-shadow: 1px 1px 0 #388fe5;
+
+    ${({ $staking }) => $staking && css`
+      text-shadow: none;
+    `};
 
     &:after {
       content: "";
@@ -204,8 +215,6 @@ export const _links = styled.div`
     display: inline;
     margin: 0 16px;
   `}
-
-    
   }
 `;
 

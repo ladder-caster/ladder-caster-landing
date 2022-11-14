@@ -64,7 +64,7 @@ function Content() {
 
   return (
     <_page>
-      <Nav />
+      <Nav staking/>
       <_content>
         <_float>
           <_background />

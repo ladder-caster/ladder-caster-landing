@@ -23,7 +23,7 @@ export const _content = styled.div`
   align-items: center;
   position: relative;
   padding-top: 128px;
-  padding-bottom: 64px;
+  padding-bottom: 128px;
 `;
 
 export const _float = styled.div`
@@ -86,7 +86,7 @@ export const _column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 8px;
+  padding: 48px 8px 32px 8px;
 
   ${({ $info }) =>
     $info &&
@@ -173,6 +173,7 @@ export const _top = styled.div`
 
 export const _bottom = styled.div`
   margin-top: 64px;
+  margin-bottom: 32px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -378,6 +379,7 @@ export const _modal = styled.div`
   padding: 32px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   margin: 0 16px;
+  background: #281F5C;
 
   ${media.mobile`
     width: 100%;
@@ -450,6 +452,7 @@ export const _valueContainer = styled.div`
   padding: 16px 88px 16px 52px;
   cursor: pointer;
   position: relative;
+  background: #1B153F;
 
   &:hover {
     border: 1px solid rgba(255, 255, 255, 0.6);
