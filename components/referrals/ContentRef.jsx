@@ -212,7 +212,7 @@ function Content({ refId }) {
                   createContact(email);
                 }}
               >
-                {!loading ? "LINK ME!" : <_loading />}
+                {!loading ? t('referrals.step') : <_loading />}
               </_actionButton>
             </_buttonContainer>
           </>

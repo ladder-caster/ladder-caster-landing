@@ -63,12 +63,12 @@ export const _square = css`
 `;
 
 export const _squareRight = styled.div`
-  ${_square}
+  ${_square};
   transform: translate(450px, -200px) rotate(45deg);
 `;
 
 export const _squareLeft = styled.div`
-  ${_square}
+  ${_square};
   transform: translate(-150%) rotate(45deg);
 `;
 
@@ -147,7 +147,7 @@ export const _innerBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 16px;
   overflow: hidden;
 
   ${media.tablet`
@@ -245,18 +245,25 @@ export const _comment = styled.div`
 `;
 
 export const _actionButton = styled.div`
-  border-radius: 4px;
-  background: rgb(98, 91, 254);
-  width: 200px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 1s box-shadow, 0.5s transform;
-  margin-top: 24px;
+  position: relative;
+  top: 24px;
+  font-size: 20px;
+  color: #fff;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.24);
+  min-width: 164px;
+  width: 224px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background-color: rgba(255, 152, 48, 0.69);
+  border: 2px solid rgba(255, 152, 48, 0.69);
+  backdrop-filter: blur(40px) saturate(110%) hue-rotate(160deg) brightness(60%) contrast(110%);
+  box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0px 0px 50px -4px rgba(0, 0, 0, 0.66);
@@ -339,7 +346,7 @@ export const _redirection = styled.a`
   display: flex;
   align-items: center;
   font-size: 12px;
-  font-weight: light;
+  font-weight: 200;
   cursor: pointer;
   padding: 8px 16px;
   background: rgb(98, 91, 254);
@@ -367,7 +374,7 @@ export const _redirection = styled.a`
 export const _subtitle = styled.div`
   font-weight: 200;
   color: #fff9f6;
-  text-shadow: 1px 1px 0 #553030;
+  text-shadow: 1px 1px 0 #4F5AF8;
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -378,7 +385,7 @@ export const _subtitle = styled.div`
 export const _conditions = styled.div`
   font-weight: 200;
   color: #fff9f6;
-  text-shadow: 1px 1px 0 #553030;
+  text-shadow: 1px 1px 0 #4F5AF8;
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;

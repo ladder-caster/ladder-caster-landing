@@ -127,10 +127,11 @@
     "title": "Better Together",
     "header": "Add a Friend",
     "save": "Join the Buddy Network",
-    "description": "Adventure is better together. Invite your friends and you will each receive rewards in-game. The release date will be announced at a later date, but you can start getting ready now with your friends!",
-    "email": "Enter your email to create your account",
+    "description": "Adventure is better together. Invite your friends and you will each receive rewards in-game. The release date will be announced at a later date, but you can start getting ready with your friends today!",
+    "email": "Enter your email to create account",
     "username": "Choose a username",
     "account": "Create account",
+    "step": "Next Step",
     "conditions": "Rewards may vary, and all values are subject to change at any time."
   }
 }

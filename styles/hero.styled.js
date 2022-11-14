@@ -502,6 +502,7 @@ export const _refer = styled.div`
   border: 2px solid rgba(255, 152, 48, 0.69);
   backdrop-filter: blur(40px) saturate(110%) hue-rotate(160deg) brightness(60%) contrast(110%);
   box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
+  cursor: pointer;
   > a {
     display: flex;
     justify-content: center;
