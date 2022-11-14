@@ -1,7 +1,7 @@
 import stakingIDL from "./staking.json";
 import buddyIDL from "./buddy.json";
 import buddyDevIDL from "./buddy-dev.json";
-export const environment = process.env.REACT_APP_ENV || "localprod";
+export const environment = process.env.REACT_APP_ENV || "mainnet";
 export const isProd = environment === "mainnet";
 
 console.log(environment);
