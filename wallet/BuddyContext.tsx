@@ -238,11 +238,12 @@ export class BuddyContext {
         .instruction()
     );
 
-    const orgAccount = await this.client.program.account.buddy.fetch(
-      organizationPDA
-    );
+    const orgConfig =
+      await this.client.program.account.organizationConfiguration.fetch(
+        organizationConfigurationPDA
+      );
 
-    if (orgAccount.hasRequiredMint) {
+    if (orgConfig.requiredMint) {
       const [buddyChestPDA] = await anchor.web3.PublicKey.findProgramAddress(
         [Buffer.from(org), Buffer.from(name), LADAMint.toBuffer()],
         this.client.program.programId
@@ -302,11 +303,12 @@ export class BuddyContext {
 
     const tx = new Transaction();
 
-    const orgAccount = await this.client.program.account.buddy.fetch(
-      organizationPDA
-    );
+    const orgConfig =
+      await this.client.program.account.organizationConfiguration.fetch(
+        organizationConfigurationPDA
+      );
 
-    if (orgAccount.hasRequiredMint) {
+    if (orgConfig.requiredMint) {
       const [buddyChestPDA] = await anchor.web3.PublicKey.findProgramAddress(
         [Buffer.from(org), Buffer.from(name), LADAMint.toBuffer()],
         this.client.program.programId
