@@ -152,6 +152,16 @@
           "name": "organizationSolChest",
           "isMut": true,
           "isSigner": false
+        },
+        {
+          "name": "buddylinkBuddy",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddylinkBuddySolChest",
+          "isMut": true,
+          "isSigner": false
         }
       ],
       "args": [
@@ -184,6 +194,10 @@
         {
           "name": "enforceWalletUniqueness",
           "type": "bool"
+        },
+        {
+          "name": "enforceUserUniqueness",
+          "type": "bool"
         }
       ]
     },
@@ -197,6 +211,11 @@
         },
         {
           "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "instructionSysvarAccount",
           "isMut": false,
           "isSigner": false
         },
@@ -256,6 +275,11 @@
           "isSigner": false
         },
         {
+          "name": "instructionSysvarAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
           "name": "authority",
           "isMut": true,
           "isSigner": true
@@ -288,6 +312,141 @@
         {
           "name": "buddySolChest",
           "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "shareKeptInBps",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "initBuddyKyc",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "instructionSysvarAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "organization",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "organizationConfiguration",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddy",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddySolChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "gatewayToken",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "shareKeptInBps",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "initBuddyWithPayerKyc",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "instructionSysvarAccount",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "payer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "organization",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "organizationConfiguration",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "referrer",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddy",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buddySolChest",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "gatewayToken",
+          "isMut": false,
           "isSigner": false
         }
       ],
@@ -413,6 +572,32 @@
         },
         {
           "name": "buddyTokenAccount",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "transferBuddyAuthority",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "newAuthority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "buddy",
           "isMut": true,
           "isSigner": false
         }
@@ -1375,6 +1560,10 @@
           {
             "name": "enforceWalletUniqueness",
             "type": "bool"
+          },
+          {
+            "name": "enforceUserUniqueness",
+            "type": "bool"
           }
         ]
       }
@@ -1484,6 +1673,31 @@
       "code": 6012,
       "name": "WalletUniquenessEnforced",
       "msg": "Buddy for that wallet under this organization already exists."
+    },
+    {
+      "code": 6013,
+      "name": "UserUniquenessEnforced",
+      "msg": "User has already a buddy under this organization already exists."
+    },
+    {
+      "code": 6014,
+      "name": "UserUniquenessEnforcedWrongMethod",
+      "msg": "Please use init_buddy_kyc function, since the organization requires it."
+    },
+    {
+      "code": 6015,
+      "name": "InvalidAuthorityProvided",
+      "msg": "Invalid authority provided."
+    },
+    {
+      "code": 6016,
+      "name": "WalletUniquenessRequiredForUserUniqueness",
+      "msg": "Wallet uniqueness check is required if you want to use user uniqueness."
+    },
+    {
+      "code": 6017,
+      "name": "TooManyInitBuddyInstructions",
+      "msg": "Can only have 1 init buddy instruction per transaction."
     }
   ],
   "metadata": {
