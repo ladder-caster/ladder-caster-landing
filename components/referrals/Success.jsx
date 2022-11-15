@@ -38,9 +38,8 @@ export const Success = ({ fetchBuddy }) => {
         Welcome to the buddy link network!
       </_actionDescription>
       <_redirection
-        onClick={async () => {
-          await fetchBuddy();
-          setStep(3);
+        onClick={() => {
+          fetchBuddy();
         }}
       >
         <span>Manage your account</span> {chevron()}

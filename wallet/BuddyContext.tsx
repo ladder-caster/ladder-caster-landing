@@ -10,7 +10,9 @@ import { Address } from "@project-serum/anchor";
 
 // Replace to your spl mint address if you need to
 //Remove if only need SOL
-const LADAMint = new PublicKey("95bzgMCtKw2dwaWufV9iZyu64DQo1eqw6QWnFMUSnsuF");
+export const LADAMint = new PublicKey(
+  "95bzgMCtKw2dwaWufV9iZyu64DQo1eqw6QWnFMUSnsuF"
+);
 export const ORGANIZATION = "laddercaster";
 
 export class BuddyContext {
@@ -67,17 +69,17 @@ export class BuddyContext {
     return await this.client.program.account.buddy.fetch(referrerPDA);
   }
 
-  async getBuddy() {
-    return (
-      await this.client.program.account.buddy.all([
-        {
-          memcmp: {
-            offset: 8,
-            bytes: this.client.wallet.publicKey.toBase58(),
-          },
+  async getBuddy(org: string) {
+    const buddies = await this.client.program.account.buddy.all([
+      {
+        memcmp: {
+          offset: 8,
+          bytes: this.client.wallet?.publicKey?.toBase58()!,
         },
-      ])
-    )[0];
+      },
+    ]);
+
+    return buddies.find((bud) => bud.account.organization === org);
   }
 
   async getSOLChest(name) {
@@ -91,6 +93,20 @@ export class BuddyContext {
     );
 
     return await this.client.program.account.treasuryChest.fetch(buddyChestSOl);
+  }
+
+  async getMintChest(name: string, org: string, mint: PublicKey) {
+    const [buddyChestPDA] = await anchor.web3.PublicKey.findProgramAddress(
+      [Buffer.from(org), Buffer.from(name), mint.toBuffer()],
+      this.client.program.programId
+    );
+
+    console.log(
+      (
+        await this.client.program.account.treasuryChest.fetch(buddyChestPDA)
+      ).mint.toString()
+    );
+    return await this.client.program.account.treasuryChest.fetch(buddyChestPDA);
   }
 
   async claim(org, name) {
@@ -221,7 +237,71 @@ export class BuddyContext {
       organizationPDA
     );
 
-    if (orgAccount.requiredMint) {
+    if (orgAccount.hasRequiredMint) {
+      const [buddyChestPDA] = await anchor.web3.PublicKey.findProgramAddress(
+        [Buffer.from(org), Buffer.from(name), LADAMint.toBuffer()],
+        this.client.program.programId
+      );
+      let buddyTokenAccount = await Token.getAssociatedTokenAddress(
+        ASSOCIATED_TOKEN_PROGRAM_ID,
+        TOKEN_PROGRAM_ID,
+        LADAMint,
+        buddyChestPDA,
+        true
+      );
+
+      tx.add(
+        await this.client.program.methods
+          .initChest()
+          .accounts({
+            associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
+            tokenProgram: TOKEN_PROGRAM_ID,
+            systemProgram: anchor.web3.SystemProgram.programId,
+            rent: anchor.web3.SYSVAR_RENT_PUBKEY,
+            authority: this.client.wallet.publicKey,
+            mint: LADAMint,
+            organization: organizationPDA,
+            organizationConfiguration: organizationConfigurationPDA,
+            buddy: buddyPDA,
+            buddyChest: buddyChestPDA,
+            buddyTokenAccount: buddyTokenAccount,
+          })
+          .instruction()
+      );
+    }
+
+    tx.feePayer = this.client.wallet.publicKey;
+    tx.recentBlockhash = (
+      await this.client.connection.getRecentBlockhash()
+    ).blockhash;
+
+    return await this.client.program.provider.send?.(tx);
+  }
+
+  async createChest(org: string, name: string) {
+    const [organizationPDA] = await anchor.web3.PublicKey.findProgramAddress(
+      [Buffer.from(org), Buffer.from("")],
+      this.client.program.programId
+    );
+
+    const [organizationConfigurationPDA] =
+      await anchor.web3.PublicKey.findProgramAddress(
+        [Buffer.from("config"), Buffer.from(org)],
+        this.client.program.programId
+      );
+
+    const [buddyPDA] = await anchor.web3.PublicKey.findProgramAddress(
+      [Buffer.from(org), Buffer.from(name)],
+      this.client.program.programId
+    );
+
+    const tx = new Transaction();
+
+    const orgAccount = await this.client.program.account.buddy.fetch(
+      organizationPDA
+    );
+
+    if (orgAccount.hasRequiredMint) {
       const [buddyChestPDA] = await anchor.web3.PublicKey.findProgramAddress(
         [Buffer.from(org), Buffer.from(name), LADAMint.toBuffer()],
         this.client.program.programId

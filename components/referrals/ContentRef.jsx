@@ -34,7 +34,11 @@ import {
   _conditions,
 } from "../../styles/referrals.styled";
 import Nav from "../nav";
-import { BuddyContext, ORGANIZATION } from "../../wallet/BuddyContext";
+import {
+  BuddyContext,
+  LADAMint,
+  ORGANIZATION,
+} from "../../wallet/BuddyContext";
 import { Client } from "../../wallet/Connection";
 import { useTranslation } from "react-i18next";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
@@ -43,6 +47,7 @@ import { useMesh } from "../../core/state/mesh/useMesh";
 import {
   BUDDY,
   BUDDY_CHEST,
+  BUDDY_SOL_CHEST,
   CLIENT,
   STATUS_REF,
   STEP,
@@ -70,6 +75,7 @@ function Content({ refId }) {
   const [buddy, setBuddy] = useMesh(BUDDY);
   const prevBuddy = useRef(buddy);
   const [status, setStatus] = useMesh(STATUS_REF);
+  const [, setBuddySolChest] = useMesh(BUDDY_SOL_CHEST);
   const [, setBuddyChest] = useMesh(BUDDY_CHEST);
   const ref0 = useRef(null);
   const ref1 = useRef(null);
@@ -89,16 +95,32 @@ function Content({ refId }) {
     [status]
   );
 
-  const fetchBuddy = async (client) => {
-    const bud = await new BuddyContext(client).getBuddy();
-    if (bud) {
-      setBuddy(bud);
-      const budChest = await new BuddyContext(client).getSOLChest(
-        bud.account.name
-      );
-      if (budChest) setBuddyChest(budChest);
-    }
-  };
+  const fetchBuddy = useCallback(
+    async (client) => {
+      console.log("client", client);
+      const bud = await new BuddyContext(client).getBuddy(ORGANIZATION);
+      if (bud) {
+        setBuddy(bud);
+
+        // const budSolChest = await new BuddyContext(client).getSOLChest(
+        //   bud.account.name
+        // );
+        // if (budSolChest) setBuddySolChest(budSolChest);
+
+        try {
+          const budChest = await new BuddyContext(client).getMintChest(
+            bud.account.name,
+            bud.account.organization,
+            LADAMint
+          );
+          setBuddyChest(budChest);
+        } catch (e) {
+          console.log("fetching mint chest failure:", e);
+        }
+      }
+    },
+    [client]
+  );
 
   const linkBuddy = async () => {
     setLoading(true);
@@ -144,6 +166,7 @@ function Content({ refId }) {
       );
 
       console.log("response", response);
+      localStorage.setItem("email", "true");
       setStep(1);
     } catch (e) {
       changeStatus(
@@ -167,11 +190,17 @@ function Content({ refId }) {
   //   }
   // };
 
-  // useEffect(() => {
-  //   if (!prevBuddy.current && buddy) {
-  //     setStep(3);
-  //   }
-  // }, [buddy]);
+  useEffect(() => {
+    if (!prevBuddy.current && buddy) {
+      setStep(2);
+    }
+  }, [buddy]);
+
+  useEffect(() => {
+    if (localStorage.getItem("email")) {
+      setStep(1);
+    }
+  }, []);
 
   useEffect(() => {
     if (connected) {
@@ -212,7 +241,7 @@ function Content({ refId }) {
                   createContact(email);
                 }}
               >
-                {!loading ? t('referrals.step') : <_loading />}
+                {!loading ? t("referrals.step") : <_loading />}
               </_actionButton>
             </_buttonContainer>
           </>
@@ -254,7 +283,14 @@ function Content({ refId }) {
       }
       case 2: {
         nodeRef = ref2;
-        comp = <Success fetchBuddy={fetchBuddy} />;
+        comp = (
+          <Success
+            fetchBuddy={async () => {
+              await fetchBuddy(client);
+              setStep(3);
+            }}
+          />
+        );
         break;
       }
       case 3: {

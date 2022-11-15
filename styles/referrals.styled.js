@@ -43,7 +43,7 @@ export const _page = styled.div`
   position: relative;
   font-family: "Poppins", sans-serif;
   color: #fff9f6;
-  background: #777FF9;
+  background: #777ff9;
   letter-spacing: 0.4px;
   overflow: hidden;
 `;
@@ -252,7 +252,7 @@ export const _actionButton = styled.div`
   color: #fff;
   font-weight: 700;
   letter-spacing: 0.5px;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.24);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.24);
   min-width: 164px;
   width: 224px;
   height: 60px;
@@ -262,7 +262,8 @@ export const _actionButton = styled.div`
   border-radius: 50px;
   background-color: rgba(255, 152, 48, 0.69);
   border: 2px solid rgba(255, 152, 48, 0.69);
-  backdrop-filter: blur(40px) saturate(110%) hue-rotate(160deg) brightness(60%) contrast(110%);
+  backdrop-filter: blur(40px) saturate(110%) hue-rotate(160deg) brightness(60%)
+    contrast(110%);
   box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
   cursor: pointer;
 
@@ -292,7 +293,7 @@ export const _input = styled.input`
 
   &::placeholder {
     font-size: 12px;
-    color: rgba(255,255,255,0.3);
+    color: rgba(255, 255, 255, 0.3);
   }
 `;
 
@@ -376,7 +377,7 @@ export const _redirection = styled.a`
 export const _subtitle = styled.div`
   font-weight: 200;
   color: #fff9f6;
-  text-shadow: 1px 1px 0 #4F5AF8;
+  text-shadow: 1px 1px 0 #4f5af8;
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -387,7 +388,7 @@ export const _subtitle = styled.div`
 export const _conditions = styled.div`
   font-weight: 200;
   color: #fff9f6;
-  text-shadow: 1px 1px 0 #4F5AF8;
+  text-shadow: 1px 1px 0 #4f5af8;
   letter-spacing: 1px;
   margin: 0;
   font-family: "Poppins", sans-serif;
@@ -420,4 +421,45 @@ export const _url = styled.div`
   opacity: 0.7;
 `;
 
-export const _codeDesc = styled.div``;
+export const _codeDesc = styled.div`
+  padding-top: 12px;
+  font-size: 12px;
+  text-align: center;
+  width: 70%;
+
+  > span {
+    color: #989efe;
+    cursor: pointer;
+  }
+`;
+
+export const _chestAction = styled.div`
+  position: relative;
+  top: 12px;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.24);
+  width: 180px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  background-color: rgba(255, 152, 48, 0.69);
+  border: 2px solid rgba(255, 152, 48, 0.69);
+  backdrop-filter: blur(40px) saturate(110%) hue-rotate(160deg) brightness(60%)
+    contrast(110%);
+  box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
+  cursor: pointer;
+  transition: transform 0.25s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+`;
