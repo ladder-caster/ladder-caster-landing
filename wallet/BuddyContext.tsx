@@ -5,7 +5,11 @@ import {
   Token,
   TOKEN_PROGRAM_ID,
 } from "@solana/spl-token";
-import { PublicKey, Transaction } from "@solana/web3.js";
+import {
+  PublicKey,
+  SYSVAR_INSTRUCTIONS_PUBKEY,
+  Transaction,
+} from "@solana/web3.js";
 import { Address } from "@project-serum/anchor";
 
 // Replace to your spl mint address if you need to
@@ -216,6 +220,7 @@ export class BuddyContext {
         .accounts({
           systemProgram: anchor.web3.SystemProgram.programId,
           rent: anchor.web3.SYSVAR_RENT_PUBKEY,
+          instructionSysvarAccount: SYSVAR_INSTRUCTIONS_PUBKEY,
           authority: this.client.wallet.publicKey,
           organization: organizationPDA,
           organizationConfiguration: organizationConfigurationPDA,
