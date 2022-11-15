@@ -133,6 +133,10 @@
     "username": "Choose a username",
     "account": "Create account",
     "step": "Next Step",
-    "conditions": "Rewards may vary, and all values are subject to change at any time."
+    "conditions": "Rewards may vary, and all values are subject to change at any time.",
+    "fixAccount": "Looks like your LADA chest is not setup, so buddies can't connect.",
+    "createChest": "Create the chest",
+    "creatingChest": "Creating your chest",
+    "successChest": "Successful chest creation!"
   }
 }

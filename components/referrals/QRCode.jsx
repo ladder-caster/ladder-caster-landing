@@ -5,18 +5,67 @@ import {
   _code,
   _url,
   _codeDesc,
+  _chestAction,
 } from "../../styles/referrals.styled";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { useMesh } from "../../core/state/mesh/useMesh";
-import { BUDDY } from "../../core/actions/actions";
+import {
+  BUDDY,
+  BUDDY_CHEST,
+  CLIENT,
+  STATUS_REF,
+} from "../../core/actions/actions";
+import { useTranslation } from "react-i18next";
+import { BuddyContext, ORGANIZATION } from "../../wallet/BuddyContext";
 
+const CHEST_STATUS = "CHEST_STATUS";
 export const QRCode = () => {
+  const { t } = useTranslation();
   const [url, setUrl] = useState("");
   const [qrCode, setQrCode] = useState(null);
   const ref = useRef();
+  const [client] = useMesh(CLIENT);
   const [buddy] = useMesh(BUDDY);
+  const [buddyChest, setBuddyChest] = useMesh(BUDDY_CHEST);
+  const [status, setStatus] = useMesh(STATUS_REF);
+
+  const changeStatus = useCallback(
+    (type, statusLabel, message) => {
+      setStatus({
+        ...status.current,
+        [type]: {
+          status: statusLabel,
+          message: message,
+        },
+      });
+    },
+    [status]
+  );
+
+  const fixChest = useCallback(async () => {
+    const buddyContext = new BuddyContext(client);
+    changeStatus(CHEST_STATUS, "loading", t("referrals.creatingChest"));
+
+    try {
+      const linked = await buddyContext.createChest(
+        ORGANIZATION,
+        buddy.account.name
+      );
+
+      changeStatus(CHEST_STATUS, "success", t("referrals.successChest"));
+      setBuddyChest({});
+      console.log("success", linked);
+    } catch (e) {
+      changeStatus(
+        CHEST_STATUS,
+        "error",
+        typeof e === "string" ? e : e.message
+      );
+      console.log("error", e);
+    }
+  }, [buddy]);
 
   useEffect(() => {
     if (buddy) {
@@ -60,6 +109,7 @@ export const QRCode = () => {
       });
     }
   }, [url, qrCode]);
+
   return (
     <_qrCode>
       <_qrContainer>
@@ -67,7 +117,18 @@ export const QRCode = () => {
           <_qr id="qrcode" ref={ref} />
         </_code>
         <_url>{url}</_url>
-        <_codeDesc></_codeDesc>
+        {!buddyChest && (
+          <>
+            <_codeDesc>{t("referrals.fixAccount")} </_codeDesc>
+            <_chestAction
+              onClick={() => {
+                fixChest();
+              }}
+            >
+              {t("referrals.createChest")}
+            </_chestAction>
+          </>
+        )}
       </_qrContainer>
     </_qrCode>
   );
