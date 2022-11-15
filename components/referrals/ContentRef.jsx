@@ -192,7 +192,7 @@ function Content({ refId }) {
 
   useEffect(() => {
     if (!prevBuddy.current && buddy) {
-      setStep(2);
+      setStep(3);
     }
   }, [buddy]);
 
