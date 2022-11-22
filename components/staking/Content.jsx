@@ -37,7 +37,9 @@ function Content() {
   );
 
   useEffect(() => {
-    Client.connect(null).then((res) => initGlobalValues(res));
+    Client.connect(null).then((res) => {
+      initGlobalValues(res);
+    });
   }, []);
 
   useEffect(() => {
@@ -64,7 +66,7 @@ function Content() {
 
   return (
     <_page>
-      <Nav staking/>
+      <Nav staking />
       <_content>
         <_float>
           <_background />

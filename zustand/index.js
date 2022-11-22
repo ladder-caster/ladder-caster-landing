@@ -38,8 +38,8 @@ export const initGlobalValues = async (client) => {
       totalRewards = 0;
 
     stakingAccounts.forEach((acc) => {
-      totalTVL += acc.totalTvl.toNumber();
-      totalRewards += acc.totalClaimed.toNumber();
+      totalTVL += Number.parseInt(acc.totalTvl.toString());
+      totalRewards += Number.parseInt(acc.totalClaimed.toString());
     });
 
     const blockTime = await stakingContext.getClock();
