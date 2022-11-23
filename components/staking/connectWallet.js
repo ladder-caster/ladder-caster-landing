@@ -12,18 +12,10 @@ import {
 function ConnectWallet() {
   const { setVisible } = useWalletModal();
   const { t } = useTranslation();
-  const { wallet, connected, connecting, connect } = useWallet();
-  const prevWallet = usePrevious(wallet);
 
   const connectWallet = () => {
     setVisible(true);
   };
-
-  useEffect(() => {
-    if (!prevWallet && wallet && !connected && !connecting) {
-      connect();
-    }
-  }, [wallet, prevWallet, connected]);
 
   return (
     <_connectCenter>
