@@ -90,9 +90,11 @@ export const _title = styled.div`
   font-weight: 700;
   text-align: center;
   animation: ${fadeIn} 0.5s ease-in;
+  animation-delay: 0.1s;
+  animation-fill-mode: backwards;
   text-shadow: 2px 2px 0 rgba(52, 42, 60, 0.1);
   width: 100%;
-  padding: 0 16px 32px 16px;
+  padding: 0 16px 16px 16px;
 
   ${media.tablet`
     font-size: 48px;
@@ -104,7 +106,7 @@ export const _description = styled.div`
   font-size: 14px;
   text-align: center;
   animation: ${fadeIn} 0.5s ease-in;
-  animation-delay: 0.25s;
+  animation-delay: 0.3s;
   animation-fill-mode: backwards;
   text-shadow: 2px 2px 0 rgba(52, 42, 60, 0.1);
 
@@ -383,6 +385,8 @@ export const _subtitle = styled.div`
   font-family: "Poppins", sans-serif;
   font-size: 28px;
   text-transform: uppercase;
+  animation: ${fadeIn} 0.5s ease-in;
+  animation-fill-mode: backwards;
 `;
 
 export const _conditions = styled.div`
@@ -461,5 +465,31 @@ export const _chestAction = styled.div`
 
   &:active {
     transform: scale(0.9);
+  }
+`;
+
+export const _connectContainer = styled.div`
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  animation: ${fadeIn} 0.5s ease-in;
+  animation-delay: 0.3s;
+  animation-fill-mode: backwards;
+
+  > button,
+  div > button {
+    background-color: rgb(98, 91, 254);
+    box-shadow: 0px 0px 32px -6px rgba(0, 0, 0, 0.1);
+
+    > i {
+      display: none;
+
+      ${media.desktop`
+        display: inline;
+      `}
+    }
   }
 `;

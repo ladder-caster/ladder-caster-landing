@@ -1,5 +1,8 @@
 import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
-import { useWalletModal } from "@solana/wallet-adapter-react-ui";
+import {
+  useWalletModal,
+  WalletMultiButton,
+} from "@solana/wallet-adapter-react-ui";
 import axios from "axios";
 import React, {
   useCallback,
@@ -32,6 +35,7 @@ import {
   _loading,
   _subtitle,
   _conditions,
+  _connectContainer,
 } from "../../styles/referrals.styled";
 import Nav from "../nav";
 import {
@@ -317,7 +321,7 @@ function Content({ refId }) {
 
   return (
     <_page>
-      <Nav simple />
+      <Nav />
       <_background>
         <_squareRight />
         <_squareLeft />
@@ -325,6 +329,9 @@ function Content({ refId }) {
       <_body>
         <_subtitle>{t("referrals.title")}</_subtitle>
         <_title>{t("referrals.header")}</_title>
+        <_connectContainer>
+          <WalletMultiButton />
+        </_connectContainer>
         <_description>{t("referrals.description")}</_description>
         <_box
           onMouseEnter={() => {

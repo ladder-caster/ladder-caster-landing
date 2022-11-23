@@ -66,7 +66,7 @@ export const _info = styled.div`
   justify-content: flex-start;
   flex-direction: column;
   margin-left: 0;
-  z-index: 99999;
+  z-index: 10;
   padding-top: 32px;
 
   ${media.desktop`
@@ -162,7 +162,7 @@ export const _button = styled.div`
     font-weight: 500;
     letter-spacing: 0.5px;
     cursor: pointer;
-    background: #FF9830;
+    background: #ff9830;
     font-size: 14px;
     color: #fff;
     padding: 8px 32px;
@@ -471,7 +471,7 @@ export const _social = styled.a`
     height: 20px;
     margin-right: 8px;
   }
-  
+
   &:first-child {
     margin-right: 16px;
   }
@@ -490,7 +490,7 @@ export const _refer = styled.div`
   color: #fff;
   font-weight: 700;
   letter-spacing: 0.5px;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.24);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.24);
   min-width: 164px;
   width: 224px;
   height: 60px;
@@ -500,7 +500,8 @@ export const _refer = styled.div`
   border-radius: 20px;
   background-color: rgba(255, 152, 48, 0.69);
   border: 2px solid rgba(255, 152, 48, 0.69);
-  backdrop-filter: blur(40px) saturate(110%) hue-rotate(160deg) brightness(60%) contrast(110%);
+  backdrop-filter: blur(40px) saturate(110%) hue-rotate(160deg) brightness(60%)
+    contrast(110%);
   box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
   cursor: pointer;
   > a {
