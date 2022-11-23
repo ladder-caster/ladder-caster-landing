@@ -86,7 +86,7 @@ export const _column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 8px 32px 8px;
+  padding: 0 8px 0 8px;
 
   ${({ $info }) =>
     $info &&
@@ -106,7 +106,7 @@ export const _column = styled.div`
         ${media.tablet`
           order: 2;
           flex: 1 1 33%;
-        margin-top: 0;
+          margin-top: 0;
         `}
       }
       &:nth-child(3) {
@@ -117,6 +117,13 @@ export const _column = styled.div`
           flex: 1 1 33%;
         `}
       }
+    `}
+
+  ${({ $column }) =>
+    $column &&
+    css`
+      display: flex;
+      flex-direction: column;
     `}
 `;
 
@@ -161,7 +168,7 @@ export const _top = styled.div`
   display: flex;
   max-width: 800px;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   width: 100%;
   flex-wrap: wrap;
 
@@ -379,7 +386,7 @@ export const _modal = styled.div`
   padding: 32px;
   border: 1px solid rgba(255, 255, 255, 0.5);
   margin: 0 16px;
-  background: #281F5C;
+  background: #281f5c;
 
   ${media.mobile`
     width: 100%;
@@ -398,8 +405,8 @@ export const _modalContainer = styled.div`
   margin-bottom: 32px;
 
   ${media.tablet`
-    margin-top: 48px;
-  margin-bottom: 0;
+    margin-top: 24px;
+    margin-bottom: 0;
   `}
 `;
 
@@ -452,7 +459,7 @@ export const _valueContainer = styled.div`
   padding: 16px 88px 16px 52px;
   cursor: pointer;
   position: relative;
-  background: #1B153F;
+  background: #1b153f;
 
   &:hover {
     border: 1px solid rgba(255, 255, 255, 0.6);
@@ -562,11 +569,16 @@ export const _row = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+
   ${({ $top }) =>
     $top &&
     css`
       margin-top: 4px;
-      margin-bottom: 24px;
+      margin-bottom: 8px;
+      ${media.tablet`
+        margin-bottom: 24px;
+      `}
     `}
 
   ${({ $drop }) =>
@@ -590,6 +602,16 @@ export const _icon = styled.img`
 `;
 
 export const _info = styled.div`
+  ${({ $mobile }) =>
+    $mobile &&
+    css`
+      margin-bottom: 32px;
+
+      ${media.tablet`
+        display: none;
+      `}
+    `}
+
   ${({ $row }) =>
     $row &&
     css`
@@ -601,11 +623,11 @@ export const _info = styled.div`
     $spread &&
     css`
       display: flex;
-      width: 175px;
+      width: 250px;
       justify-content: space-between;
 
       ${media.tablet`
-        width: 200px;
+        width: 240px;
       `}
     `}
 
@@ -635,6 +657,16 @@ export const _info = styled.div`
           `}
         }
       }
+    `}
+
+  ${({ $desktop }) =>
+    $desktop &&
+    css`
+      display: none;
+
+      ${media.tablet`
+        display: flex;
+      `}
     `}
 `;
 
@@ -722,5 +754,18 @@ export const _connectText = styled.div`
   &:hover {
     transform: scale(1.03);
     box-shadow: 0px 0px 6px 6px rgba(255, 255, 255, 0.05);
+  }
+`;
+
+export const _stakingContainer = styled.div``;
+
+export const _disconnect = styled.div`
+  color: #989efe;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+
+  &:hover {
+    color: #7579bf;
   }
 `;

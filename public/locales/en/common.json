@@ -122,7 +122,8 @@
     "hodlerDesc": "90-day lockup",
     "diamond": "Diamond Hands",
     "diamondAPY": "60% APR",
-    "diamondDesc": "180-day lockup"
+    "diamondDesc": "180-day lockup",
+    "disconnect": "DISCONNECT"
   },
   "referrals": {
     "title": "Better Together",

@@ -183,11 +183,11 @@ export const StakingForm = ({}) => {
       totStaked += acc.stakedAmount.toNumber() / 1e9;
     });
 
-    setTotalStaked(totStaked);
+    setTotalStaked(Math.round(totStaked * 100) / 100);
 
     if (toClaim < 0) toClaim = 0;
     toClaim = toClaim.toFixed(4);
-    return toClaim;
+    return Math.round(toClaim * 100) / 100;
   }, [filteredStakedAccounts, contractObj]);
 
   useEffect(() => {
@@ -221,9 +221,9 @@ export const StakingForm = ({}) => {
 
     filteredStakedAccounts.forEach((acc, key) => {
       list.push({
-        label: `${t("staking.form.account")} ${key + 1} - ${
+        label: `${t("staking.form.account")} ${key + 1} - ${(
           acc.stakedAmount / 1e9
-        } LADA`,
+        )?.toLocaleString()} LADA`,
         value: key,
       });
     });
@@ -293,9 +293,9 @@ export const StakingForm = ({}) => {
           <_row>
             <_info $spread $row>
               <_text>{t("staking.form.LADAEarned")}</_text>
-              <_text>{ladaToRedeem}</_text>
+              <_text>{ladaToRedeem?.toLocaleString()}</_text>
             </_info>
-            <_info $row>
+            <_info $row $desktop>
               <_button
                 disabled={ladaToRedeem <= 0}
                 onClick={redeemLada}
@@ -311,6 +311,15 @@ export const StakingForm = ({}) => {
               <_text $color={color}>{totalStaked?.toLocaleString()}</_text>
             </_info>
           </_row>
+          <_info $mobile>
+            <_button
+              disabled={ladaToRedeem <= 0}
+              onClick={redeemLada}
+              $secondary
+            >
+              {t("staking.form.claim")}
+            </_button>
+          </_info>
           <_row $drop>
             {options?.length ? (
               <>

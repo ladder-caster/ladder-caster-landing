@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import Footer from "../footer";
 import Nav from "../nav";
-import { initGlobalValues, initStakeData, useWalletStore } from "../../zustand";
+import {
+  cleanUser,
+  initGlobalValues,
+  initStakeData,
+  useWalletStore,
+} from "../../zustand";
 import ConnectWallet from "./connectWallet";
 import { StakingCard } from "./StakingCard";
 import { StakingInfo } from "./StakingInfo";
@@ -20,6 +25,10 @@ import {
   _bottom,
   _float,
   _background,
+  _stakingContainer,
+  _disconnect,
+  _stakingTitle,
+  _stakingContent,
 } from "../../styles/staking.styled";
 
 function Content() {
@@ -30,8 +39,7 @@ function Content() {
   const category = useWalletStore((state) => state.category);
   const setCategory = useWalletStore((state) => state.setCategory);
   const anchorWallet = useAnchorWallet();
-  const { connected, disconnect } = useWallet();
-  // per tier : {tier1: ladaCount, tier2: ladaCount, tier3: ladaCount}
+  const { connected, disconnect, disconnecting } = useWallet();
   const globalRewardsGiven = useWalletStore(
     (state) => state.globalRewardsGiven
   );
@@ -43,12 +51,16 @@ function Content() {
   }, []);
 
   useEffect(() => {
+    if (disconnecting) cleanUser();
+  }, [disconnecting]);
+
+  useEffect(() => {
     if (connected) {
       Client.connect(anchorWallet).then((res) => initStakeData(res));
     } else {
       setClient(null);
     }
-  }, [connected, disconnect]);
+  }, [connected]);
 
   useEffect(() => {
     if (category > 0 && document.getElementById("modal")) {
@@ -89,11 +101,17 @@ function Content() {
               <ConnectWallet />
             </_column>
           ) : (
-            <StakingInfo
-              title={t("content.inWallet")}
-              subtitle={`${ladaBalance?.toLocaleString()} LADA`}
-              area={"b"}
-            />
+            <_column $column $info>
+              <_stakingTitle>{t("content.inWallet")}</_stakingTitle>
+              <_stakingContent>{`${ladaBalance?.toLocaleString()} LADA`}</_stakingContent>
+              <_disconnect
+                onClick={() => {
+                  disconnect();
+                }}
+              >
+                {t("content.disconnect")}
+              </_disconnect>
+            </_column>
           )}
           <StakingInfo
             title={t("content.rewardsPaid")}

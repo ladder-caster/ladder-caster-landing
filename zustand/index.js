@@ -82,6 +82,12 @@ export const initStakeData = async (client) => {
   } catch (e) {}
 };
 
+export const cleanUser = () => {
+  useWalletStore.getState().setClient(null);
+  useWalletStore.getState().setUserStakedAccounts([]);
+  useWalletStore.getState().setLadaBalance(0);
+};
+
 export const updateData = async (client) => {
   initStakeData(client);
   initGlobalValues(client);
