@@ -191,9 +191,15 @@ export class StakingContext {
       new PublicKey(Keys.mintAccount),
       this.client.wallet.publicKey
     );
-    balance = (
-      await this.client.connection.getTokenAccountBalance(userLadaTokenAccount)
-    ).value;
+    try {
+      balance = (
+        await this.client.connection.getTokenAccountBalance(
+          userLadaTokenAccount
+        )
+      ).value;
+    } catch (e) {
+      balance = { amount: "0", uiAmount: 0, decimals: 0 };
+    }
 
     return balance.uiAmount;
   }

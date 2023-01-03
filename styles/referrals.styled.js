@@ -478,6 +478,7 @@ export const _connectContainer = styled.div`
   animation: ${fadeIn} 0.5s ease-in;
   animation-delay: 0.3s;
   animation-fill-mode: backwards;
+  margin-bottom: 16px;
 
   > button,
   div > button {

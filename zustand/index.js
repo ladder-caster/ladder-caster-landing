@@ -79,7 +79,9 @@ export const initStakeData = async (client) => {
     useWalletStore.getState().setClient(client);
     useWalletStore.getState().setUserStakedAccounts(stakedAccounts);
     useWalletStore.getState().setLadaBalance(Math.trunc(userLada * 100) / 100);
-  } catch (e) {}
+  } catch (e) {
+    console.log("error fetching user", e);
+  }
 };
 
 export const cleanUser = () => {
