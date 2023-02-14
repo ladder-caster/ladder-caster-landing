@@ -104,12 +104,6 @@ export class BuddyContext {
       [Buffer.from(org), Buffer.from(name), mint.toBuffer()],
       this.client.program.programId
     );
-
-    console.log(
-      (
-        await this.client.program.account.treasuryChest.fetch(buddyChestPDA)
-      ).mint.toString()
-    );
     return await this.client.program.account.treasuryChest.fetch(buddyChestPDA);
   }
 
@@ -281,7 +275,7 @@ export class BuddyContext {
       await this.client.connection.getRecentBlockhash()
     ).blockhash;
 
-    return await this.client.program.provider.send?.(tx);
+    return tx;
   }
 
   async createChest(org: string, name: string) {

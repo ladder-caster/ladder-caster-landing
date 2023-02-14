@@ -70,7 +70,7 @@ function Content({ refId }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [hover, setHover] = useState(false);
-  const { connected } = useWallet();
+  const { connected, signTransaction } = useWallet();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const { setVisible } = useWalletModal();
@@ -101,7 +101,6 @@ function Content({ refId }) {
 
   const fetchBuddy = useCallback(
     async (client) => {
-      console.log("client", client);
       const bud = await new BuddyContext(client).getBuddy(ORGANIZATION);
       if (bud) {
         setBuddy(bud);
@@ -131,11 +130,18 @@ function Content({ refId }) {
     const buddyContext = new BuddyContext(client);
 
     try {
-      const linked = await buddyContext.linkTransaction(
-        ORGANIZATION,
-        username,
-        REF_BASIS_POINTS,
-        refId && refId.toLowerCase() !== ORGANIZATION ? refId.toLowerCase() : ""
+      const signedTx = await signTransaction(
+        await buddyContext.linkTransaction(
+          ORGANIZATION,
+          username,
+          REF_BASIS_POINTS,
+          refId && refId.toLowerCase() !== ORGANIZATION
+            ? refId.toLowerCase()
+            : ""
+        )
+      );
+      const linked = await client.connection.sendRawTransaction(
+        signedTx.serialize()
       );
       console.log("success", linked);
       setStep(2);

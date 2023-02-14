@@ -65,21 +65,36 @@ export class StakingContext {
       this.client.wallet.publicKey
     );
 
-    return await this.client.program.rpc.stakeLada(new anchor.BN(amount), {
-      accounts: {
-        tokenProgram: TOKEN_PROGRAM_ID,
-        systemProgram: anchor.web3.SystemProgram.programId,
-        associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
-        rent: SYSVAR_RENT_PUBKEY,
-        authority: this.client.wallet.publicKey,
-        stakingSigner: stakingSigner,
-        ladaPool: new PublicKey(Keys.ladaPool),
-        userLadaToken: userLadaTokenAccount,
-        stakeInfo: stakeInfo.publicKey,
-        stakingContract: StakingContext.getTier(tier)!,
-      },
-      signers: [stakeInfo],
-    });
+    const tx = new Transaction();
+
+    tx.add(
+      await this.client.program.methods
+        .stakeLada(new anchor.BN(amount))
+        .accounts({
+          tokenProgram: TOKEN_PROGRAM_ID,
+          systemProgram: anchor.web3.SystemProgram.programId,
+          associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
+          rent: SYSVAR_RENT_PUBKEY,
+          authority: this.client.wallet.publicKey,
+          stakingSigner: stakingSigner,
+          ladaPool: new PublicKey(Keys.ladaPool),
+          userLadaToken: userLadaTokenAccount,
+          stakeInfo: stakeInfo.publicKey,
+          stakingContract: StakingContext.getTier(tier)!,
+        })
+        .instruction()
+    );
+
+    tx.feePayer = this.client.wallet.publicKey;
+
+    const { blockhash, lastValidBlockHeight } =
+      await this.client.connection.getLatestBlockhash();
+    tx.recentBlockhash = blockhash;
+    tx.lastValidBlockHeight = lastValidBlockHeight;
+
+    tx.partialSign(stakeInfo);
+
+    return tx;
   }
 
   async unstakeLADA(userStakeAccount: any) {
@@ -94,34 +109,48 @@ export class StakingContext {
       this.client.wallet.publicKey
     );
 
-    return await this.client.program.rpc.unstakeLada({
-      accounts: {
-        tokenProgram: TOKEN_PROGRAM_ID,
-        systemProgram: anchor.web3.SystemProgram.programId,
-        associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
-        authority: this.client.wallet.publicKey,
-        stakingSigner: stakingSigner,
-        ladaTokenAccount: new PublicKey(Keys.ladaPoolInterest),
-        ladaPool: new PublicKey(Keys.ladaPool),
-        userLadaToken: userLadaTokenAccount,
-        stakeInfo: userStakeAccount.publicKey,
-        stakingContract: userStakeAccount.stakingContract,
-      },
-      signers: [],
-    });
+    const tx = new Transaction();
+
+    tx.add(
+      await this.client.program.methods
+        .unstakeLada()
+        .accounts({
+          tokenProgram: TOKEN_PROGRAM_ID,
+          systemProgram: anchor.web3.SystemProgram.programId,
+          associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
+          authority: this.client.wallet.publicKey,
+          stakingSigner: stakingSigner,
+          ladaTokenAccount: new PublicKey(Keys.ladaPoolInterest),
+          ladaPool: new PublicKey(Keys.ladaPool),
+          userLadaToken: userLadaTokenAccount,
+          stakeInfo: userStakeAccount.publicKey,
+          stakingContract: userStakeAccount.stakingContract,
+        })
+        .instruction()
+    );
+
+    tx.feePayer = this.client.wallet.publicKey;
+    const { blockhash, lastValidBlockHeight } =
+      await this.client.connection.getLatestBlockhash();
+    tx.recentBlockhash = blockhash;
+    tx.lastValidBlockHeight = lastValidBlockHeight;
+
+    return tx;
   }
 
-  claim(
+  async claim(
     userStakeAccount: any,
     stakingSigner: PublicKey,
     blockhash: string,
+    lastValidBlockHeight: number,
     userLadaTokenAccount: PublicKey
   ) {
     const tx = new Transaction();
 
     tx.add(
-      this.client.program.instruction.claimInterests({
-        accounts: {
+      await this.client.program.methods
+        .claimInterests()
+        .accounts({
           tokenProgram: TOKEN_PROGRAM_ID,
           systemProgram: anchor.web3.SystemProgram.programId,
           associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
@@ -131,12 +160,12 @@ export class StakingContext {
           userLadaToken: userLadaTokenAccount,
           stakeInfo: userStakeAccount.publicKey,
           stakingContract: userStakeAccount.stakingContract,
-        },
-        signers: [],
-      })
+        })
+        .instruction()
     );
 
     tx.recentBlockhash = blockhash;
+    tx.lastValidBlockHeight = lastValidBlockHeight;
     tx.feePayer = this.client.wallet.publicKey!;
 
     return tx;
@@ -147,8 +176,9 @@ export class StakingContext {
       [Buffer.from("staking_signer")],
       this.client.program.programId
     );
-    const blockhash = (await this.client.connection.getLatestBlockhash())
-      .blockhash;
+
+    const { blockhash, lastValidBlockHeight } =
+      await this.client.connection.getLatestBlockhash();
     const userLadaTokenAccount = await Token.getAssociatedTokenAddress(
       ASSOCIATED_TOKEN_PROGRAM_ID,
       TOKEN_PROGRAM_ID,
@@ -157,30 +187,19 @@ export class StakingContext {
     );
     const transactions: Transaction[] = [];
 
-    accounts.forEach((acc) => {
+    for (const acc of accounts) {
       transactions.push(
-        this.claim(acc, stakingSigner, blockhash, userLadaTokenAccount)
+        await this.claim(
+          acc,
+          stakingSigner,
+          blockhash,
+          lastValidBlockHeight,
+          userLadaTokenAccount
+        )
       );
-    });
+    }
 
-    const signedTxns =
-      await this.client.program.provider.wallet.signAllTransactions(
-        transactions
-      );
-
-    const txPromises: any[] = [];
-
-    signedTxns.forEach((tx) => {
-      const promise = async () => {
-        return await this.client.connection.confirmTransaction(
-          await this.client.connection.sendRawTransaction(tx.serialize())
-        );
-      };
-
-      txPromises.push(promise());
-    });
-
-    return await Promise.all(txPromises);
+    return transactions;
   }
 
   async getUserLadaBalance() {

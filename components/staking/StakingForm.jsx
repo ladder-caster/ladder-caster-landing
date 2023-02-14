@@ -25,6 +25,7 @@ import {
   _text,
   _icon,
 } from "../../styles/staking.styled";
+import { useWallet } from "@solana/wallet-adapter-react";
 
 export const StakingForm = ({}) => {
   const { t } = useTranslation();
@@ -57,6 +58,7 @@ export const StakingForm = ({}) => {
         contract.publicKey.toString() === stakingContractPK?.toString()
     );
   }, [stakingContracts, stakingContractPK]);
+  const { signAllTransaction, signTransaction } = useWallet();
 
   const color = useMemo(() => {
     switch (category) {
@@ -108,8 +110,13 @@ export const StakingForm = ({}) => {
 
     try {
       changeStatus("stake", "loading", t("staking.form.error.stakeLoading"));
-      await client.connection.confirmTransaction(
+
+      const signedTx = await signTransaction(
         await new StakingContext(client).stakeLADA(ladaToStake, category)
+      );
+
+      await client.connection.confirmTransaction(
+        await client.connection.sendRawTransaction(signedTx.serialize())
       );
       changeStatus("stake", "success", t("staking.form.error.stakeSuccess"));
     } catch (e) {
@@ -117,7 +124,7 @@ export const StakingForm = ({}) => {
     } finally {
       updateData(client);
     }
-  }, [ladaToStake, ladaBalance, client, category, t]);
+  }, [ladaToStake, ladaBalance, client, category, t, signTransaction]);
 
   const unstakeLada = useCallback(async () => {
     try {
@@ -126,10 +133,14 @@ export const StakingForm = ({}) => {
         "loading",
         t("staking.form.error.unstakeLoading")
       );
-      await client.connection.confirmTransaction(
+      const signedTx = await signTransaction(
         await new StakingContext(client).unstakeLADA(
           filteredStakedAccounts[accountSelected]
         )
+      );
+
+      await client.connection.confirmTransaction(
+        await client.connection.sendRawTransaction(signedTx.serialize())
       );
       changeStatus(
         "unstake",
@@ -141,15 +152,54 @@ export const StakingForm = ({}) => {
     } finally {
       updateData(client);
     }
-  }, [client, filteredStakedAccounts, accountSelected, t]);
+  }, [client, filteredStakedAccounts, accountSelected, t, signTransaction]);
 
   const redeemLada = useCallback(async () => {
     if (ladaToRedeem <= 0) return;
     try {
       changeStatus("claim", "loading", t("staking.form.error.claimLoading"));
-      await new StakingContext(client).bulkClaim(filteredStakedAccounts);
+
+      const transactions = await new StakingContext(client).bulkClaim(
+        filteredStakedAccounts
+      );
+
+      let signedTxs = [];
+      if (signAllTransaction) {
+        await signAllTransaction();
+      } else {
+        const settledTxs = await Promise.allSettled(
+          transactions.map(async (tx) => {
+            const signedTx = await signTransaction(tx);
+            return signedTx;
+          })
+        );
+
+        signedTxs = settledTxs.map((tx) => tx.value);
+      }
+
+      const pendingSigned = await Promise.allSettled(
+        signedTxs.map((tx, i, allTx) => {
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              console.log(`Requesting Transaction ${i + 1}/${allTx.length}`);
+              client.connection
+                .sendRawTransaction(tx.serialize())
+                .then((txHash) => resolve(txHash));
+            }, i * 500);
+          });
+        })
+      );
+
+      if (
+        pendingSigned.find((signed) => {
+          signed.status === "rejected";
+        })
+      )
+        throw "Transaction failed";
+
       changeStatus("claim", "success", t("staking.form.error.claimSuccess"));
     } catch (e) {
+      console.log(e);
       changeStatus("claim", "error", typeof e === "string" ? e : e.message);
     } finally {
       updateData(client);

@@ -1,5 +1,5 @@
-import { Observable } from './observable';
-import state from '../../state';
+import { Observable } from "./observable";
+import state from "../../state";
 
 // List of all observable states
 const mesh = () => {
@@ -8,7 +8,6 @@ const mesh = () => {
 
   return {
     getSource(id) {
-      console.log();
       return observables.get(id);
     },
     update(id, value) {
