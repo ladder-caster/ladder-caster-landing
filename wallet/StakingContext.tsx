@@ -199,7 +199,23 @@ export class StakingContext {
       );
     }
 
-    return transactions;
+    const txPromises: any[] = [];
+    const signedTxns =
+      await this.client.program.provider.wallet.signAllTransactions(
+        transactions
+      );
+
+    signedTxns.forEach((tx) => {
+      const promise = async () => {
+        return await this.client.connection.confirmTransaction(
+          await this.client.connection.sendRawTransaction(tx.serialize())
+        );
+      };
+
+      txPromises.push(promise());
+    });
+
+    return await Promise.all(txPromises);
   }
 
   async getUserLadaBalance() {

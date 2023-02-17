@@ -158,44 +158,7 @@ export const StakingForm = ({}) => {
     if (ladaToRedeem <= 0) return;
     try {
       changeStatus("claim", "loading", t("staking.form.error.claimLoading"));
-
-      const transactions = await new StakingContext(client).bulkClaim(
-        filteredStakedAccounts
-      );
-
-      let signedTxs = [];
-      if (signAllTransaction) {
-        await signAllTransaction();
-      } else {
-        const settledTxs = await Promise.allSettled(
-          transactions.map(async (tx) => {
-            const signedTx = await signTransaction(tx);
-            return signedTx;
-          })
-        );
-
-        signedTxs = settledTxs.map((tx) => tx.value);
-      }
-
-      const pendingSigned = await Promise.allSettled(
-        signedTxs.map((tx, i, allTx) => {
-          return new Promise((resolve) => {
-            setTimeout(() => {
-              console.log(`Requesting Transaction ${i + 1}/${allTx.length}`);
-              client.connection
-                .sendRawTransaction(tx.serialize())
-                .then((txHash) => resolve(txHash));
-            }, i * 500);
-          });
-        })
-      );
-
-      if (
-        pendingSigned.find((signed) => {
-          signed.status === "rejected";
-        })
-      )
-        throw "Transaction failed";
+      await new StakingContext(client).bulkClaim(filteredStakedAccounts);
 
       changeStatus("claim", "success", t("staking.form.error.claimSuccess"));
     } catch (e) {
