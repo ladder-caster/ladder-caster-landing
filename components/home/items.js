@@ -32,7 +32,7 @@ const Items = () => {
           <_desc>{t("home.loot.description")}</_desc>
           <_wrapper>
             <_refer>
-              <Link href={"/r/laddercaster"}>
+              <Link href={"https://buddy.link/post/laddercaster-our-story"}>
                 {t("home.hero.cta")}</Link>
             </_refer>
           </_wrapper>

@@ -243,8 +243,10 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
         rendererSettings: { preserveAspectRatio: "none" },
       });
 
+      animation.setSubframe(false);
+
       if (isScroll) {
-        window.addEventListener("scroll", () => {
+        const handleScroll = () => {
           if (window.outerWidth > 900) {
             let supportPageOffset = window.pageXOffset !== undefined;
             let isCSS1Compat = (document.compatMode || "") === "CSS1Compat";
@@ -252,13 +254,13 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
               x: supportPageOffset
                 ? window.pageXOffset
                 : isCSS1Compat
-                ? document.documentElement.scrollLeft
-                : document.body.scrollLeft,
+                  ? document.documentElement.scrollLeft
+                  : document.body.scrollLeft,
               y: supportPageOffset
                 ? window.pageYOffset
                 : isCSS1Compat
-                ? document.documentElement.scrollTop
-                : document.body.scrollTop,
+                  ? document.documentElement.scrollTop
+                  : document.body.scrollTop,
             };
 
             let scrollPercent =
@@ -278,7 +280,17 @@ const Animation = ({ lottie, animate, controls, _sComponent, isScroll }) => {
               Math.min((scrollPercentRounded / 100) * MAX_POSITION * 5, 90)
             );
           }
-        });
+        };
+
+        const debounceScroll = (func, wait) => {
+          let timeout;
+          return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+          };
+        };
+
+        window.addEventListener("scroll", () => debounceScroll(handleScroll,5));
       }
 
       return () => animation.destroy();
