@@ -359,7 +359,7 @@ export const _refer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 8px;
   margin-top: 8px;
   background-color: rgba(255, 152, 48, 0.69);
   border: 2px solid rgba(255, 152, 48, 0.69);
@@ -372,5 +372,6 @@ export const _refer = styled.div`
     padding: 8px;
     width: 100%;
     height: 100%;
+    border-radius: 8px;
   }
 `;

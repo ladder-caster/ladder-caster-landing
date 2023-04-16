@@ -53,7 +53,7 @@ const Nav = ({ simple, staking }) => {
             >
               {t("nav.items")}
             </a>
-            <Link href={"/r/LadderCaster"}>{t("nav.referrals")}</Link>
+            <Link href={"https://buddy.link"}>{t("nav.referrals")}</Link>
             <a target="_self" rel="noreferrer" href="/staking">
               {t("nav.staking")}
             </a>
