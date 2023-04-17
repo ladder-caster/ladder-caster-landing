@@ -1,7 +1,7 @@
 import * as anchor from "@project-serum/anchor";
 import { Connection } from "@solana/web3.js";
-import NodeWallet from "./NodeWallet";
-import config, { environment } from "./Config/Config";
+import config from "./Config/Config";
+import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
 
 export type Environment =
   | "mainnet"
