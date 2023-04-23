@@ -1,5 +1,5 @@
 import stakingIDL from "./staking.json";
-export const environment = process.env.ENVIRONMENT || "mainnet";
+export const environment = process.env.ENVIRONMENT || "localprod";
 export const isProd = environment === "mainnet";
 
 const config = {

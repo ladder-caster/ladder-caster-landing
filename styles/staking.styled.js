@@ -420,15 +420,15 @@ export const _modalTitle = styled.div`
 
   ${({ $color }) => {
     switch ($color) {
-      case "blue":
+      case 1:
         return css`
           color: rgba(166, 234, 251, 1);
         `;
-      case "purple":
+      case 2:
         return css`
           color: rgba(176, 138, 229, 1);
         `;
-      case "orange":
+      case 3:
         return css`
           color: rgba(255, 152, 48, 1);
         `;
@@ -691,17 +691,17 @@ export const _text = styled.div`
 
   ${({ $color }) => {
     switch ($color) {
-      case "blue":
+      case 1:
         return css`
           font-weight: 600;
           color: rgba(166, 234, 251, 1);
         `;
-      case "purple":
+      case 2:
         return css`
           font-weight: 600;
           color: rgba(176, 138, 229, 1);
         `;
-      case "orange":
+      case 3:
         return css`
           font-weight: 600;
           color: rgba(255, 152, 48, 1);
@@ -769,3 +769,5 @@ export const _disconnect = styled.div`
     color: #7579bf;
   }
 `;
+
+export const _closed = styled.div``;

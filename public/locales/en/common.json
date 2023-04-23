@@ -105,7 +105,8 @@
         "claimLoading": "Claiming...",
         "claimSuccess": "Claiming successful!"
       }
-    }
+    },
+    "closed": "[Closed test goes here]"
   },
   "content": {
     "stakeLADA": "LADA Staking",

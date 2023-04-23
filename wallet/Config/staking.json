@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "1.0.0",
   "name": "lcstaking",
   "instructions": [
     {
@@ -75,6 +75,37 @@
         {
           "name": "endInNumberOfDays",
           "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "updateStakingContractIsClosed",
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "rent",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "stakingContract",
+          "isMut": true,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "isClosed",
+          "type": "bool"
         }
       ]
     },
@@ -282,6 +313,10 @@
           {
             "name": "totalClaimed",
             "type": "u64"
+          },
+          {
+            "name": "isClosed",
+            "type": "bool"
           }
         ]
       }
@@ -370,6 +405,11 @@
       "code": 6010,
       "name": "PrematureUnstaking",
       "msg": "Too early to unstake lada tokens."
+    },
+    {
+      "code": 6011,
+      "name": "StakingContractClosed",
+      "msg": "Staking contract closed."
     }
   ],
   "metadata": {

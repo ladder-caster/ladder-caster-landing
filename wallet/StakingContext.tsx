@@ -17,40 +17,6 @@ import Keys from "./Config/keys.json";
 export class StakingContext {
   constructor(private client: Client) {}
 
-  async getClock() {
-    return await this.client.connection.getBlockTime(
-      await this.client.connection.getSlot()
-    );
-  }
-
-  async getStakingContracts() {
-    const stakingAccounts =
-      await this.client.program.account.stakingContract.all();
-
-    return stakingAccounts.map((acc) => ({
-      ...acc.account,
-      publicKey: acc.publicKey,
-    }));
-  }
-
-  async getUserStaked() {
-    const stakingAccounts = await this.client.program.account.ladaStakeInfo.all(
-      [
-        {
-          memcmp: {
-            offset: 8,
-            bytes: this.client.wallet.publicKey.toBase58(),
-          },
-        },
-      ]
-    );
-
-    return stakingAccounts.map((acc) => ({
-      ...acc.account,
-      publicKey: acc.publicKey,
-    }));
-  }
-
   async stakeLADA(amount: number, tier: number) {
     const [stakingSigner] = findProgramAddressSync(
       [Buffer.from("staking_signer")],
@@ -216,6 +182,40 @@ export class StakingContext {
     });
 
     return await Promise.all(txPromises);
+  }
+
+  async getClock() {
+    return await this.client.connection.getBlockTime(
+      await this.client.connection.getSlot()
+    );
+  }
+
+  async getStakingContracts() {
+    const stakingAccounts =
+      await this.client.program.account.stakingContract.all();
+
+    return stakingAccounts.map((acc) => ({
+      ...acc.account,
+      publicKey: acc.publicKey,
+    }));
+  }
+
+  async getUserStaked() {
+    const stakingAccounts = await this.client.program.account.ladaStakeInfo.all(
+      [
+        {
+          memcmp: {
+            offset: 8,
+            bytes: this.client.wallet.publicKey.toBase58(),
+          },
+        },
+      ]
+    );
+
+    return stakingAccounts.map((acc) => ({
+      ...acc.account,
+      publicKey: acc.publicKey,
+    }));
   }
 
   async getUserLadaBalance() {

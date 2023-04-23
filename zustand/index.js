@@ -48,6 +48,17 @@ export const initGlobalValues = async (client) => {
       chain: blockTime,
       locale: Math.trunc(new Date().getTime() / 1000),
     });
+
+    console.log(
+      JSON.stringify(
+        stakingAccounts.map((a) => {
+          return {
+            ...a,
+            lockPeriodInSeconds: a.lockPeriodInSeconds.toNumber(),
+          };
+        })
+      )
+    );
     useWalletStore.getState().setStakingContracts(stakingAccounts);
     useWalletStore.getState().setGlobalStakedLada(totalTVL / 1e9);
     useWalletStore.getState().setGlobalRewardsGiven(totalRewards / 1e9);
@@ -57,19 +68,10 @@ export const initGlobalValues = async (client) => {
 export const initStakeData = async (client) => {
   if (!client) return;
 
-  // creates promise
-
   try {
-    const fetchUserLADA = (async () => {
-      const balance = await new StakingContext(client).getUserLadaBalance();
-      return balance;
-    })();
+    const fetchUserLADA = new StakingContext(client).getUserLadaBalance();
 
-    const fetchUserStakedAccounts = (async () => {
-      const stakingAccounts = await new StakingContext(client).getUserStaked();
-
-      return stakingAccounts;
-    })();
+    const fetchUserStakedAccounts = new StakingContext(client).getUserStaked();
 
     const [userLada, stakedAccounts] = await Promise.all([
       fetchUserLADA,
