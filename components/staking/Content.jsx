@@ -30,6 +30,7 @@ import {
   _stakingTitle,
   _stakingContent,
 } from "../../styles/staking.styled";
+import { PublicKey } from "@solana/web3.js";
 
 function Content() {
   const { t } = useTranslation();
@@ -39,7 +40,14 @@ function Content() {
   const category = useWalletStore((state) => state.category);
   const setCategory = useWalletStore((state) => state.setCategory);
   const anchorWallet = useAnchorWallet();
-  const { connected, disconnect, disconnecting } = useWallet();
+  const {
+    connected,
+    disconnect,
+    disconnecting,
+    signAllTransactions,
+    signTransaction,
+    publicKey,
+  } = useWallet();
   const globalRewardsGiven = useWalletStore(
     (state) => state.globalRewardsGiven
   );
@@ -56,7 +64,11 @@ function Content() {
 
   useEffect(() => {
     if (connected) {
-      Client.connect(anchorWallet).then((res) => initStakeData(res));
+      Client.connect({
+        signAllTransactions,
+        signTransaction,
+        publicKey,
+      }).then((res) => initStakeData(res));
     } else {
       setClient(null);
     }

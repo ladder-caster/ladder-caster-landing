@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import mesh from './mesh';
-import { nanoid } from 'nanoid';
+import { useEffect, useState } from "react";
+import mesh from "./mesh";
+import { nanoid } from "nanoid";
 
 export const useMesh = (key, selector) => {
   const unique_id = nanoid();
@@ -31,7 +31,6 @@ export const useMesh = (key, selector) => {
 
   // Update observable on setValue
   const updateSource = (next_value) => {
-    console.log('update', key, next_value);
     if (source) source.next(next_value);
   };
 
