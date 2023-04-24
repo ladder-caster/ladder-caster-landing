@@ -48,20 +48,11 @@ export const initGlobalValues = async (client) => {
       chain: blockTime,
       locale: Math.trunc(new Date().getTime() / 1000),
     });
-
-    console.log(
-      JSON.stringify(
-        stakingAccounts.map((a) => {
-          return {
-            ...a,
-            lockPeriodInSeconds: a.lockPeriodInSeconds.toNumber(),
-          };
-        })
-      )
-    );
     useWalletStore.getState().setStakingContracts(stakingAccounts);
     useWalletStore.getState().setGlobalStakedLada(totalTVL / 1e9);
-    useWalletStore.getState().setGlobalRewardsGiven(totalRewards / 1e9);
+    useWalletStore
+      .getState()
+      .setGlobalRewardsGiven(Math.round(totalRewards / 1e9));
   } catch (e) {}
 };
 

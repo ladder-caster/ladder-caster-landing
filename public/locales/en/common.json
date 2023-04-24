@@ -105,8 +105,23 @@
         "claimLoading": "Claiming...",
         "claimSuccess": "Claiming successful!"
       }
-    },
-    "closed": "[Closed test goes here]"
+    }
+  },
+  "stake": {
+    "flexible": "FLEXIBLE",
+    "quarter": "QUARTER",
+    "halfYear": "HALF YEAR",
+    "percentAPR": "% APR",
+    "max": "MAX",
+    "stake": "Stake",
+    "noLock": "NO LOCK",
+    "90day": "90-DAY",
+    "180day": "180-DAY",
+    "locked": "Locked",
+    "staked": "Staked",
+    "claimable": "Claimable",
+    "claimAll": "CLAIM ALL",
+    "unstake": "UNSTAKE"
   },
   "content": {
     "stakeLADA": "LADA Staking",

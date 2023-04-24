@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
-import { useWallet } from "@solana/wallet-adapter-react";
-import usePrevious from "./hooks/usePrevious";
 import { useTranslation } from "next-i18next";
 import {
   _connectText,

@@ -7,12 +7,9 @@ import {
   initStakeData,
   useWalletStore,
 } from "../../zustand";
-import ConnectWallet from "./connectWallet";
-import { StakingCard } from "./StakingCard";
-import { StakingInfo } from "./StakingInfo";
+import ConnectWallet from "./ConnectWallet";
 import { Status } from "./Status";
-import { useAnchorWallet, useWallet } from "@solana/wallet-adapter-react";
-import { StakingForm } from "./StakingForm";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { Client } from "../../wallet/Connection";
 import { useTranslation } from "next-i18next";
 import {
@@ -30,16 +27,14 @@ import {
   _stakingTitle,
   _stakingContent,
 } from "../../styles/staking.styled";
-import { PublicKey } from "@solana/web3.js";
+import Stake from "./stake/Stake";
+import StakeTable from "./table/StakeTable";
 
 function Content() {
   const { t } = useTranslation();
   const globalStakedLada = useWalletStore((state) => state.globalStakedLada);
   const ladaBalance = useWalletStore((state) => state.ladaBalance);
   const setClient = useWalletStore((state) => state.setClient);
-  const category = useWalletStore((state) => state.category);
-  const setCategory = useWalletStore((state) => state.setCategory);
-  const anchorWallet = useAnchorWallet();
   const {
     connected,
     disconnect,
@@ -48,6 +43,7 @@ function Content() {
     signTransaction,
     publicKey,
   } = useWallet();
+
   const globalRewardsGiven = useWalletStore(
     (state) => state.globalRewardsGiven
   );
@@ -64,6 +60,7 @@ function Content() {
 
   useEffect(() => {
     if (connected) {
+      cleanUser();
       Client.connect({
         signAllTransactions,
         signTransaction,
@@ -74,20 +71,6 @@ function Content() {
     }
   }, [connected]);
 
-  useEffect(() => {
-    if (category > 0 && document.getElementById("modal")) {
-      const scrollDiv = document.getElementById("modal").offsetTop;
-      const isMobile = window.innerWidth < 450;
-      const subtractor = isMobile ? 200 : 490;
-      if (isMobile)
-        window.scrollTo({ top: scrollDiv - subtractor, behavior: "smooth" });
-    }
-  }, [category]);
-
-  const cardSelect = (value) => {
-    setCategory(value);
-  };
-
   return (
     <_page>
       <Nav staking />
@@ -95,7 +78,7 @@ function Content() {
         <_float>
           <_background />
         </_float>
-        <_column>
+        <_column $top>
           <_title>{t("content.stakeLADA")}</_title>
           <_subTitle>
             {t("content.stakeDesc")}
@@ -103,11 +86,10 @@ function Content() {
           </_subTitle>
         </_column>
         <_top>
-          <StakingInfo
-            title={t("content.tvl")}
-            subtitle={`${globalStakedLada?.toLocaleString()} LADA`}
-            area={"a"}
-          />
+          <_column $info>
+            <_stakingTitle>{t("content.tvl")}</_stakingTitle>
+            <_stakingContent>{`${globalStakedLada?.toLocaleString()} LADA`}</_stakingContent>
+          </_column>
           {!connected ? (
             <_column $info>
               <ConnectWallet />
@@ -125,13 +107,16 @@ function Content() {
               </_disconnect>
             </_column>
           )}
-          <StakingInfo
-            title={t("content.rewardsPaid")}
-            subtitle={`${globalRewardsGiven?.toLocaleString()} LADA`}
-            area={"c"}
-          />
+          <_column $info>
+            <_stakingTitle>{t("content.rewardsPaid")}</_stakingTitle>
+            <_stakingContent>{`${globalRewardsGiven?.toLocaleString()} LADA`}</_stakingContent>
+          </_column>
         </_top>
         <_bottom>
+          <Stake />
+          <StakeTable />
+        </_bottom>
+        {/* <_bottom>
           <StakingCard
             title={t("content.flexible")}
             apy={t("content.flexibleAPY")}
@@ -163,7 +148,7 @@ function Content() {
             color={"orange"}
           />
         </_bottom>
-        {category >= 1 ? <StakingForm /> : null}
+        {category >= 1 ? <StakingForm /> : null} */}
       </_content>
       <Footer />
       <Status />
