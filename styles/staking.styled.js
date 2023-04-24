@@ -125,6 +125,14 @@ export const _column = styled.div`
       display: flex;
       flex-direction: column;
     `}
+
+  ${({ $top }) =>
+    $top &&
+    css`
+      ${media.tablet`
+        margin-top: 64px;
+      `}
+    `}
 `;
 
 export const _title = styled.div`
@@ -185,41 +193,13 @@ export const _bottom = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 800px;
 
   ${media.tablet`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     flex-direction: row;
-
-    > div{
-      &:nth-child(1){
-        margin-right: 32px;
-
-      }
-      &:nth-child(2){
-        margin-left: 32px;
-        
-      }
-    }
-  `}
-
-  ${media.desktop`
-    flex-wrap: nowrap;
-    max-width: 900px;
-    margin-top: 32px;
-    justify-content: space-between;
-
-    > div{
-      &:nth-child(1){
-        margin-right: 0;
-
-      }
-      &:nth-child(2){
-        margin-left: 0;
-        
-      }
-    }
   `}
 `;
 

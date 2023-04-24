@@ -254,4 +254,17 @@ export class StakingContext {
         return null;
     }
   }
+
+  static getContract(contractId: string) {
+    switch (contractId) {
+      case Keys.contract1:
+        return 1;
+      case Keys.contract2:
+        return 2;
+      case Keys.contract3:
+        return 3;
+      default:
+        return 0;
+    }
+  }
 }
