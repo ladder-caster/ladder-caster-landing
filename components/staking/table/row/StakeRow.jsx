@@ -98,7 +98,7 @@ const StakeRow = ({ userContract }) => {
             >
               {t("stake.unstake")}
             </_unstake>
-            {remainingTime || "89d"}
+            {remainingTime}
           </_rightContainer>
         </_right>
       </_cell>
