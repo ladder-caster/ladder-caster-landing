@@ -6,14 +6,18 @@ import {
   _unstake,
   _right,
   _rightContainer,
+  _tooltip,
+  _tooltipContent,
 } from "../StakeTable.styled";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { useWalletStore } from "../../../../zustand";
 import { StakingContext } from "../../../../wallet/StakingContext";
 import { useUnstake } from "../../hooks/actions/useUnstake";
 
 const StakeRow = ({ userContract }) => {
   const { t } = useTranslation();
+  const [hovered, setHovered] = useState(false);
+  const [hoveredExpired, setHoveredExpired] = useState(false);
   const stakingContracts = useWalletStore((state) => state.stakingContracts);
   const chainClock = useWalletStore((state) => state.chainClock);
   const { unstakeLada } = useUnstake();
@@ -37,12 +41,14 @@ const StakeRow = ({ userContract }) => {
   }, [stakingContract, t]);
 
   //TODO: to test, need to add endTime
-  const claimable = useMemo(() => {
-    return getClaimableBalance(
+  const [claimable, expired] = useMemo(() => {
+    const { number, expired } = getClaimableBalance(
       userContract,
       stakingContract,
       chainClock
-    ).toLocaleString();
+    );
+
+    return [number?.toLocaleString(), expired];
   }, [userContract, stakingContract, chainClock]);
 
   const tier = useMemo(() => {
@@ -53,11 +59,10 @@ const StakeRow = ({ userContract }) => {
   const [active, remainingTime] = useMemo(() => {
     let active = false,
       remainingString = "";
-    if (stakingContract?.lockPeriodInSeconds !== 0) {
-      const lockInSecs = stakingContract?.lockPeriodInSeconds;
+    if (stakingContract?.lockPeriodInSeconds.toNumber() !== 0) {
+      const lockInSecs = stakingContract?.lockPeriodInSeconds.toNumber();
       const stakedSecs =
-        new Date().getTime() / 1000 - userContract.stakedStartTime;
-
+        new Date().getTime() / 1000 - userContract.stakedStartTime.toNumber();
       if (stakedSecs < lockInSecs) {
         remainingString = getTimeLeft(lockInSecs - stakedSecs);
       } else {
@@ -73,7 +78,21 @@ const StakeRow = ({ userContract }) => {
   return (
     <_row>
       <_cell>
-        <_title $tier={tier}>{title}</_title>
+        <_tooltip
+          onMouseEnter={() => {
+            setHovered(true);
+          }}
+          onMouseLeave={() => {
+            setHovered(false);
+          }}
+        >
+          <_title $tier={tier}>
+            {title} {tier > 3 ? "*" : ""}
+          </_title>
+          {hovered & (tier > 3) ? (
+            <_tooltipContent>{t("stake.disclaimer")}</_tooltipContent>
+          ) : null}
+        </_tooltip>
         <div>
           {stakingContract?.apy}
           {t("stake.percentAPR")}
@@ -85,7 +104,21 @@ const StakeRow = ({ userContract }) => {
         ).toLocaleString()}{" "}
         LADA
       </_cell>
-      <_cell>{claimable} LADA</_cell>
+      <_cell>
+        <_tooltip
+          onMouseEnter={() => {
+            setHoveredExpired(true);
+          }}
+          onMouseLeave={() => {
+            setHoveredExpired(false);
+          }}
+        >
+          {claimable} LADA {expired ? "*" : ""}
+          {hoveredExpired && expired ? (
+            <_tooltipContent $big>{t("stake.expired")}</_tooltipContent>
+          ) : null}
+        </_tooltip>
+      </_cell>
       <_cell>
         <_right>
           <_rightContainer>
@@ -110,9 +143,9 @@ export default StakeRow;
 
 export const getTimeLeft = (remainingSeconds) => {
   const units = [
-    { label: "day", ms: 24 * 60 * 60 * 1000 },
-    { label: "hour", ms: 60 * 60 * 1000 },
-    { label: "minute", ms: 60 * 1000 },
+    { label: "day", ms: 24 * 60 * 60 },
+    { label: "hour", ms: 60 * 60 },
+    { label: "minute", ms: 60 },
   ];
 
   for (let i = 0; i < units.length; i++) {
@@ -130,13 +163,33 @@ export const getClaimableBalance = (
   stakingContract,
   chainClock
 ) => {
-  const apyPerSec = stakingContract?.apy / 100 / 31536000;
+  const apyPerSec = stakingContract?.apy / 100 / (365 * 24 * 60 * 60);
   const localTimeGap = new Date().getTime() / 1000 - chainClock.locale;
   const ellapsedSeconds = Math.trunc(
     chainClock.chain + localTimeGap - userContract.lastClaimed.toNumber()
   );
-
-  return Math.floor(
-    (userContract.stakedAmount.toNumber() / 1e9) * apyPerSec * ellapsedSeconds
+  const endTime = stakingContract?.endTime?.toNumber() || 0;
+  const endTimeEllapsedSeconds = Math.trunc(
+    endTime - (chainClock.chain + localTimeGap)
   );
+
+  let finalEllapsedSeconds =
+    endTimeEllapsedSeconds < 0 && endTime
+      ? ellapsedSeconds + endTimeEllapsedSeconds
+      : ellapsedSeconds;
+
+  let expired = false;
+  if (finalEllapsedSeconds < 0) {
+    expired = !!endTime;
+    finalEllapsedSeconds = 0;
+  }
+
+  return {
+    number: Math.floor(
+      (userContract.stakedAmount.toNumber() / 1e9) *
+        apyPerSec *
+        finalEllapsedSeconds
+    ),
+    expired,
+  };
 };

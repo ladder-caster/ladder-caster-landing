@@ -121,7 +121,9 @@
     "staked": "Staked",
     "claimable": "Claimable",
     "claimAll": "CLAIM ALL",
-    "unstake": "UNSTAKE"
+    "unstake": "UNSTAKE",
+    "disclaimer": "Please note that for contracts with a locking period, interest will cease to accrue after May 7th, unless the locking period has not yet been completed.",
+    "expired": "Expired contract. Re-stake to keep earning. Accrued tokens till end date will remain but will not accrue more past this date."
   },
   "content": {
     "stakeLADA": "LADA Staking",

@@ -12,11 +12,22 @@ import {
 import { useWalletStore } from "../../../zustand";
 import StakeRow from "./row/StakeRow";
 import { useClaim } from "../hooks/actions/useClaim";
+import { useEffect, useMemo } from "react";
+import { StakingContext } from "../../../wallet/StakingContext";
 
 const StakeTable = () => {
   const { t } = useTranslation();
   const { redeemLada } = useClaim();
   const contracts = useWalletStore((state) => state.userStakedAccounts);
+
+  const sortedContracts = useMemo(() => {
+    return contracts.sort((a, b) => {
+      return (
+        StakingContext.getContract(a.stakingContract.toString()) -
+        StakingContext.getContract(b.stakingContract.toString())
+      );
+    });
+  }, [contracts]);
 
   if (!contracts || contracts.length === 0) return null;
 
@@ -42,7 +53,7 @@ const StakeTable = () => {
           </_row>
         </_head>
         <_body>
-          {contracts.map((contract, key) => (
+          {sortedContracts.map((contract, key) => (
             <StakeRow userContract={contract} key={`contracts-${key}`} />
           ))}
         </_body>
