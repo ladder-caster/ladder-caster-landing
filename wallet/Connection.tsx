@@ -1,14 +1,7 @@
 import * as anchor from "@project-serum/anchor";
 import { Connection } from "@solana/web3.js";
-import config from "./Config/Config";
+import config from "../config";
 import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
-
-export type Environment =
-  | "mainnet"
-  | "mainnet-priv"
-  | "localnet"
-  | "devnet"
-  | "localprod";
 
 export class Client {
   constructor(
@@ -29,7 +22,6 @@ export class Client {
   }
 
   static async getConnection(): Promise<anchor.web3.Connection> {
-    if (config) return new anchor.web3.Connection(config.rpc);
     return new anchor.web3.Connection(config.rpc);
   }
 
@@ -42,10 +34,6 @@ export class Client {
 
     let idl = config.stakingIdl;
     if (programName !== "staking") idl = config.buddyIdl;
-    return new anchor.Program(
-      idl as anchor.Idl,
-      idl.metadata.address,
-      _provider
-    );
+    return new anchor.Program(idl as anchor.Idl, config.programId, _provider);
   }
 }

@@ -27,7 +27,7 @@ export const useClaim = () => {
         contract,
         stakingContract,
         chainClock
-      );
+      ).number;
       total += toClaim;
       if (toClaim) accounts.push(contract);
     }

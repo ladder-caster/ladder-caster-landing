@@ -1,5 +1,4 @@
-import styled, { css, keyframes } from "styled-components";
-import { media } from "../../../styles/utils";
+import styled, { css } from "styled-components";
 
 export const _container = styled.div`
   border: 2px solid rgba(255, 255, 255, 0.5);
@@ -66,14 +65,17 @@ export const _title = styled.div`
   ${({ $tier }) => {
     switch ($tier) {
       case 1:
+      case 4:
         return css`
           color: rgb(166, 234, 251);
         `;
       case 2:
+      case 5:
         return css`
           color: rgb(176, 138, 229);
         `;
       case 3:
+      case 6:
         return css`
           color: rgb(255, 152, 48);
         `;
@@ -112,6 +114,7 @@ export const _unstake = styled.button`
   ${({ $tier, $active }) => {
     switch ($tier) {
       case 1:
+      case 4:
         return css`
           background: #3c8fa2;
           ${!$active &&
@@ -120,6 +123,7 @@ export const _unstake = styled.button`
           `}
         `;
       case 2:
+      case 5:
         return css`
           background: #6a2d99;
           ${!$active &&
@@ -128,6 +132,7 @@ export const _unstake = styled.button`
           `}
         `;
       case 3:
+      case 6:
         return css`
           background: #a45c28;
           ${!$active &&
@@ -137,4 +142,25 @@ export const _unstake = styled.button`
         `;
     }
   }}
+`;
+
+export const _tooltip = styled.div`
+  position: relative;
+`;
+
+export const _tooltipContent = styled.div`
+  position: absolute;
+  background-color: #4c4a66;
+  box-shadow: 5px 7px 15px -3px rgba(0, 0, 0, 0.5);
+  margin-bottom: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  right: 0;
+  bottom: 25px;
+
+  ${({ $big }) =>
+    $big &&
+    css`
+      min-width: 200px;
+    `}
 `;

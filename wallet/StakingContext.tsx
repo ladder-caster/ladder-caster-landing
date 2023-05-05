@@ -250,6 +250,15 @@ export class StakingContext {
       case 3: {
         return new PublicKey(Keys.contract3);
       }
+      case 4: {
+        return new PublicKey(Keys.oldContract1);
+      }
+      case 5: {
+        return new PublicKey(Keys.oldContract2);
+      }
+      case 6: {
+        return new PublicKey(Keys.oldContract3);
+      }
       default:
         return null;
     }
@@ -263,6 +272,12 @@ export class StakingContext {
         return 2;
       case Keys.contract3:
         return 3;
+      case Keys.oldContract1:
+        return 4;
+      case Keys.oldContract2:
+        return 5;
+      case Keys.oldContract3:
+        return 6;
       default:
         return 0;
     }
