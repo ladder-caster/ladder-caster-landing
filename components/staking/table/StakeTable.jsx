@@ -12,7 +12,7 @@ import {
 import { useWalletStore } from "../../../zustand";
 import StakeRow from "./row/StakeRow";
 import { useClaim } from "../hooks/actions/useClaim";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { StakingContext } from "../../../wallet/StakingContext";
 
 const StakeTable = () => {

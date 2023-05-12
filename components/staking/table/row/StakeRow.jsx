@@ -168,7 +168,17 @@ export const getClaimableBalance = (
   const ellapsedSeconds = Math.trunc(
     chainClock.chain + localTimeGap - userContract.lastClaimed.toNumber()
   );
-  const endTime = stakingContract?.endTime?.toNumber() || 0;
+
+  let endTime = stakingContract?.endTime?.toNumber() || 0;
+  if (
+    stakingContract?.endTime?.toNumber() &&
+    stakingContract?.lockPeriodInSeconds?.toNumber()
+  ) {
+    endTime =
+      userContract?.stakedStartTime.toNumber() +
+      stakingContract?.lockPeriodInSeconds?.toNumber();
+  }
+
   const endTimeEllapsedSeconds = Math.trunc(
     endTime - (chainClock.chain + localTimeGap)
   );

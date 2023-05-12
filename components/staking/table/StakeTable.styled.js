@@ -5,9 +5,6 @@ export const _container = styled.div`
   border-radius: 12px;
   margin: 40px 8px 0;
   width: 100%;
-  overflow: auto;
-
-  max-height: 600px;
 `;
 
 export const _grid = styled.table`
