@@ -169,14 +169,13 @@ export const getClaimableBalance = (
     chainClock.chain + localTimeGap - userContract.lastClaimed.toNumber()
   );
 
+  const userStartTime = userContract?.stakedStartTime.toNumber();
   let endTime = stakingContract?.endTime?.toNumber() || 0;
   if (
-    stakingContract?.endTime?.toNumber() &&
-    stakingContract?.lockPeriodInSeconds?.toNumber()
+    userStartTime + stakingContract?.lockPeriodInSeconds?.toNumber() >
+    stakingContract?.endTime?.toNumber()
   ) {
-    endTime =
-      userContract?.stakedStartTime.toNumber() +
-      stakingContract?.lockPeriodInSeconds?.toNumber();
+    endTime = userStartTime + stakingContract?.lockPeriodInSeconds?.toNumber();
   }
 
   const endTimeEllapsedSeconds = Math.trunc(
