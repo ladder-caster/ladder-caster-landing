@@ -116,39 +116,6 @@ function Content() {
           <Stake />
           <StakeTable />
         </_bottom>
-        {/* <_bottom>
-          <StakingCard
-            title={t("content.flexible")}
-            apy={t("content.flexibleAPY")}
-            subtitle={t("content.flexibleDesc")}
-            callback={(v) => cardSelect(0x1)}
-            active={category == 0x1 ? "active" : null}
-            connected={connected}
-            area={"d"}
-            color={"blue"}
-          />
-          <StakingCard
-            title={t("content.hodler")}
-            apy={t("content.hodlerAPY")}
-            subtitle={t("content.hodlerDesc")}
-            callback={(v) => cardSelect(0x2)}
-            active={category == 0x2 ? "active" : null}
-            connected={connected}
-            area={"e"}
-            color={"purple"}
-          />
-          <StakingCard
-            title={t("content.diamond")}
-            apy={t("content.diamondAPY")}
-            subtitle={t("content.diamondDesc")}
-            callback={(v) => cardSelect(0x3)}
-            active={category == 0x3 ? "active" : null}
-            connected={connected}
-            area={"f"}
-            color={"orange"}
-          />
-        </_bottom>
-        {category >= 1 ? <StakingForm /> : null} */}
       </_content>
       <Footer />
       <Status />

@@ -33,7 +33,7 @@ export const useClaim = () => {
     }
 
     return [total, accounts];
-  }, [userStakedAccounts]);
+  }, [userStakedAccounts, stakingContracts]);
 
   const redeemLada = useCallback(async () => {
     if (ladaToRedeem <= 0) return;
