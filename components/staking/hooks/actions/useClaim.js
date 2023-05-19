@@ -59,7 +59,7 @@ export const useClaim = () => {
 
         setStatus("claim", "success", t("staking.form.error.claimSuccess"));
       } catch (e) {
-        setStatus("claim", "error", typeof e === "string" ? e : e.message);
+        setStatus("claim", "error", JSON.stringify(e.logs));
       } finally {
         updateData(client);
       }

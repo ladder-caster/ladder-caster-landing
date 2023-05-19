@@ -78,12 +78,12 @@ const StakeRow = ({ userContract }) => {
   }, [stakingContract, userContract]);
 
   return (
-    <_row
-      onClick={async () => {
-        await redeemSingleLada(userContract);
-      }}
-    >
-      <_cell>
+    <_row>
+      <_cell
+        onClick={async () => {
+          await redeemSingleLada(userContract);
+        }}
+      >
         <_tooltip
           onMouseEnter={() => {
             setHovered(true);
@@ -132,7 +132,8 @@ const StakeRow = ({ userContract }) => {
               $tier={tier}
               $active={active}
               onClick={() => {
-                if (active) unstakeLada(userContract);
+                // if (active)
+                unstakeLada(userContract);
               }}
             >
               {t("stake.unstake")}
