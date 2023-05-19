@@ -36,6 +36,8 @@ export const useClaim = () => {
   }, [userStakedAccounts, stakingContracts]);
 
   const redeemLada = useCallback(async () => {
+    console.log(ladaToRedeem);
+    console.log(stakedAccounts.map((acc) => acc.publicKey.toString()));
     if (ladaToRedeem <= 0) return;
     try {
       setStatus("claim", "loading", t("staking.form.error.claimLoading"));
@@ -49,5 +51,21 @@ export const useClaim = () => {
     }
   }, [client, t, ladaToRedeem, stakedAccounts]);
 
-  return { redeemLada };
+  const redeemSingleLada = useCallback(
+    async (account) => {
+      try {
+        setStatus("claim", "loading", t("staking.form.error.claimLoading"));
+        await new StakingContext(client).bulkClaim([account]);
+
+        setStatus("claim", "success", t("staking.form.error.claimSuccess"));
+      } catch (e) {
+        setStatus("claim", "error", typeof e === "string" ? e : e.message);
+      } finally {
+        updateData(client);
+      }
+    },
+    [client, t]
+  );
+
+  return { redeemLada, redeemSingleLada };
 };

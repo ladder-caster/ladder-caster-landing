@@ -29,6 +29,7 @@ import {
 } from "../../styles/staking.styled";
 import Stake from "./stake/Stake";
 import StakeTable from "./table/StakeTable";
+import { PublicKey } from "@solana/web3.js";
 
 function Content() {
   const { t } = useTranslation();

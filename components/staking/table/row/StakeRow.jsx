@@ -13,6 +13,7 @@ import { useMemo, useState } from "react";
 import { useWalletStore } from "../../../../zustand";
 import { StakingContext } from "../../../../wallet/StakingContext";
 import { useUnstake } from "../../hooks/actions/useUnstake";
+import { useClaim } from "../../hooks/actions/useClaim";
 
 const StakeRow = ({ userContract }) => {
   const { t } = useTranslation();
@@ -21,6 +22,7 @@ const StakeRow = ({ userContract }) => {
   const stakingContracts = useWalletStore((state) => state.stakingContracts);
   const chainClock = useWalletStore((state) => state.chainClock);
   const { unstakeLada } = useUnstake();
+  const { redeemSingleLada } = useClaim();
 
   const stakingContract = stakingContracts.find(
     (contract) =>
@@ -76,7 +78,11 @@ const StakeRow = ({ userContract }) => {
   }, [stakingContract, userContract]);
 
   return (
-    <_row>
+    <_row
+      onClick={async () => {
+        await redeemSingleLada(userContract);
+      }}
+    >
       <_cell>
         <_tooltip
           onMouseEnter={() => {
