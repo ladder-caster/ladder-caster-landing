@@ -42,14 +42,16 @@ const Nav = ({ simple, staking }) => {
             <a
               target="_blank"
               rel="noreferrer"
-              href="https://ladder-caster.gitbook.io/laddercaster"
+              // href="https://ladder-caster.gitbook.io/laddercaster"
+              href="#"
             >
               {t("nav.whitepaper")}
             </a>
             <a
               target="_blank"
               rel="noreferrer"
-              href="https://ladder-caster.gitbook.io/laddercaster/items"
+              // href="https://ladder-caster.gitbook.io/laddercaster/items"
+              href="#"
             >
               {t("nav.items")}
             </a>

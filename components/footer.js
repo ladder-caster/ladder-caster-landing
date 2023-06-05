@@ -25,14 +25,16 @@ const Footer = () => {
           <_link
             target="_blank"
             rel="noreferrer"
-            href="https://ladder-caster.gitbook.io/laddercaster"
+            // href="https://ladder-caster.gitbook.io/laddercaster"
+            href="#"
           >
             {t("footer.whitepaper")}
           </_link>
           <_link
             target="_blank"
             rel="noreferrer"
-            href="https://ladder-caster.gitbook.io/laddercaster/items"
+            // href="https://ladder-caster.gitbook.io/laddercaster/items"
+            href="#"
           >
             {t("footer.items")}
           </_link>
@@ -42,7 +44,8 @@ const Footer = () => {
           <_link
             target="_blank"
             rel="noreferrer"
-            href="https://laddercaster.gitbook.io/laddercaster"
+            // href="https://laddercaster.gitbook.io/laddercaster"
+            href="#"
           >
             {t("footer.team")}
           </_link>
@@ -63,23 +66,27 @@ const Footer = () => {
           <_link
             target="_blank"
             rel="noreferrer"
-            href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/resources"
+            // href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/resources"
+
+            href="#"
           >
             {t("footer.resources")}
           </_link>
           <_link
             target="_blank"
             rel="noreferrer"
-            href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/governance"
+            // href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/governance"
+            href="#"
           >
             {t("footer.governance")}
           </_link>
           <_link
             target="_blank"
             rel="noreferrer"
-            href={
-              "https://ladder-caster.gitbook.io/laddercaster/tokenomics/how-to-buy-lada"
-            }
+            // href={
+            //   "https://ladder-caster.gitbook.io/laddercaster/tokenomics/how-to-buy-lada"
+            // }
+            href="#"
           >
             {t("footer.howToBuy")}
           </_link>
