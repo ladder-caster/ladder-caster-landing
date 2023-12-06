@@ -46,7 +46,7 @@ const Hero = () => {
           <_desc>{t("home.hero.realtimeMobile")}</_desc>
           <_wrapper>
             <_refer>
-              <Link href={"https://buddy.link/post/laddercaster-our-story"}>
+              <Link  href={"https://buddy.link/shop/caster"}>
                 {t("home.hero.cta")}</Link>
             </_refer>
           </_wrapper>

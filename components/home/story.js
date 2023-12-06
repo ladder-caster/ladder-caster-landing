@@ -40,7 +40,7 @@ const Story = () => {
           <_desc>{t("home.story.description")}</_desc>
           <_wrapper>
             <_refer>
-              <Link href={"https://buddy.link/post/laddercaster-our-story"}>
+              <Link  href={"https://buddy.link/shop/caster"}>
                 {t("home.hero.cta")}</Link>
             </_refer>
           </_wrapper>

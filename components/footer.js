@@ -23,7 +23,6 @@ const Footer = () => {
           <_title>{t("footer.game")}</_title>
           <_link href={"#faq"}>{t("footer.faq")}</_link>
           <_link
-            target="_blank"
             rel="noreferrer"
             // href="https://ladder-caster.gitbook.io/laddercaster"
             href="#"
@@ -31,7 +30,7 @@ const Footer = () => {
             {t("footer.whitepaper")}
           </_link>
           <_link
-            target="_blank"
+
             rel="noreferrer"
             // href="https://ladder-caster.gitbook.io/laddercaster/items"
             href="#"
@@ -42,7 +41,7 @@ const Footer = () => {
         <_container>
           <_title>{t("footer.about")}</_title>
           <_link
-            target="_blank"
+
             rel="noreferrer"
             // href="https://laddercaster.gitbook.io/laddercaster"
             href="#"
@@ -54,7 +53,7 @@ const Footer = () => {
             {t("footer.contact")}
           </_link>
           <_link
-            target="_blank"
+
             rel="noreferrer"
             href={"https://discord.com/invite/laddercaster"}
           >
@@ -64,7 +63,7 @@ const Footer = () => {
         <_container>
           <_title>{t("footer.tokenomics")}</_title>
           <_link
-            target="_blank"
+
             rel="noreferrer"
             // href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/resources"
 
@@ -73,7 +72,7 @@ const Footer = () => {
             {t("footer.resources")}
           </_link>
           <_link
-            target="_blank"
+
             rel="noreferrer"
             // href="https://ladder-caster.gitbook.io/laddercaster/tokenomics/governance"
             href="#"
@@ -81,7 +80,7 @@ const Footer = () => {
             {t("footer.governance")}
           </_link>
           <_link
-            target="_blank"
+
             rel="noreferrer"
             // href={
             //   "https://ladder-caster.gitbook.io/laddercaster/tokenomics/how-to-buy-lada"
@@ -94,7 +93,7 @@ const Footer = () => {
         <_container>
           <_title>{t("footer.social")}</_title>
           <_social
-            target="_blank"
+
             rel="noreferrer"
             href={"https://discord.com/invite/laddercaster"}
             style={{ backgroundColor: "#5159e9" }}
@@ -102,7 +101,7 @@ const Footer = () => {
             {discordIcon()} {t("footer.joinDiscord")}
           </_social>
           <_social
-            target="_blank"
+
             rel="noreferrer"
             href="https://twitter.com/LadderCaster"
             style={{ backgroundColor: "#00acee" }}

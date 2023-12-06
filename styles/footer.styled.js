@@ -139,6 +139,13 @@ export const _link = styled.a`
   font-size: 15px;
   margin: 0px 24px;
   font-weight: 200;
+  opacity: 0.5;
+  pointer-events: none;
+  
+  &::selection {
+    background: transparent;
+  }
+  
 
   ${media.mobile`
     font-size: 14px;

@@ -30,7 +30,7 @@
     "hero": {
       "poweredSolana": "Powered by Solana",
       "realtimeMobile": "A Community Strategy Game",
-      "cta": "Read Story",
+      "cta": "Join The Fight!",
       "buyLADA": "Buy $LADA",
       "joinDiscord": "Join the Discord"
     },
@@ -39,13 +39,13 @@
       "header1": "A Fun Mobile",
       "header2": "Trading Game",
       "description": "The goal of the game is to move as many casters on the board using their stamina, and loot. Resources you find can be used to level up, and chests will contain items that you can trade to gain more wealth and power.",
-      "cta": "Read Story"
+      "cta": "Join The Fight!"
     },
     "story": {
       "title": "Story",
       "header": "A Most Magical Adventure",
       "description": "In the land of Avaria where magic reigns supreme, GrandCaster Mejulah, the Oracle of Space and Time, has disappeared! In his absence, adventurers must collect resources to level up and master time.",
-      "cta": "Read Story"
+      "cta": "Join The Fight!"
     },
     "loot": {
       "title": "Items",
@@ -145,7 +145,7 @@
   },
   "referrals": {
     "title": "Better Together",
-    "header": "Read Story",
+    "header": "Join The Fight!",
     "save": "Join the Buddy Network",
     "description": "Adventure is better together. Invite your friends and you will each receive rewards in-game. The release date will be announced at a later date, but you can start getting ready with your friends today!",
     "email": "Enter your email to create account",
