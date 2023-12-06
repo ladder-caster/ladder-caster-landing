@@ -44,8 +44,8 @@ const Playgame = () => {
             </_desc>
             <_wrapper>
               <_refer>
-                <Link href={"/r/laddercaster"}>
-                  {t("home.hero.cta")}</Link>
+                <Link  href={"https://buddy.link/shop/avaria-pack"}>
+                  Refer a Friend!</Link>
               </_refer>
             </_wrapper>
           </_info_wrapper>

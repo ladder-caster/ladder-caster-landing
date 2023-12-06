@@ -39,23 +39,23 @@ const Nav = ({ simple, staking }) => {
         </_menuContainer>
         <_container $checked={checked}>
           <_links $staking={staking}>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              // href="https://ladder-caster.gitbook.io/laddercaster"
-              href="#"
-            >
-              {t("nav.whitepaper")}
-            </a>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              // href="https://ladder-caster.gitbook.io/laddercaster/items"
-              href="#"
-            >
-              {t("nav.items")}
-            </a>
-            <Link href={"https://buddy.link"}>{t("nav.referrals")}</Link>
+            {/*<a*/}
+            {/*  target="_blank"*/}
+            {/*  rel="noreferrer"*/}
+            {/*  // href="https://ladder-caster.gitbook.io/laddercaster"*/}
+            {/*  href="#"*/}
+            {/*>*/}
+            {/*  {t("nav.whitepaper")}*/}
+            {/*</a>*/}
+            {/*<a*/}
+            {/*  target="_blank"*/}
+            {/*  rel="noreferrer"*/}
+            {/*  // href="https://ladder-caster.gitbook.io/laddercaster/items"*/}
+            {/*  href="#"*/}
+            {/*>*/}
+            {/*  {t("nav.items")}*/}
+            {/*</a>*/}
+            <Link href={"https://buddy.link"}>Refer a Friend</Link>
             <a target="_self" rel="noreferrer" href="/staking">
               {t("nav.staking")}
             </a>
