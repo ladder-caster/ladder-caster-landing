@@ -186,12 +186,12 @@ export const _button = styled.div`
 
 export const _refer = styled.div`
   position: relative;
-  z-index: 99999;
+  z-index: 10;
   font-size: 20px;
   color: #fff;
   font-weight: 700;
   letter-spacing: 0.5px;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.24);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.24);
   min-width: 164px;
   width: 224px;
   min-height: 60px;
@@ -203,7 +203,8 @@ export const _refer = styled.div`
   margin-top: 8px;
   background-color: rgba(255, 152, 48, 0.69);
   border: 2px solid rgba(255, 152, 48, 0.69);
-  backdrop-filter: blur(40px) saturate(110%) hue-rotate(20deg) brightness(60%) contrast(110%);
+  backdrop-filter: blur(40px) saturate(110%) hue-rotate(20deg) brightness(60%)
+    contrast(110%);
   box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
   > a {
     display: flex;

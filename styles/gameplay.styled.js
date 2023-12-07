@@ -68,13 +68,13 @@ export const _info = styled.div`
   max-width: 580px;
   margin-left: 0;
   padding: 32px;
-  z-index: 99999;
+  z-index: 10;
   border-radius: 20px;
-  border: 2px solid rgba(255,255,255,0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
   background: rgba(28, 21, 66, 0.32);
   backdrop-filter: blur(40px) saturate(110%) brightness(160%) contrast(120%);
   box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
-  
+
   > h1 {
     font-weight: 800;
     line-height: 40px;
@@ -295,7 +295,7 @@ export const _refer = styled.div`
   color: #fff;
   font-weight: 700;
   letter-spacing: 0.5px;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.24);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.24);
   min-width: 164px;
   width: 224px;
   min-height: 60px;
@@ -306,7 +306,8 @@ export const _refer = styled.div`
   border-radius: 8px;
   background-color: rgba(255, 152, 48, 0.69);
   border: 2px solid rgba(255, 152, 48, 0.69);
-  backdrop-filter: blur(40px) saturate(140%) hue-rotate(120deg) brightness(100%) contrast(140%);
+  backdrop-filter: blur(40px) saturate(140%) hue-rotate(120deg) brightness(100%)
+    contrast(140%);
   box-shadow: 0 8px 24px 0 rgba(85, 48, 48, 0.36);
   > a {
     display: flex;
