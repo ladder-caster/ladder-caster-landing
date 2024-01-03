@@ -55,7 +55,7 @@ const Nav = ({ simple, staking }) => {
             {/*>*/}
             {/*  {t("nav.items")}*/}
             {/*</a>*/}
-            <Link href={"https://buddy.link"}>Refer a Friend</Link>
+            <Link href={"https://buddy.link/laddercaster"} target={"_blank"}>Refer a Friend</Link>
             <a target="_self" rel="noreferrer" href="/staking">
               {t("nav.staking")}
             </a>
